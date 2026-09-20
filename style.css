@@ -9,7 +9,7 @@
    Escritorio:  [ Winforge + frase ]  [ logo ]
                 [      botones centrados      ]
    Pantallas chicas: todo en una columna, centrado.
-   Aparición (orquestada en index.js): Winforge → frase → logo → botones.
+   Aparición (orquestada en script.js): Winforge → frase → logo → botones.
    ========================================================================== */
 
 .hero {
