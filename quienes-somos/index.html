@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- ===== SEO principal ===== -->
+    <title>Quiénes somos | Winforge</title>
+    <meta name="description" content="Conocé a Winforge: un taller creativo y productor de Rosario que acompaña a cada proyecto a nutrir su identidad, encontrar su voz y contar su historia.">
+    <meta name="author" content="Winforge">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://winforge.com.ar/quienes-somos/">
+    <meta name="theme-color" content="#050807">
+
+    <!-- ===== Open Graph ===== -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_AR">
+    <meta property="og:site_name" content="Winforge">
+    <meta property="og:title" content="Quiénes somos | Winforge">
+    <meta property="og:description" content="Conocé a Winforge: un taller creativo y productor de Rosario que acompaña a cada proyecto a nutrir su identidad, encontrar su voz y contar su historia.">
+    <meta property="og:url" content="https://winforge.com.ar/quienes-somos/">
+    <meta property="og:image" content="https://winforge.com.ar/img/og/winforge-compartir.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Isologo de Winforge sobre fondo oscuro con bruma eucalipto">
+
+    <!-- ===== Twitter / X ===== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Quiénes somos | Winforge">
+    <meta name="twitter:description" content="Conocé a Winforge: un taller creativo y productor de Rosario que acompaña a cada proyecto a nutrir su identidad, encontrar su voz y contar su historia.">
+    <meta name="twitter:image" content="https://winforge.com.ar/img/og/winforge-compartir.jpg">
+
+    <!-- ===== Íconos y manifiesto ===== -->
+    <link rel="icon" href="../img/logo/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="../img/logo/Isologo_transp.png">
+    <link rel="manifest" href="../site.webmanifest">
+
+    <!-- ===== Tipografías ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Poppins:wght@300;400;500&display=swap">
+
+    <!-- ===== Estilos ===== -->
+    <link rel="stylesheet" href="../recursos/css/base.css">
+    <link rel="stylesheet" href="../recursos/css/componentes/fondo-atmosfera.css">
+    <link rel="stylesheet" href="../recursos/css/componentes/navegacion.css">
+    <link rel="stylesheet" href="../recursos/css/componentes/botones.css">
+    <link rel="stylesheet" href="quienes-somos.css">
+
+    <script>
+        /* Las animaciones de entrada corren solo en la primera visita a cada
+           página. La marca queda guardada; si el visitante vuelve, el
+           contenido aparece puesto. (Para volver a verlas: borrar el
+           almacenamiento del sitio o agregar ?animar a la dirección.) */
+        document.documentElement.classList.add("js");
+
+        (function () {
+            var clave = "winforge:visitada:" + location.pathname;
+
+            try {
+                if (location.search.indexOf("animar") !== -1 || !localStorage.getItem(clave)) {
+                    document.documentElement.classList.add("animar");
+                    localStorage.setItem(clave, "1");
+                }
+            } catch (error) {
+                document.documentElement.classList.add("animar"); // Sin almacenamiento, siempre animan
+            }
+        })();
+    </script>
+    <script type="module" src="quienes-somos.js"></script>
+</head>
+
+<body>
+    <a class="saltar-al-contenido" href="#contenido">Saltar al contenido</a>
+
+    <!-- ==================================================================
+         FONDO ATMÓSFERA (decorativo, fijo en todo el sitio)
+         ================================================================== -->
+    <div class="fondo-atmosfera" data-fondo-atmosfera aria-hidden="true">
+        <canvas class="fondo-atmosfera__fluido" data-fluido></canvas>
+        <canvas class="fondo-atmosfera__particulas" data-particulas></canvas>
+        <div class="fondo-atmosfera__grano"></div>
+    </div>
+
+    <!-- ==================================================================
+         MURAL DE LA FORJA (decorativo)
+         Va pegado a la página, no a la pantalla: al scrollear se va
+         viendo el resto del grabado hasta llegar a su final.
+         ================================================================== -->
+    <div class="mural-forja" aria-hidden="true"></div>
+
+    <!-- ==================================================================
+         CABECERA
+         ================================================================== -->
+    <header class="cabecera">
+        <nav class="indice-navegacion" data-navegacion-indice aria-label="Navegación principal">
+            <ul class="indice-navegacion__lista" role="list">
+                <li class="indice-navegacion__item">
+                    <a class="indice-navegacion__enlace" href="../">
+                        <span class="indice-navegacion__linea" aria-hidden="true"></span>
+                        <span class="indice-navegacion__texto">Inicio</span>
+                    </a>
+                </li>
+                <li class="indice-navegacion__item">
+                    <a class="indice-navegacion__enlace" href="../quienes-somos/" aria-current="page">
+                        <span class="indice-navegacion__linea" aria-hidden="true"></span>
+                        <span class="indice-navegacion__texto">Quiénes somos</span>
+                    </a>
+                </li>
+                <li class="indice-navegacion__item">
+                    <a class="indice-navegacion__enlace" href="../contacto/">
+                        <span class="indice-navegacion__linea" aria-hidden="true"></span>
+                        <span class="indice-navegacion__texto">Contacto</span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="indice-navegacion__redes" role="list" aria-label="Redes sociales">
+                <li>
+                    <a class="indice-navegacion__red" href="https://www.instagram.com/winforge/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Winforge (se abre en una pestaña nueva)">
+                        <svg class="indice-navegacion__icono-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                            <rect x="3.5" y="3.5" width="17" height="17" rx="5"/>
+                            <circle cx="12" cy="12" r="3.8"/>
+                            <path d="M17 7h.01"/>
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a class="indice-navegacion__red" href="https://www.linkedin.com/company/winforge/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Winforge (se abre en una pestaña nueva)">
+                        <svg class="indice-navegacion__icono-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                            <rect x="3.5" y="3.5" width="17" height="17" rx="3"/>
+                            <path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 0 0-4 0"/>
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a class="indice-navegacion__red" href="https://wa.me/5493413626491" target="_blank" rel="noopener noreferrer" aria-label="Escribinos por WhatsApp (se abre en una pestaña nueva)">
+                        <svg class="indice-navegacion__icono-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                            <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/>
+                            <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="contenido">
+        <!-- ==============================================================
+             1. PRESENTACIÓN
+             Izquierda: "Acerca de" con el isotipo y, debajo, la frase.
+             Derecha: los tres aspectos, que entran desplazándose desde
+             afuera cuando el texto terminó. Las dos mitades, centradas.
+             ============================================================== -->
+        <section class="presentacion" data-presentacion aria-labelledby="titulo-pagina">
+            <div class="presentacion__contenedor contenedor">
+                <div class="presentacion__columna-texto">
+                    <h1 class="presentacion__titulo" id="titulo-pagina">
+                        <span class="presentacion__titulo-texto">Acerca de</span>
+                        <svg class="presentacion__isotipo" viewBox="0 0 674.49 340" aria-hidden="true" focusable="false">
+                            <path d="M279.63,302.46c41.49,26.7,90.53,32.8,136.41,12.88,9.71-4.22,21.23-10.13,27.37-18.86.21-1.47-5.55-6.89-6.89-8.49-13.33-15.89-25.61-32.56-36.75-50.07-34.67,21.79-84.42,12.82-101.19-26.73-11.64-27.44-3.97-58.96,15.82-80.38l-.55-73.7h-.02c-.56-.58-7.17,2.99-8.35,3.6-43.32,22.35-79.2,60.54-85.03,110.79-1.2,10.38-.33,19.89-3.26,30.12-10.78,37.6-50.25,56.09-86.91,43.78-49.57-16.64-55.43-80.14-21.73-115.15l-.8-75.39c-.8-1.22-6.11,1.39-7.51,1.99C.57,99.52-19.48,240.88,73.11,302.58c35.74,23.81,88.27,33.53,127.26,12.4,18.66-10.11,30.9-24.9,44.22-40.89,11.2,9.97,22.4,20.23,35.04,28.37Z"/>
+                            <path d="M484.92,328.04h86.5c-.42-2.37-3.2-3.51-4.74-4.99-18.36-17.57-35.73-36.37-52.29-55.64-28.54-33.22-66.3-73.66-36.88-119.23,20.04-31.05,63.71-35.33,92.98-14.75,5.38,3.78,9.58,8.68,14.59,12.69l75.91-1.39c-18.53-47.98-58.64-82.19-109.58-91.25-70.17-12.47-132.99,22.65-151.17,92.52-14.45,55.53,4.59,90.3,38.24,131.68,14.39,17.7,29.55,35.01,46.44,50.36Z"/>
+                        </svg>
+                        <span class="texto-oculto">Winforge</span>
+                    </h1>
+
+                    <p class="presentacion__frase">La forja es un lugar que señala tres aspectos centrales de todo proyecto:</p>
+                </div>
+
+                <div class="presentacion__columna-grafico">
+                    <img
+                        class="presentacion__grafico"
+                        src="../img/quienesomos/pilares-1100.webp"
+                        srcset="../img/quienesomos/pilares-700.webp 700w, ../img/quienesomos/pilares-1100.webp 1100w"
+                        sizes="(min-width: 1101px) 45vw, 82vw"
+                        alt="Los tres aspectos de la forja: orden, proceso y repetición"
+                        width="1100"
+                        height="408"
+                    >
+                </div>
+            </div>
+        </section>
+
+        <!-- ==============================================================
+             2. MISIÓN Y VISIÓN
+             Dos bloques enfrentados: la misión arranca a la izquierda y
+             la visión responde desde la derecha.
+             ============================================================== -->
+        <section class="proposito" aria-label="Misión y visión">
+            <div class="proposito__contenedor contenedor">
+                <article class="proposito__bloque proposito__bloque--mision" data-revelar>
+                    <h2 class="proposito__titulo">Misión</h2>
+                    <p class="proposito__texto">Forjamos el <em>CÓMO</em> para quien tiene un <em>POR QUÉ</em> y un <em>QUÉ</em> para contar: un saber, un proyecto, un servicio, una historia.</p>
+                </article>
+
+                <article class="proposito__bloque proposito__bloque--vision" data-revelar>
+                    <h2 class="proposito__titulo">Visión</h2>
+                    <p class="proposito__texto">Anhelamos que cada marca cobre vida propia. Que cuente su historia desde sus raíces a sus frutos. Que su diseño sea fiel reflejo de su alma e identidad. Que, por lo tanto, desde su originalidad y particularidad, genere una diferencia en su comunidad.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- ==============================================================
+             3. NUESTRO EQUIPO
+             Retratos en blanco y negro; el nombre y el rol debajo.
+             ============================================================== -->
+        <section class="equipo" aria-labelledby="titulo-equipo">
+            <div class="equipo__contenedor contenedor">
+                <h2 class="titulo-seccion" id="titulo-equipo" data-revelar>Nuestro equipo</h2>
+
+                <ul class="equipo__lista" role="list">
+                    <li class="equipo__integrante" data-revelar style="--indice-integrante: 0">
+                        <figure class="equipo__tarjeta">
+                            <div class="equipo__retrato">
+                                <img
+                                    class="equipo__foto"
+                                    src="../img/equipo/jere-820.webp"
+                                    srcset="../img/equipo/jere-520.webp 520w, ../img/equipo/jere-820.webp 820w"
+                                    sizes="(min-width: 1101px) 22vw, (min-width: 701px) 40vw, 80vw"
+                                    alt="Retrato de Jeremías Carrió"
+                                    width="820"
+                                    height="820"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </div>
+
+                            <figcaption class="equipo__datos">
+                                <p class="equipo__nombre">Jeremías Carrió</p>
+                                <p class="equipo__rol">Founder &amp; CEO</p>
+                            </figcaption>
+                        </figure>
+                    </li>
+
+                    <li class="equipo__integrante" data-revelar style="--indice-integrante: 1">
+                        <figure class="equipo__tarjeta">
+                            <div class="equipo__retrato">
+                                <img
+                                    class="equipo__foto"
+                                    src="../img/equipo/lu-820.webp"
+                                    srcset="../img/equipo/lu-520.webp 520w, ../img/equipo/lu-820.webp 820w"
+                                    sizes="(min-width: 1101px) 22vw, (min-width: 701px) 40vw, 80vw"
+                                    alt="Retrato de Lucía Nogara"
+                                    width="820"
+                                    height="820"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </div>
+
+                            <figcaption class="equipo__datos">
+                                <p class="equipo__nombre">Lucía Nogara</p>
+                                <p class="equipo__rol">Ejecutiva de Cuenta</p>
+                            </figcaption>
+                        </figure>
+                    </li>
+
+                    <li class="equipo__integrante" data-revelar style="--indice-integrante: 2">
+                        <figure class="equipo__tarjeta">
+                            <div class="equipo__retrato">
+                                <img
+                                    class="equipo__foto"
+                                    src="../img/equipo/kau-820.webp"
+                                    srcset="../img/equipo/kau-520.webp 520w, ../img/equipo/kau-820.webp 820w"
+                                    sizes="(min-width: 1101px) 22vw, (min-width: 701px) 40vw, 80vw"
+                                    alt="Retrato de Karim Chaya"
+                                    width="820"
+                                    height="820"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </div>
+
+                            <figcaption class="equipo__datos">
+                                <p class="equipo__nombre">Karim Chaya</p>
+                                <p class="equipo__rol">Project Manager</p>
+                            </figcaption>
+                        </figure>
+                    </li>
+
+                    <li class="equipo__integrante" data-revelar style="--indice-integrante: 3">
+                        <figure class="equipo__tarjeta">
+                            <div class="equipo__retrato">
+                                <img
+                                    class="equipo__foto"
+                                    src="../img/equipo/sol-820.webp"
+                                    srcset="../img/equipo/sol-520.webp 520w, ../img/equipo/sol-820.webp 820w"
+                                    sizes="(min-width: 1101px) 22vw, (min-width: 701px) 40vw, 80vw"
+                                    alt="Retrato de Sol Pizzicotti"
+                                    width="820"
+                                    height="906"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </div>
+
+                            <figcaption class="equipo__datos">
+                                <p class="equipo__nombre">Sol Pizzicotti</p>
+                                <p class="equipo__rol">Estratega de Contenido</p>
+                            </figcaption>
+                        </figure>
+                    </li>
+
+                    <li class="equipo__integrante" data-revelar style="--indice-integrante: 4">
+                        <figure class="equipo__tarjeta">
+                            <div class="equipo__retrato">
+                                <img
+                                    class="equipo__foto"
+                                    src="../img/equipo/ale-820.webp"
+                                    srcset="../img/equipo/ale-520.webp 520w, ../img/equipo/ale-820.webp 820w"
+                                    sizes="(min-width: 1101px) 22vw, (min-width: 701px) 40vw, 80vw"
+                                    alt="Retrato de Alexis Premaries"
+                                    width="820"
+                                    height="820"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </div>
+
+                            <figcaption class="equipo__datos">
+                                <p class="equipo__nombre">Alexis Premaries</p>
+                                <p class="equipo__rol">Director Creativo</p>
+                            </figcaption>
+                        </figure>
+                    </li>
+
+                    <li class="equipo__integrante" data-revelar style="--indice-integrante: 5">
+                        <figure class="equipo__tarjeta">
+                            <div class="equipo__retrato">
+                                <img
+                                    class="equipo__foto"
+                                    src="../img/equipo/ela-820.webp"
+                                    srcset="../img/equipo/ela-520.webp 520w, ../img/equipo/ela-820.webp 820w"
+                                    sizes="(min-width: 1101px) 22vw, (min-width: 701px) 40vw, 80vw"
+                                    alt="Retrato de Leandro Lodolo"
+                                    width="820"
+                                    height="906"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </div>
+
+                            <figcaption class="equipo__datos">
+                                <p class="equipo__nombre">Leandro Lodolo</p>
+                                <p class="equipo__rol">Community Manager</p>
+                            </figcaption>
+                        </figure>
+                    </li>
+
+                    <li class="equipo__integrante" data-revelar style="--indice-integrante: 6">
+                        <figure class="equipo__tarjeta">
+                            <div class="equipo__retrato">
+                                <img
+                                    class="equipo__foto"
+                                    src="../img/equipo/maxi-820.webp"
+                                    srcset="../img/equipo/maxi-520.webp 520w, ../img/equipo/maxi-820.webp 820w"
+                                    sizes="(min-width: 1101px) 22vw, (min-width: 701px) 40vw, 80vw"
+                                    alt="Retrato de Máximo Caruana"
+                                    width="820"
+                                    height="906"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </div>
+
+                            <figcaption class="equipo__datos">
+                                <p class="equipo__nombre">Máximo Caruana</p>
+                                <p class="equipo__rol">Posproducción</p>
+                            </figcaption>
+                        </figure>
+                    </li>
+
+                    <li class="equipo__integrante" data-revelar style="--indice-integrante: 7">
+                        <figure class="equipo__tarjeta">
+                            <div class="equipo__retrato">
+                                <img
+                                    class="equipo__foto"
+                                    src="../img/equipo/juli-820.webp"
+                                    srcset="../img/equipo/juli-520.webp 520w, ../img/equipo/juli-820.webp 820w"
+                                    sizes="(min-width: 1101px) 22vw, (min-width: 701px) 40vw, 80vw"
+                                    alt="Retrato de Julián Díaz"
+                                    width="820"
+                                    height="906"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </div>
+
+                            <figcaption class="equipo__datos">
+                                <p class="equipo__nombre">Julián Díaz</p>
+                                <p class="equipo__rol">Posproducción</p>
+                            </figcaption>
+                        </figure>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

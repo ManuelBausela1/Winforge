@@ -1,0 +1,110 @@
+/* ==========================================================================
+   COMPONENTE — BOTONES
+   Principal: naranja (el fuego, la acción). Secundario: vidrio con borde
+   que se llena de eucalipto. Texto: solo la palabra, se subraya con el hover.
+   Hover sobrio: crece al 105 %.
+   ========================================================================== */
+
+.boton {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    min-height: 3.5rem;
+    padding: 0 1.9rem;
+    border: 1px solid transparent;
+    border-radius: var(--radio-pildora);
+    font-size: var(--texto-sm);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    transition:
+        transform 0.35s var(--curva-suave),
+        background-color 0.35s var(--curva-suave),
+        border-color 0.35s var(--curva-suave),
+        color 0.35s var(--curva-suave);
+}
+
+.boton__texto {
+    position: relative;
+    z-index: 1;
+}
+
+.boton:hover {
+    transform: scale(1.05);
+}
+
+.boton:active {
+    transform: scale(1.02);
+}
+
+/* --------------------------------------------------------------------------
+   Principal
+   -------------------------------------------------------------------------- */
+
+.boton--principal {
+    background-color: var(--color-naranja);
+    color: var(--color-carbon);
+}
+
+/* --------------------------------------------------------------------------
+   Secundario
+   -------------------------------------------------------------------------- */
+
+.boton--secundario {
+    border-color: var(--color-borde-medio);
+    background-color: rgba(255, 255, 255, 0.03);
+    color: var(--color-texto);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.boton--secundario:hover {
+    border-color: var(--color-eucalipto);
+    background-color: var(--color-eucalipto);
+    color: var(--color-carbon); /* Carbón sobre eucalipto cumple contraste AA */
+}
+
+/* --------------------------------------------------------------------------
+   Texto: sin borde ni fondo, solo la palabra. Con el hover se subraya.
+   -------------------------------------------------------------------------- */
+
+.boton--texto {
+    overflow: visible;
+    padding: 0 0.35rem;
+    border-color: transparent;
+    background-color: transparent;
+    color: var(--color-texto);
+    transition: color 0.35s var(--curva-suave);
+}
+
+/* El subrayado se dibuja de izquierda a derecha */
+.boton--texto .boton__texto::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: -0.35rem;
+    height: 1px;
+    background-color: currentColor;
+    scale: 0 1;
+    transform-origin: left center;
+    transition: scale 0.45s var(--curva-entrada);
+}
+
+.boton--texto:hover,
+.boton--texto:focus-visible {
+    transform: none; /* Solo el subrayado, no se agranda */
+    color: var(--color-blanco);
+}
+
+.boton--texto:active {
+    transform: none;
+}
+
+.boton--texto:hover .boton__texto::after,
+.boton--texto:focus-visible .boton__texto::after {
+    scale: 1 1;
+}

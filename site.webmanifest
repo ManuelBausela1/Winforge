@@ -1,0 +1,14 @@
+{
+    "name": "Winforge",
+    "short_name": "Winforge",
+    "description": "Taller creativo y productor de Rosario, Argentina.",
+    "lang": "es-AR",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#050807",
+    "theme_color": "#050807",
+    "icons": [
+        { "src": "img/logo/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+        { "src": "img/logo/Isologo_transp.png", "sizes": "1206x1206", "type": "image/png" }
+    ]
+}

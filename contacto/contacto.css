@@ -1,0 +1,428 @@
+/* ==========================================================================
+   WINFORGE — CONTACTO
+   (Los estilos compartidos viven en recursos/css)
+   ========================================================================== */
+
+/* ==========================================================================
+   1. CONTACTO
+   Izquierda: el David, que entra desde afuera y se apoya contra el borde.
+   Derecha: el título y el formulario.
+   ========================================================================== */
+
+.contacto {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding-block: clamp(3.25rem, 7vh, 5.5rem) clamp(1.25rem, 4vh, 2.5rem);
+    overflow: hidden; /* La figura puede asomarse fuera del margen */
+}
+
+.contacto__contenedor {
+    position: relative;
+    z-index: 1;
+    max-width: 1720px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: ". formulario";
+    align-items: center;
+    column-gap: clamp(2rem, 5vw, 5rem);
+    row-gap: clamp(2.5rem, 6vh, 4rem);
+}
+
+@media (hover: hover) and (min-width: 768px) {
+    .contacto__contenedor {
+        padding-inline: max(calc(var(--margen-lateral) + 4rem), 11rem);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   1.1 La figura
+   -------------------------------------------------------------------------- */
+
+/* El David es fondo: ocupa el alto de la sección, del lado izquierdo,
+   por detrás del formulario */
+.contacto__columna-figura {
+    --presencia-david: 0.75; /* Cuánto se nota detrás del formulario */
+
+    position: absolute;
+    inset: 0 auto 0 0;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: min(58%, 45rem); /* Su borde derecho queda a un respiro del formulario */
+    pointer-events: none;
+}
+
+.contacto__figura {
+    width: auto;
+    max-width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: var(--presencia-david);
+    /* Igual que los grabados del inicio: solo suma luz, así se funde con
+       el humo en vez de quedar recortada por encima */
+    mix-blend-mode: screen;
+    /* Los bordes se difuminan por los cuatro lados: la figura se funde
+       con el humo en vez de terminar en un recorte nítido */
+    -webkit-mask-image:
+        radial-gradient(82% 78% at 50% 42%, #000 0%, rgba(0, 0, 0, 0.95) 48%, rgba(0, 0, 0, 0.55) 74%, transparent 100%),
+        linear-gradient(180deg, #000 0%, #000 44%, rgba(0, 0, 0, 0.35) 78%, transparent 96%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+        radial-gradient(82% 78% at 50% 42%, #000 0%, rgba(0, 0, 0, 0.95) 48%, rgba(0, 0, 0, 0.55) 74%, transparent 100%),
+        linear-gradient(180deg, #000 0%, #000 44%, rgba(0, 0, 0, 0.35) 78%, transparent 96%);
+    mask-composite: intersect;
+}
+
+/* --------------------------------------------------------------------------
+   1.2 Título
+   -------------------------------------------------------------------------- */
+
+.contacto__columna-formulario {
+    grid-area: formulario;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Título y formulario sobre el mismo eje */
+    gap: clamp(1.1rem, 3vh, 2rem);
+}
+
+.contacto__titulo {
+    max-width: 20ch;
+    text-align: center;
+    font-family: var(--fuente-serif);
+    font-size: clamp(1.9rem, 0.9rem + 2.1vw, 3.1rem);
+    font-weight: 500;
+    line-height: 1.05;
+    text-wrap: balance;
+    color: var(--color-blanco);
+}
+
+/* ==========================================================================
+   2. FORMULARIO
+   ========================================================================== */
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.7rem, 1.8vh, 1.4rem);
+    width: 100%;
+    max-width: 36rem;
+    padding: clamp(1rem, 2vh, 1.6rem) clamp(1.2rem, 2.2vw, 1.9rem);
+    /* Cristal: deja ver el humo de atrás, apenas desenfocado */
+    border: 1px solid var(--color-borde-suave);
+    border-radius: clamp(12px, 1.2vw, 20px);
+    background-color: rgba(255, 255, 255, 0.045);
+    -webkit-backdrop-filter: blur(18px) saturate(115%);
+    backdrop-filter: blur(18px) saturate(115%);
+    box-shadow: 0 30px 80px -40px rgba(0, 0, 0, 0.85);
+}
+
+.formulario__campo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    margin: 0;
+}
+
+.formulario__etiqueta {
+    display: block;
+    width: 100%;
+    padding: 0;
+    font-size: var(--texto-sm);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-align: center;
+    color: var(--color-texto);
+}
+
+/* El asterisco marca que el pedido es obligatorio */
+.formulario__obligatorio {
+    color: var(--color-obligatorio, #FF6B5B);
+}
+
+.formulario__ayuda {
+    font-weight: 300;
+    color: var(--color-texto-suave);
+}
+
+/* --------------------------------------------------------------------------
+   2.1 Campos de texto
+   -------------------------------------------------------------------------- */
+
+.formulario__control {
+    width: 100%;
+    padding: clamp(0.6rem, 1.4vh, 0.85rem) 1.05rem;
+    border: 1px solid var(--color-borde-suave);
+    border-radius: var(--radio-sm);
+    background-color: rgba(255, 255, 255, 0.03);
+    font-family: inherit;
+    font-size: var(--texto-base);
+    color: var(--color-blanco);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    transition:
+        border-color 0.3s var(--curva-suave),
+        background-color 0.3s var(--curva-suave);
+}
+
+.formulario__control--area {
+    min-height: clamp(4rem, 9vh, 6.5rem);
+    resize: vertical;
+    line-height: 1.55;
+}
+
+.formulario__control::placeholder {
+    color: var(--color-texto-tenue);
+}
+
+.formulario__control:hover {
+    border-color: rgba(255, 255, 255, 0.28);
+}
+
+.formulario__control:focus-visible {
+    outline: none;
+    border-color: var(--color-eucalipto);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.formulario__control[aria-invalid="true"] {
+    border-color: var(--color-naranja);
+}
+
+/* --------------------------------------------------------------------------
+   2.2 Casillas de servicios
+   -------------------------------------------------------------------------- */
+
+.formulario__opciones {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+    list-style: none;
+    padding: 0;
+    margin-top: 0.2rem;
+}
+
+.casilla {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: clamp(0.5rem, 1.2vh, 0.7rem) 0.85rem;
+    border: 1px solid var(--color-borde-suave);
+    border-radius: var(--radio-sm);
+    background-color: rgba(255, 255, 255, 0.02);
+    cursor: pointer;
+    transition:
+        border-color 0.3s var(--curva-suave),
+        background-color 0.3s var(--curva-suave);
+}
+
+.casilla:hover {
+    border-color: rgba(255, 255, 255, 0.28);
+}
+
+/* La casilla real queda oculta; se dibuja la marca */
+.casilla__control {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.casilla__marca {
+    position: relative;
+    flex: none;
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--color-borde-medio, rgba(255, 255, 255, 0.28));
+    border-radius: 4px;
+    transition:
+        border-color 0.25s var(--curva-suave),
+        background-color 0.25s var(--curva-suave);
+}
+
+/* El tilde, dibujado con dos trazos */
+.casilla__marca::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 6px;
+    width: 4px;
+    height: 8px;
+    border: solid var(--color-carbon);
+    border-width: 0 2px 2px 0;
+    rotate: 45deg;
+    opacity: 0;
+    transition: opacity 0.2s var(--curva-suave);
+}
+
+.casilla__texto {
+    font-size: var(--texto-sm);
+    line-height: 1.3;
+    color: var(--color-texto);
+}
+
+.casilla__control:checked + .casilla__marca {
+    border-color: var(--color-naranja);
+    background-color: var(--color-naranja);
+}
+
+.casilla__control:checked + .casilla__marca::after {
+    opacity: 1;
+}
+
+.casilla:has(.casilla__control:checked) {
+    border-color: rgba(255, 165, 41, 0.55);
+    background-color: rgba(255, 165, 41, 0.07);
+}
+
+.casilla:has(.casilla__control:focus-visible) {
+    outline: 2px solid var(--color-eucalipto);
+    outline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   2.3 Errores y avisos
+   -------------------------------------------------------------------------- */
+
+.formulario__error {
+    font-size: var(--texto-sm);
+    line-height: 1.3;
+    color: var(--color-naranja);
+}
+
+.formulario__error:empty {
+    display: none;
+}
+
+.formulario__campo.tiene-error .casilla {
+    border-color: rgba(255, 165, 41, 0.5);
+}
+
+/* La trampa para robots: fuera de la vista y del recorrido con teclado */
+.formulario__trampa {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.formulario__pie {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.2rem;
+    text-align: center;
+}
+
+.formulario__enviar[disabled] {
+    opacity: 0.6;
+    cursor: progress;
+}
+
+.formulario__aviso {
+    font-size: var(--texto-sm);
+    line-height: 1.4;
+    color: var(--color-texto-suave);
+}
+
+.formulario__aviso:empty {
+    display: none;
+}
+
+.formulario__aviso[data-estado="error"],
+.formulario__aviso[data-estado="espera"] {
+    color: var(--color-naranja);
+}
+
+.formulario__aviso[data-estado="listo"] {
+    color: var(--color-eucalipto);
+}
+
+/* ==========================================================================
+   3. APARICIÓN
+   Solo se anima la figura: el formulario está listo desde el primer cuadro.
+   ========================================================================== */
+
+.animar .contacto__figura {
+    opacity: 0;
+    translate: -38% 0;
+    transition:
+        opacity 0.9s var(--curva-suave),
+        translate 1.2s var(--curva-entrada);
+}
+
+.animar .contacto.figura-visible .contacto__figura {
+    opacity: var(--presencia-david, 0.75);
+    translate: 0 0;
+}
+
+/* Cuando el David terminó de entrar, el título y el formulario crecen */
+.animar .contacto__columna-formulario {
+    opacity: 0;
+    scale: 0.93;
+    transition:
+        opacity 0.7s var(--curva-suave),
+        scale 0.9s var(--curva-resorte);
+}
+
+.animar .contacto.formulario-visible .contacto__columna-formulario {
+    opacity: 1;
+    scale: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animar .contacto__figura {
+        translate: 0 0;
+    }
+
+    .animar .contacto__columna-formulario {
+        scale: 1;
+    }
+}
+
+/* ==========================================================================
+   4. PANTALLAS CHICAS
+   ========================================================================== */
+
+@media (max-width: 1100px) {
+    .contacto__contenedor {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas: "formulario";
+        justify-items: center;
+    }
+
+    /* Sin lugar al costado, el David se queda detrás de todo, centrado */
+    .contacto__columna-figura {
+        inset: 0;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .contacto__columna-figura {
+        --presencia-david: 0.38;
+    }
+
+    .contacto__figura {
+        object-position: center;
+    }
+
+    .formulario {
+        width: 100%;
+    }
+}
+
+@media (max-width: 560px) {
+    .formulario__opciones {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

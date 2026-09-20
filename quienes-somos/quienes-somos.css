@@ -1,0 +1,433 @@
+/* ==========================================================================
+   WINFORGE — QUIÉNES SOMOS
+   (Los estilos compartidos viven en recursos/css)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Mural de la forja
+   Grabado a todo el ancho, anclado al comienzo de la página. Como scrollea
+   junto al contenido, al bajar se va descubriendo el resto del mural hasta
+   su final, donde se desvanece en el humo.
+   -------------------------------------------------------------------------- */
+
+.mural-forja {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: var(--capa-fondo);
+    width: 100%;
+    aspect-ratio: 1709 / 2458; /* El alto sale de la proporción del mural */
+    background-image: url("../img/forja/mural-1000.webp");
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    opacity: var(--fuerza-mural, 0.26);
+    mix-blend-mode: screen; /* Solo suma luz: el humo se sigue viendo */
+    /* Sin bordes rectos: se apaga contra los costados y contra el final */
+    -webkit-mask-image:
+        linear-gradient(180deg, #000 0%, #000 72%, transparent 100%),
+        linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+        linear-gradient(180deg, #000 0%, #000 72%, transparent 100%),
+        linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+    mask-composite: intersect;
+    pointer-events: none;
+}
+
+@media (min-width: 1100px) {
+    .mural-forja {
+        background-image: url("../img/forja/mural-1600.webp");
+    }
+}
+
+/* ==========================================================================
+   1. PRESENTACIÓN
+   Escritorio: [ Somos WINFORGE + frase ]   [ los tres aspectos ]
+   Pantallas chicas: una columna centrada.
+   Aparición (orquestada en quienes-somos.js): título → frase → gráfico.
+   ========================================================================== */
+
+.presentacion {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding-block: 6rem 3rem;
+}
+
+.presentacion__contenedor {
+    position: relative;
+    z-index: 1;
+    max-width: 1720px; /* El mismo respiro que el hero del inicio */
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas: "texto grafico";
+    align-items: center; /* Las dos mitades, a la misma altura */
+    column-gap: clamp(2.5rem, 5vw, 6rem);
+    row-gap: clamp(2.5rem, 8vh, 5rem);
+}
+
+/* Márgenes simétricos: dejan lugar al índice de navegación fijo */
+@media (hover: hover) and (min-width: 768px) {
+    .presentacion__contenedor {
+        padding-inline: max(calc(var(--margen-lateral) + 4rem), 11rem);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   1.1 Izquierda: "Acerca de" con el isotipo y, debajo, la frase
+   -------------------------------------------------------------------------- */
+
+.presentacion__columna-texto {
+    grid-area: texto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1.25rem, 3vh, 2rem);
+    text-align: center;
+}
+
+.presentacion__titulo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    font-family: var(--fuente-serif);
+    font-size: clamp(2.25rem, 1.4rem + 2.4vw, 3.75rem);
+    font-weight: 500;
+    line-height: 1;
+    color: var(--color-blanco);
+}
+
+.presentacion__isotipo {
+    flex: none;
+    height: 0.82em; /* Acompaña al texto sin pasarle por encima */
+    width: auto;
+    fill: currentColor;
+}
+
+.presentacion__frase {
+    max-width: min(34ch, 100%); /* Dos renglones parejos, sin pasarse de su columna */
+    font-family: var(--fuente-sans);
+    font-size: var(--texto-frase-hero);
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    color: var(--color-blanco);
+}
+
+/* --------------------------------------------------------------------------
+   1.2 Derecha: los tres aspectos
+   -------------------------------------------------------------------------- */
+
+.presentacion__columna-grafico {
+    grid-area: grafico;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.presentacion__grafico {
+    width: 100%;
+    max-width: 640px;
+    height: auto;
+}
+
+/* --------------------------------------------------------------------------
+   1.3 Aparición del gráfico
+   El título y la frase no se animan: están desde que carga la página.
+   -------------------------------------------------------------------------- */
+
+/* El texto ya está desde el primer cuadro: solo entra el gráfico */
+.animar .presentacion__grafico {
+    opacity: 0;
+    translate: 38% 0;
+    transition:
+        opacity 0.9s var(--curva-suave),
+        translate 1.2s var(--curva-entrada);
+}
+
+.animar .presentacion.grafico-visible .presentacion__grafico {
+    opacity: 1;
+    translate: 0 0;
+}
+
+/* --------------------------------------------------------------------------
+   1.4 Pantallas chicas: todo en una columna
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+    .presentacion__contenedor {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+            "texto"
+            "grafico";
+        justify-items: center;
+    }
+
+    .presentacion__frase {
+        max-width: 30ch;
+    }
+
+    .presentacion__grafico {
+        max-width: 520px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animar .presentacion__grafico {
+        translate: 0 0;
+    }
+}
+
+/* ==========================================================================
+   2. MISIÓN Y VISIÓN
+   Dos bloques enfrentados: la misión abre a la izquierda y la visión
+   responde desde la derecha.
+   ========================================================================== */
+
+.proposito {
+    position: relative;
+    z-index: 1;
+    padding-block: clamp(4rem, 12vh, 9rem);
+}
+
+.proposito__contenedor {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(3.5rem, 12vh, 8rem);
+    max-width: 1720px;
+}
+
+@media (hover: hover) and (min-width: 768px) {
+    .proposito__contenedor {
+        padding-inline: max(calc(var(--margen-lateral) + 4rem), 11rem);
+    }
+}
+
+.proposito__bloque {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.75rem, 2vh, 1.25rem);
+    max-width: min(58ch, 100%);
+}
+
+/* Cada bloque se corre hacia el centro: se reconoce de qué lado nace,
+   pero el conjunto queda junto al eje de la página */
+.proposito__bloque--mision {
+    margin-inline-start: clamp(0rem, 10vw, 11rem);
+}
+
+.proposito__bloque--vision {
+    margin-inline-start: auto; /* Se corre al otro lado */
+    margin-inline-end: clamp(0rem, 10vw, 11rem);
+    text-align: right;
+}
+
+.proposito__titulo {
+    font-family: var(--fuente-sans);
+    font-size: clamp(2rem, 1.2rem + 2.6vw, 3.5rem);
+    font-weight: 300; /* Liviano: el peso lo pone el tamaño */
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--color-blanco);
+}
+
+.proposito__texto {
+    font-size: var(--texto-lg);
+    line-height: 1.55;
+    text-wrap: pretty;
+    color: var(--color-texto);
+}
+
+/* Las palabras en mayúsculas: sin cursiva y en naranja, el color del fuego */
+.proposito__texto em {
+    font-style: normal;
+    font-weight: 500;
+    color: var(--color-naranja);
+}
+
+/* --------------------------------------------------------------------------
+   2.1 Aparición: cada bloque entra desde su lado
+   -------------------------------------------------------------------------- */
+
+.animar .proposito__bloque[data-revelar] {
+    opacity: 0;
+    translate: -28px 0;
+    transition:
+        opacity 0.9s var(--curva-suave),
+        translate 1s var(--curva-entrada);
+}
+
+.animar .proposito__bloque--vision[data-revelar] {
+    translate: 28px 0;
+}
+
+.animar .proposito__bloque.esta-visible {
+    opacity: 1;
+    translate: 0 0;
+}
+
+/* --------------------------------------------------------------------------
+   2.2 Pantallas chicas
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 700px) {
+    .proposito__bloque--mision,
+    .proposito__bloque--vision {
+        margin-inline: 0;
+    }
+
+    .proposito__bloque--vision {
+        text-align: left;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animar .proposito__bloque[data-revelar],
+    .animar .proposito__bloque--vision[data-revelar] {
+        translate: 0 0;
+    }
+}
+
+/* ==========================================================================
+   3. NUESTRO EQUIPO
+   Retratos en blanco y negro dentro de una tarjeta clara, con el nombre y
+   el rol debajo. Al pasar el mouse se levanta el velo que las oscurece.
+   ========================================================================== */
+
+.equipo {
+    position: relative;
+    z-index: 1;
+    padding-block: clamp(4rem, 12vh, 9rem);
+}
+
+.equipo__contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(2.5rem, 7vh, 4.5rem);
+    max-width: 1440px;
+}
+
+.equipo__lista {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(1.25rem, 2.5vw, 2.25rem);
+    width: 100%;
+    list-style: none;
+    padding: 0;
+}
+
+.equipo__tarjeta {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   3.1 El retrato
+   -------------------------------------------------------------------------- */
+
+.equipo__retrato {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    border: 1px solid var(--color-borde-suave, rgba(255, 255, 255, 0.12));
+    border-radius: var(--radio-sm);
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+.equipo__foto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 12%; /* Las caras quedan arriba del encuadre */
+}
+
+/* Velo eucalipto que se levanta con el mouse: liga la foto al fondo */
+.equipo__retrato::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(5, 8, 7, 0) 45%, rgba(5, 8, 7, 0.55) 100%);
+    opacity: 1;
+    transition: opacity 0.5s var(--curva-suave);
+    pointer-events: none;
+}
+
+@media (hover: hover) {
+    /* Con el mouse encima solo se levanta el velo: la foto no se mueve */
+    .equipo__integrante:hover .equipo__retrato::after {
+        opacity: 0.35;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   3.2 Nombre y rol
+   -------------------------------------------------------------------------- */
+
+.equipo__datos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    text-align: center;
+}
+
+.equipo__nombre {
+    font-family: var(--fuente-serif);
+    font-size: clamp(1.25rem, 1rem + 0.7vw, 1.65rem);
+    font-weight: 500;
+    line-height: 1.15;
+    text-wrap: balance;
+    color: var(--color-blanco);
+}
+
+.equipo__rol {
+    font-size: var(--texto-xs);
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-naranja);
+}
+
+/* --------------------------------------------------------------------------
+   3.3 Aparición: los retratos entran en cascada
+   -------------------------------------------------------------------------- */
+
+.animar .equipo__integrante[data-revelar] {
+    opacity: 0;
+    translate: 0 26px;
+    transition:
+        opacity 0.7s var(--curva-suave),
+        translate 0.9s var(--curva-entrada);
+    transition-delay: calc(var(--indice-integrante, 0) * 80ms);
+}
+
+.animar .equipo__integrante.esta-visible {
+    opacity: 1;
+    translate: 0 0;
+}
+
+/* --------------------------------------------------------------------------
+   3.4 Pantallas chicas
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+    .equipo__lista {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .equipo__lista {
+        grid-template-columns: minmax(0, 1fr);
+        max-width: 22rem;
+    }
+}

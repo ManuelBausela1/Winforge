@@ -1,0 +1,23 @@
+# Herramientas del editor y del asistente
+.claude/
+.vscode/
+
+# Documentación interna de la marca (no va al repositorio)
+resumen-marca-winforge.md
+
+# Originales pesados de las imágenes: el sitio sirve las versiones .webp
+# que están junto a ellos. Los originales viven solo en el disco.
+img/forja/*.png
+img/mockups/
+img/proyectos/
+img/equipo/*.png
+img/quienesomos/*.png
+
+# Sistema operativo
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Dependencias y compilados, por si más adelante hacen falta
+node_modules/
+dist/

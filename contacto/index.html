@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- ===== SEO principal ===== -->
+    <title>Contacto | Winforge</title>
+    <meta name="description" content="Contanos tu historia. Escribinos por WhatsApp o redes y empecemos a forjar juntos tu proyecto desde Rosario, Santa Fe, Argentina.">
+    <meta name="author" content="Winforge">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://winforge.com.ar/contacto/">
+    <meta name="theme-color" content="#050807">
+
+    <!-- ===== Open Graph ===== -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_AR">
+    <meta property="og:site_name" content="Winforge">
+    <meta property="og:title" content="Contacto | Winforge">
+    <meta property="og:description" content="Contanos tu historia. Escribinos por WhatsApp o redes y empecemos a forjar juntos tu proyecto desde Rosario, Santa Fe, Argentina.">
+    <meta property="og:url" content="https://winforge.com.ar/contacto/">
+    <meta property="og:image" content="https://winforge.com.ar/img/og/winforge-compartir.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Isologo de Winforge sobre fondo oscuro con bruma eucalipto">
+
+    <!-- ===== Twitter / X ===== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contacto | Winforge">
+    <meta name="twitter:description" content="Contanos tu historia. Escribinos por WhatsApp o redes y empecemos a forjar juntos tu proyecto desde Rosario, Santa Fe, Argentina.">
+    <meta name="twitter:image" content="https://winforge.com.ar/img/og/winforge-compartir.jpg">
+
+    <!-- ===== Íconos y manifiesto ===== -->
+    <link rel="icon" href="../img/logo/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="../img/logo/Isologo_transp.png">
+    <link rel="manifest" href="../site.webmanifest">
+
+    <!-- ===== Tipografías ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Poppins:wght@300;400;500&display=swap">
+
+    <!-- ===== Estilos ===== -->
+    <link rel="stylesheet" href="../recursos/css/base.css">
+    <link rel="stylesheet" href="../recursos/css/componentes/fondo-atmosfera.css">
+    <link rel="stylesheet" href="../recursos/css/componentes/navegacion.css">
+    <link rel="stylesheet" href="../recursos/css/componentes/botones.css">
+    <link rel="stylesheet" href="contacto.css">
+
+    <script>
+        /* Las animaciones de entrada corren solo en la primera visita a cada
+           página. La marca queda guardada; si el visitante vuelve, el
+           contenido aparece puesto. (Para volver a verlas: borrar el
+           almacenamiento del sitio o agregar ?animar a la dirección.) */
+        document.documentElement.classList.add("js");
+
+        (function () {
+            var clave = "winforge:visitada:" + location.pathname;
+
+            try {
+                if (location.search.indexOf("animar") !== -1 || !localStorage.getItem(clave)) {
+                    document.documentElement.classList.add("animar");
+                    localStorage.setItem(clave, "1");
+                }
+            } catch (error) {
+                document.documentElement.classList.add("animar"); // Sin almacenamiento, siempre animan
+            }
+        })();
+    </script>
+    <script type="module" src="contacto.js"></script>
+</head>
+
+<body>
+    <a class="saltar-al-contenido" href="#contenido">Saltar al contenido</a>
+
+    <!-- ==================================================================
+         FONDO ATMÓSFERA (decorativo, fijo en todo el sitio)
+         ================================================================== -->
+    <div class="fondo-atmosfera" data-fondo-atmosfera aria-hidden="true">
+        <canvas class="fondo-atmosfera__fluido" data-fluido></canvas>
+        <canvas class="fondo-atmosfera__particulas" data-particulas></canvas>
+        <div class="fondo-atmosfera__grano"></div>
+    </div>
+
+    <!-- ==================================================================
+         CABECERA
+         ================================================================== -->
+    <header class="cabecera">
+        <nav class="indice-navegacion" data-navegacion-indice aria-label="Navegación principal">
+            <ul class="indice-navegacion__lista" role="list">
+                <li class="indice-navegacion__item">
+                    <a class="indice-navegacion__enlace" href="../">
+                        <span class="indice-navegacion__linea" aria-hidden="true"></span>
+                        <span class="indice-navegacion__texto">Inicio</span>
+                    </a>
+                </li>
+                <li class="indice-navegacion__item">
+                    <a class="indice-navegacion__enlace" href="../quienes-somos/">
+                        <span class="indice-navegacion__linea" aria-hidden="true"></span>
+                        <span class="indice-navegacion__texto">Quiénes somos</span>
+                    </a>
+                </li>
+                <li class="indice-navegacion__item">
+                    <a class="indice-navegacion__enlace" href="../contacto/" aria-current="page">
+                        <span class="indice-navegacion__linea" aria-hidden="true"></span>
+                        <span class="indice-navegacion__texto">Contacto</span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="indice-navegacion__redes" role="list" aria-label="Redes sociales">
+                <li>
+                    <a class="indice-navegacion__red" href="https://www.instagram.com/winforge/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Winforge (se abre en una pestaña nueva)">
+                        <svg class="indice-navegacion__icono-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                            <rect x="3.5" y="3.5" width="17" height="17" rx="5"/>
+                            <circle cx="12" cy="12" r="3.8"/>
+                            <path d="M17 7h.01"/>
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a class="indice-navegacion__red" href="https://www.linkedin.com/company/winforge/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Winforge (se abre en una pestaña nueva)">
+                        <svg class="indice-navegacion__icono-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                            <rect x="3.5" y="3.5" width="17" height="17" rx="3"/>
+                            <path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 0 0-4 0"/>
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a class="indice-navegacion__red" href="https://wa.me/5493413626491" target="_blank" rel="noopener noreferrer" aria-label="Escribinos por WhatsApp (se abre en una pestaña nueva)">
+                        <svg class="indice-navegacion__icono-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                            <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/>
+                            <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="contenido">
+        <!-- ==============================================================
+             1. CONTACTO
+             Izquierda: el David, que entra desde afuera. Derecha: el
+             título y el formulario.
+             ============================================================== -->
+        <section class="contacto" data-contacto aria-labelledby="titulo-contacto">
+            <h1 class="texto-oculto" id="titulo-pagina">Contacto</h1>
+
+            <div class="contacto__contenedor contenedor">
+                <div class="contacto__columna-figura">
+                    <img
+                        class="contacto__figura"
+                        src="../img/forja/david-1000.webp"
+                        srcset="../img/forja/david-620.webp 620w, ../img/forja/david-1000.webp 1000w"
+                        sizes="(min-width: 1101px) 42vw, 70vw"
+                        alt="Busto del David tramado en puntos, con una franja naranja sobre los ojos"
+                        width="1000"
+                        height="1355"
+                        fetchpriority="high"
+                    >
+                </div>
+
+                <div class="contacto__columna-formulario">
+                    <h2 class="contacto__titulo" id="titulo-contacto">Queremos saber más sobre tu proyecto</h2>
+
+                    <form class="formulario" data-formulario-contacto novalidate>
+                        <div class="formulario__campo">
+                            <label class="formulario__etiqueta" for="campo-nombre">Nombre y apellido <span class="formulario__obligatorio" aria-hidden="true">*</span></label>
+                            <input
+                                class="formulario__control"
+                                id="campo-nombre"
+                                name="nombre"
+                                type="text"
+                                placeholder="María Pérez"
+                                autocomplete="name"
+                                required
+                                minlength="3"
+                                aria-describedby="error-nombre"
+                            >
+                            <p class="formulario__error" id="error-nombre" data-error="nombre"></p>
+                        </div>
+
+                        <fieldset class="formulario__campo formulario__campo--servicios">
+                            <legend class="formulario__etiqueta">¿Qué servicios te interesan? <span class="formulario__ayuda">(elegí uno o varios)</span> <span class="formulario__obligatorio" aria-hidden="true">*</span></legend>
+
+                            <ul class="formulario__opciones" role="list" data-servicios-formulario>
+                                    <li class="formulario__opcion">
+                                        <label class="casilla">
+                                            <input class="casilla__control" type="checkbox" name="servicios" value="Diseño y estrategia" data-slug="diseno-y-estrategia">
+                                            <span class="casilla__marca" aria-hidden="true"></span>
+                                            <span class="casilla__texto">Diseño y estrategia</span>
+                                        </label>
+                                    </li>
+                                    <li class="formulario__opcion">
+                                        <label class="casilla">
+                                            <input class="casilla__control" type="checkbox" name="servicios" value="Desarrollo de software" data-slug="desarrollo-de-software">
+                                            <span class="casilla__marca" aria-hidden="true"></span>
+                                            <span class="casilla__texto">Desarrollo de software</span>
+                                        </label>
+                                    </li>
+                                    <li class="formulario__opcion">
+                                        <label class="casilla">
+                                            <input class="casilla__control" type="checkbox" name="servicios" value="Gestión multimedia" data-slug="gestion-multimedia">
+                                            <span class="casilla__marca" aria-hidden="true"></span>
+                                            <span class="casilla__texto">Gestión multimedia</span>
+                                        </label>
+                                    </li>
+                                    <li class="formulario__opcion">
+                                        <label class="casilla">
+                                            <input class="casilla__control" type="checkbox" name="servicios" value="Producción audiovisual" data-slug="produccion-audiovisual">
+                                            <span class="casilla__marca" aria-hidden="true"></span>
+                                            <span class="casilla__texto">Producción audiovisual</span>
+                                        </label>
+                                    </li>
+                            </ul>
+
+                            <p class="formulario__error" id="error-servicios" data-error="servicios"></p>
+                        </fieldset>
+
+                        <div class="formulario__campo">
+                            <label class="formulario__etiqueta" for="campo-email">Email <span class="formulario__obligatorio" aria-hidden="true">*</span></label>
+                            <input
+                                class="formulario__control"
+                                id="campo-email"
+                                name="email"
+                                type="email"
+                                inputmode="email"
+                                placeholder="tu@email.com"
+                                autocomplete="email"
+                                required
+                                aria-describedby="error-email"
+                            >
+                            <p class="formulario__error" id="error-email" data-error="email"></p>
+                        </div>
+
+                        <div class="formulario__campo">
+                            <label class="formulario__etiqueta" for="campo-mensaje">Mensaje <span class="formulario__obligatorio" aria-hidden="true">*</span></label>
+                            <textarea
+                                class="formulario__control formulario__control--area"
+                                id="campo-mensaje"
+                                name="mensaje"
+                                rows="3"
+                                placeholder="Contanos qué querés forjar"
+                                required
+                                minlength="10"
+                                maxlength="1200"
+                                aria-describedby="error-mensaje"
+                            ></textarea>
+                            <p class="formulario__error" id="error-mensaje" data-error="mensaje"></p>
+                        </div>
+
+                        <!-- Trampa para robots: una persona nunca la ve ni la completa -->
+                        <div class="formulario__trampa" aria-hidden="true">
+                            <label for="campo-empresa">No completar</label>
+                            <input id="campo-empresa" name="empresa" type="text" tabindex="-1" autocomplete="off">
+                        </div>
+
+                        <div class="formulario__pie">
+                            <button class="boton boton--principal formulario__enviar" type="submit">
+                                <span class="boton__texto">Enviar</span>
+                            </button>
+
+                            <p class="formulario__aviso" data-aviso role="status" aria-live="polite"></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

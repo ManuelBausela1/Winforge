@@ -1,0 +1,33 @@
+/* ==========================================================================
+   COMPONENTE — FRASE ANIMADA
+   Las palabras que arma revelar-frase.js: emergen una por una, desde abajo
+   y desenfocadas. Se usa en el hero del inicio y en la presentación de
+   quiénes somos.
+   ========================================================================== */
+
+.frase-animada__palabra {
+    display: inline-block;
+    overflow: hidden;
+    padding-bottom: 0.12em; /* Evita recortar descendentes (g, j, p) */
+    margin-bottom: -0.12em;
+    vertical-align: top;
+}
+
+.frase-animada__interior {
+    display: inline-block;
+    transform: translate3d(0, 105%, 0) rotate(6deg);
+    transform-origin: left bottom;
+    opacity: 0;
+    filter: blur(6px);
+    transition:
+        transform 1.1s var(--curva-entrada),
+        opacity 0.9s var(--curva-suave),
+        filter 1.1s var(--curva-suave);
+    transition-delay: calc(var(--indice-palabra, 0) * 60ms);
+}
+
+.frase-animada.esta-visible .frase-animada__interior {
+    transform: none;
+    opacity: 1;
+    filter: blur(0);
+}

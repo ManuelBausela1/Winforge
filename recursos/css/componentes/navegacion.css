@@ -1,0 +1,345 @@
+/* ==========================================================================
+   COMPONENTE — CABECERA Y NAVEGACIÓN ÍNDICE
+   Réplica del componente "Table Of Content" de Framer:
+   - Cerrado: guiones, y la etiqueta de la página actual con guion naranja.
+   - Al pasar el mouse: aparecen todas las etiquetas; la señalada se
+     resalta, su guion crece a 24px y los vecinos a 18px (efecto "dock").
+   - Abierto (intro y pantallas táctiles): todas las etiquetas visibles.
+   - Bajo "Inicio" cuelgan las secciones de la página y se marca la que
+     está mirando el visitante.
+   - Debajo, los enlaces a redes sociales.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Índice de navegación
+   -------------------------------------------------------------------------- */
+
+.indice-navegacion {
+    --color-linea: rgba(255, 255, 255, 0.28);
+    --color-linea-activa: rgba(255, 255, 255, 0.72);
+    --color-etiqueta: var(--color-texto-tenue);
+    --color-etiqueta-activa: #EDEDED;
+    --color-red-hover: var(--color-naranja);
+    --transicion-resorte: 0.4s var(--curva-resorte);
+
+    position: fixed;
+    top: 50%;
+    left: clamp(1.25rem, 2.5vw, 2.5rem);
+    z-index: var(--capa-navegacion);
+    transform: translateY(-50%);
+}
+
+.indice-navegacion__lista {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    list-style: none;
+    padding: 0.75rem 1.5rem 0.75rem 0; /* Área de hover generosa */
+}
+
+.indice-navegacion__enlace {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 16px;
+    transition: height var(--transicion-resorte);
+}
+
+.indice-navegacion__linea {
+    flex: none;
+    width: 12px;
+    height: 3px;
+    border-radius: 2px;
+    background-color: var(--color-linea);
+    transition:
+        width var(--transicion-resorte),
+        background-color var(--transicion-resorte);
+}
+
+.indice-navegacion__texto {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--color-etiqueta);
+    opacity: 0;
+    transform: translateX(-4px);
+    transition:
+        opacity var(--transicion-resorte),
+        transform var(--transicion-resorte),
+        color var(--transicion-resorte);
+}
+
+/* Página actual: guion naranja (fuego = estado activo) y nombre siempre visible */
+.indice-navegacion__enlace[aria-current="page"] {
+    height: 22px;
+}
+
+.indice-navegacion__enlace[aria-current="page"] .indice-navegacion__linea {
+    width: 24px;
+    background-color: var(--color-naranja);
+}
+
+.indice-navegacion__enlace[aria-current="page"] .indice-navegacion__texto {
+    opacity: 1;
+    transform: none;
+    color: var(--color-etiqueta-activa);
+}
+
+/* --------------------------------------------------------------------------
+   Estado abierto (intro / táctil): todas las etiquetas visibles
+   -------------------------------------------------------------------------- */
+
+.indice-navegacion.esta-abierta .indice-navegacion__enlace {
+    height: 22px;
+}
+
+.indice-navegacion.esta-abierta .indice-navegacion__texto {
+    opacity: 1;
+    transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   Estado hover / foco: magnificación tipo "dock"
+   -------------------------------------------------------------------------- */
+
+@media (hover: hover) and (min-width: 768px) {
+    /* Con el puntero sobre el índice se ven todas las etiquetas */
+    .indice-navegacion:is(:hover, :focus-within) .indice-navegacion__enlace {
+        height: 22px;
+    }
+
+    .indice-navegacion:is(:hover, :focus-within) .indice-navegacion__texto {
+        opacity: 1;
+        transform: none;
+    }
+
+    /* Enlace señalado: etiqueta resaltada y guion largo */
+    .indice-navegacion__enlace:is(:hover, :focus-visible) .indice-navegacion__linea {
+        width: 24px;
+        background-color: var(--color-linea-activa);
+    }
+
+    .indice-navegacion .indice-navegacion__enlace:is(:hover, :focus-visible) .indice-navegacion__texto {
+        color: var(--color-etiqueta-activa);
+        transform: translateX(3px);
+    }
+
+    .indice-navegacion__enlace[aria-current="page"]:is(:hover, :focus-visible) .indice-navegacion__linea {
+        background-color: var(--color-naranja);
+    }
+
+    /* Vecinos inmediatos (anterior y siguiente); la página actual conserva su guion */
+    .indice-navegacion__item:has(+ .indice-navegacion__item > .indice-navegacion__enlace:is(:hover, :focus-visible)) .indice-navegacion__enlace:not([aria-current="page"]) .indice-navegacion__linea,
+    .indice-navegacion__item:has(> .indice-navegacion__enlace:is(:hover, :focus-visible)) + .indice-navegacion__item .indice-navegacion__enlace:not([aria-current="page"]) .indice-navegacion__linea {
+        width: 18px;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Secciones del inicio
+   Cuelgan del enlace "Inicio" con guiones más cortos. La sección por la que
+   pasa el visitante enciende su guion en naranja y muestra su nombre.
+   -------------------------------------------------------------------------- */
+
+.indice-navegacion__secciones {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    list-style: none;
+    padding: 4px 0 6px;
+    margin-left: 10px; /* Sangría: cuelgan del guion de "Inicio" */
+}
+
+.indice-navegacion__enlace--seccion {
+    gap: 7px;
+    height: 14px;
+}
+
+.indice-navegacion__enlace--seccion .indice-navegacion__linea {
+    width: 8px;
+    height: 2px;
+    background-color: var(--color-linea-seccion, rgba(255, 255, 255, 0.22));
+}
+
+.indice-navegacion__enlace--seccion .indice-navegacion__texto {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+}
+
+/* Sección que está mirando el visitante */
+.indice-navegacion__enlace--seccion.esta-activa {
+    height: 18px;
+}
+
+.indice-navegacion__enlace--seccion.esta-activa .indice-navegacion__linea {
+    width: 18px;
+    background-color: var(--color-naranja);
+}
+
+.indice-navegacion__enlace--seccion.esta-activa .indice-navegacion__texto {
+    opacity: 1;
+    transform: none;
+    color: var(--color-etiqueta-activa);
+}
+
+/* Con una sección encendida, el guion de "Inicio" cede el naranja */
+.indice-navegacion.tiene-seccion .indice-navegacion__enlace[aria-current="page"] .indice-navegacion__linea {
+    background-color: var(--color-linea-activa);
+}
+
+/* Índice abierto (intro y pantallas táctiles) */
+.indice-navegacion.esta-abierta .indice-navegacion__enlace--seccion {
+    height: 18px;
+}
+
+@media (hover: hover) and (min-width: 768px) {
+    .indice-navegacion:is(:hover, :focus-within) .indice-navegacion__enlace--seccion {
+        height: 18px;
+    }
+
+    /* Los guiones de las secciones son siempre más cortos */
+    .indice-navegacion__enlace--seccion:is(:hover, :focus-visible) .indice-navegacion__linea {
+        width: 18px;
+    }
+
+    .indice-navegacion__enlace--seccion.esta-activa:is(:hover, :focus-visible) .indice-navegacion__linea {
+        background-color: var(--color-naranja);
+    }
+
+    /* El efecto "dock" solo agranda los guiones de las páginas */
+    .indice-navegacion__item:has(.indice-navegacion__enlace--seccion:is(:hover, :focus-visible)) .indice-navegacion__enlace:not([aria-current="page"]) .indice-navegacion__linea {
+        width: 12px;
+    }
+}
+
+.tema-claro .indice-navegacion {
+    --color-linea-seccion: rgba(28, 28, 28, 0.24);
+}
+
+@media (hover: none), (max-width: 767px) {
+    /* En táctil el índice va a la derecha: las secciones se alinean igual */
+    .indice-navegacion__secciones {
+        align-items: flex-end;
+        margin-left: 0;
+        margin-right: 10px;
+    }
+
+    /* Gana al alto de 24px que usan las páginas en táctil */
+    .indice-navegacion .indice-navegacion__enlace--seccion {
+        height: 18px;
+    }
+
+    .indice-navegacion .indice-navegacion__enlace--seccion.esta-activa {
+        height: 22px;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Redes sociales
+   -------------------------------------------------------------------------- */
+
+.indice-navegacion__redes {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    list-style: none;
+    padding: 0;
+    margin-top: 1.25rem;
+}
+
+.indice-navegacion__red {
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    color: var(--color-etiqueta);
+    transition:
+        color 0.3s var(--curva-suave),
+        transform var(--transicion-resorte);
+}
+
+.indice-navegacion__red:hover,
+.indice-navegacion__red:focus-visible {
+    color: var(--color-red-hover);
+    transform: scale(1.15);
+}
+
+.indice-navegacion__icono-red {
+    width: 100%;
+    height: 100%;
+}
+
+.indice-navegacion__enlace:focus-visible {
+    outline-offset: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   Tema claro (el body recibe .tema-claro sobre secciones blancas)
+   -------------------------------------------------------------------------- */
+
+.tema-claro .indice-navegacion {
+    --color-linea: rgba(28, 28, 28, 0.3);
+    --color-red-hover: #B8741A; /* Naranja tostado: contraste suficiente sobre blanco */
+    --color-linea-activa: rgba(28, 28, 28, 0.8);
+    --color-etiqueta: rgba(28, 28, 28, 0.64);
+    --color-etiqueta-activa: var(--color-carbon);
+}
+
+/* --------------------------------------------------------------------------
+   Pantallas táctiles / pequeñas: arriba a la derecha, siempre abierta
+   -------------------------------------------------------------------------- */
+
+@media (hover: none), (max-width: 767px) {
+    .cabecera::before {
+        content: "";
+        position: fixed;
+        inset: 0 0 auto 0;
+        z-index: calc(var(--capa-navegacion) - 1);
+        height: 110px;
+        background: linear-gradient(180deg, rgba(5, 8, 7, 0.85), transparent);
+        pointer-events: none;
+        transition: opacity 0.6s var(--curva-suave);
+    }
+
+    .tema-claro .cabecera::before {
+        background: linear-gradient(180deg, rgba(251, 250, 248, 0.9), transparent);
+    }
+
+    .indice-navegacion {
+        top: clamp(0.75rem, 3vw, 1.75rem);
+        right: var(--margen-lateral);
+        left: auto;
+        transform: none;
+    }
+
+    .indice-navegacion__lista {
+        align-items: flex-end;
+        padding: 0;
+    }
+
+    .indice-navegacion__enlace {
+        flex-direction: row-reverse;
+        height: 24px;
+    }
+
+    .indice-navegacion__texto {
+        font-size: 12px;
+        opacity: 1;
+        transform: none;
+    }
+
+    .indice-navegacion__redes {
+        justify-content: flex-end;
+        gap: 16px;
+        margin-top: 0.9rem;
+    }
+
+    .indice-navegacion__red {
+        width: 20px;
+        height: 20px;
+    }
+}

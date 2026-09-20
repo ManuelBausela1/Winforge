@@ -1,0 +1,1255 @@
+/* ==========================================================================
+   WINFORGE — PÁGINA DE INICIO
+   Secciones: Hero · Servicios · Cómo trabajamos · Proyectos · CTA · Footer
+   (Los estilos compartidos viven en recursos/css)
+   ========================================================================== */
+
+/* ==========================================================================
+   1. HERO
+   Escritorio:  [ Winforge + frase ]  [ logo ]
+                [      botones centrados      ]
+   Pantallas chicas: todo en una columna, centrado.
+   Aparición (orquestada en index.js): Winforge → frase → logo → botones.
+   ========================================================================== */
+
+.hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding-block: 5rem 3rem;
+}
+
+/* --------------------------------------------------------------------------
+   1.0 Grabado de fondo: los herreros, apenas insinuados detrás del hero
+   Se funde con el humo (screen: solo suma luz, nunca tapa) y la intensidad
+   se regula con --fuerza-grabado.
+   -------------------------------------------------------------------------- */
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image: url("img/forja/yunque-1400.webp");
+    background-size: cover;
+    background-position: center 45%;
+    opacity: var(--fuerza-grabado, 0.18);
+    mix-blend-mode: screen;
+    /* Se apaga por los cuatro lados con una caída larga: el grabado no
+       termina en ningún borde recto y se funde con el humo */
+    -webkit-mask-image:
+        radial-gradient(76% 70% at 50% 44%, #000 0%, rgba(0, 0, 0, 0.88) 34%, rgba(0, 0, 0, 0.42) 64%, transparent 90%),
+        linear-gradient(180deg, transparent 0%, #000 24%, #000 66%, transparent 100%),
+        linear-gradient(90deg, transparent 0%, #000 18%, #000 82%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+        radial-gradient(76% 70% at 50% 44%, #000 0%, rgba(0, 0, 0, 0.88) 34%, rgba(0, 0, 0, 0.42) 64%, transparent 90%),
+        linear-gradient(180deg, transparent 0%, #000 24%, #000 66%, transparent 100%),
+        linear-gradient(90deg, transparent 0%, #000 18%, #000 82%, transparent 100%);
+    mask-composite: intersect;
+    pointer-events: none;
+}
+
+@media (max-width: 900px) {
+    .hero::before {
+        background-image: url("img/forja/yunque-900.webp");
+    }
+}
+
+/* Cubre todo el hero: las partículas del título llegan desde afuera */
+.hero__lienzo-titulo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.hero__contenedor {
+    position: relative;
+    z-index: 1;
+    max-width: 1720px; /* Más ancho que el resto del sitio: el hero respira en pantallas grandes */
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+        "texto logo"
+        "acciones acciones";
+    align-items: center;
+    column-gap: clamp(2.5rem, 5vw, 6rem);
+    row-gap: clamp(2rem, 6vh, 4rem);
+}
+
+/* Márgenes simétricos: dejan lugar al índice de navegación fijo a la
+   izquierda y mantienen el conjunto centrado en la pantalla */
+@media (hover: hover) and (min-width: 768px) {
+    .hero__contenedor {
+        padding-inline: max(calc(var(--margen-lateral) + 4rem), 11rem);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   1.1 Izquierda: título de partículas + frase
+   -------------------------------------------------------------------------- */
+
+.hero__columna-texto {
+    grid-area: texto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(1rem, 2.5vh, 1.75rem);
+    text-align: center;
+}
+
+/* Reserva el espacio donde las partículas forman la palabra (titulo-particulas.js) */
+.hero__titulo {
+    width: 100%;
+    height: clamp(90px, min(11vw, 22vh), 190px);
+    font-family: var(--fuente-serif);
+    font-size: var(--texto-titulo-hero);
+    font-weight: 500;
+    line-height: 1;
+    color: var(--color-blanco);
+}
+
+/* Con JS la palabra la dibujan las partículas; el texto queda para SEO y lectores */
+.js .hero__titulo-texto {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.hero__frase {
+    font-family: var(--fuente-sans);
+    font-size: var(--texto-frase-hero);
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    color: var(--color-blanco);
+}
+
+/* En escritorio la frase va en un solo renglón */
+@media (min-width: 1101px) {
+    .hero__frase {
+        white-space: nowrap;
+    }
+}
+
+.hero__frase em {
+    font-style: normal;
+    color: var(--color-eucalipto);
+}
+
+/* --------------------------------------------------------------------------
+   1.2 Derecha: logo 3D (sigue al mouse, sin movimiento propio)
+   -------------------------------------------------------------------------- */
+
+.hero__columna-logo {
+    grid-area: logo;
+    display: grid;
+    place-items: center;
+}
+
+.logo-3d {
+    --giro-x: 0deg;
+    --giro-y: 0deg;
+    --brillo-x: 50%;
+    --brillo-y: 40%;
+
+    position: relative;
+    width: min(100%, 640px);
+    aspect-ratio: 674.49 / 340;
+    perspective: 1000px;
+}
+
+/* Se revela de izquierda a derecha, como una cortina que se corre.
+   Los márgenes negativos del recorte dejan lugar al giro 3D. */
+.animar .logo-3d {
+    opacity: 0;
+    filter: blur(10px);
+    clip-path: inset(-25% 125% -25% -25%);
+    transition:
+        clip-path 1.5s var(--curva-entrada),
+        opacity 0.8s var(--curva-suave),
+        filter 1.2s var(--curva-suave);
+}
+
+.animar .hero.logo-visible .logo-3d {
+    opacity: 1;
+    filter: none;
+    clip-path: inset(-25% -25% -25% -25%);
+}
+
+.logo-3d__escena {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    transform: rotateX(var(--giro-x)) rotateY(var(--giro-y));
+    will-change: transform;
+}
+
+.logo-3d__isotipo {
+    width: 100%;
+    height: 100%;
+    fill: var(--color-blanco);
+    filter: drop-shadow(0 22px 34px rgba(0, 0, 0, 0.5));
+}
+
+/* Luz y sombra que siguen al mouse, recortadas con la silueta del isotipo */
+.logo-3d__brillo {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at var(--brillo-x) var(--brillo-y), rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 22%),
+        radial-gradient(circle at var(--brillo-x) var(--brillo-y), rgba(129, 161, 152, 0) 20%, rgba(28, 52, 46, 0.62) 95%);
+    -webkit-mask: url("img/logo/winforge-isotipo.svg") center / 100% 100% no-repeat;
+    mask: url("img/logo/winforge-isotipo.svg") center / 100% 100% no-repeat;
+    transform: translateZ(1px);
+    pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   1.3 Abajo: acciones centradas
+   -------------------------------------------------------------------------- */
+
+.hero__acciones {
+    grid-area: acciones;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+}
+
+/* Zoom in: crecen desde más chicos con un leve rebote */
+.animar .hero__accion {
+    opacity: 0;
+    scale: 0.6;
+    transition:
+        opacity 0.6s var(--curva-suave),
+        scale 0.8s var(--curva-resorte);
+    transition-delay: calc(var(--indice-accion, 0) * 120ms);
+}
+
+.animar .hero.acciones-visibles .hero__accion {
+    opacity: 1;
+    scale: 1;
+}
+
+/* --------------------------------------------------------------------------
+   1.4 Responsive
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+    .hero {
+        padding-block: 7rem 3rem;
+    }
+
+    .hero__contenedor {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+            "texto"
+            "logo"
+            "acciones";
+    }
+
+    .hero__titulo {
+        height: clamp(90px, 22vw, 170px);
+    }
+
+    .logo-3d {
+        width: min(82vw, 440px);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero__acciones {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero__acciones .boton {
+        width: 100%;
+    }
+}
+
+/* ==========================================================================
+   2. SERVICIOS
+   Título + 4 tarjetas con mockup, número, título y descripción.
+   Al entrar en pantalla las tarjetas aparecen con zoom in escalonado
+   (revelar-al-entrar.js agrega .esta-visible).
+   ========================================================================== */
+
+.servicios {
+    padding-block: clamp(5rem, 12vh, 9rem);
+}
+
+.servicios__contenedor {
+    max-width: 1720px;
+}
+
+@media (hover: hover) and (min-width: 768px) {
+    .servicios__contenedor {
+        padding-inline: max(calc(var(--margen-lateral) + 4rem), 11rem);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   2.1 Encabezado
+   -------------------------------------------------------------------------- */
+
+.servicios__encabezado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 44rem;
+    margin: 0 auto clamp(3rem, 7vh, 4.5rem);
+    text-align: center;
+}
+
+.animar .servicios__encabezado {
+    opacity: 0;
+    translate: 0 30px;
+    transition:
+        opacity 0.9s var(--curva-suave),
+        translate 1s var(--curva-entrada);
+}
+
+.animar .servicios__encabezado.esta-visible {
+    opacity: 1;
+    translate: 0 0;
+}
+
+/* --------------------------------------------------------------------------
+   2.2 Tarjetas
+   Imagen de fondo a toda la tarjeta y un panel tipo carpeta encima con el
+   número, el título y la descripción. Al pasar el mouse el panel baja y deja
+   ver la imagen completa, la tarjeta se inclina en 3D y el borde iluminado
+   sigue al puntero (tarjeta-interactiva.js).
+   Cada tarjeta tiene su color de acento (--color-acento, en el HTML).
+   -------------------------------------------------------------------------- */
+
+.servicios__lista {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(1rem, 1.6vw, 1.75rem);
+    list-style: none;
+    padding: 0;
+}
+
+.tarjeta-servicio {
+    perspective: 900px;
+}
+
+.tarjeta-servicio__contenido {
+    --puntero-x: 50%;
+    --puntero-y: 0%;
+    --giro-x: 0deg;
+    --giro-y: 0deg;
+    --alto-panel: 62%; /* Cuánto de la tarjeta tapa el panel */
+    --radio-panel: 18px;
+    --fondo-panel: rgba(8, 12, 11, 0.94);
+
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border: 1px solid var(--color-borde-suave);
+    border-radius: 22px;
+    background-color: rgb(8, 12, 11);
+    transform: rotateX(var(--giro-x)) rotateY(var(--giro-y));
+    transition:
+        transform 0.3s var(--curva-suave),
+        border-color 0.5s var(--curva-suave),
+        box-shadow 0.5s var(--curva-suave);
+}
+
+/* Borde iluminado que sigue al puntero: un degradado recortado en el marco */
+.tarjeta-servicio__contenido::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    padding: 1px;
+    border-radius: inherit;
+    background: radial-gradient(
+        200px circle at var(--puntero-x) var(--puntero-y),
+        rgb(var(--color-acento)),
+        rgba(var(--color-acento), 0.25) 40%,
+        transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.45s var(--curva-suave);
+    pointer-events: none;
+    /* Deja ver solo el marco de 1px */
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    mask-composite: exclude;
+}
+
+/* Imagen arriba, con su proporción original (4:3) para que no se recorte */
+.tarjeta-servicio__imagen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    transform-origin: top center;
+    /* El pie se desvanece para que no se note el corte cuando baja el panel */
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        #000 58%,
+        rgba(0, 0, 0, 0.55) 80%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        to bottom,
+        #000 58%,
+        rgba(0, 0, 0, 0.55) 80%,
+        transparent 100%
+    );
+    transition: scale 0.9s var(--curva-suave);
+}
+
+/* --------------------------------------------------------------------------
+   Panel tipo carpeta
+   -------------------------------------------------------------------------- */
+
+.tarjeta-servicio__panel {
+    position: absolute;
+    inset: auto 0 0 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    height: var(--alto-panel);
+    padding: clamp(1rem, 1.5vw, 1.5rem);
+    border-top-right-radius: var(--radio-panel);
+    background-color: var(--fondo-panel);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    transition: height 0.6s var(--curva-entrada);
+}
+
+/* Solapa: sube por la izquierda, como la pestaña de una carpeta */
+.tarjeta-servicio__panel::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    width: 62%;
+    height: 34px;
+    border-top-left-radius: var(--radio-panel);
+    border-top-right-radius: var(--radio-panel);
+    background-color: var(--fondo-panel);
+}
+
+/* Curva cóncava donde la solapa se une con el panel */
+.tarjeta-servicio__panel::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 62%;
+    width: var(--radio-panel);
+    height: var(--radio-panel);
+    background: radial-gradient(
+        circle at 100% 0,
+        transparent var(--radio-panel),
+        var(--fondo-panel) var(--radio-panel)
+    );
+}
+
+.tarjeta-servicio__numero {
+    font-family: var(--fuente-sans);
+    font-size: clamp(1.5rem, 0.9rem + 1vw, 2.2rem);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: rgb(var(--color-acento));
+}
+
+/* El texto va centrado en el panel y con alturas fijas para el título y la
+   descripción, los cuatro títulos quedan siempre a la misma altura */
+.tarjeta-servicio__texto {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.25rem;
+    overflow: hidden; /* Recorta el texto cuando el panel baja */
+}
+
+/* Espaciadores: con los dos iguales el texto queda centrado; al achicarse
+   el panel el de abajo se cierra y el texto baja, sin saltos */
+.tarjeta-servicio__texto::before,
+.tarjeta-servicio__texto::after {
+    content: "";
+    flex: 1 0 0;
+    transition: flex-grow 0.6s var(--curva-entrada);
+}
+
+.tarjeta-servicio__titulo {
+    min-height: calc(2 * 1.25em); /* Dos renglones: todos los títulos parejos */
+    font-family: var(--fuente-sans);
+    font-size: clamp(1.05rem, 0.9rem + 0.4vw, 1.3rem);
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--color-blanco);
+}
+
+.tarjeta-servicio__descripcion {
+    min-height: calc(3 * 1.5em); /* Tres renglones: la más larga */
+    font-size: var(--texto-sm);
+    line-height: 1.5;
+    color: var(--color-texto-suave);
+    transition:
+        opacity 0.35s var(--curva-suave),
+        translate 0.5s var(--curva-suave);
+}
+
+/* --------------------------------------------------------------------------
+   Hover: el panel baja, aparece el color y la imagen se ve completa
+   -------------------------------------------------------------------------- */
+
+@media (hover: hover) {
+    .tarjeta-servicio__contenido:hover,
+    .tarjeta-servicio__contenido:has(:focus-visible) {
+        --alto-panel: 46%;
+
+        border-color: rgba(var(--color-acento), 0.35);
+        box-shadow:
+            0 24px 60px -24px rgba(var(--color-acento), 0.55),
+            0 0 40px -12px rgba(var(--color-acento), 0.25);
+    }
+
+    .tarjeta-servicio__contenido:hover::before,
+    .tarjeta-servicio__contenido:has(:focus-visible)::before {
+        opacity: 1;
+    }
+
+    .tarjeta-servicio__contenido:hover .tarjeta-servicio__imagen {
+        scale: 1.03;
+    }
+
+    /* Al achicarse el panel, el título baja y queda visible abajo */
+    .tarjeta-servicio__contenido:hover .tarjeta-servicio__texto::after,
+    .tarjeta-servicio__contenido:has(:focus-visible) .tarjeta-servicio__texto::after {
+        flex-grow: 0;
+    }
+
+    /* La descripción se esconde: el panel chico deja ver la imagen */
+    .tarjeta-servicio__contenido:hover .tarjeta-servicio__descripcion,
+    .tarjeta-servicio__contenido:has(:focus-visible) .tarjeta-servicio__descripcion {
+        opacity: 0;
+        translate: 0 8px;
+    }
+
+}
+
+/* --------------------------------------------------------------------------
+   Elegir servicios: cada tarjeta funciona como un interruptor
+   -------------------------------------------------------------------------- */
+
+.tarjeta-servicio__selector {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+}
+
+.tarjeta-servicio__selector:focus-visible {
+    outline-offset: -4px;
+}
+
+/* Elegida: solo se prende el borde en su color */
+.tarjeta-servicio.esta-elegida .tarjeta-servicio__contenido {
+    border-color: rgb(var(--color-acento));
+    box-shadow: 0 20px 50px -26px rgba(var(--color-acento), 0.7);
+}
+
+/* --------------------------------------------------------------------------
+   Lo elegido y la acción
+   -------------------------------------------------------------------------- */
+
+.servicios__eleccion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: clamp(2.5rem, 6vh, 4rem);
+    text-align: center;
+}
+
+.servicios__elegidos {
+    font-family: var(--fuente-sans);
+    font-size: var(--texto-sm);
+    font-style: italic;
+    letter-spacing: 0.02em;
+    color: var(--color-texto-suave);
+}
+
+.animar .servicios__eleccion {
+    opacity: 0;
+    translate: 0 12px;
+    transition:
+        opacity 0.4s var(--curva-suave),
+        translate 0.5s var(--curva-entrada);
+}
+
+.animar .servicios__eleccion.esta-visible {
+    opacity: 1;
+    translate: 0 0;
+}
+
+/* Zoom in escalonado al entrar en pantalla */
+.animar .tarjeta-servicio {
+    opacity: 0;
+    scale: 0.82;
+    transition:
+        opacity 0.7s var(--curva-suave),
+        scale 0.9s var(--curva-resorte);
+    transition-delay: calc(var(--indice-tarjeta, 0) * 130ms);
+}
+
+.animar .servicios__lista.esta-visible .tarjeta-servicio {
+    opacity: 1;
+    scale: 1;
+}
+
+/* --------------------------------------------------------------------------
+   2.3 Responsive
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1200px) {
+    .servicios__lista {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .servicios__lista {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* ==========================================================================
+   3. CÓMO TRABAJAMOS (pasos)
+   Tres columnas: las estrellas del paso a la izquierda, el punto blanco con
+   el ícono en el centro y el texto siempre a la derecha, sin recuadro.
+   La línea se dibuja de arriba hacia abajo, tramo por tramo, y al terminar
+   el último paso sigue hasta el botón "Iniciar proyecto".
+   Todo arranca cuando la sección entra en pantalla (revelar-al-entrar.js).
+   ========================================================================== */
+
+.proceso {
+    --color-estrella: #FFC24A;
+    --diametro-punto: 64px;
+    --aire-conector: 10px;
+    --retraso-paso: 180ms;
+
+    position: relative;
+    padding-block: clamp(5rem, 12vh, 9rem);
+}
+
+/* Grabado de fondo: el fuego de la forja detrás del proceso */
+.proceso::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image: url("img/forja/horno-1400.webp");
+    background-size: cover;
+    background-position: center;
+    opacity: var(--fuerza-grabado, 0.16);
+    mix-blend-mode: screen;
+    -webkit-mask-image:
+        radial-gradient(70% 62% at 50% 50%, #000 0%, rgba(0, 0, 0, 0.85) 32%, rgba(0, 0, 0, 0.4) 62%, transparent 88%),
+        linear-gradient(180deg, transparent 0%, #000 20%, #000 74%, transparent 100%),
+        linear-gradient(90deg, transparent 0%, #000 16%, #000 84%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+        radial-gradient(70% 62% at 50% 50%, #000 0%, rgba(0, 0, 0, 0.85) 32%, rgba(0, 0, 0, 0.4) 62%, transparent 88%),
+        linear-gradient(180deg, transparent 0%, #000 20%, #000 74%, transparent 100%),
+        linear-gradient(90deg, transparent 0%, #000 16%, #000 84%, transparent 100%);
+    mask-composite: intersect;
+    pointer-events: none;
+}
+
+@media (max-width: 900px) {
+    .proceso::before {
+        background-image: url("img/forja/horno-900.webp");
+    }
+}
+
+.proceso__contenedor {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(2.5rem, 6vh, 4rem);
+    max-width: 1180px;
+}
+
+.proceso__linea-tiempo {
+    width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   3.1 Filas parejas: los puntos quedan siempre a igual distancia
+   -------------------------------------------------------------------------- */
+
+.proceso__pasos {
+    --alto-fila: clamp(7rem, 11vh, 8.5rem);
+
+    display: grid;
+    grid-auto-rows: var(--alto-fila);
+    list-style: none;
+    padding: 0;
+}
+
+.proceso__paso,
+.proceso__cierre {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 96px minmax(0, 1fr);
+    align-items: center;
+    column-gap: clamp(1rem, 2.5vw, 2rem);
+}
+
+/* --------------------------------------------------------------------------
+   3.2 Estrellas: una por número de paso
+   Van a la izquierda y cada fila se centra sobre el mismo eje, así los
+   cinco pasos juntos dibujan un triángulo.
+   -------------------------------------------------------------------------- */
+
+.proceso__estrellas {
+    grid-column: 1;
+    justify-self: end; /* Cerca de los puntos, no contra el margen */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: clamp(9rem, 12vw, 11rem); /* Ancho del triángulo: 5 estrellas */
+    margin-right: clamp(0.5rem, 1.2vw, 1.25rem);
+    gap: 0.35rem;
+    color: var(--color-estrella);
+}
+
+.proceso__estrella {
+    width: clamp(18px, 1.6vw, 24px);
+    height: clamp(18px, 1.6vw, 24px);
+    filter: drop-shadow(0 0 10px rgba(255, 194, 74, 0.35));
+}
+
+/* --------------------------------------------------------------------------
+   3.3 Punto y línea
+   -------------------------------------------------------------------------- */
+
+.proceso__marcador {
+    position: relative;
+    grid-column: 2;
+    display: grid;
+    place-items: center;
+    height: 100%;
+}
+
+.proceso__punto {
+    display: grid;
+    place-items: center;
+    width: var(--diametro-punto);
+    height: var(--diametro-punto);
+    border-radius: 50%;
+    background-color: var(--color-blanco);
+    color: var(--color-carbon);
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.3),
+        0 0 0 10px rgba(255, 255, 255, 0.05),
+        0 16px 30px -16px rgba(0, 0, 0, 0.95);
+}
+
+.proceso__icono {
+    width: 28px;
+    height: 28px;
+}
+
+/* Tramo recto que baja hasta el punto siguiente */
+.proceso__conector {
+    position: absolute;
+    top: calc(50% + var(--diametro-punto) / 2 + var(--aire-conector));
+    left: 50%;
+    width: 2px;
+    height: calc(var(--alto-fila) - var(--diametro-punto) - var(--aire-conector) * 2);
+    border-radius: 2px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.22));
+    transform: translateX(-50%);
+}
+
+/* El tramo del último paso solo llega al borde de su fila: desde ahí
+   sigue el tramo final, así la línea queda continua hasta el botón */
+.proceso__paso:last-child .proceso__conector {
+    height: calc(var(--alto-fila) / 2 - var(--diametro-punto) / 2 - var(--aire-conector));
+}
+
+/* Último tramo: del paso 5 al botón */
+.proceso__marcador--final {
+    height: clamp(3.5rem, 7vh, 5.5rem);
+}
+
+.proceso__conector--final {
+    top: 0;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.85));
+}
+
+/* --------------------------------------------------------------------------
+   3.4 Texto (sin recuadro)
+   -------------------------------------------------------------------------- */
+
+.proceso__texto {
+    grid-column: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.proceso__titulo-paso {
+    font-family: var(--fuente-serif);
+    font-size: clamp(1.6rem, 1.1rem + 1vw, 2.4rem);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--color-blanco);
+}
+
+.proceso__descripcion {
+    max-width: 44ch;
+    font-size: var(--texto-base);
+    line-height: 1.6;
+    color: var(--color-texto-suave);
+}
+
+/* --------------------------------------------------------------------------
+   3.5 Cierre: la línea desemboca en la acción
+   -------------------------------------------------------------------------- */
+
+.proceso__cierre {
+    grid-template-rows: auto auto;
+    justify-items: center;
+}
+
+.proceso__accion {
+    grid-column: 2;
+    grid-row: 2;
+    width: max-content;
+    margin-top: 0.85rem; /* La linea se frena justo arriba de la palabra */
+}
+
+/* --------------------------------------------------------------------------
+   3.6 Entrada: cascada del paso 1 al 5 y después el botón
+   -------------------------------------------------------------------------- */
+
+.animar .titulo-seccion[data-revelar] {
+    opacity: 0;
+    translate: 0 24px;
+    transition:
+        opacity 0.8s var(--curva-suave),
+        translate 0.9s var(--curva-entrada);
+}
+
+.animar .titulo-seccion[data-revelar].esta-visible {
+    opacity: 1;
+    translate: 0 0;
+}
+
+.animar .proceso__punto {
+    opacity: 0;
+    scale: 0.3;
+    transition:
+        opacity 0.45s var(--curva-suave),
+        scale 0.7s var(--curva-resorte);
+    transition-delay: calc(var(--indice-paso, 0) * var(--retraso-paso));
+}
+
+.animar .proceso__estrellas,
+.animar .proceso__texto {
+    opacity: 0;
+    translate: var(--entrada-x, 40px) 0;
+    transition:
+        opacity 0.6s var(--curva-suave),
+        translate 0.8s var(--curva-entrada);
+    transition-delay: calc(var(--indice-paso, 0) * var(--retraso-paso) + 100ms);
+}
+
+.animar .proceso__estrellas {
+    --entrada-x: -40px;
+}
+
+/* La línea se dibuja hacia abajo, en línea recta */
+.animar .proceso__conector {
+    transform: translateX(-50%) scaleY(0);
+    transform-origin: center top;
+    transition: transform 0.35s linear;
+    transition-delay: calc(var(--indice-paso, 0) * var(--retraso-paso) + 140ms);
+}
+
+.animar .proceso__conector--final {
+    transition-delay: calc(5 * var(--retraso-paso) + 140ms);
+}
+
+.animar .proceso__accion {
+    opacity: 0;
+    scale: 0.7;
+    transition:
+        opacity 0.5s var(--curva-suave),
+        scale 0.7s var(--curva-resorte);
+    transition-delay: calc(5 * var(--retraso-paso) + 420ms);
+}
+
+.animar .proceso__linea-tiempo.esta-visible .proceso__punto,
+.animar .proceso__linea-tiempo.esta-visible .proceso__estrellas,
+.animar .proceso__linea-tiempo.esta-visible .proceso__texto,
+.animar .proceso__linea-tiempo.esta-visible .proceso__accion {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+}
+
+.animar .proceso__linea-tiempo.esta-visible .proceso__conector {
+    transform: translateX(-50%) scaleY(1);
+}
+
+/* --------------------------------------------------------------------------
+   3.7 Responsive: punto a la izquierda, estrellas sobre el título
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 860px) {
+    .proceso {
+        --diametro-punto: 54px;
+    }
+
+    .proceso__pasos {
+        --alto-fila: auto;
+
+        grid-auto-rows: auto;
+    }
+
+    .proceso__paso,
+    .proceso__cierre {
+        grid-template-columns: var(--diametro-punto) minmax(0, 1fr);
+        column-gap: 1.1rem;
+        row-gap: 0.4rem;
+    }
+
+    .proceso__marcador {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+        align-self: stretch;
+    }
+
+    .proceso__punto {
+        align-self: start;
+    }
+
+    /* Sin filas parejas, el tramo va desde el punto hasta el final de la fila */
+    .proceso__conector {
+        top: calc(var(--diametro-punto) + var(--aire-conector));
+        height: auto;
+        bottom: calc(var(--aire-conector) * -1);
+    }
+
+    .proceso__icono {
+        width: 24px;
+        height: 24px;
+    }
+
+    .proceso__estrellas {
+        grid-column: 2;
+        grid-row: 1;
+        justify-content: flex-start;
+        gap: 0.25rem;
+    }
+
+    .proceso__estrella {
+        width: 16px;
+        height: 16px;
+    }
+
+    .proceso__texto {
+        grid-column: 2;
+        grid-row: 2;
+        padding-bottom: clamp(1.5rem, 4vh, 2.5rem);
+    }
+
+    .animar .proceso__estrellas,
+    .animar .proceso__texto {
+        --entrada-x: 28px;
+    }
+
+    .proceso__marcador--final {
+        height: clamp(3rem, 6vh, 4.5rem);
+    }
+
+    /* El riel queda a la izquierda: el boton sigue la columna del texto */
+    .proceso__accion {
+        grid-column: 2;
+        grid-row: 2;
+        justify-self: start;
+    }
+}
+
+/* ==========================================================================
+   4. PROYECTOS (carrusel de marcas)
+   Un rollo horizontal que nunca se detiene. Todas las marcas miden lo mismo
+   y la que pasa por el centro se agranda, se enciende en blanco y muestra su
+   nombre. Se puede correr a mano con el mouse o el dedo (carrusel-marcas.js
+   escribe la cercanía al centro de cada marca en --cercania).
+   ========================================================================== */
+
+.proyectos {
+    position: relative;
+    padding-block: clamp(5rem, 12vh, 9rem);
+}
+
+/* Grabado de fondo: la plaza, detrás de los proyectos */
+.proyectos::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1; /* Debajo del carrusel y de la invitación, sobre el humo */
+    background-image: url("img/forja/plaza-1400.webp");
+    background-size: cover;
+    background-position: center;
+    opacity: var(--fuerza-grabado, 0.16);
+    mix-blend-mode: screen; /* Solo suma luz: el humo se sigue viendo */
+    /* Se apaga por los cuatro lados: ni bordes rectos ni división de sección */
+    -webkit-mask-image:
+        radial-gradient(74% 66% at 50% 50%, #000 0%, rgba(0, 0, 0, 0.88) 34%, rgba(0, 0, 0, 0.42) 64%, transparent 90%),
+        linear-gradient(180deg, transparent 0%, #000 18%, #000 76%, transparent 100%),
+        linear-gradient(90deg, transparent 0%, #000 16%, #000 84%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+        radial-gradient(74% 66% at 50% 50%, #000 0%, rgba(0, 0, 0, 0.88) 34%, rgba(0, 0, 0, 0.42) 64%, transparent 90%),
+        linear-gradient(180deg, transparent 0%, #000 18%, #000 76%, transparent 100%),
+        linear-gradient(90deg, transparent 0%, #000 16%, #000 84%, transparent 100%);
+    mask-composite: intersect;
+    pointer-events: none;
+}
+
+@media (max-width: 900px) {
+    .proyectos::before {
+        background-image: url("img/forja/plaza-900.webp");
+    }
+}
+
+.proyectos__contenedor {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: clamp(2.5rem, 6vh, 4rem);
+}
+
+/* --------------------------------------------------------------------------
+   4.1 Rollo
+   -------------------------------------------------------------------------- */
+
+.carrusel-marcas {
+    --ancho-marca: clamp(150px, 15vw, 220px);
+    --alto-logo: clamp(52px, 5vw, 74px);
+
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(1.5rem, 4vh, 2.5rem);
+    cursor: grab;
+    touch-action: pan-y; /* El dedo mueve el rollo sin trabar el scroll vertical */
+    /* Las marcas se desvanecen en los bordes: el rollo no tiene principio ni fin */
+    -webkit-mask: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    mask: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+
+.carrusel-marcas.esta-arrastrando {
+    cursor: grabbing;
+}
+
+.carrusel-marcas__pista {
+    display: flex;
+    align-items: center;
+    gap: clamp(2.5rem, 5vw, 5rem);
+    width: max-content;
+    list-style: none;
+    padding: 0;
+    will-change: transform;
+}
+
+.carrusel-marcas__marca {
+    --cercania: 0;
+
+    flex: none;
+    width: var(--ancho-marca);
+}
+
+.carrusel-marcas__figura {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0;
+    /* Cuanto más cerca del centro, más grande */
+    scale: calc(1 + var(--cercania) * 0.22);
+}
+
+/* Caja igual para todas: los logos chicos crecen y los grandes se contienen */
+.carrusel-marcas__logo {
+    width: 100%;
+    height: var(--alto-logo);
+    object-fit: contain;
+    opacity: calc(0.24 + var(--cercania) * 0.66);
+    filter: drop-shadow(0 0 calc(var(--cercania) * 16px) rgba(255, 255, 255, calc(var(--cercania) * 0.22)));
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+.carrusel-marcas__nombre {
+    font-size: var(--texto-xs);
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-align: center;
+    white-space: nowrap;
+    color: var(--color-blanco);
+    opacity: 0;
+    translate: 0 -6px;
+    transition:
+        opacity 0.3s var(--curva-suave),
+        translate 0.3s var(--curva-suave);
+}
+
+/* La marca que está justo en el centro muestra su nombre */
+.carrusel-marcas__marca.esta-al-centro .carrusel-marcas__nombre {
+    opacity: 1;
+    translate: 0 0;
+}
+
+/* --------------------------------------------------------------------------
+   4.2 Entrada
+   -------------------------------------------------------------------------- */
+
+.animar .carrusel-marcas {
+    opacity: 0;
+    transition: opacity 0.9s var(--curva-suave);
+}
+
+.animar .carrusel-marcas.esta-visible {
+    opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   4.3 Responsive
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 600px) {
+    .carrusel-marcas {
+        --ancho-marca: clamp(120px, 40vw, 170px);
+        --alto-logo: 48px;
+
+        -webkit-mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+        mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   4.4 Invitación: cierra la sección con la acción
+   -------------------------------------------------------------------------- */
+
+.invitacion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(0.75rem, 2vh, 1.25rem);
+    max-width: 46rem;
+    margin: clamp(3.5rem, 9vh, 6rem) auto 0;
+    padding-inline: var(--margen-lateral);
+    text-align: center;
+}
+
+.invitacion__titulo {
+    font-family: var(--fuente-serif);
+    font-size: clamp(2rem, 1.3rem + 2.4vw, 3.4rem);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--color-blanco);
+    text-wrap: balance;
+}
+
+.invitacion__texto {
+    max-width: 38ch;
+    font-size: var(--texto-lg);
+    line-height: 1.6;
+    color: var(--color-texto-suave);
+    text-wrap: balance;
+}
+
+.invitacion__accion {
+    margin-top: clamp(0.75rem, 2vh, 1.5rem);
+}
+
+/* En escritorio la pregunta entra en un solo renglón */
+@media (min-width: 901px) {
+    .invitacion {
+        max-width: 64rem;
+    }
+
+    .invitacion__titulo {
+        white-space: nowrap;
+    }
+}
+
+.animar .invitacion {
+    opacity: 0;
+    translate: 0 28px;
+    transition:
+        opacity 0.8s var(--curva-suave),
+        translate 0.9s var(--curva-entrada);
+}
+
+.animar .invitacion.esta-visible {
+    opacity: 1;
+    translate: 0 0;
+}
+
+/* ==========================================================================
+   SECCIONES PROVISORIAS
+   Marcadores de las próximas secciones (se reemplazan una por una).
+   ========================================================================== */
+
+.seccion-provisoria {
+    display: grid;
+    place-content: center;
+    min-height: 90vh;
+    padding-block: 6rem;
+    text-align: center;
+}
+
+.seccion-provisoria__titulo {
+    font-family: var(--fuente-serif);
+    font-size: clamp(2rem, 1.4rem + 3vw, 3.5rem);
+    font-weight: 500;
+    color: var(--color-texto-suave);
+}

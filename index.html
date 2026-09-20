@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- ===== SEO principal ===== -->
+    <title>Winforge | Taller creativo y productor en Rosario</title>
+    <meta name="description" content="Winforge - Agencia de Marketing de Rosario, Argentina. Forjamos el cómo para quien tiene una historia que contar: branding, desarrollo web, gestión de redes y producción audiovisual.">
+    <meta name="author" content="Winforge">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://winforge.com.ar/">
+    <meta name="theme-color" content="#050807">
+
+    <!-- ===== Open Graph ===== -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_AR">
+    <meta property="og:site_name" content="Winforge">
+    <meta property="og:title" content="Winforge | Taller creativo y productor">
+    <meta property="og:description" content="Forjar el camino en el detalle y los valores. Diseño, estrategia, desarrollo y producción audiovisual para marcas con historia.">
+    <meta property="og:url" content="https://winforge.com.ar/">
+    <meta property="og:image" content="https://winforge.com.ar/img/og/winforge-compartir.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Isologo de Winforge sobre fondo oscuro con bruma eucalipto">
+
+    <!-- ===== Twitter / X ===== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Winforge | Taller creativo y productor">
+    <meta name="twitter:description" content="Forjar el camino en el detalle y los valores.">
+    <meta name="twitter:image" content="https://winforge.com.ar/img/og/winforge-compartir.jpg">
+
+    <!-- ===== Íconos y manifiesto ===== -->
+    <link rel="icon" href="img/logo/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="img/logo/Isologo_transp.png">
+    <link rel="manifest" href="site.webmanifest">
+
+    <!-- ===== Tipografías ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Poppins:wght@300;400;500&display=swap">
+
+    <!-- ===== Estilos ===== -->
+    <link rel="stylesheet" href="recursos/css/base.css">
+    <link rel="stylesheet" href="recursos/css/componentes/fondo-atmosfera.css">
+    <link rel="stylesheet" href="recursos/css/componentes/navegacion.css">
+    <link rel="stylesheet" href="recursos/css/componentes/botones.css">
+    <link rel="stylesheet" href="recursos/css/componentes/frase-animada.css">
+    <link rel="stylesheet" href="index.css">
+
+    <!-- Marca que JS está disponible (las animaciones de entrada dependen de esto) -->
+    <script>
+        /* Las animaciones de entrada corren solo en la primera visita a cada
+           página. La marca queda guardada; si el visitante vuelve, el
+           contenido aparece puesto. (Para volver a verlas: borrar el
+           almacenamiento del sitio o agregar ?animar a la dirección.) */
+        document.documentElement.classList.add("js");
+
+        (function () {
+            var clave = "winforge:visitada:" + location.pathname;
+
+            try {
+                if (location.search.indexOf("animar") !== -1 || !localStorage.getItem(clave)) {
+                    document.documentElement.classList.add("animar");
+                    localStorage.setItem(clave, "1");
+                }
+            } catch (error) {
+                document.documentElement.classList.add("animar"); // Sin almacenamiento, siempre animan
+            }
+        })();
+    </script>
+    <script type="module" src="index.js"></script>
+
+    <!-- ===== Datos estructurados ===== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Organization",
+                "@id": "https://winforge.com.ar/#organizacion",
+                "name": "Winforge",
+                "url": "https://winforge.com.ar/",
+                "logo": "https://winforge.com.ar/img/logo/Isologo_transp.png",
+                "slogan": "Forjar el camino en el detalle y los valores",
+                "sameAs": [
+                    "https://www.instagram.com/winforge/",
+                    "https://www.linkedin.com/company/winforge/"
+                ]
+            },
+            {
+                "@type": "ProfessionalService",
+                "@id": "https://winforge.com.ar/#negocio",
+                "name": "Winforge",
+                "url": "https://winforge.com.ar/",
+                "image": "https://winforge.com.ar/img/logo/Isologo_transp.png",
+                "telephone": "+5493413626491",
+                "areaServed": "AR",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Rosario",
+                    "addressRegion": "Santa Fe",
+                    "addressCountry": "AR"
+                },
+                "parentOrganization": { "@id": "https://winforge.com.ar/#organizacion" },
+                "hasOfferCatalog": {
+                    "@type": "OfferCatalog",
+                    "name": "Servicios de Winforge",
+                    "itemListElement": [
+                        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Diseño y estrategia", "description": "Branding, manual de marca, naming, voz y tono." } },
+                        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Desarrollo de software", "description": "Sitios web, e-commerce, apps y comunicación empresarial interna." } },
+                        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Gestión multimedia", "description": "Redes sociales (Instagram, TikTok, LinkedIn, Facebook, YouTube, etc.), SEO y marketing digital." } },
+                        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Producción audiovisual", "description": "Desde el brainstorming hasta la edición profesional." } }
+                    ]
+                }
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://winforge.com.ar/#sitio",
+                "url": "https://winforge.com.ar/",
+                "name": "Winforge",
+                "inLanguage": "es-AR",
+                "publisher": { "@id": "https://winforge.com.ar/#organizacion" }
+            }
+        ]
+    }
+    </script>
+</head>
+
+<body>
+    <a class="saltar-al-contenido" href="#contenido">Saltar al contenido</a>
+
+    <!-- ==================================================================
+         FONDO ATMÓSFERA (decorativo, fijo en todo el sitio)
+         ================================================================== -->
+    <div class="fondo-atmosfera" data-fondo-atmosfera aria-hidden="true">
+        <canvas class="fondo-atmosfera__fluido" data-fluido></canvas>
+        <canvas class="fondo-atmosfera__particulas" data-particulas></canvas>
+        <div class="fondo-atmosfera__grano"></div>
+    </div>
+
+    <!-- ==================================================================
+         CABECERA
+         ================================================================== -->
+    <header class="cabecera">
+        <nav class="indice-navegacion" data-navegacion-indice aria-label="Navegación principal">
+            <ul class="indice-navegacion__lista" role="list">
+                <li class="indice-navegacion__item">
+                    <a class="indice-navegacion__enlace" href="./" aria-current="page">
+                        <span class="indice-navegacion__linea" aria-hidden="true"></span>
+                        <span class="indice-navegacion__texto">Inicio</span>
+                    </a>
+
+                    <!-- Secciones del inicio: se señala la que está mirando el visitante -->
+                    <ul class="indice-navegacion__secciones" role="list">
+                        <li class="indice-navegacion__subitem">
+                            <a class="indice-navegacion__enlace indice-navegacion__enlace--seccion" href="#servicios" data-seccion="servicios">
+                                <span class="indice-navegacion__linea" aria-hidden="true"></span>
+                                <span class="indice-navegacion__texto">Servicios</span>
+                            </a>
+                        </li>
+                        <li class="indice-navegacion__subitem">
+                            <a class="indice-navegacion__enlace indice-navegacion__enlace--seccion" href="#como-trabajamos" data-seccion="como-trabajamos">
+                                <span class="indice-navegacion__linea" aria-hidden="true"></span>
+                                <span class="indice-navegacion__texto">Proceso</span>
+                            </a>
+                        </li>
+                        <li class="indice-navegacion__subitem">
+                            <a class="indice-navegacion__enlace indice-navegacion__enlace--seccion" href="#proyectos" data-seccion="proyectos">
+                                <span class="indice-navegacion__linea" aria-hidden="true"></span>
+                                <span class="indice-navegacion__texto">Proyectos</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="indice-navegacion__item">
+                    <a class="indice-navegacion__enlace" href="quienes-somos/">
+                        <span class="indice-navegacion__linea" aria-hidden="true"></span>
+                        <span class="indice-navegacion__texto">Quiénes somos</span>
+                    </a>
+                </li>
+                <li class="indice-navegacion__item">
+                    <a class="indice-navegacion__enlace" href="contacto/">
+                        <span class="indice-navegacion__linea" aria-hidden="true"></span>
+                        <span class="indice-navegacion__texto">Contacto</span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="indice-navegacion__redes" role="list" aria-label="Redes sociales">
+                <li>
+                    <a class="indice-navegacion__red" href="https://www.instagram.com/winforge/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Winforge (se abre en una pestaña nueva)">
+                        <svg class="indice-navegacion__icono-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                            <rect x="3.5" y="3.5" width="17" height="17" rx="5"/>
+                            <circle cx="12" cy="12" r="3.8"/>
+                            <path d="M17 7h.01"/>
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a class="indice-navegacion__red" href="https://www.linkedin.com/company/winforge/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Winforge (se abre en una pestaña nueva)">
+                        <svg class="indice-navegacion__icono-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                            <rect x="3.5" y="3.5" width="17" height="17" rx="3"/>
+                            <path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 0 0-4 0"/>
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a class="indice-navegacion__red" href="https://wa.me/5493413626491" target="_blank" rel="noopener noreferrer" aria-label="Escribinos por WhatsApp (se abre en una pestaña nueva)">
+                        <svg class="indice-navegacion__icono-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                            <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/>
+                            <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="contenido">
+
+        <!-- ==============================================================
+             1. HERO
+             ============================================================== -->
+        <section class="hero" data-hero aria-labelledby="titulo-principal">
+            <!-- Lienzo de las partículas que forman el título (decorativo) -->
+            <canvas class="hero__lienzo-titulo" data-titulo-lienzo aria-hidden="true"></canvas>
+
+            <div class="hero__contenedor contenedor">
+                <!-- Izquierda: título de partículas + frase -->
+                <div class="hero__columna-texto">
+                    <h1 id="titulo-principal" class="hero__titulo" data-titulo-particulas>
+                        <span class="hero__titulo-texto">Winforge</span>
+                    </h1>
+
+                    <p class="hero__frase" data-frase-animada>
+                        Forjar el camino en el <em>detalle</em> y los <em>valores</em>
+                    </p>
+                </div>
+
+                <!-- Derecha: logo 3D -->
+                <div class="hero__columna-logo">
+                    <div class="logo-3d" data-logo-3d role="img" aria-label="Isotipo de Winforge">
+                        <div class="logo-3d__escena">
+                            <svg class="logo-3d__isotipo" viewBox="0 0 674.49 340" aria-hidden="true" focusable="false">
+                                <path d="M279.63,302.46c41.49,26.7,90.53,32.8,136.41,12.88,9.71-4.22,21.23-10.13,27.37-18.86.21-1.47-5.55-6.89-6.89-8.49-13.33-15.89-25.61-32.56-36.75-50.07-34.67,21.79-84.42,12.82-101.19-26.73-11.64-27.44-3.97-58.96,15.82-80.38l-.55-73.7h-.02c-.56-.58-7.17,2.99-8.35,3.6-43.32,22.35-79.2,60.54-85.03,110.79-1.2,10.38-.33,19.89-3.26,30.12-10.78,37.6-50.25,56.09-86.91,43.78-49.57-16.64-55.43-80.14-21.73-115.15l-.8-75.39c-.8-1.22-6.11,1.39-7.51,1.99C.57,99.52-19.48,240.88,73.11,302.58c35.74,23.81,88.27,33.53,127.26,12.4,18.66-10.11,30.9-24.9,44.22-40.89,11.2,9.97,22.4,20.23,35.04,28.37Z"/>
+                                <path d="M484.92,328.04h86.5c-.42-2.37-3.2-3.51-4.74-4.99-18.36-17.57-35.73-36.37-52.29-55.64-28.54-33.22-66.3-73.66-36.88-119.23,20.04-31.05,63.71-35.33,92.98-14.75,5.38,3.78,9.58,8.68,14.59,12.69l75.91-1.39c-18.53-47.98-58.64-82.19-109.58-91.25-70.17-12.47-132.99,22.65-151.17,92.52-14.45,55.53,4.59,90.3,38.24,131.68,14.39,17.7,29.55,35.01,46.44,50.36Z"/>
+                            </svg>
+                            <div class="logo-3d__brillo"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Abajo: acciones -->
+                <ul class="hero__acciones" role="list">
+                    <li class="hero__accion">
+                        <a class="boton boton--principal" href="contacto/">
+                            <span class="boton__texto">Iniciar proyecto</span>
+                        </a>
+                    </li>
+                    <li class="hero__accion">
+                        <a class="boton boton--texto" href="quienes-somos/">
+                            <span class="boton__texto">Conocé más</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ==============================================================
+             2. SERVICIOS
+             ============================================================== -->
+        <section class="servicios" id="servicios" data-servicios aria-labelledby="titulo-servicios">
+            <div class="servicios__contenedor contenedor">
+                <header class="servicios__encabezado" data-revelar>
+                    <h2 class="titulo-seccion" id="titulo-servicios">Nuestros servicios</h2>
+                </header>
+
+                <ul class="servicios__lista" role="list" data-revelar>
+                <li class="tarjeta-servicio" style="--indice-tarjeta: 0; --color-acento: 255, 255, 255 /* blanco */">
+                    <article class="tarjeta-servicio__contenido" data-tarjeta-interactiva aria-labelledby="servicio-diseno-estrategia">
+                        <img class="tarjeta-servicio__imagen"
+                            src="img/servicios/diseno-estrategia-tarjetas-winforge-640.webp"
+                            srcset="img/servicios/diseno-estrategia-tarjetas-winforge-640.webp 640w, img/servicios/diseno-estrategia-tarjetas-winforge-1024.webp 1024w"
+                            sizes="(min-width: 1200px) 24vw, (min-width: 700px) 45vw, 92vw"
+                            width="640"
+                            height="480"
+                            loading="lazy"
+                            decoding="async"
+                            alt="Tarjetas personales de Winforge con isologo, grabados de herreros y código QR naranja"
+                        >
+
+                        <button class="tarjeta-servicio__selector" type="button" aria-pressed="false" data-servicio="Diseño y estrategia">
+                            <span class="texto-oculto">Elegir este servicio</span>
+                        </button>
+
+                        <div class="tarjeta-servicio__panel">
+                            <span class="tarjeta-servicio__numero" aria-hidden="true">01</span>
+
+                            <div class="tarjeta-servicio__texto">
+                                <h3 class="tarjeta-servicio__titulo" id="servicio-diseno-estrategia">Diseño y estrategia</h3>
+                                <p class="tarjeta-servicio__descripcion">Branding, manual de marca, naming, voz y tono.</p>
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                <li class="tarjeta-servicio" style="--indice-tarjeta: 1; --color-acento: 129, 161, 152 /* eucalipto */">
+                    <article class="tarjeta-servicio__contenido" data-tarjeta-interactiva aria-labelledby="servicio-desarrollo-software">
+                        <img class="tarjeta-servicio__imagen"
+                            src="img/servicios/desarrollo-software-sitio-web-winforge-640.webp"
+                            srcset="img/servicios/desarrollo-software-sitio-web-winforge-640.webp 640w, img/servicios/desarrollo-software-sitio-web-winforge-1024.webp 1024w"
+                            sizes="(min-width: 1200px) 24vw, (min-width: 700px) 45vw, 92vw"
+                            width="640"
+                            height="480"
+                            loading="lazy"
+                            decoding="async"
+                            alt="MacBook mostrando el sitio web de Winforge con fondo de distorsión líquida"
+                        >
+
+                        <button class="tarjeta-servicio__selector" type="button" aria-pressed="false" data-servicio="Desarrollo de software">
+                            <span class="texto-oculto">Elegir este servicio</span>
+                        </button>
+
+                        <div class="tarjeta-servicio__panel">
+                            <span class="tarjeta-servicio__numero" aria-hidden="true">02</span>
+
+                            <div class="tarjeta-servicio__texto">
+                                <h3 class="tarjeta-servicio__titulo" id="servicio-desarrollo-software">Desarrollo de software</h3>
+                                <p class="tarjeta-servicio__descripcion">Sitios web, e-commerce, apps y comunicación empresarial interna.</p>
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                <li class="tarjeta-servicio" style="--indice-tarjeta: 2; --color-acento: 255, 165, 41 /* naranja */">
+                    <article class="tarjeta-servicio__contenido" data-tarjeta-interactiva aria-labelledby="servicio-gestion-multimedia">
+                        <img class="tarjeta-servicio__imagen"
+                            src="img/servicios/gestion-multimedia-redes-winforge-640.webp"
+                            srcset="img/servicios/gestion-multimedia-redes-winforge-640.webp 640w, img/servicios/gestion-multimedia-redes-winforge-1024.webp 1024w"
+                            sizes="(min-width: 1200px) 24vw, (min-width: 700px) 45vw, 92vw"
+                            width="640"
+                            height="480"
+                            loading="lazy"
+                            decoding="async"
+                            alt="iPhone con una publicación de Instagram y piezas gráficas para redes sociales diseñadas por Winforge"
+                        >
+
+                        <button class="tarjeta-servicio__selector" type="button" aria-pressed="false" data-servicio="Gestión multimedia">
+                            <span class="texto-oculto">Elegir este servicio</span>
+                        </button>
+
+                        <div class="tarjeta-servicio__panel">
+                            <span class="tarjeta-servicio__numero" aria-hidden="true">03</span>
+
+                            <div class="tarjeta-servicio__texto">
+                                <h3 class="tarjeta-servicio__titulo" id="servicio-gestion-multimedia">Gestión multimedia</h3>
+                                <p class="tarjeta-servicio__descripcion">Redes sociales (Instagram, TikTok, Facebook, YouTube), SEO y marketing digital.</p>
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                <li class="tarjeta-servicio" style="--indice-tarjeta: 3; --color-acento: 123, 163, 178 /* glaciar */">
+                    <article class="tarjeta-servicio__contenido" data-tarjeta-interactiva aria-labelledby="servicio-produccion-audiovisual">
+                        <img class="tarjeta-servicio__imagen"
+                            src="img/servicios/produccion-audiovisual-video-winforge-640.webp"
+                            srcset="img/servicios/produccion-audiovisual-video-winforge-640.webp 640w, img/servicios/produccion-audiovisual-video-winforge-1024.webp 1024w"
+                            sizes="(min-width: 1200px) 24vw, (min-width: 700px) 45vw, 92vw"
+                            width="640"
+                            height="480"
+                            loading="lazy"
+                            decoding="async"
+                            alt="iPhone horizontal reproduciendo un video con el isologo de Winforge"
+                        >
+
+                        <button class="tarjeta-servicio__selector" type="button" aria-pressed="false" data-servicio="Producción audiovisual">
+                            <span class="texto-oculto">Elegir este servicio</span>
+                        </button>
+
+                        <div class="tarjeta-servicio__panel">
+                            <span class="tarjeta-servicio__numero" aria-hidden="true">04</span>
+
+                            <div class="tarjeta-servicio__texto">
+                                <h3 class="tarjeta-servicio__titulo" id="servicio-produccion-audiovisual">Producción audiovisual</h3>
+                                <p class="tarjeta-servicio__descripcion">Desde el brainstorming hasta la edición profesional.</p>
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                </ul>
+
+                <div class="servicios__eleccion" data-eleccion-servicios hidden>
+                    <p class="servicios__elegidos" data-servicios-elegidos aria-live="polite"></p>
+
+                    <a class="boton boton--principal" href="contacto/">
+                        <span class="boton__texto">Iniciar proyecto</span>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ==============================================================
+             3. CÓMO TRABAJAMOS (pasos)
+             ============================================================== -->
+        <section class="proceso" id="como-trabajamos" aria-labelledby="titulo-proceso">
+            <div class="proceso__contenedor contenedor">
+                <h2 class="titulo-seccion" id="titulo-proceso" data-revelar>Nuestro proceso</h2>
+
+                <div class="proceso__linea-tiempo" data-revelar>
+                    <ol class="proceso__pasos" role="list" data-pasos-uniformes>
+                        <li class="proceso__paso" style="--indice-paso: 0">
+                            <p class="proceso__estrellas" aria-hidden="true">
+                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                            </p>
+
+                            <span class="proceso__marcador">
+                                <span class="proceso__punto">
+                                    <svg class="proceso__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                        <circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.4 15.4 21 21"/><path d="M8 10.5h5"/>
+                                    </svg>
+                                </span>
+                                <span class="proceso__conector" aria-hidden="true"></span>
+                            </span>
+
+                            <div class="proceso__texto">
+                                <h3 class="proceso__titulo-paso">
+                                    <span class="texto-oculto">Paso 1: </span>Diagnóstico
+                                </h3>
+                                <p class="proceso__descripcion">Analizamos tu marca, redes, web y competencia.</p>
+                            </div>
+                        </li>
+                        <li class="proceso__paso" style="--indice-paso: 1">
+                            <p class="proceso__estrellas" aria-hidden="true">
+                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                            </p>
+
+                            <span class="proceso__marcador">
+                                <span class="proceso__punto">
+                                    <svg class="proceso__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                        <circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="12" cy="12" r="0.7" fill="currentColor" stroke="none"/>
+                                    </svg>
+                                </span>
+                                <span class="proceso__conector" aria-hidden="true"></span>
+                            </span>
+
+                            <div class="proceso__texto">
+                                <h3 class="proceso__titulo-paso">
+                                    <span class="texto-oculto">Paso 2: </span>Estrategia
+                                </h3>
+                                <p class="proceso__descripcion">Definimos mensaje, oferta, público y canales.</p>
+                            </div>
+                        </li>
+                        <li class="proceso__paso" style="--indice-paso: 2">
+                            <p class="proceso__estrellas" aria-hidden="true">
+                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                            </p>
+
+                            <span class="proceso__marcador">
+                                <span class="proceso__punto">
+                                    <svg class="proceso__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                        <path d="M4 7.5h3.2l1.6-2.3h6.4l1.6 2.3H20a1.5 1.5 0 0 1 1.5 1.5v8.7a1.5 1.5 0 0 1-1.5 1.5H4a1.5 1.5 0 0 1-1.5-1.5V9A1.5 1.5 0 0 1 4 7.5z"/><circle cx="12" cy="13.2" r="3.7"/><path d="M17.8 10.2h.01"/>
+                                    </svg>
+                                </span>
+                                <span class="proceso__conector" aria-hidden="true"></span>
+                            </span>
+
+                            <div class="proceso__texto">
+                                <h3 class="proceso__titulo-paso">
+                                    <span class="texto-oculto">Paso 3: </span>Producción
+                                </h3>
+                                <p class="proceso__descripcion">Guionamos, producimos y editamos contenido de alto valor.</p>
+                            </div>
+                        </li>
+                        <li class="proceso__paso" style="--indice-paso: 3">
+                            <p class="proceso__estrellas" aria-hidden="true">
+                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                            </p>
+
+                            <span class="proceso__marcador">
+                                <span class="proceso__punto">
+                                    <svg class="proceso__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                        <path d="M4 10.2v3.6a1.2 1.2 0 0 0 1.2 1.2h2.6l6.2 3.8V5.2L7.8 9H5.2A1.2 1.2 0 0 0 4 10.2z"/><path d="M8 15v3.6a1.4 1.4 0 0 0 2.7.5L11 18"/><path d="M17.6 9.6a3.6 3.6 0 0 1 0 4.8"/>
+                                    </svg>
+                                </span>
+                                <span class="proceso__conector" aria-hidden="true"></span>
+                            </span>
+
+                            <div class="proceso__texto">
+                                <h3 class="proceso__titulo-paso">
+                                    <span class="texto-oculto">Paso 4: </span>Campañas
+                                </h3>
+                                <p class="proceso__descripcion">Segmentamos el público y generamos estrategias.</p>
+                            </div>
+                        </li>
+                        <li class="proceso__paso" style="--indice-paso: 4">
+                            <p class="proceso__estrellas" aria-hidden="true">
+                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                            </p>
+
+                            <span class="proceso__marcador">
+                                <span class="proceso__punto">
+                                    <svg class="proceso__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                        <path d="M3.5 20.5h17"/><path d="M6.5 17v-4M11 17v-7M15.5 17v-3"/><path d="m13.5 6.5 3.5-3 3 3"/><path d="M17 3.5v6.5"/>
+                                    </svg>
+                                </span>
+                                <span class="proceso__conector" aria-hidden="true"></span>
+                            </span>
+
+                            <div class="proceso__texto">
+                                <h3 class="proceso__titulo-paso">
+                                    <span class="texto-oculto">Paso 5: </span>Optimización
+                                </h3>
+                                <p class="proceso__descripcion">Medimos resultados y optimizamos el proceso.</p>
+                            </div>
+                        </li>
+                    </ol>
+
+                    <!-- La línea termina en la acción -->
+                    <div class="proceso__cierre">
+                        <span class="proceso__marcador proceso__marcador--final" aria-hidden="true">
+                            <span class="proceso__conector proceso__conector--final"></span>
+                        </span>
+
+                        <a class="boton boton--texto proceso__accion" href="quienes-somos/">
+                            <span class="boton__texto">Conocé más</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==============================================================
+             4. PROYECTOS (carrusel de marcas)
+             ============================================================== -->
+        <section class="proyectos" id="proyectos" aria-labelledby="titulo-proyectos">
+            <div class="proyectos__contenedor contenedor">
+                <h2 class="titulo-seccion" id="titulo-proyectos" data-revelar>Proyectos forjados</h2>
+            </div>
+
+            <div class="carrusel-marcas" data-carrusel-marcas data-revelar>
+                <ul class="carrusel-marcas__pista" role="list" data-carrusel-pista>
+                        <li class="carrusel-marcas__marca">
+                            <figure class="carrusel-marcas__figura">
+                                <img class="carrusel-marcas__logo" src="img/marcas/agras.webp" alt="AGRAS" width="220" height="110" loading="lazy" decoding="async">
+                                <figcaption class="carrusel-marcas__nombre">AGRAS</figcaption>
+                            </figure>
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <figure class="carrusel-marcas__figura">
+                                <img class="carrusel-marcas__logo" src="img/marcas/ahg-blanco-logotipo.webp" alt="Alpha Handel Group" width="220" height="110" loading="lazy" decoding="async">
+                                <figcaption class="carrusel-marcas__nombre">Alpha Handel Group</figcaption>
+                            </figure>
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <figure class="carrusel-marcas__figura">
+                                <img class="carrusel-marcas__logo" src="img/marcas/atenea.webp" alt="Atenea" width="220" height="110" loading="lazy" decoding="async">
+                                <figcaption class="carrusel-marcas__nombre">Atenea</figcaption>
+                            </figure>
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <figure class="carrusel-marcas__figura">
+                                <img class="carrusel-marcas__logo" src="img/marcas/box-house.webp" alt="Box House" width="220" height="110" loading="lazy" decoding="async">
+                                <figcaption class="carrusel-marcas__nombre">Box House</figcaption>
+                            </figure>
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <figure class="carrusel-marcas__figura">
+                                <img class="carrusel-marcas__logo" src="img/marcas/city.webp" alt="City Center Rosario" width="220" height="110" loading="lazy" decoding="async">
+                                <figcaption class="carrusel-marcas__nombre">City Center Rosario</figcaption>
+                            </figure>
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <figure class="carrusel-marcas__figura">
+                                <img class="carrusel-marcas__logo" src="img/marcas/coe.webp" alt="COE" width="220" height="110" loading="lazy" decoding="async">
+                                <figcaption class="carrusel-marcas__nombre">COE</figcaption>
+                            </figure>
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <figure class="carrusel-marcas__figura">
+                                <img class="carrusel-marcas__logo" src="img/marcas/congreso1.webp" alt="Congreso" width="220" height="110" loading="lazy" decoding="async">
+                                <figcaption class="carrusel-marcas__nombre">Congreso de Educación Humanista</figcaption>
+                            </figure>
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <figure class="carrusel-marcas__figura">
+                                <img class="carrusel-marcas__logo" src="img/marcas/disroi.webp" alt="Disroi" width="220" height="110" loading="lazy" decoding="async">
+                                <figcaption class="carrusel-marcas__nombre">Disroi</figcaption>
+                            </figure>
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <figure class="carrusel-marcas__figura">
+                                <img class="carrusel-marcas__logo" src="img/marcas/lionrush.webp" alt="Lionrush Coffee Roasters" width="220" height="110" loading="lazy" decoding="async">
+                                <figcaption class="carrusel-marcas__nombre">Lionrush Coffee Roasters</figcaption>
+                            </figure>
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <figure class="carrusel-marcas__figura">
+                                <img class="carrusel-marcas__logo" src="img/marcas/franco-della-vedoba.webp" alt="Dr. Franco Della Vedova" width="220" height="110" loading="lazy" decoding="async">
+                                <figcaption class="carrusel-marcas__nombre">Dr. Franco Della Vedova</figcaption>
+                            </figure>
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <figure class="carrusel-marcas__figura">
+                                <img class="carrusel-marcas__logo" src="img/marcas/iso-r.webp" alt="ISO R" width="220" height="110" loading="lazy" decoding="async">
+                                <figcaption class="carrusel-marcas__nombre">La Reina</figcaption>
+                            </figure>
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <figure class="carrusel-marcas__figura">
+                                <img class="carrusel-marcas__logo" src="img/marcas/jardin-surcos-isotipo2.webp" alt="Surcos, jardín de infantes" width="220" height="110" loading="lazy" decoding="async">
+                                <figcaption class="carrusel-marcas__nombre">Surcos, jardín de infantes</figcaption>
+                            </figure>
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <figure class="carrusel-marcas__figura">
+                                <img class="carrusel-marcas__logo" src="img/marcas/logo-loth-01.webp" alt="Loth" width="220" height="110" loading="lazy" decoding="async">
+                                <figcaption class="carrusel-marcas__nombre">Loth</figcaption>
+                            </figure>
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <figure class="carrusel-marcas__figura">
+                                <img class="carrusel-marcas__logo" src="img/marcas/kosim.webp" alt="Kosim" width="220" height="110" loading="lazy" decoding="async">
+                                <figcaption class="carrusel-marcas__nombre">Kosim</figcaption>
+                            </figure>
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <figure class="carrusel-marcas__figura">
+                                <img class="carrusel-marcas__logo" src="img/marcas/liliana-olivieri.webp" alt="Liliana Olivieri" width="220" height="110" loading="lazy" decoding="async">
+                                <figcaption class="carrusel-marcas__nombre">Liliana Olivieri</figcaption>
+                            </figure>
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <figure class="carrusel-marcas__figura">
+                                <img class="carrusel-marcas__logo" src="img/marcas/epa.webp" alt="Escuelas Pías de Argentina" width="220" height="110" loading="lazy" decoding="async">
+                                <figcaption class="carrusel-marcas__nombre">Escuelas Pías de Argentina</figcaption>
+                            </figure>
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <figure class="carrusel-marcas__figura">
+                                <img class="carrusel-marcas__logo" src="img/marcas/jcb-desarrollos.webp" alt="JCB Desarrollos" width="220" height="110" loading="lazy" decoding="async">
+                                <figcaption class="carrusel-marcas__nombre">JCB Desarrollos</figcaption>
+                            </figure>
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <figure class="carrusel-marcas__figura">
+                                <img class="carrusel-marcas__logo" src="img/marcas/logos-blanco.webp" alt="Marca cliente" width="220" height="110" loading="lazy" decoding="async">
+                                <figcaption class="carrusel-marcas__nombre">Logos</figcaption>
+                            </figure>
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <figure class="carrusel-marcas__figura">
+                                <img class="carrusel-marcas__logo" src="img/marcas/manu-santamaria.webp" alt="Manu Santamaría" width="220" height="110" loading="lazy" decoding="async">
+                                <figcaption class="carrusel-marcas__nombre">Manu Santamaría</figcaption>
+                            </figure>
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <figure class="carrusel-marcas__figura">
+                                <img class="carrusel-marcas__logo" src="img/marcas/original-blanco-logotipo.webp" alt="Áncora" width="220" height="110" loading="lazy" decoding="async">
+                                <figcaption class="carrusel-marcas__nombre">Áncora</figcaption>
+                            </figure>
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <figure class="carrusel-marcas__figura">
+                                <img class="carrusel-marcas__logo" src="img/marcas/oxyferrum.webp" alt="Oxyferrum" width="220" height="110" loading="lazy" decoding="async">
+                                <figcaption class="carrusel-marcas__nombre">Oxyferrum</figcaption>
+                            </figure>
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <figure class="carrusel-marcas__figura">
+                                <img class="carrusel-marcas__logo" src="img/marcas/premium-home.webp" alt="Premium Home" width="220" height="110" loading="lazy" decoding="async">
+                                <figcaption class="carrusel-marcas__nombre">Premium Home</figcaption>
+                            </figure>
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <figure class="carrusel-marcas__figura">
+                                <img class="carrusel-marcas__logo" src="img/marcas/seba-rodriguez.webp" alt="Seba Rodríguez" width="220" height="110" loading="lazy" decoding="async">
+                                <figcaption class="carrusel-marcas__nombre">Seba Rodríguez</figcaption>
+                            </figure>
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <figure class="carrusel-marcas__figura">
+                                <img class="carrusel-marcas__logo" src="img/marcas/slullitel.webp" alt="Instituto Dr. Jaime Slullitel" width="220" height="110" loading="lazy" decoding="async">
+                                <figcaption class="carrusel-marcas__nombre">Instituto Dr. Jaime Slullitel</figcaption>
+                            </figure>
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <figure class="carrusel-marcas__figura">
+                                <img class="carrusel-marcas__logo" src="img/marcas/sorba.webp" alt="Sorba" width="220" height="110" loading="lazy" decoding="async">
+                                <figcaption class="carrusel-marcas__nombre">Sorba</figcaption>
+                            </figure>
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <figure class="carrusel-marcas__figura">
+                                <img class="carrusel-marcas__logo" src="img/marcas/xop.webp" alt="XOP ERP" width="220" height="110" loading="lazy" decoding="async">
+                                <figcaption class="carrusel-marcas__nombre">XOP ERP</figcaption>
+                            </figure>
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <figure class="carrusel-marcas__figura">
+                                <img class="carrusel-marcas__logo" src="img/marcas/zafirus.webp" alt="Zafirus" width="220" height="110" loading="lazy" decoding="async">
+                                <figcaption class="carrusel-marcas__nombre">Zafirus</figcaption>
+                            </figure>
+                        </li>
+                </ul>
+            </div>
+
+            <div class="invitacion" id="iniciar-proyecto" data-revelar>
+                <h3 class="invitacion__titulo">¿Listo para marcar la diferencia?</h3>
+                <p class="invitacion__texto">
+                    Queremos conocerte para seguir haciendo lo que nos apasiona: contar buenas historias.
+                </p>
+
+                <a class="boton boton--principal invitacion__accion" href="contacto/">
+                    <span class="boton__texto">Iniciar mi proyecto</span>
+                </a>
+            </div>
+        </section>
+
+
+        <!-- ==============================================================
+             PRÓXIMAS SECCIONES (provisorias, se reemplazan una por una)
+             ============================================================== -->
+        <!-- Para volver blanco el fondo de otra sección, agregarle
+             data-tema-fondo="claro" (lo maneja tema-fondo.js) -->
+
+    </main>
+
+    <!-- Footer: próxima etapa -->
+</body>
+</html>
