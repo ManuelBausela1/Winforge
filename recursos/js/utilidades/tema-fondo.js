@@ -1,14 +1,5 @@
-/* ==========================================================================
-   UTILIDADES — TEMA DEL FONDO
-   Las secciones marcadas con data-tema-fondo="claro" vuelven el fondo
-   blanco. Calcula cuánto "tema claro" corresponde según la posición de
-   esas secciones en la ventana (0 a 1, con transición gradual) y marca
-   el <body> con .tema-claro para que la interfaz fija cambie de color.
-   ========================================================================== */
-
 import { limitar } from "./movimiento.js";
 
-// Franja de la ventana donde ocurre la transición (en proporción del alto)
 const INICIO_TRANSICION = 0.6;
 const FIN_TRANSICION = 0.2;
 
@@ -16,14 +7,13 @@ function progresoEntrada(bordeEnPx, altoVentana) {
     const posicion = bordeEnPx / altoVentana;
     const progreso = limitar((INICIO_TRANSICION - posicion) / (INICIO_TRANSICION - FIN_TRANSICION), 0, 1);
 
-    return progreso * progreso * (3 - 2 * progreso); // smoothstep
+    return progreso * progreso * (3 - 2 * progreso);
 }
 
 export function crearTemaFondo() {
     const seccionesClaras = [...document.querySelectorAll('[data-tema-fondo="claro"]')];
     let temaClaroActivo = false;
 
-    /** Devuelve el valor objetivo del tema claro (0 a 1) para este fotograma. */
     function calcular() {
         if (!seccionesClaras.length) return 0;
 
@@ -41,7 +31,6 @@ export function crearTemaFondo() {
         return valor;
     }
 
-    /** Sincroniza la clase del body con histéresis para evitar parpadeos. */
     function sincronizarInterfaz(valor) {
         if (!temaClaroActivo && valor > 0.55) {
             temaClaroActivo = true;

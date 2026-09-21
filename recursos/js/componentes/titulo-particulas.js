@@ -1,44 +1,26 @@
-/* ==========================================================================
-   COMPONENTE — TÍTULO DE PARTÍCULAS
-   Adaptación a JS puro del "ParticleTextEffect" (21st.dev):
-   miles de partículas cruzan el hero y forman "Winforge" en Cormorant
-   Garamond dentro del <h1>. Mientras viajan dejan líneas eucalipto; al
-   llegar a su lugar se vuelven blancas y la palabra queda fija.
-   El mouse aparta las partículas cercanas y luego vuelven a su lugar.
-   El lienzo es transparente: se ve el fondo y el resto del hero.
-   Devuelve una promesa que se resuelve cuando la palabra quedó formada,
-   para encadenar la aparición del resto del hero. Con conEntrada en false
-   (visita repetida) la palabra ya aparece armada, pero el mouse la sigue
-   apartando igual.
-   ========================================================================== */
-
 import { prefiereMovimientoReducido, tienePunteroFino } from "../utilidades/movimiento.js";
 
 const CONFIGURACION = {
     pesoFuente: 500,
     familiaFuente: '"Cormorant Garamond", serif',
 
-    colorLinea: { r: 129, g: 161, b: 152 }, // Eucalipto: partículas en viaje
-    colorPalabra: { r: 255, g: 255, b: 255 }, // Blanco: partículas en su lugar
-    largoLinea: 4, // Largo de la estela = velocidad × este factor
-    nivelesDeColor: 6, // Tonos intermedios eucalipto → blanco (menos = más rápido)
+    colorLinea: { r: 129, g: 161, b: 152 },
+    colorPalabra: { r: 255, g: 255, b: 255 },
+    largoLinea: 4,
+    nivelesDeColor: 6,
 
-    distanciaFrenado: 90, // px: desde acá la partícula empieza a frenar
-    distanciaBlanco: 50, // px: desde acá empieza a volverse blanca
-    distanciaReposo: 0.4, // px: se considera quieta en su lugar
-    distanciaFormada: 2, // px: cerca de su lugar para considerar la palabra formada
-    proporcionFormada: 0.95, // % de partículas que deben estar en su lugar
-    tiempoMaximoFormacion: 4500, // ms: por si algún equipo es lento
+    distanciaFrenado: 90,
+    distanciaBlanco: 50,
+    distanciaReposo: 0.4,
+    distanciaFormada: 2,
+    proporcionFormada: 0.95,
+    tiempoMaximoFormacion: 4500,
 
-    radioMouse: 80, // px: alcance del empuje del mouse
+    radioMouse: 80,
     fuerzaMouse: 5,
 
-    esperaMaximaFuente: 1500, // ms esperando a Cormorant antes de seguir
+    esperaMaximaFuente: 1500,
 };
-
-/* --------------------------------------------------------------------------
-   Partícula
-   -------------------------------------------------------------------------- */
 
 class Particula {
     constructor({ x, y, objetivo, velocidadMaxima }) {
@@ -58,7 +40,6 @@ class Particula {
             && Math.hypot(this.velocidad.x, this.velocidad.y) < CONFIGURACION.distanciaReposo;
     }
 
-    /** Dirección hacia el objetivo con frenado progresivo al acercarse. */
     mover() {
         const distancia = this.distanciaAlObjetivo();
         const factorFrenado = Math.min(distancia / CONFIGURACION.distanciaFrenado, 1);
@@ -86,7 +67,6 @@ class Particula {
         this.posicion.y += this.velocidad.y;
     }
 
-    /** Empuje radial desde el mouse. */
     empujar(mouseX, mouseY) {
         const dx = this.posicion.x - mouseX;
         const dy = this.posicion.y - mouseY;
@@ -100,10 +80,6 @@ class Particula {
     }
 }
 
-/* --------------------------------------------------------------------------
-   Utilidades
-   -------------------------------------------------------------------------- */
-
 function esperar(milisegundos) {
     return new Promise((resolver) => setTimeout(resolver, milisegundos));
 }
@@ -114,11 +90,10 @@ async function esperarFuente() {
     try {
         await Promise.race([document.fonts.load(fuente), esperar(CONFIGURACION.esperaMaximaFuente)]);
     } catch {
-        // Si falla la carga se usa la serif de respaldo
+
     }
 }
 
-/** Punto aleatorio sobre un círculo que rodea la escena. */
 function puntoFueraDeEscena(ancho, alto) {
     const angulo = Math.random() * Math.PI * 2;
     const radio = Math.hypot(ancho, alto) / 2;
@@ -129,10 +104,6 @@ function puntoFueraDeEscena(ancho, alto) {
     };
 }
 
-/**
- * Rasteriza la palabra dentro del rectángulo del título y devuelve las
- * coordenadas (relativas al lienzo) donde hay "tinta".
- */
 function obtenerPuntosDePalabra(palabra, zona, paso) {
     const lienzoTemporal = document.createElement("canvas");
     const ancho = Math.max(1, Math.round(zona.ancho));
@@ -144,7 +115,6 @@ function obtenerPuntosDePalabra(palabra, zona, paso) {
     const contexto = lienzoTemporal.getContext("2d", { willReadFrequently: true });
     const fuente = (tamano) => `${CONFIGURACION.pesoFuente} ${tamano}px ${CONFIGURACION.familiaFuente}`;
 
-    // Tamaño de fuente: lo más grande posible que entre en la zona
     let tamanoFuente = alto * 0.95;
     contexto.font = fuente(tamanoFuente);
     const anchoTexto = contexto.measureText(palabra).width;
@@ -172,10 +142,6 @@ function obtenerPuntosDePalabra(palabra, zona, paso) {
 
     return puntos;
 }
-
-/* --------------------------------------------------------------------------
-   Componente
-   -------------------------------------------------------------------------- */
 
 export async function iniciarTituloParticulas(contenedor = document.querySelector("[data-hero]"), { conEntrada = true } = {}) {
     const titulo = contenedor?.querySelector("[data-titulo-particulas]");
@@ -206,10 +172,6 @@ export async function iniciarTituloParticulas(contenedor = document.querySelecto
 
     await esperarFuente();
 
-    /* ----------------------------------------------------------------------
-       Preparación
-       ---------------------------------------------------------------------- */
-
     function medir() {
         const resolucion = Math.min(window.devicePixelRatio || 1, 2);
         const limitesContenedor = contenedor.getBoundingClientRect();
@@ -229,11 +191,10 @@ export async function iniciarTituloParticulas(contenedor = document.querySelecto
         };
     }
 
-    /** Asigna un objetivo a cada partícula; crea o descarta las que sobran. */
     function construir({ desdeFuera }) {
         const zona = medir();
         const esPantallaChica = ancho < 768;
-        const paso = 2; // px entre partículas: más bajo = palabra más definida
+        const paso = 2;
         tamanoParticula = esPantallaChica ? 1.3 : 1.7;
 
         const puntos = obtenerPuntosDePalabra(palabra, zona, paso);
@@ -258,17 +219,12 @@ export async function iniciarTituloParticulas(contenedor = document.querySelecto
         });
     }
 
-    /* ----------------------------------------------------------------------
-       Dibujo
-       ---------------------------------------------------------------------- */
-
     function dibujar() {
         contexto.clearRect(0, 0, ancho, alto);
 
         const { colorLinea, colorPalabra, nivelesDeColor, largoLinea } = CONFIGURACION;
         const puntosPorNivel = Array.from({ length: nivelesDeColor }, () => []);
 
-        // Líneas: todas en un solo trazo para rendir bien con miles de partículas
         contexto.beginPath();
 
         for (const particula of particulas) {
@@ -291,7 +247,6 @@ export async function iniciarTituloParticulas(contenedor = document.querySelecto
         contexto.lineWidth = 1;
         contexto.stroke();
 
-        // Puntos: agrupados por tono, de eucalipto (lejos) a blanco (en su lugar)
         puntosPorNivel.forEach((grupo, nivel) => {
             if (!grupo.length) return;
 
@@ -306,10 +261,6 @@ export async function iniciarTituloParticulas(contenedor = document.querySelecto
             });
         });
     }
-
-    /* ----------------------------------------------------------------------
-       Animación (se detiene sola cuando todo está quieto)
-       ---------------------------------------------------------------------- */
 
     function animar() {
         let enMovimiento = false;
@@ -337,10 +288,6 @@ export async function iniciarTituloParticulas(contenedor = document.querySelecto
         }
     }
 
-    /* ----------------------------------------------------------------------
-       Eventos
-       ---------------------------------------------------------------------- */
-
     if (tienePunteroFino() && !movimientoReducido) {
         contenedor.addEventListener("pointermove", (evento) => {
             const limites = contenedor.getBoundingClientRect();
@@ -360,24 +307,17 @@ export async function iniciarTituloParticulas(contenedor = document.querySelecto
         if (estaEnPantalla) iniciarAnimacion();
     }).observe(contenedor);
 
-    /* ----------------------------------------------------------------------
-       Arranque
-       ---------------------------------------------------------------------- */
-
-    // Sin entrada (visita repetida) las partículas nacen ya en su lugar
     construir({ desdeFuera: conEntrada });
     titulo.classList.add("esta-lista");
     dibujar();
     iniciarAnimacion();
 
-    // Sin animación la palabra ya está formada; con animación, un límite de seguridad
     if (movimientoReducido || !conEntrada || !particulas.length) {
         avisarPalabraFormada();
     } else {
         setTimeout(avisarPalabraFormada, CONFIGURACION.tiempoMaximoFormacion);
     }
 
-    // Si cambia el tamaño del hero (ventana, fuentes, etc.) se recalcula la palabra
     let temporizadorRedimension;
     let medidasAnteriores = `${ancho}x${alto}`;
 

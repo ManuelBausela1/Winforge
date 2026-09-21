@@ -1,13 +1,6 @@
-/* ==========================================================================
-   COMPONENTE — FONDO FLUIDO (WebGL)
-   Dibuja el shader de humo líquido en un canvas a media resolución.
-   Solo se vuelve a dibujar cuando cambia el scroll o el tamaño de ventana.
-   Devuelve null si el navegador no soporta WebGL: el CSS tiene un respaldo.
-   ========================================================================== */
-
 import { shaderFragmentos, shaderVertices } from "../shaders/fondo-fluido.js";
 
-const ESCALA_RESOLUCION = 0.5; // 50 % de los píxeles CSS: las formas son suaves y rinde mucho mejor
+const ESCALA_RESOLUCION = 0.5;
 
 function compilarShader(gl, tipo, codigo) {
     const shader = gl.createShader(tipo);
@@ -55,7 +48,6 @@ export function crearFondoFluido(lienzo) {
 
     gl.useProgram(programa);
 
-    // Un triángulo que cubre toda la pantalla
     const bufer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, bufer);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);

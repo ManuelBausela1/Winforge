@@ -1,21 +1,10 @@
-/* ==========================================================================
-   COMPONENTE — FORMULARIO DE CONTACTO
-   Validación en vivo (todos los campos son obligatorios), freno de envíos
-   para que nadie sature el buzón y precarga de los servicios que el
-   visitante eligió en el inicio.
-
-   Nota: el freno vive en el navegador, así que sirve contra el apuro y los
-   robots simples, no contra un ataque decidido. El límite de verdad tiene
-   que estar en el servidor que reciba el formulario.
-   ========================================================================== */
-
 import { leerEleccion } from "../utilidades/servicios.js";
 
 const LIMITES = {
-    esperaEntreEnvios: 45000, // ms entre un envío y el siguiente
+    esperaEntreEnvios: 45000,
     maximoPorHora: 3,
-    ventana: 3600000, // ms de la ventana horaria
-    tiempoMinimoDeCarga: 3000, // ms: menos que eso, es un robot
+    ventana: 3600000,
+    tiempoMinimoDeCarga: 3000,
 };
 
 const CLAVE_ENVIOS = "winforge:envios";
@@ -37,10 +26,6 @@ const MENSAJES = {
         corto: "Un par de líneas más y podemos entenderlo mejor.",
     },
 };
-
-/* --------------------------------------------------------------------------
-   Validación
-   -------------------------------------------------------------------------- */
 
 const EXPRESION_EMAIL = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
 
@@ -76,10 +61,6 @@ function validarCampo(formulario, nombre) {
     }
 }
 
-/* --------------------------------------------------------------------------
-   Freno de envíos
-   -------------------------------------------------------------------------- */
-
 function leerEnvios() {
     try {
         const guardado = JSON.parse(localStorage.getItem(CLAVE_ENVIOS) ?? "[]");
@@ -96,11 +77,10 @@ function anotarEnvio() {
         recientes.push(ahora);
         localStorage.setItem(CLAVE_ENVIOS, JSON.stringify(recientes));
     } catch {
-        // Sin localStorage el freno se pierde; el del servidor sigue valiendo
+
     }
 }
 
-/** Devuelve "" si se puede enviar, o el motivo de la espera. */
 function revisarFreno(nacimientoDelFormulario) {
     const ahora = Date.now();
 
@@ -123,14 +103,9 @@ function revisarFreno(nacimientoDelFormulario) {
     return "";
 }
 
-/* --------------------------------------------------------------------------
-   Envío
-   -------------------------------------------------------------------------- */
-
 async function enviar(formulario, datos) {
     const destino = formulario.dataset.endpoint;
 
-    // Con un endpoint configurado se envía sin salir de la página
     if (destino) {
         const respuesta = await fetch(destino, {
             method: "POST",
@@ -142,7 +117,6 @@ async function enviar(formulario, datos) {
         return "enviado";
     }
 
-    // Sin endpoint todavía: se abre el correo del visitante con todo escrito
     const cuerpo = [
         `Nombre: ${datos.nombre}`,
         `Email: ${datos.email}`,
@@ -157,10 +131,6 @@ async function enviar(formulario, datos) {
     return "correo";
 }
 
-/* --------------------------------------------------------------------------
-   Arranque
-   -------------------------------------------------------------------------- */
-
 export function iniciarFormularioContacto(formulario = document.querySelector("[data-formulario-contacto]")) {
     if (!formulario) return;
 
@@ -168,9 +138,8 @@ export function iniciarFormularioContacto(formulario = document.querySelector("[
     const boton = formulario.querySelector('button[type="submit"]');
     const nacimiento = Date.now();
     const campos = ["nombre", "email", "mensaje", "servicios"];
-    const revisados = new Set(); // Un campo se marca recién después de tocarlo
+    const revisados = new Set();
 
-    /** Lista los controles de un campo (las casillas son varios). */
     function controlesDe(nombre) {
         const control = formulario.elements[nombre];
         if (!control) return [];
@@ -182,7 +151,7 @@ export function iniciarFormularioContacto(formulario = document.querySelector("[
         if (cartel) cartel.textContent = texto;
 
         controlesDe(nombre).forEach((elemento) => {
-            if (elemento.type === "checkbox") return; // El aviso es del grupo, no de cada casilla
+            if (elemento.type === "checkbox") return;
             elemento.setAttribute("aria-invalid", texto ? "true" : "false");
         });
 
@@ -197,7 +166,6 @@ export function iniciarFormularioContacto(formulario = document.querySelector("[
         return !error;
     }
 
-    // Precarga: lo que el visitante eligió en el inicio ya viene marcado
     const elegidos = leerEleccion();
     if (elegidos.length) {
         formulario.querySelectorAll('input[name="servicios"]').forEach((casilla) => {
@@ -205,7 +173,6 @@ export function iniciarFormularioContacto(formulario = document.querySelector("[
         });
     }
 
-    // Validación en vivo: al salir del campo y, si ya se revisó, al escribir
     campos.forEach((nombre) => {
         controlesDe(nombre).forEach((elemento) => {
             elemento.addEventListener("blur", () => {
@@ -223,7 +190,6 @@ export function iniciarFormularioContacto(formulario = document.querySelector("[
     formulario.addEventListener("submit", async (evento) => {
         evento.preventDefault();
 
-        // La trampa: si está completa es un robot. Se le dice que sí y se corta.
         if (formulario.elements.empresa?.value) {
             aviso.textContent = "¡Gracias! Te escribimos a la brevedad.";
             return;

@@ -1,14 +1,3 @@
-/* ==========================================================================
-   WINFORGE — CONTACTO
-   (Los estilos compartidos viven en recursos/css)
-   ========================================================================== */
-
-/* ==========================================================================
-   1. CONTACTO
-   Izquierda: el David, que entra desde afuera y se apoya contra el borde.
-   Derecha: el título y el formulario.
-   ========================================================================== */
-
 .contacto {
     position: relative;
     display: flex;
@@ -16,7 +5,7 @@
     min-height: 100vh;
     min-height: 100svh;
     padding-block: clamp(3.25rem, 7vh, 5.5rem) clamp(1.25rem, 4vh, 2.5rem);
-    overflow: hidden; /* La figura puede asomarse fuera del margen */
+    overflow: hidden;
 }
 
 .contacto__contenedor {
@@ -37,14 +26,8 @@
     }
 }
 
-/* --------------------------------------------------------------------------
-   1.1 La figura
-   -------------------------------------------------------------------------- */
-
-/* El David es fondo: ocupa el alto de la sección, del lado izquierdo,
-   por detrás del formulario */
 .contacto__columna-figura {
-    --presencia-david: 0.42; /* Como los grabados: se lee detrás del humo */
+    --presencia-david: 0.42;
 
     position: absolute;
     inset: 0 auto 0 0;
@@ -52,7 +35,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    width: min(58%, 45rem); /* Su borde derecho queda a un respiro del formulario */
+    width: min(58%, 45rem);
     pointer-events: none;
 }
 
@@ -62,13 +45,8 @@
     height: 100%;
     object-fit: contain;
     opacity: var(--presencia-david);
-    /* Igual que los grabados: solo suma luz y se queda por detrás de las
-       figuras del humo. La saturación extra sostiene el naranja de los
-       ojos, que si no se apagaría junto con el resto */
     mix-blend-mode: screen;
     filter: saturate(1.5) contrast(1.05);
-    /* Los bordes se difuminan por los cuatro lados: la figura se funde
-       con el humo en vez de terminar en un recorte nítido */
     -webkit-mask-image:
         radial-gradient(82% 78% at 50% 42%, #000 0%, rgba(0, 0, 0, 0.95) 48%, rgba(0, 0, 0, 0.55) 74%, transparent 100%),
         linear-gradient(180deg, #000 0%, #000 44%, rgba(0, 0, 0, 0.35) 78%, transparent 96%);
@@ -79,15 +57,11 @@
     mask-composite: intersect;
 }
 
-/* --------------------------------------------------------------------------
-   1.2 Título
-   -------------------------------------------------------------------------- */
-
 .contacto__columna-formulario {
     grid-area: formulario;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Título y formulario sobre el mismo eje */
+    align-items: center;
     gap: clamp(1.1rem, 3vh, 2rem);
 }
 
@@ -102,10 +76,6 @@
     color: var(--color-blanco);
 }
 
-/* ==========================================================================
-   2. FORMULARIO
-   ========================================================================== */
-
 .formulario {
     display: flex;
     flex-direction: column;
@@ -113,7 +83,6 @@
     width: 100%;
     max-width: 36rem;
     padding: clamp(1rem, 2vh, 1.6rem) clamp(1.2rem, 2.2vw, 1.9rem);
-    /* Cristal: deja ver el humo de atrás, apenas desenfocado */
     border: 1px solid var(--color-borde-suave);
     border-radius: clamp(12px, 1.2vw, 20px);
     background-color: rgba(255, 255, 255, 0.045);
@@ -143,7 +112,6 @@
     color: var(--color-texto);
 }
 
-/* El asterisco marca que el pedido es obligatorio */
 .formulario__obligatorio {
     color: var(--color-obligatorio, #FF6B5B);
 }
@@ -152,10 +120,6 @@
     font-weight: 300;
     color: var(--color-texto-suave);
 }
-
-/* --------------------------------------------------------------------------
-   2.1 Campos de texto
-   -------------------------------------------------------------------------- */
 
 .formulario__control {
     width: 100%;
@@ -197,10 +161,6 @@
     border-color: var(--color-naranja);
 }
 
-/* --------------------------------------------------------------------------
-   2.2 Casillas de servicios
-   -------------------------------------------------------------------------- */
-
 .formulario__opciones {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -228,7 +188,6 @@
     border-color: rgba(255, 255, 255, 0.28);
 }
 
-/* La casilla real queda oculta; se dibuja la marca */
 .casilla__control {
     position: absolute;
     width: 1px;
@@ -249,7 +208,6 @@
         background-color 0.25s var(--curva-suave);
 }
 
-/* El tilde, dibujado con dos trazos */
 .casilla__marca::after {
     content: "";
     position: absolute;
@@ -289,10 +247,6 @@
     outline-offset: 3px;
 }
 
-/* --------------------------------------------------------------------------
-   2.3 Errores y avisos
-   -------------------------------------------------------------------------- */
-
 .formulario__error {
     font-size: var(--texto-sm);
     line-height: 1.3;
@@ -307,7 +261,6 @@
     border-color: rgba(255, 165, 41, 0.5);
 }
 
-/* La trampa para robots: fuera de la vista y del recorrido con teclado */
 .formulario__trampa {
     position: absolute;
     width: 1px;
@@ -350,11 +303,6 @@
     color: var(--color-eucalipto);
 }
 
-/* ==========================================================================
-   3. APARICIÓN
-   Solo se anima la figura: el formulario está listo desde el primer cuadro.
-   ========================================================================== */
-
 .animar .contacto__figura {
     opacity: 0;
     translate: -38% 0;
@@ -368,7 +316,6 @@
     translate: 0 0;
 }
 
-/* Cuando el David terminó de entrar, el título y el formulario crecen */
 .animar .contacto__columna-formulario {
     opacity: 0;
     scale: 0.93;
@@ -392,10 +339,6 @@
     }
 }
 
-/* ==========================================================================
-   4. PANTALLAS CHICAS
-   ========================================================================== */
-
 @media (max-width: 1100px) {
     .contacto__contenedor {
         grid-template-columns: minmax(0, 1fr);
@@ -403,7 +346,6 @@
         justify-items: center;
     }
 
-    /* Sin lugar al costado, el David se queda detrás de todo, centrado */
     .contacto__columna-figura {
         inset: 0;
         width: 100%;

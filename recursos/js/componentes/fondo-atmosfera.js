@@ -1,27 +1,12 @@
-/* ==========================================================================
-   COMPONENTE — FONDO ATMÓSFERA
-   Dos capas:
-   1. Fondo fluido (WebGL): humo abstracto quieto, "pegado" a la página como
-      un lienzo largo. No se anima solo: al scrollear sube a la par del
-      contenido y aparecen nuevas figuras. Se redibuja en el mismo instante
-      en que se mueve la página, para que no quede ni un fotograma atrasado.
-   2. Partículas (canvas 2D): chispas blancas y naranjas que flotan solas y
-      se desplazan con el scroll a distintas velocidades (profundidad).
-
-   Tema claro: las secciones con data-tema-fondo="claro" vuelven el fondo
-   blanco con las figuras en negro y algo de eucalipto. La transición sigue
-   las formas del humo, como tinta que se expande.
-   ========================================================================== */
-
 import { crearFondoFluido } from "./fondo-fluido.js";
 import { alScrollear, estadoScroll } from "../utilidades/scroll-suave.js";
 import { crearTemaFondo } from "../utilidades/tema-fondo.js";
 import { interpolar, moduloPositivo, prefiereMovimientoReducido } from "../utilidades/movimiento.js";
 
 const CONFIGURACION = {
-    velocidadParallaxMinima: 0.3, // Partículas lejanas: se mueven al 30 % del scroll
-    velocidadParallaxMaxima: 0.9, // Partículas cercanas: casi a la par del contenido
-    densidadParticulas: 1 / 10000, // Una partícula cada 10000 px²
+    velocidadParallaxMinima: 0.3,
+    velocidadParallaxMaxima: 0.9,
+    densidadParticulas: 1 / 10000,
     maximoParticulas: 170,
     proporcionNaranjas: 0.35,
     inerciaTema: 0.08,
@@ -30,7 +15,6 @@ const CONFIGURACION = {
 
 const COLOR_NARANJA = "255, 165, 41";
 
-// Polvo: blanco sobre el fondo oscuro, carbón sobre el claro
 const COLOR_POLVO = [[255, 255, 255], [28, 28, 28]];
 
 function mezclarColor([origen, destino], proporcion) {
@@ -59,10 +43,6 @@ export function iniciarFondoAtmosfera(raiz = document.querySelector("[data-fondo
     let temaClaro = 0;
     let temaDibujado = null;
 
-    /* ----------------------------------------------------------------------
-       Fondo fluido
-       ---------------------------------------------------------------------- */
-
     function dibujarFluido({ forzar = false } = {}) {
         const scroll = estadoScroll.posicion;
         const sinCambios = scroll === scrollDibujado && temaClaro === temaDibujado;
@@ -73,7 +53,6 @@ export function iniciarFondoAtmosfera(raiz = document.querySelector("[data-fondo
         temaDibujado = temaClaro;
     }
 
-    /** Cuánto tema claro corresponde según las secciones visibles. */
     function actualizarTema() {
         const objetivo = temaFondo.calcular();
         const nuevo = movimientoReducido ? objetivo : interpolar(temaClaro, objetivo, CONFIGURACION.inerciaTema);
@@ -85,13 +64,9 @@ export function iniciarFondoAtmosfera(raiz = document.querySelector("[data-fondo
         dibujarFluido();
     }
 
-    /* ----------------------------------------------------------------------
-       Partículas
-       ---------------------------------------------------------------------- */
-
     function crearParticula() {
         const esNaranja = Math.random() < CONFIGURACION.proporcionNaranjas;
-        const profundidad = Math.random() ** 1.5; // Más partículas lejanas que cercanas
+        const profundidad = Math.random() ** 1.5;
 
         return {
             x: Math.random() * ancho,
@@ -100,12 +75,12 @@ export function iniciarFondoAtmosfera(raiz = document.querySelector("[data-fondo
             esNaranja,
             radio: 0.5 + profundidad * (esNaranja ? 1.5 : 1.2),
             opacidadBase: 0.25 + profundidad * 0.6,
-            // Las naranjas suben como chispas; las blancas flotan en cualquier dirección
+
             velocidadX: (Math.random() - 0.5) * 0.18,
             velocidadY: esNaranja
                 ? -(0.12 + Math.random() * 0.35)
                 : (Math.random() - 0.5) * 0.2,
-            // Vaivén lateral suave
+
             amplitudVaiven: 4 + Math.random() * 10,
             frecuenciaVaiven: 0.3 + Math.random() * 0.6,
             fase: Math.random() * Math.PI * 2,
@@ -148,7 +123,6 @@ export function iniciarFondoAtmosfera(raiz = document.querySelector("[data-fondo
             const opacidad = particula.opacidadBase * titileo;
             const color = particula.esNaranja ? COLOR_NARANJA : colorPolvo;
 
-            // Resplandor suave alrededor de las chispas naranjas
             if (particula.esNaranja && particula.profundidad > 0.35) {
                 contexto.fillStyle = `rgba(${color}, ${opacidad * 0.18})`;
                 contexto.beginPath();
@@ -162,10 +136,6 @@ export function iniciarFondoAtmosfera(raiz = document.querySelector("[data-fondo
             contexto.fill();
         }
     }
-
-    /* ----------------------------------------------------------------------
-       Ciclo de vida
-       ---------------------------------------------------------------------- */
 
     function redimensionar() {
         const resolucion = Math.min(window.devicePixelRatio || 1, CONFIGURACION.resolucionMaximaParticulas);

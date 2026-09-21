@@ -1,15 +1,7 @@
-/* ==========================================================================
-   COMPONENTE — TARJETA INTERACTIVA
-   La tarjeta se inclina en 3D según dónde esté el mouse dentro de ella y
-   publica la posición del puntero en variables CSS, para que el borde
-   iluminado y el resplandor del color de la tarjeta lo sigan.
-   Solo con mouse: en pantallas táctiles las tarjetas quedan quietas.
-   ========================================================================== */
-
 import { limitar, prefiereMovimientoReducido, tienePunteroFino } from "../utilidades/movimiento.js";
 
 const CONFIGURACION = {
-    giroMaximo: 7, // grados de inclinación en cada eje
+    giroMaximo: 7,
 };
 
 function seguirPuntero(tarjeta, evento) {
@@ -17,11 +9,9 @@ function seguirPuntero(tarjeta, evento) {
     const x = (evento.clientX - limites.left) / limites.width;
     const y = (evento.clientY - limites.top) / limites.height;
 
-    // Posición del puntero dentro de la tarjeta (para el borde y el resplandor)
     tarjeta.style.setProperty("--puntero-x", `${(x * 100).toFixed(1)}%`);
     tarjeta.style.setProperty("--puntero-y", `${(y * 100).toFixed(1)}%`);
 
-    // Inclinación: se levanta el lado por donde entra el mouse
     const giroY = limitar((x - 0.5) * 2, -1, 1) * CONFIGURACION.giroMaximo;
     const giroX = limitar((y - 0.5) * 2, -1, 1) * -CONFIGURACION.giroMaximo;
 

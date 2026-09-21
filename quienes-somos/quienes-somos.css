@@ -1,15 +1,3 @@
-/* ==========================================================================
-   WINFORGE — QUIÉNES SOMOS
-   (Los estilos compartidos viven en recursos/css)
-   ========================================================================== */
-
-/* ==========================================================================
-   1. PRESENTACIÓN
-   Escritorio: [ Somos WINFORGE + frase ]   [ los tres aspectos ]
-   Pantallas chicas: una columna centrada.
-   Aparición (orquestada en quienes-somos.js): título → frase → gráfico.
-   ========================================================================== */
-
 .presentacion {
     position: relative;
     display: flex;
@@ -19,18 +7,16 @@
     padding-block: 6rem 3rem;
 }
 
-/* Grabado de fondo: los herreros, detrás de la presentación */
 .presentacion::before {
     content: "";
     position: absolute;
     inset: 0;
-    z-index: -1; /* Detrás del contenido, sobre el humo */
+    z-index: -1;
     background-image: url("../img/forja/yunque-1400.webp");
     background-size: cover;
     background-position: center 45%;
     opacity: var(--fuerza-grabado, 0.16);
-    mix-blend-mode: screen; /* Solo suma luz: el humo se sigue viendo */
-    /* Se apaga por los cuatro lados: ni bordes rectos ni división de sección */
+    mix-blend-mode: screen;
     -webkit-mask-image:
         radial-gradient(74% 66% at 50% 50%, #000 0%, rgba(0, 0, 0, 0.88) 34%, rgba(0, 0, 0, 0.42) 64%, transparent 90%),
         linear-gradient(180deg, transparent 0%, #000 18%, #000 76%, transparent 100%),
@@ -53,25 +39,20 @@
 .presentacion__contenedor {
     position: relative;
     z-index: 1;
-    max-width: 1720px; /* El mismo respiro que el hero del inicio */
+    max-width: 1720px;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-areas: "texto grafico";
-    align-items: center; /* Las dos mitades, a la misma altura */
+    align-items: center;
     column-gap: clamp(2.5rem, 5vw, 6rem);
     row-gap: clamp(2.5rem, 8vh, 5rem);
 }
 
-/* Márgenes simétricos: dejan lugar al índice de navegación fijo */
 @media (hover: hover) and (min-width: 768px) {
     .presentacion__contenedor {
         padding-inline: max(calc(var(--margen-lateral) + 4rem), 11rem);
     }
 }
-
-/* --------------------------------------------------------------------------
-   1.1 Izquierda: "Acerca de" con el isotipo y, debajo, la frase
-   -------------------------------------------------------------------------- */
 
 .presentacion__columna-texto {
     grid-area: texto;
@@ -97,13 +78,13 @@
 
 .presentacion__isotipo {
     flex: none;
-    height: 0.82em; /* Acompaña al texto sin pasarle por encima */
+    height: 0.82em;
     width: auto;
     fill: currentColor;
 }
 
 .presentacion__frase {
-    max-width: min(34ch, 100%); /* Dos renglones parejos, sin pasarse de su columna */
+    max-width: min(34ch, 100%);
     font-family: var(--fuente-sans);
     font-size: var(--texto-frase-hero);
     font-weight: 500;
@@ -112,10 +93,6 @@
     text-wrap: balance;
     color: var(--color-blanco);
 }
-
-/* --------------------------------------------------------------------------
-   1.2 Derecha: los tres aspectos
-   -------------------------------------------------------------------------- */
 
 .presentacion__columna-grafico {
     grid-area: grafico;
@@ -130,12 +107,6 @@
     height: auto;
 }
 
-/* --------------------------------------------------------------------------
-   1.3 Aparición del gráfico
-   El título y la frase no se animan: están desde que carga la página.
-   -------------------------------------------------------------------------- */
-
-/* El texto ya está desde el primer cuadro: solo entra el gráfico */
 .animar .presentacion__grafico {
     opacity: 0;
     translate: 38% 0;
@@ -148,10 +119,6 @@
     opacity: 1;
     translate: 0 0;
 }
-
-/* --------------------------------------------------------------------------
-   1.4 Pantallas chicas: todo en una columna
-   -------------------------------------------------------------------------- */
 
 @media (max-width: 1100px) {
     .presentacion__contenedor {
@@ -177,30 +144,22 @@
     }
 }
 
-/* ==========================================================================
-   2. MISIÓN Y VISIÓN
-   Dos bloques enfrentados: la misión abre a la izquierda y la visión
-   responde desde la derecha.
-   ========================================================================== */
-
 .proposito {
     position: relative;
     z-index: 1;
     padding-block: clamp(4rem, 12vh, 9rem);
 }
 
-/* Grabado de fondo: la plaza, detrás de misión y visión */
 .proposito::before {
     content: "";
     position: absolute;
     inset: 0;
-    z-index: -1; /* Detrás del contenido, sobre el humo */
+    z-index: -1;
     background-image: url("../img/forja/plaza-1400.webp");
     background-size: cover;
     background-position: center;
     opacity: var(--fuerza-grabado, 0.16);
-    mix-blend-mode: screen; /* Solo suma luz: el humo se sigue viendo */
-    /* Se apaga por los cuatro lados: ni bordes rectos ni división de sección */
+    mix-blend-mode: screen;
     -webkit-mask-image:
         radial-gradient(74% 66% at 50% 50%, #000 0%, rgba(0, 0, 0, 0.88) 34%, rgba(0, 0, 0, 0.42) 64%, transparent 90%),
         linear-gradient(180deg, transparent 0%, #000 18%, #000 76%, transparent 100%),
@@ -240,14 +199,12 @@
     max-width: min(58ch, 100%);
 }
 
-/* Cada bloque se corre hacia el centro: se reconoce de qué lado nace,
-   pero el conjunto queda junto al eje de la página */
 .proposito__bloque--mision {
     margin-inline-start: clamp(0rem, 10vw, 11rem);
 }
 
 .proposito__bloque--vision {
-    margin-inline-start: auto; /* Se corre al otro lado */
+    margin-inline-start: auto;
     margin-inline-end: clamp(0rem, 10vw, 11rem);
     text-align: right;
 }
@@ -255,7 +212,7 @@
 .proposito__titulo {
     font-family: var(--fuente-sans);
     font-size: clamp(2rem, 1.2rem + 2.6vw, 3.5rem);
-    font-weight: 300; /* Liviano: el peso lo pone el tamaño */
+    font-weight: 300;
     line-height: 1.05;
     letter-spacing: -0.01em;
     color: var(--color-blanco);
@@ -268,16 +225,11 @@
     color: var(--color-texto);
 }
 
-/* Las palabras en mayúsculas: sin cursiva y en naranja, el color del fuego */
 .proposito__texto em {
     font-style: normal;
     font-weight: 500;
     color: var(--color-naranja);
 }
-
-/* --------------------------------------------------------------------------
-   2.1 Aparición: cada bloque entra desde su lado
-   -------------------------------------------------------------------------- */
 
 .animar .proposito__bloque[data-revelar] {
     opacity: 0;
@@ -296,10 +248,6 @@
     translate: 0 0;
 }
 
-/* --------------------------------------------------------------------------
-   2.2 Pantallas chicas
-   -------------------------------------------------------------------------- */
-
 @media (max-width: 700px) {
     .proposito__bloque--mision,
     .proposito__bloque--vision {
@@ -317,12 +265,6 @@
         translate: 0 0;
     }
 }
-
-/* ==========================================================================
-   3. NUESTRO EQUIPO
-   Retratos en blanco y negro dentro de una tarjeta clara, con el nombre y
-   el rol debajo. Al pasar el mouse se levanta el velo que las oscurece.
-   ========================================================================== */
 
 .equipo {
     position: relative;
@@ -354,10 +296,6 @@
     margin: 0;
 }
 
-/* --------------------------------------------------------------------------
-   3.1 El retrato
-   -------------------------------------------------------------------------- */
-
 .equipo__retrato {
     position: relative;
     overflow: hidden;
@@ -371,10 +309,9 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 50% 12%; /* Las caras quedan arriba del encuadre */
+    object-position: 50% 12%;
 }
 
-/* Velo eucalipto que se levanta con el mouse: liga la foto al fondo */
 .equipo__retrato::after {
     content: "";
     position: absolute;
@@ -386,15 +323,10 @@
 }
 
 @media (hover: hover) {
-    /* Con el mouse encima solo se levanta el velo: la foto no se mueve */
     .equipo__integrante:hover .equipo__retrato::after {
         opacity: 0.35;
     }
 }
-
-/* --------------------------------------------------------------------------
-   3.2 Nombre y rol
-   -------------------------------------------------------------------------- */
 
 .equipo__datos {
     display: flex;
@@ -421,10 +353,6 @@
     color: var(--color-naranja);
 }
 
-/* --------------------------------------------------------------------------
-   3.3 Aparición: los retratos entran en cascada
-   -------------------------------------------------------------------------- */
-
 .animar .equipo__integrante[data-revelar] {
     opacity: 0;
     translate: 0 26px;
@@ -438,10 +366,6 @@
     opacity: 1;
     translate: 0 0;
 }
-
-/* --------------------------------------------------------------------------
-   3.4 Pantallas chicas
-   -------------------------------------------------------------------------- */
 
 @media (max-width: 1100px) {
     .equipo__lista {

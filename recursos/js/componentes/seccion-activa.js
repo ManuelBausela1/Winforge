@@ -1,10 +1,3 @@
-/* ==========================================================================
-   COMPONENTE — SECCIÓN ACTIVA
-   Marca en el índice la sección del inicio por la que va pasando el
-   visitante. Se resuelve con una línea imaginaria a la altura del 42 % de
-   la pantalla: la sección que la cruza es la que se señala.
-   ========================================================================== */
-
 import { alScrollear } from "../utilidades/scroll-suave.js";
 
 const ALTURA_REFERENCIA = 0.42;

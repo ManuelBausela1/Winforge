@@ -1,69 +1,47 @@
-/* ==========================================================================
-   WINFORGE — BASE
-   Tokens de marca, reset, tipografía y utilidades compartidas por todo el sitio.
-   ========================================================================== */
-
-/* --------------------------------------------------------------------------
-   1. Tokens
-   -------------------------------------------------------------------------- */
-
 :root {
-    /* Primarios */
     --color-carbon: #1C1C1C;
     --color-blanco: #FFFFFF;
     --color-eucalipto: #81A198;
 
-    /* Secundarios */
     --color-naranja: #FFA529;
     --color-glaciar: #7BA3B2;
     --color-noctis: #1A2730;
 
-    /* Derivados para interfaz */
     --color-fondo-profundo: #050807;
     --color-texto: rgba(255, 255, 255, 0.92);
     --color-texto-suave: rgba(255, 255, 255, 0.64);
-    --color-texto-tenue: rgba(255, 255, 255, 0.56); /* Mínimo AA sobre fondo oscuro */
+    --color-texto-tenue: rgba(255, 255, 255, 0.56);
     --color-borde-suave: rgba(255, 255, 255, 0.14);
     --color-borde-medio: rgba(255, 255, 255, 0.26);
 
-    /* Tipografías */
     --fuente-sans: "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
     --fuente-serif: "Cormorant Garamond", "Times New Roman", serif;
 
-    /* Escala tipográfica fluida */
     --texto-xs: 0.75rem;
     --texto-sm: 0.875rem;
     --texto-base: clamp(1rem, 0.95rem + 0.2vw, 1.0625rem);
     --texto-lg: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
     --texto-display: clamp(2.75rem, 1.4rem + 5.2vw, 6rem);
-    --texto-titulo-hero: clamp(4rem, min(10vw, 18vh), 9rem); /* h1 del hero del inicio */
-    --texto-frase-hero: clamp(1.15rem, 0.35rem + 1.1vw, 1.75rem); /* Frase bajo el h1 */
-    --texto-titulo-seccion: clamp(1.2rem, 0.9rem + 1.2vw, 2.25rem); /* h2 de sección: 36px en escritorio */
+    --texto-titulo-hero: clamp(4rem, min(10vw, 18vh), 9rem);
+    --texto-frase-hero: clamp(1.15rem, 0.35rem + 1.1vw, 1.75rem);
+    --texto-titulo-seccion: clamp(1.2rem, 0.9rem + 1.2vw, 2.25rem);
 
-    /* Espaciado y layout */
     --margen-lateral: clamp(1.25rem, 5vw, 6rem);
     --ancho-maximo: 1440px;
 
-    /* Radios */
     --radio-sm: 6px;
     --radio-pildora: 999px;
 
-    /* Curvas de animación */
     --curva-suave: cubic-bezier(0.22, 1, 0.36, 1);
     --curva-resorte: cubic-bezier(0.34, 1.4, 0.64, 1);
     --curva-entrada: cubic-bezier(0.16, 1, 0.3, 1);
 
-    /* Capas */
     --capa-fondo: -1;
     --capa-contenido: 1;
     --capa-navegacion: 100;
 
     color-scheme: dark;
 }
-
-/* --------------------------------------------------------------------------
-   2. Reset
-   -------------------------------------------------------------------------- */
 
 *,
 *::before,
@@ -93,7 +71,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    overflow-x: clip; /* clip en vez de hidden: no rompe position: sticky */
+    overflow-x: clip;
 }
 
 img,
@@ -109,7 +87,6 @@ a {
     text-decoration: none;
 }
 
-/* Scroll suave (Lenis) */
 html.lenis,
 html.lenis body {
     height: auto;
@@ -156,11 +133,6 @@ ol[role="list"] {
     border-radius: 2px;
 }
 
-/* --------------------------------------------------------------------------
-   3. Utilidades
-   -------------------------------------------------------------------------- */
-
-/* Oculta visualmente sin sacar el contenido del árbol de accesibilidad ni del SEO */
 .texto-oculto {
     position: absolute;
     width: 1px;
@@ -199,12 +171,6 @@ ol[role="list"] {
     padding-inline: var(--margen-lateral);
 }
 
-/* --------------------------------------------------------------------------
-   4. Títulos de sección
-   Estilo común a todos los h2 de sección: mayúsculas espaciadas con un
-   guion naranja a cada lado. Usar <h2 class="titulo-seccion">.
-   -------------------------------------------------------------------------- */
-
 .titulo-seccion {
     display: inline-flex;
     align-items: center;
@@ -228,7 +194,6 @@ ol[role="list"] {
     background-color: var(--color-naranja);
 }
 
-/* En celulares se ajusta el espaciado para que entre en un renglón */
 @media (max-width: 480px) {
     .titulo-seccion {
         gap: 0.6rem;
@@ -240,12 +205,6 @@ ol[role="list"] {
         width: 20px;
     }
 }
-
-/* --------------------------------------------------------------------------
-   5. Tema claro
-   Secciones con data-tema-fondo="claro": el fondo se vuelve blanco con las
-   figuras en negro (ver tema-fondo.js) y su contenido usa tinta carbón.
-   -------------------------------------------------------------------------- */
 
 [data-tema-fondo="claro"] {
     --color-texto: rgba(28, 28, 28, 0.92);
@@ -260,10 +219,6 @@ ol[role="list"] {
 [data-tema-fondo="claro"] .titulo-seccion {
     color: var(--color-carbon);
 }
-
-/* --------------------------------------------------------------------------
-   6. Movimiento reducido
-   -------------------------------------------------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
     html {

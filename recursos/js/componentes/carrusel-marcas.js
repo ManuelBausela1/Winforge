@@ -1,18 +1,10 @@
-/* ==========================================================================
-   COMPONENTE — CARRUSEL DE MARCAS
-   Un rollo horizontal infinito: las marcas avanzan solas y nunca se frenan.
-   La que pasa por el centro se agranda, se enciende en blanco y muestra su
-   nombre. Se puede correr a mano con el mouse o el dedo; al soltar, el rollo
-   sigue de largo con la inercia del gesto.
-   ========================================================================== */
-
 import { limitar, prefiereMovimientoReducido } from "../utilidades/movimiento.js";
 
 const CONFIGURACION = {
-    velocidadBase: -1, // px por fotograma (negativo: hacia la izquierda)
-    rozamiento: 0.94, // Cuánto se frena la inercia del arrastre
-    radioFoco: 1.5, // Zona encendida, en anchos de marca (1.35 ≈ la del centro y un poco de sus vecinas)
-    minimoCopias: 2, // Copias de la lista para que el rollo no tenga fin
+    velocidadBase: -1,
+    rozamiento: 0.94,
+    radioFoco: 1.5,
+    minimoCopias: 2,
 };
 
 export function iniciarCarruselMarcas(carrusel = document.querySelector("[data-carrusel-marcas]")) {
@@ -29,13 +21,9 @@ export function iniciarCarruselMarcas(carrusel = document.querySelector("[data-c
     let separacion = 0;
     let anchoSerie = 0;
     let posicion = 0;
-    let arrastreExtra = 0; // Empuje que deja el gesto al soltar
+    let arrastreExtra = 0;
     let cercaniaAnterior = new WeakMap();
     let idFotograma = null;
-
-    /* ----------------------------------------------------------------------
-       Copias: la lista se repite hasta cubrir el ancho visible
-       ---------------------------------------------------------------------- */
 
     function prepararCopias() {
         pista.querySelectorAll("[data-copia]").forEach((copia) => copia.remove());
@@ -61,13 +49,6 @@ export function iniciarCarruselMarcas(carrusel = document.querySelector("[data-c
         marcas = [...pista.children];
     }
 
-    /* ----------------------------------------------------------------------
-       Movimiento
-       ---------------------------------------------------------------------- */
-
-    /** Enciende las marcas según lo cerca que estén del centro.
-        La posición se calcula con números (todas miden lo mismo), así no
-        hay que medir el DOM en cada fotograma. */
     function repartirFoco() {
         const centro = carrusel.getBoundingClientRect().width / 2;
         const paso = anchoMarca + separacion;
@@ -81,7 +62,6 @@ export function iniciarCarruselMarcas(carrusel = document.querySelector("[data-c
             const distancia = Math.abs(centroMarca - centro);
             const cercania = limitar(1 - distancia / radio, 0, 1);
 
-            // Solo se escribe cuando cambia: evita trabajo de más en cada fotograma
             if (Math.abs((cercaniaAnterior.get(marca) ?? -1) - cercania) > 0.01) {
                 marca.style.setProperty("--cercania", cercania.toFixed(3));
                 cercaniaAnterior.set(marca, cercania);
@@ -103,7 +83,6 @@ export function iniciarCarruselMarcas(carrusel = document.querySelector("[data-c
 
         posicion += velocidad;
 
-        // El rollo no tiene fin: al completar una serie, vuelve a empezar
         if (anchoSerie > 0) {
             posicion = ((posicion % anchoSerie) + anchoSerie) % anchoSerie;
         }
@@ -113,10 +92,6 @@ export function iniciarCarruselMarcas(carrusel = document.querySelector("[data-c
 
         idFotograma = requestAnimationFrame(animar);
     }
-
-    /* ----------------------------------------------------------------------
-       Arrastre con mouse o dedo
-       ---------------------------------------------------------------------- */
 
     function iniciarArrastre() {
         let arrastrando = false;
@@ -129,7 +104,7 @@ export function iniciarCarruselMarcas(carrusel = document.querySelector("[data-c
             try {
                 carrusel.setPointerCapture(evento.pointerId);
             } catch {
-                // Algunos punteros no admiten captura: el arrastre igual funciona
+
             }
             carrusel.classList.add("esta-arrastrando");
         });
@@ -141,7 +116,7 @@ export function iniciarCarruselMarcas(carrusel = document.querySelector("[data-c
             ultimoX = evento.clientX;
 
             posicion -= desplazamiento;
-            arrastreExtra = -desplazamiento * 0.6; // Queda como inercia al soltar
+            arrastreExtra = -desplazamiento * 0.6;
         });
 
         const soltar = () => {
@@ -154,10 +129,6 @@ export function iniciarCarruselMarcas(carrusel = document.querySelector("[data-c
         carrusel.addEventListener("pointerleave", soltar);
         carrusel.addEventListener("dragstart", (evento) => evento.preventDefault());
     }
-
-    /* ----------------------------------------------------------------------
-       Ciclo de vida
-       ---------------------------------------------------------------------- */
 
     function pausarSiEstaOculta() {
         if (document.hidden) {

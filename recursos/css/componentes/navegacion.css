@@ -1,19 +1,3 @@
-/* ==========================================================================
-   COMPONENTE — CABECERA Y NAVEGACIÓN ÍNDICE
-   Réplica del componente "Table Of Content" de Framer:
-   - Cerrado: guiones, y la etiqueta de la página actual con guion naranja.
-   - Al pasar el mouse: aparecen todas las etiquetas; la señalada se
-     resalta, su guion crece a 24px y los vecinos a 18px (efecto "dock").
-   - Abierto (intro y pantallas táctiles): todas las etiquetas visibles.
-   - Bajo "Inicio" cuelgan las secciones de la página y se marca la que
-     está mirando el visitante.
-   - Debajo, los enlaces a redes sociales.
-   ========================================================================== */
-
-/* --------------------------------------------------------------------------
-   Índice de navegación
-   -------------------------------------------------------------------------- */
-
 .indice-navegacion {
     --color-linea: rgba(255, 255, 255, 0.28);
     --color-linea-activa: rgba(255, 255, 255, 0.72);
@@ -34,7 +18,7 @@
     flex-direction: column;
     align-items: flex-start;
     list-style: none;
-    padding: 0.75rem 1.5rem 0.75rem 0; /* Área de hover generosa */
+    padding: 0.75rem 1.5rem 0.75rem 0;
 }
 
 .indice-navegacion__enlace {
@@ -72,7 +56,6 @@
         color var(--transicion-resorte);
 }
 
-/* Página actual: guion naranja (fuego = estado activo) y nombre siempre visible */
 .indice-navegacion__enlace[aria-current="page"] {
     height: 22px;
 }
@@ -88,10 +71,6 @@
     color: var(--color-etiqueta-activa);
 }
 
-/* --------------------------------------------------------------------------
-   Estado abierto (intro / táctil): todas las etiquetas visibles
-   -------------------------------------------------------------------------- */
-
 .indice-navegacion.esta-abierta .indice-navegacion__enlace {
     height: 22px;
 }
@@ -101,12 +80,7 @@
     transform: none;
 }
 
-/* --------------------------------------------------------------------------
-   Estado hover / foco: magnificación tipo "dock"
-   -------------------------------------------------------------------------- */
-
 @media (hover: hover) and (min-width: 768px) {
-    /* Con el puntero sobre el índice se ven todas las etiquetas */
     .indice-navegacion:is(:hover, :focus-within) .indice-navegacion__enlace {
         height: 22px;
     }
@@ -116,7 +90,6 @@
         transform: none;
     }
 
-    /* Enlace señalado: etiqueta resaltada y guion largo */
     .indice-navegacion__enlace:is(:hover, :focus-visible) .indice-navegacion__linea {
         width: 24px;
         background-color: var(--color-linea-activa);
@@ -131,18 +104,11 @@
         background-color: var(--color-naranja);
     }
 
-    /* Vecinos inmediatos (anterior y siguiente); la página actual conserva su guion */
     .indice-navegacion__item:has(+ .indice-navegacion__item > .indice-navegacion__enlace:is(:hover, :focus-visible)) .indice-navegacion__enlace:not([aria-current="page"]) .indice-navegacion__linea,
     .indice-navegacion__item:has(> .indice-navegacion__enlace:is(:hover, :focus-visible)) + .indice-navegacion__item .indice-navegacion__enlace:not([aria-current="page"]) .indice-navegacion__linea {
         width: 18px;
     }
 }
-
-/* --------------------------------------------------------------------------
-   Secciones del inicio
-   Cuelgan del enlace "Inicio" con guiones más cortos. La sección por la que
-   pasa el visitante enciende su guion en naranja y muestra su nombre.
-   -------------------------------------------------------------------------- */
 
 .indice-navegacion__secciones {
     display: flex;
@@ -151,7 +117,7 @@
     gap: 2px;
     list-style: none;
     padding: 4px 0 6px;
-    margin-left: 10px; /* Sangría: cuelgan del guion de "Inicio" */
+    margin-left: 10px;
 }
 
 .indice-navegacion__enlace--seccion {
@@ -170,7 +136,6 @@
     letter-spacing: 0.1em;
 }
 
-/* Sección que está mirando el visitante */
 .indice-navegacion__enlace--seccion.esta-activa {
     height: 18px;
 }
@@ -186,12 +151,10 @@
     color: var(--color-etiqueta-activa);
 }
 
-/* Con una sección encendida, el guion de "Inicio" cede el naranja */
 .indice-navegacion.tiene-seccion .indice-navegacion__enlace[aria-current="page"] .indice-navegacion__linea {
     background-color: var(--color-linea-activa);
 }
 
-/* Índice abierto (intro y pantallas táctiles) */
 .indice-navegacion.esta-abierta .indice-navegacion__enlace--seccion {
     height: 18px;
 }
@@ -201,7 +164,6 @@
         height: 18px;
     }
 
-    /* Los guiones de las secciones son siempre más cortos */
     .indice-navegacion__enlace--seccion:is(:hover, :focus-visible) .indice-navegacion__linea {
         width: 18px;
     }
@@ -210,7 +172,6 @@
         background-color: var(--color-naranja);
     }
 
-    /* El efecto "dock" solo agranda los guiones de las páginas */
     .indice-navegacion__item:has(.indice-navegacion__enlace--seccion:is(:hover, :focus-visible)) .indice-navegacion__enlace:not([aria-current="page"]) .indice-navegacion__linea {
         width: 12px;
     }
@@ -221,14 +182,12 @@
 }
 
 @media (hover: none), (max-width: 767px) {
-    /* En táctil el índice va a la derecha: las secciones se alinean igual */
     .indice-navegacion__secciones {
         align-items: flex-end;
         margin-left: 0;
         margin-right: 10px;
     }
 
-    /* Gana al alto de 24px que usan las páginas en táctil */
     .indice-navegacion .indice-navegacion__enlace--seccion {
         height: 18px;
     }
@@ -237,10 +196,6 @@
         height: 22px;
     }
 }
-
-/* --------------------------------------------------------------------------
-   Redes sociales
-   -------------------------------------------------------------------------- */
 
 .indice-navegacion__redes {
     display: flex;
@@ -277,21 +232,13 @@
     outline-offset: 6px;
 }
 
-/* --------------------------------------------------------------------------
-   Tema claro (el body recibe .tema-claro sobre secciones blancas)
-   -------------------------------------------------------------------------- */
-
 .tema-claro .indice-navegacion {
     --color-linea: rgba(28, 28, 28, 0.3);
-    --color-red-hover: #B8741A; /* Naranja tostado: contraste suficiente sobre blanco */
+    --color-red-hover: #B8741A;
     --color-linea-activa: rgba(28, 28, 28, 0.8);
     --color-etiqueta: rgba(28, 28, 28, 0.64);
     --color-etiqueta-activa: var(--color-carbon);
 }
-
-/* --------------------------------------------------------------------------
-   Pantallas táctiles / pequeñas: arriba a la derecha, siempre abierta
-   -------------------------------------------------------------------------- */
 
 @media (hover: none), (max-width: 767px) {
     .cabecera::before {

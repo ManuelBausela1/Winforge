@@ -1,10 +1,3 @@
-/* ==========================================================================
-   COMPONENTE — BOTONES
-   Principal: naranja (el fuego, la acción). Secundario: vidrio con borde
-   que se llena de eucalipto. Texto: solo la palabra, se subraya con el hover.
-   Hover sobrio: crece al 105 %.
-   ========================================================================== */
-
 .boton {
     position: relative;
     isolation: isolate;
@@ -41,18 +34,10 @@
     transform: scale(1.02);
 }
 
-/* --------------------------------------------------------------------------
-   Principal
-   -------------------------------------------------------------------------- */
-
 .boton--principal {
     background-color: var(--color-naranja);
     color: var(--color-carbon);
 }
-
-/* --------------------------------------------------------------------------
-   Secundario
-   -------------------------------------------------------------------------- */
 
 .boton--secundario {
     border-color: var(--color-borde-medio);
@@ -65,12 +50,8 @@
 .boton--secundario:hover {
     border-color: var(--color-eucalipto);
     background-color: var(--color-eucalipto);
-    color: var(--color-carbon); /* Carbón sobre eucalipto cumple contraste AA */
+    color: var(--color-carbon);
 }
-
-/* --------------------------------------------------------------------------
-   Texto: sin borde ni fondo, solo la palabra. Con el hover se subraya.
-   -------------------------------------------------------------------------- */
 
 .boton--texto {
     overflow: visible;
@@ -81,7 +62,6 @@
     transition: color 0.35s var(--curva-suave);
 }
 
-/* El subrayado se dibuja de izquierda a derecha */
 .boton--texto .boton__texto::after {
     content: "";
     position: absolute;
@@ -96,7 +76,7 @@
 
 .boton--texto:hover,
 .boton--texto:focus-visible {
-    transform: none; /* Solo el subrayado, no se agranda */
+    transform: none;
     color: var(--color-blanco);
 }
 

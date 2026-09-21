@@ -1,17 +1,4 @@
-/* ==========================================================================
-   SHADERS — FONDO FLUIDO
-   Humo líquido abstracto por "domain warping": un ruido fractal (fbm)
-   deformado por otros dos ruidos. Genera formas orgánicas que fluyen,
-   con finas vetas de luz como metal fundido enfriándose.
-   Las formas son fijas y están "pegadas" a la página, como un lienzo muy
-   largo: no se animan solas, pero al scrollear se desplazan junto con el
-   contenido y van apareciendo nuevas figuras abajo.
-   Tiene dos temas que se mezclan con uTemaClaro:
-   - Oscuro: negro profundo con humo eucalipto y alguna brasa naranja.
-   - Claro: blanco con las figuras en negro y algo de eucalipto.
-   ========================================================================== */
-
-export const shaderVertices = /* glsl */ `
+export const shaderVertices = `
     attribute vec2 aPosicion;
 
     void main() {
@@ -19,7 +6,7 @@ export const shaderVertices = /* glsl */ `
     }
 `;
 
-export const shaderFragmentos = /* glsl */ `
+export const shaderFragmentos = `
     #ifdef GL_FRAGMENT_PRECISION_HIGH
         precision highp float;
     #else
@@ -27,23 +14,17 @@ export const shaderFragmentos = /* glsl */ `
     #endif
 
     uniform vec2  uResolucion;
-    uniform float uScroll;     // Scroll en "pantallas" (px / alto de ventana)
-    uniform float uTemaClaro;  // 0 = tema oscuro, 1 = tema claro
+    uniform float uScroll;
+    uniform float uTemaClaro;
 
-    /* ---------------------------------------------------------------------
-       Paleta de marca
-       --------------------------------------------------------------------- */
-    const vec3 COLOR_FONDO     = vec3(0.020, 0.031, 0.027); // #050807
-    const vec3 COLOR_PROFUNDO  = vec3(0.115, 0.172, 0.157); // Eucalipto apagado
-    const vec3 COLOR_EUCALIPTO = vec3(0.506, 0.631, 0.596); // #81A198
-    const vec3 COLOR_GLACIAR   = vec3(0.482, 0.639, 0.698); // #7BA3B2
-    const vec3 COLOR_NARANJA   = vec3(1.000, 0.647, 0.161); // #FFA529
-    const vec3 COLOR_BLANCO    = vec3(0.976, 0.976, 0.968); // Blanco apenas cálido
-    const vec3 COLOR_TINTA     = vec3(0.055, 0.070, 0.066); // Casi negro: las figuras del tema claro
+    const vec3 COLOR_FONDO     = vec3(0.020, 0.031, 0.027);
+    const vec3 COLOR_PROFUNDO  = vec3(0.115, 0.172, 0.157);
+    const vec3 COLOR_EUCALIPTO = vec3(0.506, 0.631, 0.596);
+    const vec3 COLOR_GLACIAR   = vec3(0.482, 0.639, 0.698);
+    const vec3 COLOR_NARANJA   = vec3(1.000, 0.647, 0.161);
+    const vec3 COLOR_BLANCO    = vec3(0.976, 0.976, 0.968);
+    const vec3 COLOR_TINTA     = vec3(0.055, 0.070, 0.066);
 
-    /* ---------------------------------------------------------------------
-       Ruido
-       --------------------------------------------------------------------- */
     float azar(vec2 punto) {
         return fract(sin(dot(punto, vec2(127.1, 311.7))) * 43758.5453);
     }
@@ -61,7 +42,6 @@ export const shaderFragmentos = /* glsl */ `
         return mix(mix(a, b, curva.x), mix(c, d, curva.x), curva.y);
     }
 
-    // Ruido fractal: 5 octavas rotadas para evitar patrones alineados
     float fbm(vec2 punto) {
         float valor = 0.0;
         float amplitud = 0.5;
@@ -76,24 +56,17 @@ export const shaderFragmentos = /* glsl */ `
         return valor;
     }
 
-    /* ---------------------------------------------------------------------
-       Composición
-       --------------------------------------------------------------------- */
     void main() {
         vec2 uv = gl_FragCoord.xy / uResolucion;
         float aspecto = uResolucion.x / uResolucion.y;
 
-        // Coordenadas de la PÁGINA (no de la pantalla): restar el scroll
-        // hace que las figuras suban exactamente a la par del contenido
         vec2 punto = vec2(uv.x * aspecto, uv.y - uScroll) * 1.6;
 
-        // Primera deformación
         vec2 q = vec2(
             fbm(punto),
             fbm(punto + vec2(5.2, 1.3))
         );
 
-        // Segunda deformación
         vec2 r = vec2(
             fbm(punto + 3.2 * q + vec2(1.7, 9.2)),
             fbm(punto + 3.2 * q + vec2(8.3, 2.8))
@@ -107,36 +80,22 @@ export const shaderFragmentos = /* glsl */ `
         float pesoHorizontal = mix(1.0, 0.45, smoothstep(0.25, 1.0, uv.x));
         float vineta = smoothstep(1.25, 0.35, length((uv - vec2(0.42, 0.5)) * vec2(1.1, 1.3)));
 
-        /* ----- Tema oscuro ----- */
-
-        // Cuerpo del humo
         vec3 colorOscuro = mix(COLOR_FONDO, COLOR_PROFUNDO, densidad);
         colorOscuro = mix(colorOscuro, COLOR_EUCALIPTO, smoothstep(0.66, 1.0, forma) * 0.22);
 
-        // Reflejos fríos donde el fluido se pliega
         colorOscuro = mix(colorOscuro, COLOR_GLACIAR, clamp(length(q) - 0.9, 0.0, 1.0) * densidad * 0.08);
 
-        // Vetas: líneas finas que siguen el flujo (distorsión líquida)
         colorOscuro += COLOR_EUCALIPTO * vetas * 0.06;
 
-        // Brasas: unas pocas zonas del humo se entibian con naranja.
-        // Un ruido propio elige dónde, así aparecen salteadas y el
-        // eucalipto sigue mandando. Se SUMA (no se mezcla) para que sea
-        // un calor y no un verde sucio.
         float brasa = smoothstep(0.5, 0.66, fbm(punto * 0.9 + r * 0.35));
         brasa *= densidad * smoothstep(0.42, 0.66, forma);
         colorOscuro += COLOR_NARANJA * brasa * 0.14;
 
-        // Alguna veta suelta se enciende como metal caliente
         colorOscuro += COLOR_NARANJA * vetas * brasa * 0.35;
 
-        // Más presencia a la izquierda, oscuridad a la derecha y viñeta
         colorOscuro = mix(COLOR_FONDO, colorOscuro, pesoHorizontal);
         colorOscuro = mix(COLOR_FONDO * 0.6, colorOscuro, vineta);
 
-        /* ----- Tema claro ----- */
-
-        // Figuras en negro; algunas lenguas se tiñen de eucalipto
         float alternancia = smoothstep(0.45, 0.62, r.y + (q.x - 0.5) * 0.6);
         vec3 tinta = mix(COLOR_TINTA, COLOR_EUCALIPTO * 0.72, alternancia * 0.55);
 
@@ -144,25 +103,18 @@ export const shaderFragmentos = /* glsl */ `
         vec3 colorClaro = mix(COLOR_BLANCO, tinta, densidadClara * 0.62);
         colorClaro = mix(colorClaro, tinta, vetas * 0.3);
 
-        // Aire blanco en los bordes para que el contenido respire
         colorClaro = mix(COLOR_BLANCO, colorClaro, mix(0.55, 1.0, vineta));
 
-        /* ----- Mezcla de temas ----- */
-
-        // En vez de un fundido parejo (que pasaría por gris), el tema nuevo
-        // avanza siguiendo las formas del humo, como tinta que se expande
         float umbral = fbm(punto * 0.7 + r * 0.6);
         float avance = uTemaClaro * 1.3 - 0.15;
         float mezclaTema = smoothstep(umbral - 0.06, umbral + 0.06, avance);
 
-        // Borde luminoso donde el claro se encuentra con el oscuro
         float borde = (1.0 - abs(mezclaTema * 2.0 - 1.0)) * step(0.001, uTemaClaro) * step(uTemaClaro, 0.999);
         vec3 colorBorde = mix(COLOR_EUCALIPTO, COLOR_NARANJA, alternancia * 0.6);
 
         vec3 color = mix(colorOscuro, colorClaro, mezclaTema);
         color = mix(color, colorBorde, borde * 0.5);
 
-        // Tramado para evitar el "banding" de los degradados oscuros
         color += (azar(gl_FragCoord.xy) - 0.5) / 255.0;
 
         gl_FragColor = vec4(color, 1.0);

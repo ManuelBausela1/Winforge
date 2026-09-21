@@ -1,10 +1,3 @@
-/* ==========================================================================
-   COMPONENTE — REVELAR FRASE
-   Divide un texto en palabras (respetando <em> y otras etiquetas en línea)
-   y las hace emerger una por una. El texto original queda disponible para
-   lectores de pantalla y buscadores; la copia animada es decorativa.
-   ========================================================================== */
-
 export function prepararFraseAnimada(elemento) {
     if (!elemento) return null;
 

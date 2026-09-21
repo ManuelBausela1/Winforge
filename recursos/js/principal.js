@@ -1,8 +1,3 @@
-/* ==========================================================================
-   WINFORGE — SCRIPT COMPARTIDO
-   Componentes presentes en todas las páginas.
-   ========================================================================== */
-
 import { iniciarScrollSuave } from "./utilidades/scroll-suave.js";
 import { iniciarFondoAtmosfera } from "./componentes/fondo-atmosfera.js";
 import { iniciarNavegacionIndice } from "./componentes/navegacion-indice.js";

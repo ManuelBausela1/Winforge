@@ -1,10 +1,3 @@
-/* ==========================================================================
-   COMPONENTE — FONDO ATMÓSFERA
-   Negro profundo con humo líquido eucalipto (WebGL), polvo en suspensión
-   y brasas. Fijo detrás de todo el sitio; reacciona al scroll y al mouse
-   desde fondo-atmosfera.js.
-   ========================================================================== */
-
 .fondo-atmosfera {
     position: fixed;
     inset: 0;
@@ -14,10 +7,6 @@
     background-color: var(--color-fondo-profundo);
 }
 
-/* --------------------------------------------------------------------------
-   Lienzos
-   -------------------------------------------------------------------------- */
-
 .fondo-atmosfera__fluido,
 .fondo-atmosfera__particulas {
     position: absolute;
@@ -26,7 +15,6 @@
     height: 100%;
 }
 
-/* El fluido se renderiza a media resolución: aparece con un fundido */
 .fondo-atmosfera__fluido {
     animation: aparicion-fluido 2.4s var(--curva-suave) both;
 }
@@ -36,10 +24,6 @@
         opacity: 0;
     }
 }
-
-/* --------------------------------------------------------------------------
-   Respaldo sin WebGL: bruma estática con degradados lineales
-   -------------------------------------------------------------------------- */
 
 .fondo-atmosfera--sin-webgl .fondo-atmosfera__fluido {
     display: none;
@@ -52,11 +36,6 @@
         var(--color-fondo-profundo);
 }
 
-/* --------------------------------------------------------------------------
-   Grano
-   -------------------------------------------------------------------------- */
-
-/* Ruido fotográfico muy sutil que da textura de papel/película */
 .fondo-atmosfera__grano {
     position: absolute;
     inset: -50%;
