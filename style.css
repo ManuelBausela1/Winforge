@@ -4,6 +4,44 @@
    (Los estilos compartidos viven en recursos/css)
    ========================================================================== */
 
+/* --------------------------------------------------------------------------
+   Mural de la forja
+   Grabado a todo el ancho, anclado al comienzo de la página. Como scrollea
+   junto al contenido, al bajar se va descubriendo el resto del mural hasta
+   su final, donde se desvanece en el humo.
+   -------------------------------------------------------------------------- */
+
+.mural-forja {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: var(--capa-fondo);
+    width: 100%;
+    aspect-ratio: 1709 / 2458; /* El alto sale de la proporción del mural */
+    background-image: url("img/forja/mural-1000.webp");
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    opacity: var(--fuerza-mural, 0.26);
+    mix-blend-mode: screen; /* Solo suma luz: el humo se sigue viendo */
+    /* Sin bordes rectos: se apaga contra los costados y contra el final */
+    -webkit-mask-image:
+        linear-gradient(180deg, #000 0%, #000 72%, transparent 100%),
+        linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+        linear-gradient(180deg, #000 0%, #000 72%, transparent 100%),
+        linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+    mask-composite: intersect;
+    pointer-events: none;
+}
+
+@media (min-width: 1100px) {
+    .mural-forja {
+        background-image: url("img/forja/mural-1600.webp");
+    }
+}
+
 /* ==========================================================================
    1. HERO
    Escritorio:  [ Winforge + frase ]  [ logo ]
@@ -19,43 +57,6 @@
     min-height: 100vh;
     min-height: 100svh;
     padding-block: 5rem 3rem;
-}
-
-/* --------------------------------------------------------------------------
-   1.0 Grabado de fondo: los herreros, apenas insinuados detrás del hero
-   Se funde con el humo (screen: solo suma luz, nunca tapa) y la intensidad
-   se regula con --fuerza-grabado.
-   -------------------------------------------------------------------------- */
-
-.hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    background-image: url("img/forja/yunque-1400.webp");
-    background-size: cover;
-    background-position: center 45%;
-    opacity: var(--fuerza-grabado, 0.18);
-    mix-blend-mode: screen;
-    /* Se apaga por los cuatro lados con una caída larga: el grabado no
-       termina en ningún borde recto y se funde con el humo */
-    -webkit-mask-image:
-        radial-gradient(76% 70% at 50% 44%, #000 0%, rgba(0, 0, 0, 0.88) 34%, rgba(0, 0, 0, 0.42) 64%, transparent 90%),
-        linear-gradient(180deg, transparent 0%, #000 24%, #000 66%, transparent 100%),
-        linear-gradient(90deg, transparent 0%, #000 18%, #000 82%, transparent 100%);
-    -webkit-mask-composite: source-in;
-    mask-image:
-        radial-gradient(76% 70% at 50% 44%, #000 0%, rgba(0, 0, 0, 0.88) 34%, rgba(0, 0, 0, 0.42) 64%, transparent 90%),
-        linear-gradient(180deg, transparent 0%, #000 24%, #000 66%, transparent 100%),
-        linear-gradient(90deg, transparent 0%, #000 18%, #000 82%, transparent 100%);
-    mask-composite: intersect;
-    pointer-events: none;
-}
-
-@media (max-width: 900px) {
-    .hero::before {
-        background-image: url("img/forja/yunque-900.webp");
-    }
 }
 
 /* Cubre todo el hero: las partículas del título llegan desde afuera */
@@ -663,38 +664,7 @@
     --aire-conector: 10px;
     --retraso-paso: 180ms;
 
-    position: relative;
     padding-block: clamp(5rem, 12vh, 9rem);
-}
-
-/* Grabado de fondo: el fuego de la forja detrás del proceso */
-.proceso::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    background-image: url("img/forja/horno-1400.webp");
-    background-size: cover;
-    background-position: center;
-    opacity: var(--fuerza-grabado, 0.16);
-    mix-blend-mode: screen;
-    -webkit-mask-image:
-        radial-gradient(70% 62% at 50% 50%, #000 0%, rgba(0, 0, 0, 0.85) 32%, rgba(0, 0, 0, 0.4) 62%, transparent 88%),
-        linear-gradient(180deg, transparent 0%, #000 20%, #000 74%, transparent 100%),
-        linear-gradient(90deg, transparent 0%, #000 16%, #000 84%, transparent 100%);
-    -webkit-mask-composite: source-in;
-    mask-image:
-        radial-gradient(70% 62% at 50% 50%, #000 0%, rgba(0, 0, 0, 0.85) 32%, rgba(0, 0, 0, 0.4) 62%, transparent 88%),
-        linear-gradient(180deg, transparent 0%, #000 20%, #000 74%, transparent 100%),
-        linear-gradient(90deg, transparent 0%, #000 16%, #000 84%, transparent 100%);
-    mask-composite: intersect;
-    pointer-events: none;
-}
-
-@media (max-width: 900px) {
-    .proceso::before {
-        background-image: url("img/forja/horno-900.webp");
-    }
 }
 
 .proceso__contenedor {
@@ -1025,13 +995,14 @@
     padding-block: clamp(5rem, 12vh, 9rem);
 }
 
-/* Grabado de fondo: la plaza, detrás de los proyectos */
+/* Grabado de fondo: el fuego de la forja, al final de la página, donde el
+   mural ya se apagó */
 .proyectos::before {
     content: "";
     position: absolute;
     inset: 0;
     z-index: -1; /* Debajo del carrusel y de la invitación, sobre el humo */
-    background-image: url("img/forja/plaza-1400.webp");
+    background-image: url("img/forja/horno-1400.webp");
     background-size: cover;
     background-position: center;
     opacity: var(--fuerza-grabado, 0.16);
@@ -1052,7 +1023,7 @@
 
 @media (max-width: 900px) {
     .proyectos::before {
-        background-image: url("img/forja/plaza-900.webp");
+        background-image: url("img/forja/horno-900.webp");
     }
 }
 

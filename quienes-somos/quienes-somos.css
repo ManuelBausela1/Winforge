@@ -3,44 +3,6 @@
    (Los estilos compartidos viven en recursos/css)
    ========================================================================== */
 
-/* --------------------------------------------------------------------------
-   Mural de la forja
-   Grabado a todo el ancho, anclado al comienzo de la página. Como scrollea
-   junto al contenido, al bajar se va descubriendo el resto del mural hasta
-   su final, donde se desvanece en el humo.
-   -------------------------------------------------------------------------- */
-
-.mural-forja {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: var(--capa-fondo);
-    width: 100%;
-    aspect-ratio: 1709 / 2458; /* El alto sale de la proporción del mural */
-    background-image: url("../img/forja/mural-1000.webp");
-    background-position: top center;
-    background-repeat: no-repeat;
-    background-size: 100% auto;
-    opacity: var(--fuerza-mural, 0.26);
-    mix-blend-mode: screen; /* Solo suma luz: el humo se sigue viendo */
-    /* Sin bordes rectos: se apaga contra los costados y contra el final */
-    -webkit-mask-image:
-        linear-gradient(180deg, #000 0%, #000 72%, transparent 100%),
-        linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
-    -webkit-mask-composite: source-in;
-    mask-image:
-        linear-gradient(180deg, #000 0%, #000 72%, transparent 100%),
-        linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
-    mask-composite: intersect;
-    pointer-events: none;
-}
-
-@media (min-width: 1100px) {
-    .mural-forja {
-        background-image: url("../img/forja/mural-1600.webp");
-    }
-}
-
 /* ==========================================================================
    1. PRESENTACIÓN
    Escritorio: [ Somos WINFORGE + frase ]   [ los tres aspectos ]
@@ -55,6 +17,37 @@
     min-height: 100vh;
     min-height: 100svh;
     padding-block: 6rem 3rem;
+}
+
+/* Grabado de fondo: los herreros, detrás de la presentación */
+.presentacion::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1; /* Detrás del contenido, sobre el humo */
+    background-image: url("../img/forja/yunque-1400.webp");
+    background-size: cover;
+    background-position: center 45%;
+    opacity: var(--fuerza-grabado, 0.16);
+    mix-blend-mode: screen; /* Solo suma luz: el humo se sigue viendo */
+    /* Se apaga por los cuatro lados: ni bordes rectos ni división de sección */
+    -webkit-mask-image:
+        radial-gradient(74% 66% at 50% 50%, #000 0%, rgba(0, 0, 0, 0.88) 34%, rgba(0, 0, 0, 0.42) 64%, transparent 90%),
+        linear-gradient(180deg, transparent 0%, #000 18%, #000 76%, transparent 100%),
+        linear-gradient(90deg, transparent 0%, #000 16%, #000 84%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+        radial-gradient(74% 66% at 50% 50%, #000 0%, rgba(0, 0, 0, 0.88) 34%, rgba(0, 0, 0, 0.42) 64%, transparent 90%),
+        linear-gradient(180deg, transparent 0%, #000 18%, #000 76%, transparent 100%),
+        linear-gradient(90deg, transparent 0%, #000 16%, #000 84%, transparent 100%);
+    mask-composite: intersect;
+    pointer-events: none;
+}
+
+@media (max-width: 900px) {
+    .presentacion::before {
+        background-image: url("../img/forja/yunque-900.webp");
+    }
 }
 
 .presentacion__contenedor {
@@ -194,6 +187,37 @@
     position: relative;
     z-index: 1;
     padding-block: clamp(4rem, 12vh, 9rem);
+}
+
+/* Grabado de fondo: la plaza, detrás de misión y visión */
+.proposito::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1; /* Detrás del contenido, sobre el humo */
+    background-image: url("../img/forja/plaza-1400.webp");
+    background-size: cover;
+    background-position: center;
+    opacity: var(--fuerza-grabado, 0.16);
+    mix-blend-mode: screen; /* Solo suma luz: el humo se sigue viendo */
+    /* Se apaga por los cuatro lados: ni bordes rectos ni división de sección */
+    -webkit-mask-image:
+        radial-gradient(74% 66% at 50% 50%, #000 0%, rgba(0, 0, 0, 0.88) 34%, rgba(0, 0, 0, 0.42) 64%, transparent 90%),
+        linear-gradient(180deg, transparent 0%, #000 18%, #000 76%, transparent 100%),
+        linear-gradient(90deg, transparent 0%, #000 16%, #000 84%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+        radial-gradient(74% 66% at 50% 50%, #000 0%, rgba(0, 0, 0, 0.88) 34%, rgba(0, 0, 0, 0.42) 64%, transparent 90%),
+        linear-gradient(180deg, transparent 0%, #000 18%, #000 76%, transparent 100%),
+        linear-gradient(90deg, transparent 0%, #000 16%, #000 84%, transparent 100%);
+    mask-composite: intersect;
+    pointer-events: none;
+}
+
+@media (max-width: 900px) {
+    .proposito::before {
+        background-image: url("../img/forja/plaza-900.webp");
+    }
 }
 
 .proposito__contenedor {

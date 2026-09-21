@@ -44,7 +44,7 @@
 /* El David es fondo: ocupa el alto de la sección, del lado izquierdo,
    por detrás del formulario */
 .contacto__columna-figura {
-    --presencia-david: 0.75; /* Cuánto se nota detrás del formulario */
+    --presencia-david: 0.42; /* Como los grabados: se lee detrás del humo */
 
     position: absolute;
     inset: 0 auto 0 0;
@@ -62,9 +62,11 @@
     height: 100%;
     object-fit: contain;
     opacity: var(--presencia-david);
-    /* Igual que los grabados del inicio: solo suma luz, así se funde con
-       el humo en vez de quedar recortada por encima */
+    /* Igual que los grabados: solo suma luz y se queda por detrás de las
+       figuras del humo. La saturación extra sostiene el naranja de los
+       ojos, que si no se apagaría junto con el resto */
     mix-blend-mode: screen;
+    filter: saturate(1.5) contrast(1.05);
     /* Los bordes se difuminan por los cuatro lados: la figura se funde
        con el humo en vez de terminar en un recorte nítido */
     -webkit-mask-image:
@@ -409,7 +411,7 @@
     }
 
     .contacto__columna-figura {
-        --presencia-david: 0.38;
+        --presencia-david: 0.28;
     }
 
     .contacto__figura {
