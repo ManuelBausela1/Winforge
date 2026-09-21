@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- ===== SEO principal ===== -->
     <title>Winforge | Taller creativo y productor en Rosario</title>
     <meta name="description" content="Winforge - Agencia de Marketing de Rosario, Argentina. Forjamos el cómo para quien tiene una historia que contar: branding, desarrollo web, gestión de redes y producción audiovisual.">
     <meta name="author" content="Winforge">
@@ -12,7 +11,6 @@
     <link rel="canonical" href="https://winforge.com.ar/">
     <meta name="theme-color" content="#050807">
 
-    <!-- ===== Open Graph ===== -->
     <meta property="og:type" content="website">
     <meta property="og:locale" content="es_AR">
     <meta property="og:site_name" content="Winforge">
@@ -24,23 +22,19 @@
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Isologo de Winforge sobre fondo oscuro con bruma eucalipto">
 
-    <!-- ===== Twitter / X ===== -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Winforge | Taller creativo y productor">
     <meta name="twitter:description" content="Forjar el camino en el detalle y los valores.">
     <meta name="twitter:image" content="https://winforge.com.ar/img/og/winforge-compartir.jpg">
 
-    <!-- ===== Íconos y manifiesto ===== -->
     <link rel="icon" href="img/logo/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="img/logo/Isologo_transp.png">
     <link rel="manifest" href="site.webmanifest">
 
-    <!-- ===== Tipografías ===== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Poppins:wght@300;400;500&display=swap">
 
-    <!-- ===== Estilos ===== -->
     <link rel="stylesheet" href="recursos/css/base.css">
     <link rel="stylesheet" href="recursos/css/componentes/fondo-atmosfera.css">
     <link rel="stylesheet" href="recursos/css/componentes/navegacion.css">
@@ -48,30 +42,9 @@
     <link rel="stylesheet" href="recursos/css/componentes/frase-animada.css">
     <link rel="stylesheet" href="style.css">
 
-    <!-- Marca que JS está disponible (las animaciones de entrada dependen de esto) -->
-    <script>
-        /* Las animaciones de entrada corren solo en la primera visita a cada
-           página. La marca queda guardada; si el visitante vuelve, el
-           contenido aparece puesto. (Para volver a verlas: borrar el
-           almacenamiento del sitio o agregar ?animar a la dirección.) */
-        document.documentElement.classList.add("js");
-
-        (function () {
-            var clave = "winforge:visitada:" + location.pathname;
-
-            try {
-                if (location.search.indexOf("animar") !== -1 || !localStorage.getItem(clave)) {
-                    document.documentElement.classList.add("animar");
-                    localStorage.setItem(clave, "1");
-                }
-            } catch (error) {
-                document.documentElement.classList.add("animar"); // Sin almacenamiento, siempre animan
-            }
-        })();
-    </script>
+    <script src="recursos/js/arranque.js"></script>
     <script type="module" src="script.js"></script>
 
-    <!-- ===== Datos estructurados ===== -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -130,25 +103,14 @@
 <body>
     <a class="saltar-al-contenido" href="#contenido">Saltar al contenido</a>
 
-    <!-- ==================================================================
-         FONDO ATMÓSFERA (decorativo, fijo en todo el sitio)
-         ================================================================== -->
     <div class="fondo-atmosfera" data-fondo-atmosfera aria-hidden="true">
         <canvas class="fondo-atmosfera__fluido" data-fluido></canvas>
         <canvas class="fondo-atmosfera__particulas" data-particulas></canvas>
         <div class="fondo-atmosfera__grano"></div>
     </div>
 
-    <!-- ==================================================================
-         MURAL DE LA FORJA (decorativo)
-         Va pegado a la página, no a la pantalla: al scrollear se va
-         viendo el resto del grabado hasta llegar a su final.
-         ================================================================== -->
     <div class="mural-forja" aria-hidden="true"></div>
 
-    <!-- ==================================================================
-         CABECERA
-         ================================================================== -->
     <header class="cabecera">
         <nav class="indice-navegacion" data-navegacion-indice aria-label="Navegación principal">
             <ul class="indice-navegacion__lista" role="list">
@@ -158,7 +120,6 @@
                         <span class="indice-navegacion__texto">Inicio</span>
                     </a>
 
-                    <!-- Secciones del inicio: se señala la que está mirando el visitante -->
                     <ul class="indice-navegacion__secciones" role="list">
                         <li class="indice-navegacion__subitem">
                             <a class="indice-navegacion__enlace indice-navegacion__enlace--seccion" href="#servicios" data-seccion="servicios">
@@ -226,15 +187,10 @@
 
     <main id="contenido">
 
-        <!-- ==============================================================
-             1. HERO
-             ============================================================== -->
         <section class="hero" data-hero aria-labelledby="titulo-principal">
-            <!-- Lienzo de las partículas que forman el título (decorativo) -->
             <canvas class="hero__lienzo-titulo" data-titulo-lienzo aria-hidden="true"></canvas>
 
             <div class="hero__contenedor contenedor">
-                <!-- Izquierda: título de partículas + frase -->
                 <div class="hero__columna-texto">
                     <h1 id="titulo-principal" class="hero__titulo" data-titulo-particulas>
                         <span class="hero__titulo-texto">Winforge</span>
@@ -245,7 +201,6 @@
                     </p>
                 </div>
 
-                <!-- Derecha: logo 3D -->
                 <div class="hero__columna-logo">
                     <div class="logo-3d" data-logo-3d role="img" aria-label="Isotipo de Winforge">
                         <div class="logo-3d__escena">
@@ -258,7 +213,6 @@
                     </div>
                 </div>
 
-                <!-- Abajo: acciones -->
                 <ul class="hero__acciones" role="list">
                     <li class="hero__accion">
                         <a class="boton boton--principal" href="contacto/">
@@ -274,9 +228,6 @@
             </div>
         </section>
 
-        <!-- ==============================================================
-             2. SERVICIOS
-             ============================================================== -->
         <section class="servicios" id="servicios" data-servicios aria-labelledby="titulo-servicios">
             <div class="servicios__contenedor contenedor">
                 <header class="servicios__encabezado" data-revelar>
@@ -284,7 +235,7 @@
                 </header>
 
                 <ul class="servicios__lista" role="list" data-revelar>
-                <li class="tarjeta-servicio" style="--indice-tarjeta: 0; --color-acento: 255, 255, 255 /* blanco */">
+                <li class="tarjeta-servicio" style="--indice-tarjeta: 0; --color-acento: 255, 255, 255">
                     <article class="tarjeta-servicio__contenido" data-tarjeta-interactiva aria-labelledby="servicio-diseno-estrategia">
                         <img class="tarjeta-servicio__imagen"
                             src="img/servicios/diseno-estrategia-tarjetas-winforge-640.webp"
@@ -311,7 +262,7 @@
                         </div>
                     </article>
                 </li>
-                <li class="tarjeta-servicio" style="--indice-tarjeta: 1; --color-acento: 129, 161, 152 /* eucalipto */">
+                <li class="tarjeta-servicio" style="--indice-tarjeta: 1; --color-acento: 129, 161, 152">
                     <article class="tarjeta-servicio__contenido" data-tarjeta-interactiva aria-labelledby="servicio-desarrollo-software">
                         <img class="tarjeta-servicio__imagen"
                             src="img/servicios/desarrollo-software-sitio-web-winforge-640.webp"
@@ -338,7 +289,7 @@
                         </div>
                     </article>
                 </li>
-                <li class="tarjeta-servicio" style="--indice-tarjeta: 2; --color-acento: 255, 165, 41 /* naranja */">
+                <li class="tarjeta-servicio" style="--indice-tarjeta: 2; --color-acento: 255, 165, 41">
                     <article class="tarjeta-servicio__contenido" data-tarjeta-interactiva aria-labelledby="servicio-gestion-multimedia">
                         <img class="tarjeta-servicio__imagen"
                             src="img/servicios/gestion-multimedia-redes-winforge-640.webp"
@@ -365,7 +316,7 @@
                         </div>
                     </article>
                 </li>
-                <li class="tarjeta-servicio" style="--indice-tarjeta: 3; --color-acento: 123, 163, 178 /* glaciar */">
+                <li class="tarjeta-servicio" style="--indice-tarjeta: 3; --color-acento: 123, 163, 178">
                     <article class="tarjeta-servicio__contenido" data-tarjeta-interactiva aria-labelledby="servicio-produccion-audiovisual">
                         <img class="tarjeta-servicio__imagen"
                             src="img/servicios/produccion-audiovisual-video-winforge-640.webp"
@@ -405,10 +356,6 @@
             </div>
         </section>
 
-
-        <!-- ==============================================================
-             3. CÓMO TRABAJAMOS (pasos)
-             ============================================================== -->
         <section class="proceso" id="como-trabajamos" aria-labelledby="titulo-proceso">
             <div class="proceso__contenedor contenedor">
                 <h2 class="titulo-seccion" id="titulo-proceso" data-revelar>Nuestro proceso</h2>
@@ -532,7 +479,6 @@
                         </li>
                     </ol>
 
-                    <!-- La línea termina en la acción -->
                     <div class="proceso__cierre">
                         <span class="proceso__marcador proceso__marcador--final" aria-hidden="true">
                             <span class="proceso__conector proceso__conector--final"></span>
@@ -546,10 +492,6 @@
             </div>
         </section>
 
-
-        <!-- ==============================================================
-             4. PROYECTOS (carrusel de marcas)
-             ============================================================== -->
         <section class="proyectos" id="proyectos" aria-labelledby="titulo-proyectos">
             <div class="proyectos__contenedor contenedor">
                 <h2 class="titulo-seccion" id="titulo-proyectos" data-revelar>Proyectos forjados</h2>
@@ -734,15 +676,7 @@
             </div>
         </section>
 
-
-        <!-- ==============================================================
-             PRÓXIMAS SECCIONES (provisorias, se reemplazan una por una)
-             ============================================================== -->
-        <!-- Para volver blanco el fondo de otra sección, agregarle
-             data-tema-fondo="claro" (lo maneja tema-fondo.js) -->
-
     </main>
 
-    <!-- Footer: próxima etapa -->
 </body>
 </html>

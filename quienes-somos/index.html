@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- ===== SEO principal ===== -->
     <title>Quiénes somos | Winforge</title>
     <meta name="description" content="Conocé a Winforge: un taller creativo y productor de Rosario que acompaña a cada proyecto a nutrir su identidad, encontrar su voz y contar su historia.">
     <meta name="author" content="Winforge">
@@ -12,7 +11,6 @@
     <link rel="canonical" href="https://winforge.com.ar/quienes-somos/">
     <meta name="theme-color" content="#050807">
 
-    <!-- ===== Open Graph ===== -->
     <meta property="og:type" content="website">
     <meta property="og:locale" content="es_AR">
     <meta property="og:site_name" content="Winforge">
@@ -24,67 +22,38 @@
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Isologo de Winforge sobre fondo oscuro con bruma eucalipto">
 
-    <!-- ===== Twitter / X ===== -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Quiénes somos | Winforge">
     <meta name="twitter:description" content="Conocé a Winforge: un taller creativo y productor de Rosario que acompaña a cada proyecto a nutrir su identidad, encontrar su voz y contar su historia.">
     <meta name="twitter:image" content="https://winforge.com.ar/img/og/winforge-compartir.jpg">
 
-    <!-- ===== Íconos y manifiesto ===== -->
     <link rel="icon" href="../img/logo/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="../img/logo/Isologo_transp.png">
     <link rel="manifest" href="../site.webmanifest">
 
-    <!-- ===== Tipografías ===== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Poppins:wght@300;400;500&display=swap">
 
-    <!-- ===== Estilos ===== -->
     <link rel="stylesheet" href="../recursos/css/base.css">
     <link rel="stylesheet" href="../recursos/css/componentes/fondo-atmosfera.css">
     <link rel="stylesheet" href="../recursos/css/componentes/navegacion.css">
     <link rel="stylesheet" href="../recursos/css/componentes/botones.css">
     <link rel="stylesheet" href="quienes-somos.css">
 
-    <script>
-        /* Las animaciones de entrada corren solo en la primera visita a cada
-           página. La marca queda guardada; si el visitante vuelve, el
-           contenido aparece puesto. (Para volver a verlas: borrar el
-           almacenamiento del sitio o agregar ?animar a la dirección.) */
-        document.documentElement.classList.add("js");
-
-        (function () {
-            var clave = "winforge:visitada:" + location.pathname;
-
-            try {
-                if (location.search.indexOf("animar") !== -1 || !localStorage.getItem(clave)) {
-                    document.documentElement.classList.add("animar");
-                    localStorage.setItem(clave, "1");
-                }
-            } catch (error) {
-                document.documentElement.classList.add("animar"); // Sin almacenamiento, siempre animan
-            }
-        })();
-    </script>
+    <script src="../recursos/js/arranque.js"></script>
     <script type="module" src="quienes-somos.js"></script>
 </head>
 
 <body>
     <a class="saltar-al-contenido" href="#contenido">Saltar al contenido</a>
 
-    <!-- ==================================================================
-         FONDO ATMÓSFERA (decorativo, fijo en todo el sitio)
-         ================================================================== -->
     <div class="fondo-atmosfera" data-fondo-atmosfera aria-hidden="true">
         <canvas class="fondo-atmosfera__fluido" data-fluido></canvas>
         <canvas class="fondo-atmosfera__particulas" data-particulas></canvas>
         <div class="fondo-atmosfera__grano"></div>
     </div>
 
-    <!-- ==================================================================
-         CABECERA
-         ================================================================== -->
     <header class="cabecera">
         <nav class="indice-navegacion" data-navegacion-indice aria-label="Navegación principal">
             <ul class="indice-navegacion__lista" role="list">
@@ -139,12 +108,6 @@
     </header>
 
     <main id="contenido">
-        <!-- ==============================================================
-             1. PRESENTACIÓN
-             Izquierda: "Acerca de" con el isotipo y, debajo, la frase.
-             Derecha: los tres aspectos, que entran desplazándose desde
-             afuera cuando el texto terminó. Las dos mitades, centradas.
-             ============================================================== -->
         <section class="presentacion" data-presentacion aria-labelledby="titulo-pagina">
             <div class="presentacion__contenedor contenedor">
                 <div class="presentacion__columna-texto">
@@ -174,11 +137,6 @@
             </div>
         </section>
 
-        <!-- ==============================================================
-             2. MISIÓN Y VISIÓN
-             Dos bloques enfrentados: la misión arranca a la izquierda y
-             la visión responde desde la derecha.
-             ============================================================== -->
         <section class="proposito" aria-label="Misión y visión">
             <div class="proposito__contenedor contenedor">
                 <article class="proposito__bloque proposito__bloque--mision" data-revelar>
@@ -193,10 +151,6 @@
             </div>
         </section>
 
-        <!-- ==============================================================
-             3. NUESTRO EQUIPO
-             Retratos en blanco y negro; el nombre y el rol debajo.
-             ============================================================== -->
         <section class="equipo" aria-labelledby="titulo-equipo">
             <div class="equipo__contenedor contenedor">
                 <h2 class="titulo-seccion" id="titulo-equipo" data-revelar>Nuestro equipo</h2>
