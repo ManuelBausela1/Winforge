@@ -1,0 +1,287 @@
+.portfolio {
+    position: relative;
+    padding-block: clamp(5rem, 12vh, 8rem) clamp(4rem, 10vh, 7rem);
+}
+
+.portfolio__encabezado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(1.5rem, 4vh, 2.5rem);
+    max-width: 1720px;
+    margin-bottom: clamp(3rem, 8vh, 5rem);
+}
+
+.portfolio__filtros {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+    list-style: none;
+    padding: 0;
+}
+
+.filtro {
+    position: relative;
+    padding: 0.4rem 0.35rem;
+    border: 0;
+    background: none;
+    font-family: inherit;
+    font-size: var(--texto-sm);
+    letter-spacing: 0.08em;
+    color: var(--color-texto-suave);
+    cursor: pointer;
+    transition: color 0.3s var(--curva-suave);
+}
+
+.filtro::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0.35rem;
+    bottom: 0;
+    height: 1px;
+    background-color: currentColor;
+    scale: 0 1;
+    transform-origin: left center;
+    transition: scale 0.35s var(--curva-entrada);
+}
+
+.filtro:hover,
+.filtro:focus-visible {
+    color: var(--color-texto);
+}
+
+.filtro:hover::after,
+.filtro:focus-visible::after {
+    scale: 1 1;
+}
+
+.filtro[aria-pressed="true"] {
+    color: var(--color-blanco);
+}
+
+.filtro[aria-pressed="true"]::after {
+    scale: 1 1;
+    background-color: var(--color-naranja);
+}
+
+.filtro:focus-visible {
+    outline: 2px solid var(--color-eucalipto);
+    outline-offset: 3px;
+}
+
+.portfolio__lista {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(4rem, 12vh, 8rem);
+    max-width: 1720px;
+}
+
+@media (hover: hover) and (min-width: 768px) {
+    .portfolio__encabezado,
+    .portfolio__lista {
+        padding-inline: max(calc(var(--margen-lateral) + 4rem), 11rem);
+    }
+}
+
+.portfolio__proyecto {
+    display: grid;
+    grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr);
+    align-items: start;
+    column-gap: clamp(2rem, 5vw, 4.5rem);
+    row-gap: clamp(1.5rem, 4vh, 2.5rem);
+}
+
+.portfolio__proyecto[hidden] {
+    display: none;
+}
+
+.portfolio__marca {
+    position: sticky;
+    top: clamp(6rem, 22vh, 12rem);
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.portfolio__nombre {
+    font-family: var(--fuente-serif);
+    font-size: clamp(1.9rem, 1.1rem + 2.2vw, 3.4rem);
+    font-weight: 500;
+    line-height: 1.05;
+    text-wrap: balance;
+    color: var(--color-blanco);
+}
+
+.portfolio__rubros {
+    font-size: var(--texto-xs);
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-naranja);
+}
+
+.portfolio__galeria {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(0.75rem, 1.6vw, 1.4rem);
+    list-style: none;
+    padding: 0;
+}
+
+.portfolio__pieza {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--color-borde-suave);
+    border-radius: var(--radio-sm);
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.portfolio__pieza[hidden] {
+    display: none;
+}
+
+.portfolio__enlace {
+    display: block;
+    position: relative;
+}
+
+.portfolio__enlace::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(5, 8, 7, 0.55), transparent 55%);
+    opacity: 0;
+    transition: opacity 0.4s var(--curva-suave);
+}
+
+.portfolio__destino {
+    position: absolute;
+    left: 50%;
+    bottom: 0.9rem;
+    z-index: 1;
+    translate: -50% 8px;
+    padding: 0.35rem 0.85rem;
+    border-radius: var(--radio-pildora);
+    background-color: rgba(5, 8, 7, 0.72);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    font-size: var(--texto-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    max-width: calc(100% - 1.2rem);
+    color: var(--color-blanco);
+    opacity: 0;
+    transition:
+        opacity 0.35s var(--curva-suave),
+        translate 0.45s var(--curva-entrada);
+}
+
+@media (hover: hover) {
+    .portfolio__enlace:hover::after,
+    .portfolio__enlace:focus-visible::after {
+        opacity: 1;
+    }
+
+    .portfolio__enlace:hover .portfolio__destino,
+    .portfolio__enlace:focus-visible .portfolio__destino {
+        opacity: 1;
+        translate: -50% 0;
+    }
+}
+
+.portfolio__imagen {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+}
+
+@media (hover: hover) {
+    .portfolio__pieza {
+        transition: border-color 0.4s var(--curva-suave);
+    }
+
+    .portfolio__pieza:hover {
+        border-color: rgba(255, 165, 41, 0.45);
+    }
+}
+
+.js .portfolio__pieza {
+    opacity: 0;
+}
+
+.js .portfolio__pieza.esta-puesta {
+    opacity: 1;
+}
+
+.js .portfolio__pieza--portada.esta-entrando {
+    animation: portfolio-zoom 0.85s var(--curva-entrada) both;
+}
+
+.js .portfolio__pieza.esta-entrando:not(.portfolio__pieza--portada) {
+    animation: portfolio-salir 0.9s var(--curva-entrada) both;
+    animation-delay: calc(var(--indice-pieza, 0) * 90ms + 320ms);
+}
+
+@keyframes portfolio-zoom {
+    from {
+        opacity: 0;
+        scale: 0.86;
+    }
+
+    to {
+        opacity: 1;
+        scale: 1;
+    }
+}
+
+@keyframes portfolio-salir {
+    from {
+        opacity: 0;
+        translate: var(--desde-x, 0) var(--desde-y, 0);
+        scale: 0.72;
+    }
+
+    60% {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 1;
+        translate: 0 0;
+        scale: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .js .portfolio__pieza {
+        opacity: 1;
+    }
+
+    .js .portfolio__pieza.esta-entrando,
+    .js .portfolio__pieza--portada.esta-entrando {
+        animation: none;
+    }
+}
+
+@media (max-width: 1100px) {
+    .portfolio__proyecto {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .portfolio__marca {
+        position: static;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+@media (max-width: 700px) {
+    .portfolio__galeria {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}

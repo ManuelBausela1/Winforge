@@ -80,18 +80,18 @@ export const shaderFragmentos = `
         float pesoHorizontal = mix(1.0, 0.45, smoothstep(0.25, 1.0, uv.x));
         float vineta = smoothstep(1.25, 0.35, length((uv - vec2(0.42, 0.5)) * vec2(1.1, 1.3)));
 
-        vec3 colorOscuro = mix(COLOR_FONDO, COLOR_PROFUNDO, densidad);
-        colorOscuro = mix(colorOscuro, COLOR_EUCALIPTO, smoothstep(0.66, 1.0, forma) * 0.22);
+        vec3 colorOscuro = mix(COLOR_FONDO, COLOR_PROFUNDO, densidad * 0.72);
+        colorOscuro = mix(colorOscuro, COLOR_EUCALIPTO, smoothstep(0.7, 1.0, forma) * 0.13);
 
         colorOscuro = mix(colorOscuro, COLOR_GLACIAR, clamp(length(q) - 0.9, 0.0, 1.0) * densidad * 0.08);
 
-        colorOscuro += COLOR_EUCALIPTO * vetas * 0.06;
+        colorOscuro += COLOR_EUCALIPTO * vetas * 0.045;
 
         float brasa = smoothstep(0.5, 0.66, fbm(punto * 0.9 + r * 0.35));
         brasa *= densidad * smoothstep(0.42, 0.66, forma);
-        colorOscuro += COLOR_NARANJA * brasa * 0.14;
+        colorOscuro += COLOR_NARANJA * brasa * 0.11;
 
-        colorOscuro += COLOR_NARANJA * vetas * brasa * 0.35;
+        colorOscuro += COLOR_NARANJA * vetas * brasa * 0.28;
 
         colorOscuro = mix(COLOR_FONDO, colorOscuro, pesoHorizontal);
         colorOscuro = mix(COLOR_FONDO * 0.6, colorOscuro, vineta);

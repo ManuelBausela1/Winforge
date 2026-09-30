@@ -1,4 +1,4 @@
-import { alScrollear } from "../utilidades/scroll-suave.js";
+import { alScrollear } from "../utilidades/scroll.js";
 
 const ALTURA_REFERENCIA = 0.42;
 

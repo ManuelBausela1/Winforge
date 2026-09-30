@@ -1,26 +1,25 @@
-import { crearFondoFluido } from "./fondo-fluido.js";
-import { alScrollear, estadoScroll } from "../utilidades/scroll-suave.js";
+/* Las formas abstractas quedan apagadas: la página pedía un tono más
+   institucional. Para volver a encenderlas, poner FORMAS_ABSTRACTAS en true
+   y descomentar el import. */
+// import { crearFondoFluido } from "./fondo-fluido.js";
+import { alScrollear, estadoScroll } from "../utilidades/scroll.js";
 import { crearTemaFondo } from "../utilidades/tema-fondo.js";
 import { interpolar, moduloPositivo, prefiereMovimientoReducido } from "../utilidades/movimiento.js";
+
+const FORMAS_ABSTRACTAS = false;
 
 const CONFIGURACION = {
     velocidadParallaxMinima: 0.3,
     velocidadParallaxMaxima: 0.9,
-    densidadParticulas: 1 / 10000,
-    maximoParticulas: 170,
-    proporcionNaranjas: 0.35,
+    densidadParticulas: 1 / 22000,
+    maximoParticulas: 80,
+    proporcionBrillantes: 0.35,
     inerciaTema: 0.08,
     resolucionMaximaParticulas: 1.5,
 };
 
-const COLOR_NARANJA = "255, 165, 41";
-
-const COLOR_POLVO = [[255, 255, 255], [28, 28, 28]];
-
-function mezclarColor([origen, destino], proporcion) {
-    const canal = (indice) => Math.round(origen[indice] + (destino[indice] - origen[indice]) * proporcion);
-    return `${canal(0)}, ${canal(1)}, ${canal(2)}`;
-}
+const COLOR_ESTRELLA = "129, 161, 152";
+const COLOR_ESTRELLA_VIVA = "168, 201, 190";
 
 export function iniciarFondoAtmosfera(raiz = document.querySelector("[data-fondo-atmosfera]")) {
     if (!raiz) return;
@@ -28,11 +27,12 @@ export function iniciarFondoAtmosfera(raiz = document.querySelector("[data-fondo
     const movimientoReducido = prefiereMovimientoReducido();
     const lienzoParticulas = raiz.querySelector("[data-particulas]");
     const contexto = lienzoParticulas.getContext("2d");
-    const fondoFluido = crearFondoFluido(raiz.querySelector("[data-fluido]"));
+    const fondoFluido = FORMAS_ABSTRACTAS ? crearFondoFluido(raiz.querySelector("[data-fluido]")) : null;
     const temaFondo = crearTemaFondo();
 
     if (!fondoFluido) {
         raiz.classList.add("fondo-atmosfera--sin-webgl");
+        raiz.querySelector("[data-fluido]")?.remove();
     }
 
     let ancho = 0;
@@ -65,19 +65,19 @@ export function iniciarFondoAtmosfera(raiz = document.querySelector("[data-fondo
     }
 
     function crearParticula() {
-        const esNaranja = Math.random() < CONFIGURACION.proporcionNaranjas;
+        const esViva = Math.random() < CONFIGURACION.proporcionBrillantes;
         const profundidad = Math.random() ** 1.5;
 
         return {
             x: Math.random() * ancho,
             y: Math.random() * alto,
             profundidad,
-            esNaranja,
-            radio: 0.5 + profundidad * (esNaranja ? 1.5 : 1.2),
-            opacidadBase: 0.25 + profundidad * 0.6,
+            esViva,
+            radio: 0.6 + profundidad * (esViva ? 1.7 : 1.3),
+            opacidadBase: 0.45 + profundidad * 0.5,
 
             velocidadX: (Math.random() - 0.5) * 0.18,
-            velocidadY: esNaranja
+            velocidadY: esViva
                 ? -(0.12 + Math.random() * 0.35)
                 : (Math.random() - 0.5) * 0.2,
 
@@ -101,7 +101,6 @@ export function iniciarFondoAtmosfera(raiz = document.querySelector("[data-fondo
 
         const segundos = tiempo / 1000;
         const scroll = estadoScroll.posicion;
-        const colorPolvo = mezclarColor(COLOR_POLVO, temaClaro);
         const rangoParallax = CONFIGURACION.velocidadParallaxMaxima - CONFIGURACION.velocidadParallaxMinima;
 
         for (const particula of particulas) {
@@ -121,10 +120,10 @@ export function iniciarFondoAtmosfera(raiz = document.querySelector("[data-fondo
                 ? 1
                 : 0.6 + 0.4 * Math.sin(segundos * particula.velocidadTitileo + particula.fase);
             const opacidad = particula.opacidadBase * titileo;
-            const color = particula.esNaranja ? COLOR_NARANJA : colorPolvo;
+            const color = particula.esViva ? COLOR_ESTRELLA_VIVA : COLOR_ESTRELLA;
 
-            if (particula.esNaranja && particula.profundidad > 0.35) {
-                contexto.fillStyle = `rgba(${color}, ${opacidad * 0.18})`;
+            if (particula.esViva && particula.profundidad > 0.35) {
+                contexto.fillStyle = `rgba(${color}, ${opacidad * 0.24})`;
                 contexto.beginPath();
                 contexto.arc(x, y, particula.radio * 3.5, 0, Math.PI * 2);
                 contexto.fill();
@@ -173,8 +172,37 @@ export function iniciarFondoAtmosfera(raiz = document.querySelector("[data-fondo
         temporizadorRedimension = setTimeout(redimensionar, 150);
     });
 
+    /* Las estrellas no se ven sobre el hero ni en las secciones marcadas
+       con data-sin-estrellas: entran al dejar el hero y se apagan al
+       llegar a esas zonas. */
+    const hero = document.querySelector("[data-hero]");
+    const zonasSinEstrellas = [...document.querySelectorAll("[data-sin-estrellas]")];
+
+    function ajustarEstrellas() {
+        const altoVentana = window.innerHeight;
+        let presencia = 1;
+
+        if (hero) {
+            const altoHero = hero.offsetHeight || altoVentana;
+            presencia = window.scrollY / (altoHero * 0.55);
+        }
+
+        for (const zona of zonasSinEstrellas) {
+            const { top } = zona.getBoundingClientRect();
+            const cercania = (altoVentana * 0.9 - top) / (altoVentana * 0.6);
+
+            presencia = Math.min(presencia, 1 - cercania);
+        }
+
+        raiz.style.setProperty("--presencia-estrellas", Math.min(1, Math.max(0, presencia)).toFixed(3));
+    }
+
     document.addEventListener("visibilitychange", pausarSiEstaOculta);
-    alScrollear(() => dibujarFluido());
+    alScrollear(() => {
+        dibujarFluido();
+        ajustarEstrellas();
+    });
+    ajustarEstrellas();
 
     redimensionar();
     idFotograma = requestAnimationFrame(animar);

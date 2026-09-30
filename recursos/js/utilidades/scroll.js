@@ -2,10 +2,17 @@ import { prefiereMovimientoReducido } from "./movimiento.js";
 
 const URL_LENIS = "https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs";
 
+const AJUSTES = {
+    lerp: 0.2,
+    wheelMultiplier: 1.05,
+    smoothWheel: true,
+    syncTouch: false,
+    anchors: true,
+};
+
 export const estadoScroll = {
     posicion: window.scrollY,
     velocidad: 0,
-    instancia: null,
 };
 
 const suscriptores = new Set();
@@ -22,14 +29,14 @@ function notificar() {
 function escucharScrollNativo() {
     let posicionAnterior = window.scrollY;
 
-    const actualizar = () => {
-        estadoScroll.posicion = window.scrollY;
+    const medirVelocidad = () => {
         estadoScroll.velocidad = estadoScroll.posicion - posicionAnterior;
         posicionAnterior = estadoScroll.posicion;
-        requestAnimationFrame(actualizar);
+        requestAnimationFrame(medirVelocidad);
     };
 
-    requestAnimationFrame(actualizar);
+    requestAnimationFrame(medirVelocidad);
+
     window.addEventListener(
         "scroll",
         () => {
@@ -40,7 +47,7 @@ function escucharScrollNativo() {
     );
 }
 
-export async function iniciarScrollSuave() {
+export async function iniciarScroll() {
     if (prefiereMovimientoReducido()) {
         escucharScrollNativo();
         return;
@@ -48,13 +55,7 @@ export async function iniciarScrollSuave() {
 
     try {
         const { default: Lenis } = await import(URL_LENIS);
-
-        const lenis = new Lenis({
-            autoRaf: true,
-            lerp: 0.085,
-            wheelMultiplier: 0.9,
-            anchors: true,
-        });
+        const lenis = new Lenis({ autoRaf: true, ...AJUSTES });
 
         lenis.on("scroll", ({ scroll, velocity }) => {
             estadoScroll.posicion = scroll;
@@ -62,7 +63,7 @@ export async function iniciarScrollSuave() {
             notificar();
         });
 
-        estadoScroll.instancia = lenis;
+        document.documentElement.classList.add("con-scroll-suave");
     } catch (error) {
         console.warn("Scroll suave no disponible, se usa el nativo.", error);
         escucharScrollNativo();

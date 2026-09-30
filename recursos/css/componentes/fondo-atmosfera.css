@@ -15,6 +15,12 @@
     height: 100%;
 }
 
+/* En el hero no hay estrellas: aparecen al dejar la primera pantalla */
+.fondo-atmosfera__particulas {
+    opacity: var(--presencia-estrellas, 1);
+    transition: opacity 0.4s var(--curva-suave);
+}
+
 .fondo-atmosfera__fluido {
     animation: aparicion-fluido 2.4s var(--curva-suave) both;
 }
@@ -29,11 +35,14 @@
     display: none;
 }
 
+/* Sin las formas abstractas queda el negro con las estrellas. Los degradados
+   de respaldo se guardan por si se vuelven a encender:
+   background:
+       linear-gradient(160deg, rgba(58, 96, 88, 0.28) 0%, transparent 45%),
+       linear-gradient(20deg, rgba(58, 96, 88, 0.18) 0%, transparent 40%),
+       var(--color-fondo-profundo); */
 .fondo-atmosfera--sin-webgl {
-    background:
-        linear-gradient(160deg, rgba(58, 96, 88, 0.28) 0%, transparent 45%),
-        linear-gradient(20deg, rgba(58, 96, 88, 0.18) 0%, transparent 40%),
-        var(--color-fondo-profundo);
+    background-color: var(--color-fondo-profundo);
 }
 
 .fondo-atmosfera__grano {

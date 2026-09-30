@@ -2,16 +2,15 @@ import { iniciarSitio } from "./recursos/js/principal.js";
 import { prepararFraseAnimada } from "./recursos/js/componentes/revelar-frase.js";
 import { iniciarLogo3d } from "./recursos/js/componentes/logo-3d.js";
 import { iniciarTituloParticulas } from "./recursos/js/componentes/titulo-particulas.js";
-import { iniciarPasosUniformes } from "./recursos/js/componentes/pasos-uniformes.js";
+import { iniciarProcesoHorizontal } from "./recursos/js/componentes/proceso-horizontal.js";
 import { iniciarCarruselMarcas } from "./recursos/js/componentes/carrusel-marcas.js";
-import { iniciarEleccionServicios } from "./recursos/js/componentes/eleccion-servicios.js";
+import { iniciarServiciosApilados } from "./recursos/js/componentes/servicios-apilados.js";
 import { iniciarSeccionActiva } from "./recursos/js/componentes/seccion-activa.js";
 import { prefiereMovimientoReducido } from "./recursos/js/utilidades/movimiento.js";
 import { hayAnimacionesDeEntrada } from "./recursos/js/utilidades/animaciones.js";
 
 const TIEMPOS_HERO = {
-    retrasoPorPalabra: 60,
-    duracionPalabra: 700,
+    duracionFrase: 900,
     antesDeLosBotones: 900,
 };
 
@@ -49,8 +48,7 @@ async function iniciarHero() {
     await esperarPintado();
 
     frase?.revelar();
-    const palabras = frase?.cantidadPalabras ?? 0;
-    await pausa(palabras * TIEMPOS_HERO.retrasoPorPalabra + TIEMPOS_HERO.duracionPalabra);
+    await pausa(TIEMPOS_HERO.duracionFrase);
 
     hero.classList.add("logo-visible");
     await pausa(TIEMPOS_HERO.antesDeLosBotones);
@@ -60,7 +58,7 @@ async function iniciarHero() {
 
 iniciarSitio();
 iniciarHero();
-iniciarPasosUniformes();
+iniciarProcesoHorizontal();
 iniciarCarruselMarcas();
-iniciarEleccionServicios();
+iniciarServiciosApilados();
 iniciarSeccionActiva();

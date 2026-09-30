@@ -1,0 +1,288 @@
+[
+  {
+    "slug": "della-vedova",
+    "nombre": "Dr. Franco Della Vedova",
+    "portada": {
+      "archivo": "portada",
+      "ancho": 1080,
+      "alto": 1350,
+      "peso": 40182
+    },
+    "piezas": {
+      "branding": [
+        {
+          "archivo": "branding-1",
+          "ancho": 1080,
+          "alto": 1350,
+          "peso": 90106
+        },
+        {
+          "archivo": "branding-2",
+          "ancho": 1080,
+          "alto": 1350,
+          "peso": 58776
+        },
+        {
+          "archivo": "branding-3",
+          "ancho": 1080,
+          "alto": 1350,
+          "peso": 26798
+        },
+        {
+          "archivo": "branding-4",
+          "ancho": 1080,
+          "alto": 1350,
+          "peso": 19498
+        }
+      ],
+      "web": [
+        {
+          "archivo": "web-1",
+          "ancho": 1080,
+          "alto": 1350,
+          "peso": 56660
+        }
+      ],
+      "redes": [
+        {
+          "archivo": "redes-1",
+          "ancho": 1080,
+          "alto": 1350,
+          "peso": 94012
+        }
+      ]
+    }
+  },
+  {
+    "slug": "escuelas-pias",
+    "nombre": "Escuelas Pías Mendiolaza",
+    "portada": {
+      "archivo": "portada",
+      "ancho": 1080,
+      "alto": 1350,
+      "peso": 74922
+    },
+    "piezas": {
+      "branding": [
+        {
+          "archivo": "branding-1",
+          "ancho": 1080,
+          "alto": 1350,
+          "peso": 178440
+        },
+        {
+          "archivo": "branding-2",
+          "ancho": 1080,
+          "alto": 1350,
+          "peso": 52176
+        }
+      ],
+      "redes": [
+        {
+          "archivo": "redes-1",
+          "ancho": 1080,
+          "alto": 1350,
+          "peso": 161022
+        }
+      ]
+    }
+  },
+  {
+    "slug": "coe",
+    "nombre": "COE",
+    "portada": {
+      "archivo": "portada",
+      "ancho": 1080,
+      "alto": 1350,
+      "peso": 44384
+    },
+    "piezas": {
+      "branding": [
+        {
+          "archivo": "branding-1",
+          "ancho": 1100,
+          "alto": 1375,
+          "peso": 56496
+        },
+        {
+          "archivo": "branding-2",
+          "ancho": 1100,
+          "alto": 1375,
+          "peso": 54016
+        },
+        {
+          "archivo": "branding-3",
+          "ancho": 1100,
+          "alto": 1375,
+          "peso": 138630
+        }
+      ]
+    }
+  },
+  {
+    "slug": "oxyferrum",
+    "nombre": "Oxyferrum Quimilí",
+    "portada": {
+      "archivo": "portada",
+      "ancho": 1080,
+      "alto": 1350,
+      "peso": 52960
+    },
+    "piezas": {
+      "branding": [
+        {
+          "archivo": "branding-1",
+          "ancho": 1080,
+          "alto": 1350,
+          "peso": 52182
+        },
+        {
+          "archivo": "branding-2",
+          "ancho": 1080,
+          "alto": 1350,
+          "peso": 62016
+        },
+        {
+          "archivo": "branding-3",
+          "ancho": 1080,
+          "alto": 1350,
+          "peso": 255566
+        },
+        {
+          "archivo": "branding-4",
+          "ancho": 1080,
+          "alto": 1350,
+          "peso": 197536
+        }
+      ]
+    }
+  },
+  {
+    "slug": "box-house",
+    "nombre": "Box House",
+    "portada": {
+      "archivo": "portada",
+      "ancho": 1080,
+      "alto": 1350,
+      "peso": 45256
+    },
+    "piezas": {
+      "branding": [
+        {
+          "archivo": "branding-1",
+          "ancho": 1080,
+          "alto": 1350,
+          "peso": 83056
+        },
+        {
+          "archivo": "branding-2",
+          "ancho": 1080,
+          "alto": 1350,
+          "peso": 58048
+        },
+        {
+          "archivo": "branding-3",
+          "ancho": 1080,
+          "alto": 1350,
+          "peso": 24998
+        },
+        {
+          "archivo": "branding-4",
+          "ancho": 1080,
+          "alto": 1350,
+          "peso": 164678
+        }
+      ],
+      "web": [
+        {
+          "archivo": "web-1",
+          "ancho": 1080,
+          "alto": 1350,
+          "peso": 82038
+        }
+      ]
+    }
+  },
+  {
+    "slug": "xop-erp",
+    "nombre": "XOP ERP",
+    "portada": {
+      "archivo": "portada",
+      "ancho": 1080,
+      "alto": 1350,
+      "peso": 53336
+    },
+    "piezas": {
+      "branding": [
+        {
+          "archivo": "branding-1",
+          "ancho": 1080,
+          "alto": 1350,
+          "peso": 51120
+        },
+        {
+          "archivo": "branding-2",
+          "ancho": 1080,
+          "alto": 1350,
+          "peso": 67420
+        },
+        {
+          "archivo": "branding-3",
+          "ancho": 1080,
+          "alto": 1350,
+          "peso": 16530
+        },
+        {
+          "archivo": "branding-4",
+          "ancho": 1080,
+          "alto": 1350,
+          "peso": 99710
+        }
+      ]
+    }
+  },
+  {
+    "slug": "congreso-humanista",
+    "nombre": "Congreso de Educación Humanista",
+    "portada": {
+      "archivo": "portada",
+      "ancho": 1080,
+      "alto": 1350,
+      "peso": 61846
+    },
+    "piezas": {
+      "branding": [
+        {
+          "archivo": "branding-1",
+          "ancho": 1080,
+          "alto": 1350,
+          "peso": 76610
+        }
+      ],
+      "redes": [
+        {
+          "archivo": "redes-1",
+          "ancho": 1080,
+          "alto": 1350,
+          "peso": 107908
+        }
+      ],
+      "produccion": [
+        {
+          "archivo": "produccion-1",
+          "ancho": 1080,
+          "alto": 1350,
+          "peso": 155294
+        }
+      ],
+      "web": [
+        {
+          "archivo": "web-1",
+          "ancho": 1080,
+          "alto": 1350,
+          "peso": 103080
+        }
+      ]
+    }
+  }
+]

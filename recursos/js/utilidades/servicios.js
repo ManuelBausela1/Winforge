@@ -1,7 +1,6 @@
 export const SERVICIOS = [
     { slug: "diseno-y-estrategia", nombre: "Diseño y estrategia" },
-    { slug: "desarrollo-de-software", nombre: "Desarrollo de software" },
-    { slug: "gestion-multimedia", nombre: "Gestión multimedia" },
+    { slug: "desarrollo-web-y-marketing", nombre: "Desarrollo web y marketing" },
     { slug: "produccion-audiovisual", nombre: "Producción audiovisual" },
 ];
 

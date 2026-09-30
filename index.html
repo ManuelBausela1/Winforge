@@ -109,7 +109,6 @@
         <div class="fondo-atmosfera__grano"></div>
     </div>
 
-    <div class="mural-forja" aria-hidden="true"></div>
 
     <header class="cabecera">
         <nav class="indice-navegacion" data-navegacion-indice aria-label="Navegación principal">
@@ -122,15 +121,15 @@
 
                     <ul class="indice-navegacion__secciones" role="list">
                         <li class="indice-navegacion__subitem">
-                            <a class="indice-navegacion__enlace indice-navegacion__enlace--seccion" href="#servicios" data-seccion="servicios">
-                                <span class="indice-navegacion__linea" aria-hidden="true"></span>
-                                <span class="indice-navegacion__texto">Servicios</span>
-                            </a>
-                        </li>
-                        <li class="indice-navegacion__subitem">
                             <a class="indice-navegacion__enlace indice-navegacion__enlace--seccion" href="#como-trabajamos" data-seccion="como-trabajamos">
                                 <span class="indice-navegacion__linea" aria-hidden="true"></span>
                                 <span class="indice-navegacion__texto">Proceso</span>
+                            </a>
+                        </li>
+                        <li class="indice-navegacion__subitem">
+                            <a class="indice-navegacion__enlace indice-navegacion__enlace--seccion" href="#servicios" data-seccion="servicios">
+                                <span class="indice-navegacion__linea" aria-hidden="true"></span>
+                                <span class="indice-navegacion__texto">Servicios</span>
                             </a>
                         </li>
                         <li class="indice-navegacion__subitem">
@@ -145,6 +144,12 @@
                     <a class="indice-navegacion__enlace" href="quienes-somos/">
                         <span class="indice-navegacion__linea" aria-hidden="true"></span>
                         <span class="indice-navegacion__texto">Quiénes somos</span>
+                    </a>
+                </li>
+                <li class="indice-navegacion__item">
+                    <a class="indice-navegacion__enlace" href="portfolio/">
+                        <span class="indice-navegacion__linea" aria-hidden="true"></span>
+                        <span class="indice-navegacion__texto">Portfolio</span>
                     </a>
                 </li>
                 <li class="indice-navegacion__item">
@@ -228,262 +233,113 @@
             </div>
         </section>
 
-        <section class="servicios" id="servicios" data-servicios aria-labelledby="titulo-servicios">
-            <div class="servicios__contenedor contenedor">
-                <header class="servicios__encabezado" data-revelar>
-                    <h2 class="titulo-seccion" id="titulo-servicios">Nuestros servicios</h2>
-                </header>
+        <section class="proceso" id="como-trabajamos" data-proceso aria-labelledby="titulo-proceso">
+            <div class="proceso__escenario">
+                <h2 class="titulo-seccion proceso__titulo" id="titulo-proceso">Nuestro proceso</h2>
 
-                <ul class="servicios__lista" role="list" data-revelar>
-                <li class="tarjeta-servicio" style="--indice-tarjeta: 0; --color-acento: 255, 255, 255">
-                    <article class="tarjeta-servicio__contenido" data-tarjeta-interactiva aria-labelledby="servicio-diseno-estrategia">
-                        <img class="tarjeta-servicio__imagen"
-                            src="img/servicios/diseno-estrategia-tarjetas-winforge-640.webp"
-                            srcset="img/servicios/diseno-estrategia-tarjetas-winforge-640.webp 640w, img/servicios/diseno-estrategia-tarjetas-winforge-1024.webp 1024w"
-                            sizes="(min-width: 1200px) 24vw, (min-width: 700px) 45vw, 92vw"
-                            width="640"
-                            height="480"
-                            loading="lazy"
-                            decoding="async"
-                            alt="Tarjetas personales de Winforge con isologo, grabados de herreros y código QR naranja"
-                        >
+                <div class="proceso__riel" data-riel>
+                    <div class="proceso__recorrido">
+                        <span class="proceso__linea" aria-hidden="true"></span>
 
-                        <button class="tarjeta-servicio__selector" type="button" aria-pressed="false" data-servicio="Diseño y estrategia">
-                            <span class="texto-oculto">Elegir este servicio</span>
-                        </button>
-
-                        <div class="tarjeta-servicio__panel">
-                            <span class="tarjeta-servicio__numero" aria-hidden="true">01</span>
-
-                            <div class="tarjeta-servicio__texto">
-                                <h3 class="tarjeta-servicio__titulo" id="servicio-diseno-estrategia">Diseño y estrategia</h3>
-                                <p class="tarjeta-servicio__descripcion">Branding, manual de marca, naming, voz y tono.</p>
-                            </div>
-                        </div>
-                    </article>
-                </li>
-                <li class="tarjeta-servicio" style="--indice-tarjeta: 1; --color-acento: 129, 161, 152">
-                    <article class="tarjeta-servicio__contenido" data-tarjeta-interactiva aria-labelledby="servicio-desarrollo-software">
-                        <img class="tarjeta-servicio__imagen"
-                            src="img/servicios/desarrollo-software-sitio-web-winforge-640.webp"
-                            srcset="img/servicios/desarrollo-software-sitio-web-winforge-640.webp 640w, img/servicios/desarrollo-software-sitio-web-winforge-1024.webp 1024w"
-                            sizes="(min-width: 1200px) 24vw, (min-width: 700px) 45vw, 92vw"
-                            width="640"
-                            height="480"
-                            loading="lazy"
-                            decoding="async"
-                            alt="MacBook mostrando el sitio web de Winforge con fondo de distorsión líquida"
-                        >
-
-                        <button class="tarjeta-servicio__selector" type="button" aria-pressed="false" data-servicio="Desarrollo de software">
-                            <span class="texto-oculto">Elegir este servicio</span>
-                        </button>
-
-                        <div class="tarjeta-servicio__panel">
-                            <span class="tarjeta-servicio__numero" aria-hidden="true">02</span>
-
-                            <div class="tarjeta-servicio__texto">
-                                <h3 class="tarjeta-servicio__titulo" id="servicio-desarrollo-software">Desarrollo de software</h3>
-                                <p class="tarjeta-servicio__descripcion">Sitios web, e-commerce, apps y comunicación empresarial interna.</p>
-                            </div>
-                        </div>
-                    </article>
-                </li>
-                <li class="tarjeta-servicio" style="--indice-tarjeta: 2; --color-acento: 255, 165, 41">
-                    <article class="tarjeta-servicio__contenido" data-tarjeta-interactiva aria-labelledby="servicio-gestion-multimedia">
-                        <img class="tarjeta-servicio__imagen"
-                            src="img/servicios/gestion-multimedia-redes-winforge-640.webp"
-                            srcset="img/servicios/gestion-multimedia-redes-winforge-640.webp 640w, img/servicios/gestion-multimedia-redes-winforge-1024.webp 1024w"
-                            sizes="(min-width: 1200px) 24vw, (min-width: 700px) 45vw, 92vw"
-                            width="640"
-                            height="480"
-                            loading="lazy"
-                            decoding="async"
-                            alt="iPhone con una publicación de Instagram y piezas gráficas para redes sociales diseñadas por Winforge"
-                        >
-
-                        <button class="tarjeta-servicio__selector" type="button" aria-pressed="false" data-servicio="Gestión multimedia">
-                            <span class="texto-oculto">Elegir este servicio</span>
-                        </button>
-
-                        <div class="tarjeta-servicio__panel">
-                            <span class="tarjeta-servicio__numero" aria-hidden="true">03</span>
-
-                            <div class="tarjeta-servicio__texto">
-                                <h3 class="tarjeta-servicio__titulo" id="servicio-gestion-multimedia">Gestión multimedia</h3>
-                                <p class="tarjeta-servicio__descripcion">Redes sociales (Instagram, TikTok, Facebook, YouTube), SEO y marketing digital.</p>
-                            </div>
-                        </div>
-                    </article>
-                </li>
-                <li class="tarjeta-servicio" style="--indice-tarjeta: 3; --color-acento: 123, 163, 178">
-                    <article class="tarjeta-servicio__contenido" data-tarjeta-interactiva aria-labelledby="servicio-produccion-audiovisual">
-                        <img class="tarjeta-servicio__imagen"
-                            src="img/servicios/produccion-audiovisual-video-winforge-640.webp"
-                            srcset="img/servicios/produccion-audiovisual-video-winforge-640.webp 640w, img/servicios/produccion-audiovisual-video-winforge-1024.webp 1024w"
-                            sizes="(min-width: 1200px) 24vw, (min-width: 700px) 45vw, 92vw"
-                            width="640"
-                            height="480"
-                            loading="lazy"
-                            decoding="async"
-                            alt="iPhone horizontal reproduciendo un video con el isologo de Winforge"
-                        >
-
-                        <button class="tarjeta-servicio__selector" type="button" aria-pressed="false" data-servicio="Producción audiovisual">
-                            <span class="texto-oculto">Elegir este servicio</span>
-                        </button>
-
-                        <div class="tarjeta-servicio__panel">
-                            <span class="tarjeta-servicio__numero" aria-hidden="true">04</span>
-
-                            <div class="tarjeta-servicio__texto">
-                                <h3 class="tarjeta-servicio__titulo" id="servicio-produccion-audiovisual">Producción audiovisual</h3>
-                                <p class="tarjeta-servicio__descripcion">Desde el brainstorming hasta la edición profesional.</p>
-                            </div>
-                        </div>
-                    </article>
-                </li>
-                </ul>
-
-                <div class="servicios__eleccion" data-eleccion-servicios hidden>
-                    <p class="servicios__elegidos" data-servicios-elegidos aria-live="polite"></p>
-
-                    <a class="boton boton--principal" href="contacto/">
-                        <span class="boton__texto">Iniciar proyecto</span>
-                    </a>
-                </div>
-
-            </div>
-        </section>
-
-        <section class="proceso" id="como-trabajamos" aria-labelledby="titulo-proceso">
-            <div class="proceso__contenedor contenedor">
-                <h2 class="titulo-seccion" id="titulo-proceso" data-revelar>Nuestro proceso</h2>
-
-                <div class="proceso__linea-tiempo" data-revelar>
-                    <ol class="proceso__pasos" role="list" data-pasos-uniformes>
-                        <li class="proceso__paso" style="--indice-paso: 0">
-                            <p class="proceso__estrellas" aria-hidden="true">
-                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
-                            </p>
-
-                            <span class="proceso__marcador">
-                                <span class="proceso__punto">
-                                    <svg class="proceso__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                                        <circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.4 15.4 21 21"/><path d="M8 10.5h5"/>
-                                    </svg>
-                                </span>
-                                <span class="proceso__conector" aria-hidden="true"></span>
-                            </span>
-
+                        <ol class="proceso__pasos" role="list">
+                        <li class="proceso__paso proceso__paso--arriba" data-paso style="--indice-paso: 0">
                             <div class="proceso__texto">
+                                <p class="proceso__estrellas" aria-hidden="true">
+                                    <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                                </p>
+
                                 <h3 class="proceso__titulo-paso">
                                     <span class="texto-oculto">Paso 1: </span>Diagnóstico
                                 </h3>
+
                                 <p class="proceso__descripcion">Analizamos tu marca, redes, web y competencia.</p>
                             </div>
+
+                            <span class="proceso__tallo" aria-hidden="true"></span>
+                            <span class="proceso__punto" aria-hidden="true"></span>
                         </li>
-                        <li class="proceso__paso" style="--indice-paso: 1">
-                            <p class="proceso__estrellas" aria-hidden="true">
-                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
-                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
-                            </p>
 
-                            <span class="proceso__marcador">
-                                <span class="proceso__punto">
-                                    <svg class="proceso__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                                        <circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="12" cy="12" r="0.7" fill="currentColor" stroke="none"/>
-                                    </svg>
-                                </span>
-                                <span class="proceso__conector" aria-hidden="true"></span>
-                            </span>
-
+                        <li class="proceso__paso proceso__paso--abajo" data-paso style="--indice-paso: 1">
                             <div class="proceso__texto">
+                                <p class="proceso__estrellas" aria-hidden="true">
+                                    <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                                    <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                                </p>
+
                                 <h3 class="proceso__titulo-paso">
                                     <span class="texto-oculto">Paso 2: </span>Estrategia
                                 </h3>
+
                                 <p class="proceso__descripcion">Definimos mensaje, oferta, público y canales.</p>
                             </div>
+
+                            <span class="proceso__tallo" aria-hidden="true"></span>
+                            <span class="proceso__punto" aria-hidden="true"></span>
                         </li>
-                        <li class="proceso__paso" style="--indice-paso: 2">
-                            <p class="proceso__estrellas" aria-hidden="true">
-                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
-                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
-                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
-                            </p>
 
-                            <span class="proceso__marcador">
-                                <span class="proceso__punto">
-                                    <svg class="proceso__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                                        <path d="M4 7.5h3.2l1.6-2.3h6.4l1.6 2.3H20a1.5 1.5 0 0 1 1.5 1.5v8.7a1.5 1.5 0 0 1-1.5 1.5H4a1.5 1.5 0 0 1-1.5-1.5V9A1.5 1.5 0 0 1 4 7.5z"/><circle cx="12" cy="13.2" r="3.7"/><path d="M17.8 10.2h.01"/>
-                                    </svg>
-                                </span>
-                                <span class="proceso__conector" aria-hidden="true"></span>
-                            </span>
-
+                        <li class="proceso__paso proceso__paso--arriba" data-paso style="--indice-paso: 2">
                             <div class="proceso__texto">
+                                <p class="proceso__estrellas" aria-hidden="true">
+                                    <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                                    <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                                    <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                                </p>
+
                                 <h3 class="proceso__titulo-paso">
                                     <span class="texto-oculto">Paso 3: </span>Producción
                                 </h3>
+
                                 <p class="proceso__descripcion">Guionamos, producimos y editamos contenido de alto valor.</p>
                             </div>
+
+                            <span class="proceso__tallo" aria-hidden="true"></span>
+                            <span class="proceso__punto" aria-hidden="true"></span>
                         </li>
-                        <li class="proceso__paso" style="--indice-paso: 3">
-                            <p class="proceso__estrellas" aria-hidden="true">
-                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
-                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
-                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
-                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
-                            </p>
 
-                            <span class="proceso__marcador">
-                                <span class="proceso__punto">
-                                    <svg class="proceso__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                                        <path d="M4 10.2v3.6a1.2 1.2 0 0 0 1.2 1.2h2.6l6.2 3.8V5.2L7.8 9H5.2A1.2 1.2 0 0 0 4 10.2z"/><path d="M8 15v3.6a1.4 1.4 0 0 0 2.7.5L11 18"/><path d="M17.6 9.6a3.6 3.6 0 0 1 0 4.8"/>
-                                    </svg>
-                                </span>
-                                <span class="proceso__conector" aria-hidden="true"></span>
-                            </span>
-
+                        <li class="proceso__paso proceso__paso--abajo" data-paso style="--indice-paso: 3">
                             <div class="proceso__texto">
+                                <p class="proceso__estrellas" aria-hidden="true">
+                                    <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                                    <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                                    <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                                    <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                                </p>
+
                                 <h3 class="proceso__titulo-paso">
                                     <span class="texto-oculto">Paso 4: </span>Campañas
                                 </h3>
+
                                 <p class="proceso__descripcion">Segmentamos el público y generamos estrategias.</p>
                             </div>
+
+                            <span class="proceso__tallo" aria-hidden="true"></span>
+                            <span class="proceso__punto" aria-hidden="true"></span>
                         </li>
-                        <li class="proceso__paso" style="--indice-paso: 4">
-                            <p class="proceso__estrellas" aria-hidden="true">
-                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
-                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
-                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
-                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
-                                <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
-                            </p>
 
-                            <span class="proceso__marcador">
-                                <span class="proceso__punto">
-                                    <svg class="proceso__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                                        <path d="M3.5 20.5h17"/><path d="M6.5 17v-4M11 17v-7M15.5 17v-3"/><path d="m13.5 6.5 3.5-3 3 3"/><path d="M17 3.5v6.5"/>
-                                    </svg>
-                                </span>
-                                <span class="proceso__conector" aria-hidden="true"></span>
-                            </span>
-
+                        <li class="proceso__paso proceso__paso--arriba" data-paso style="--indice-paso: 4">
                             <div class="proceso__texto">
+                                <p class="proceso__estrellas" aria-hidden="true">
+                                    <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                                    <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                                    <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                                    <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                                    <svg class="proceso__estrella" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 2.6 2.7 6.1 6.6.6-5 4.4 1.5 6.5L12 16.8 6.2 20.2l1.5-6.5-5-4.4 6.6-.6z"/></svg>
+                                </p>
+
                                 <h3 class="proceso__titulo-paso">
                                     <span class="texto-oculto">Paso 5: </span>Optimización
                                 </h3>
+
                                 <p class="proceso__descripcion">Medimos resultados y optimizamos el proceso.</p>
                             </div>
+
+                            <span class="proceso__tallo" aria-hidden="true"></span>
+                            <span class="proceso__punto" aria-hidden="true"></span>
                         </li>
-                    </ol>
+                        </ol>
+                    </div>
 
                     <div class="proceso__cierre">
-                        <span class="proceso__marcador proceso__marcador--final" aria-hidden="true">
-                            <span class="proceso__conector proceso__conector--final"></span>
-                        </span>
-
                         <a class="boton boton--texto proceso__accion" href="quienes-somos/">
                             <span class="boton__texto">Conocé más</span>
                         </a>
@@ -492,7 +348,98 @@
             </div>
         </section>
 
-        <section class="proyectos" id="proyectos" aria-labelledby="titulo-proyectos">
+        <section class="servicios" id="servicios" data-servicios aria-labelledby="titulo-servicios">
+            <h2 class="texto-oculto" id="titulo-servicios">Nuestros servicios</h2>
+
+            <article class="servicio servicio--eucalipto" data-panel-servicio style="--indice-panel: 0">
+                <div class="servicio__lienzo" data-lienzo-servicio>
+                    <div class="servicio__encabezado">
+                        <p class="servicio__numero">01 — Servicios</p>
+
+                        <a class="boton servicio__accion" href="contacto/?servicios=diseno-y-estrategia">
+                            <span class="boton__texto">Iniciar proyecto</span>
+                        </a>
+                    </div>
+
+                    <h3 class="servicio__titulo">Diseño<br>y estrategia</h3>
+
+                    <ul class="servicio__detalles" role="list">
+                        <li class="servicio__detalle">
+                            <p class="servicio__detalle-titulo">Branding</p>
+                            <p class="servicio__detalle-texto">Isologotipo, paleta, tipografías y manual de marca.</p>
+                        </li>
+                        <li class="servicio__detalle">
+                            <p class="servicio__detalle-titulo">Naming</p>
+                            <p class="servicio__detalle-texto">El nombre y el territorio verbal que lo sostiene.</p>
+                        </li>
+                        <li class="servicio__detalle">
+                            <p class="servicio__detalle-titulo">Voz y tono</p>
+                            <p class="servicio__detalle-texto">La manera de decir las cosas en cada canal.</p>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="servicio servicio--naranja" data-panel-servicio style="--indice-panel: 1">
+                <div class="servicio__lienzo" data-lienzo-servicio>
+                    <div class="servicio__encabezado">
+                        <p class="servicio__numero">02 — Servicios</p>
+
+                        <a class="boton servicio__accion" href="contacto/?servicios=desarrollo-web-y-marketing">
+                            <span class="boton__texto">Iniciar proyecto</span>
+                        </a>
+                    </div>
+
+                    <h3 class="servicio__titulo">Desarrollo web<br>y marketing</h3>
+
+                    <ul class="servicio__detalles" role="list">
+                        <li class="servicio__detalle">
+                            <p class="servicio__detalle-titulo">Sitios y e-commerce</p>
+                            <p class="servicio__detalle-texto">Páginas institucionales, tiendas y aplicaciones a medida.</p>
+                        </li>
+                        <li class="servicio__detalle">
+                            <p class="servicio__detalle-titulo">Comunicación interna</p>
+                            <p class="servicio__detalle-texto">Herramientas para que la empresa trabaje ordenada.</p>
+                        </li>
+                        <li class="servicio__detalle">
+                            <p class="servicio__detalle-titulo">SEO y campañas</p>
+                            <p class="servicio__detalle-texto">Posicionamiento y marketing digital con resultados medidos.</p>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="servicio servicio--claro" data-panel-servicio data-tema-fondo="claro" style="--indice-panel: 2">
+                <div class="servicio__lienzo" data-lienzo-servicio>
+                    <div class="servicio__encabezado">
+                        <p class="servicio__numero">03 — Servicios</p>
+
+                        <a class="boton servicio__accion" href="contacto/?servicios=produccion-audiovisual">
+                            <span class="boton__texto">Iniciar proyecto</span>
+                        </a>
+                    </div>
+
+                    <h3 class="servicio__titulo">Producción<br>audiovisual</h3>
+
+                    <ul class="servicio__detalles" role="list">
+                        <li class="servicio__detalle">
+                            <p class="servicio__detalle-titulo">Redes sociales</p>
+                            <p class="servicio__detalle-texto">Instagram, TikTok, Facebook y YouTube, con plan y calendario.</p>
+                        </li>
+                        <li class="servicio__detalle">
+                            <p class="servicio__detalle-titulo">Producción</p>
+                            <p class="servicio__detalle-texto">Del brainstorming al rodaje, con equipo propio.</p>
+                        </li>
+                        <li class="servicio__detalle">
+                            <p class="servicio__detalle-titulo">Postproducción</p>
+                            <p class="servicio__detalle-texto">Edición, color y sonido con terminación profesional.</p>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+        </section>
+
+        <section class="proyectos" id="proyectos" data-sin-estrellas aria-labelledby="titulo-proyectos">
             <div class="proyectos__contenedor contenedor">
                 <h2 class="titulo-seccion" id="titulo-proyectos" data-revelar>Proyectos forjados</h2>
             </div>
