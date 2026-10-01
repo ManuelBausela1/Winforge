@@ -1,7 +1,7 @@
 export const SERVICIOS = [
-    { slug: "diseno-y-estrategia", nombre: "Diseño y estrategia" },
-    { slug: "desarrollo-web-y-marketing", nombre: "Desarrollo web y marketing" },
-    { slug: "produccion-audiovisual", nombre: "Producción audiovisual" },
+    { slug: "estrategia-y-marca", nombre: "Estrategia y marca" },
+    { slug: "contenido-y-produccion", nombre: "Contenido y producción" },
+    { slug: "web-y-campanas", nombre: "Web y campañas" },
 ];
 
 const CLAVE_ALMACEN = "winforge:servicios";

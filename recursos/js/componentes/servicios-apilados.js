@@ -14,15 +14,9 @@ export function iniciarServiciosApilados(seccion = document.querySelector("[data
     function girar() {
         const alto = window.innerHeight;
 
-        paneles.forEach((panel, indice) => {
+        paneles.forEach((panel) => {
             const lienzo = panel.querySelector("[data-lienzo-servicio]");
             if (!lienzo) return;
-
-            // El primero no gira: es el que recibe a los demás
-            if (indice === 0) {
-                lienzo.style.setProperty("--giro", "0deg");
-                return;
-            }
 
             const { top } = panel.getBoundingClientRect();
             const posicion = top / alto;
