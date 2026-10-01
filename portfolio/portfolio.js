@@ -1,30 +1,35 @@
 import { iniciarSitio } from "../recursos/js/principal.js";
-import { hayAnimacionesDeEntrada } from "../recursos/js/utilidades/animaciones.js";
 import { prefiereMovimientoReducido } from "../recursos/js/utilidades/movimiento.js";
 
 const ETIQUETAS = {
     todo: "todos los proyectos",
-    branding: "branding",
+    branding: "identidad",
     web: "web",
     redes: "redes",
     produccion: "producción",
 };
 
+const TEXTOS_ACCION = {
+    cerrado: "Ver proyecto",
+    abierto: "Ocultar proyecto",
+};
+
 /**
  * Corre la función cuando las piezas ya tienen su lugar medible. Espera dos
  * fotogramas, pero también arranca un temporizador: en una pestaña de fondo
- * los fotogramas se congelan y las piezas quedarían invisibles.
+ * el navegador congela los fotogramas y la galería se quedaría invisible.
  */
-function enCuantoSePinte(funcion) {
+function enCuantoSePinte(hacer) {
     let hecho = false;
-    const correr = () => {
+
+    const unaVez = () => {
         if (hecho) return;
         hecho = true;
-        funcion();
+        hacer();
     };
 
-    setTimeout(correr, 250);
-    requestAnimationFrame(() => requestAnimationFrame(correr));
+    setTimeout(unaVez, 250);
+    requestAnimationFrame(() => requestAnimationFrame(unaVez));
 }
 
 function iniciarPortfolio(seccion = document.querySelector("[data-portfolio]")) {
@@ -74,16 +79,36 @@ function iniciarPortfolio(seccion = document.querySelector("[data-portfolio]")) 
         });
     }
 
-    function animarVisibles({ conAnimacion }) {
-        const enPantalla = proyectos.filter((proyecto) => !proyecto.hidden);
-
-        enPantalla.forEach((proyecto) => {
-            if (conAnimacion && !sinMovimiento) animarProyecto(proyecto);
-            else mostrarSinAnimar(proyecto);
-        });
+    function partesDe(proyecto) {
+        return {
+            trabajo: proyecto.querySelector("[data-trabajo]"),
+            boton: proyecto.querySelector("[data-ver-trabajo]"),
+        };
     }
 
-    function aplicarFiltro(filtro, { conAnimacion = true } = {}) {
+    function abrir(proyecto) {
+        const { trabajo, boton } = partesDe(proyecto);
+        if (!trabajo || !boton) return;
+
+        trabajo.hidden = false;
+        proyecto.classList.add("esta-abierto");
+        boton.setAttribute("aria-expanded", "true");
+        boton.querySelector(".boton__texto").textContent = TEXTOS_ACCION.abierto;
+
+        enCuantoSePinte(() => (sinMovimiento ? mostrarSinAnimar(proyecto) : animarProyecto(proyecto)));
+    }
+
+    function cerrar(proyecto) {
+        const { trabajo, boton } = partesDe(proyecto);
+        if (!trabajo || !boton) return;
+
+        trabajo.hidden = true;
+        proyecto.classList.remove("esta-abierto");
+        boton.setAttribute("aria-expanded", "false");
+        boton.querySelector(".boton__texto").textContent = TEXTOS_ACCION.cerrado;
+    }
+
+    function aplicarFiltro(filtro) {
         filtroActual = filtro;
 
         filtros.forEach((boton) => boton.setAttribute("aria-pressed", String(boton.dataset.filtro === filtro)));
@@ -97,14 +122,14 @@ function iniciarPortfolio(seccion = document.querySelector("[data-portfolio]")) 
                 const suya = pieza.dataset.categoria;
                 pieza.hidden = !(suya === "portada" || filtro === "todo" || suya === filtro);
             });
+
+            cerrar(proyecto);
         });
 
         if (aviso) {
             const cuantos = proyectos.filter((proyecto) => !proyecto.hidden).length;
             aviso.textContent = `Mostrando ${cuantos} proyectos de ${ETIQUETAS[filtro]}.`;
         }
-
-        enCuantoSePinte(() => animarVisibles({ conAnimacion }));
     }
 
     filtros.forEach((boton) => {
@@ -114,31 +139,17 @@ function iniciarPortfolio(seccion = document.querySelector("[data-portfolio]")) 
         });
     });
 
-    /* Al llegar: cada proyecto entra cuando aparece en pantalla */
-    const conEntrada = hayAnimacionesDeEntrada() && !sinMovimiento;
-    aplicarFiltro("todo", { conAnimacion: false });
-
-    if (!conEntrada || !("IntersectionObserver" in window)) {
-        proyectos.forEach(mostrarSinAnimar);
-        return;
-    }
-
     proyectos.forEach((proyecto) => {
-        piezasVisibles(proyecto).forEach((pieza) => pieza.classList.remove("esta-puesta"));
+        const { boton } = partesDe(proyecto);
+        if (!boton) return;
+
+        boton.addEventListener("click", () => {
+            if (proyecto.classList.contains("esta-abierto")) cerrar(proyecto);
+            else abrir(proyecto);
+        });
     });
 
-    const observador = new IntersectionObserver(
-        (entradas) => {
-            entradas.forEach((entrada) => {
-                if (!entrada.isIntersecting) return;
-                animarProyecto(entrada.target);
-                observador.unobserve(entrada.target);
-            });
-        },
-        { rootMargin: "0px 0px -12% 0px", threshold: 0.15 },
-    );
-
-    proyectos.forEach((proyecto) => observador.observe(proyecto));
+    aplicarFiltro("todo");
 }
 
 iniciarSitio();

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Portfolio | Winforge</title>
-    <meta name="description" content="Proyectos forjados por Winforge: branding, sitios web, gestión de redes y producción audiovisual para marcas de Rosario y el país.">
+    <meta name="description" content="Proyectos forjados por Winforge: identidad, sitios web, redes y producción audiovisual para marcas, profesionales e instituciones.">
     <meta name="author" content="Winforge">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://winforge.com.ar/portfolio/">
@@ -15,7 +15,7 @@
     <meta property="og:locale" content="es_AR">
     <meta property="og:site_name" content="Winforge">
     <meta property="og:title" content="Portfolio | Winforge">
-    <meta property="og:description" content="Proyectos forjados por Winforge: branding, sitios web, gestión de redes y producción audiovisual.">
+    <meta property="og:description" content="Proyectos forjados por Winforge: identidad, sitios web, redes y producción audiovisual para marcas, profesionales e instituciones.">
     <meta property="og:url" content="https://winforge.com.ar/portfolio/">
     <meta property="og:image" content="https://winforge.com.ar/img/og/winforge-compartir.jpg">
     <meta property="og:image:width" content="1200">
@@ -24,7 +24,7 @@
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Portfolio | Winforge">
-    <meta name="twitter:description" content="Proyectos forjados por Winforge: branding, sitios web, gestión de redes y producción audiovisual.">
+    <meta name="twitter:description" content="Proyectos forjados por Winforge: identidad, sitios web, redes y producción audiovisual para marcas, profesionales e instituciones.">
     <meta name="twitter:image" content="https://winforge.com.ar/img/og/winforge-compartir.jpg">
 
     <link rel="icon" href="../img/logo/favicon.svg" type="image/svg+xml">
@@ -118,12 +118,16 @@
             <div class="portfolio__encabezado contenedor">
                 <h1 class="titulo-seccion" id="titulo-portfolio">Portfolio</h1>
 
+                <p class="portfolio__entrada">
+                    Identidad, web, contenido y producción para marcas, profesionales e instituciones educativas y de salud.
+                </p>
+
                 <ul class="portfolio__filtros" role="list" aria-label="Filtrar por servicio">
                     <li class="portfolio__filtro">
                         <button class="filtro" type="button" data-filtro="todo" aria-pressed="true">Ver todo</button>
                     </li>
                     <li class="portfolio__filtro">
-                        <button class="filtro" type="button" data-filtro="branding" aria-pressed="false">Branding</button>
+                        <button class="filtro" type="button" data-filtro="branding" aria-pressed="false">Identidad</button>
                     </li>
                     <li class="portfolio__filtro">
                         <button class="filtro" type="button" data-filtro="web" aria-pressed="false">Web</button>
@@ -140,564 +144,876 @@
             </div>
 
             <div class="portfolio__lista contenedor">
-            <article class="portfolio__proyecto" data-proyecto data-categorias="branding web redes" style="--indice-proyecto: 0">
-                <header class="portfolio__marca">
-                    <h2 class="portfolio__nombre">Dr. Franco Della Vedova</h2>
-                </header>
+            <article class="portfolio__proyecto" data-proyecto data-categorias="branding redes" style="--indice-proyecto: 0">
+                <div class="caso" data-revelar>
+                    <div class="caso__logo">
+                        <img
+                            src="../img/marcas/epa.webp"
+                            alt="Isologo de Escuelas Pías Mendiolaza"
+                            width="220"
+                            height="110"
+                            loading="lazy"
+                            decoding="async"
+                        >
+                    </div>
 
-                <ul class="portfolio__galeria" role="list" data-galeria>
-                        <li class="portfolio__pieza portfolio__pieza--portada" data-categoria="portada">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/della-vedova/portada-1100.webp"
-                                srcset="../img/portfolio/della-vedova/portada-640.webp 640w, ../img/portfolio/della-vedova/portada-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Portada del proyecto de Dr. Franco Della Vedova"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
+                    <div class="caso__datos">
+                        <p class="caso__sector">Educación</p>
+                        <h2 class="caso__nombre">Escuelas Pías Mendiolaza</h2>
+                        <p class="caso__hicimos">Identidad visual y gestión de redes.</p>
+                    </div>
 
-                        <li class="portfolio__pieza" data-categoria="branding">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/della-vedova/branding-1-1100.webp"
-                                srcset="../img/portfolio/della-vedova/branding-1-640.webp 640w, ../img/portfolio/della-vedova/branding-1-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Branding para Dr. Franco Della Vedova"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
+                    <button
+                        class="boton caso__accion"
+                        type="button"
+                        data-ver-trabajo
+                        aria-expanded="false"
+                        aria-controls="trabajo-escuelas-pias"
+                    >
+                        <span class="boton__texto">Ver proyecto</span>
+                    </button>
+                </div>
 
-                        <li class="portfolio__pieza" data-categoria="branding">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/della-vedova/branding-2-1100.webp"
-                                srcset="../img/portfolio/della-vedova/branding-2-640.webp 640w, ../img/portfolio/della-vedova/branding-2-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Branding para Dr. Franco Della Vedova"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
+                <div class="portfolio__trabajo" id="trabajo-escuelas-pias" data-trabajo hidden>
+                    <ul class="portfolio__galeria" role="list" data-galeria>
+                            <li class="portfolio__pieza portfolio__pieza--portada" data-categoria="portada">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/escuelas-pias/portada-1100.webp"
+                                    srcset="../img/portfolio/escuelas-pias/portada-640.webp 640w, ../img/portfolio/escuelas-pias/portada-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Portada del proyecto de Escuelas Pías Mendiolaza"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
 
-                        <li class="portfolio__pieza" data-categoria="branding">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/della-vedova/branding-3-1100.webp"
-                                srcset="../img/portfolio/della-vedova/branding-3-640.webp 640w, ../img/portfolio/della-vedova/branding-3-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Branding para Dr. Franco Della Vedova"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
+                            <li class="portfolio__pieza" data-categoria="branding">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/escuelas-pias/branding-1-1100.webp"
+                                    srcset="../img/portfolio/escuelas-pias/branding-1-640.webp 640w, ../img/portfolio/escuelas-pias/branding-1-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Branding para Escuelas Pías Mendiolaza"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
 
-                        <li class="portfolio__pieza" data-categoria="branding">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/della-vedova/branding-4-1100.webp"
-                                srcset="../img/portfolio/della-vedova/branding-4-640.webp 640w, ../img/portfolio/della-vedova/branding-4-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Branding para Dr. Franco Della Vedova"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
+                            <li class="portfolio__pieza" data-categoria="branding">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/escuelas-pias/branding-2-1100.webp"
+                                    srcset="../img/portfolio/escuelas-pias/branding-2-640.webp 640w, ../img/portfolio/escuelas-pias/branding-2-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Branding para Escuelas Pías Mendiolaza"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
 
-                        <li class="portfolio__pieza" data-categoria="web">
-                            <a class="portfolio__enlace" href="https://drfrancodellavedova.com.ar/" target="_blank" rel="noopener noreferrer"><img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/della-vedova/web-1-1100.webp"
-                                srcset="../img/portfolio/della-vedova/web-1-640.webp 640w, ../img/portfolio/della-vedova/web-1-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Web para Dr. Franco Della Vedova (visitar el sitio)"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            ><span class="portfolio__destino" aria-hidden="true">Visitar el sitio</span></a>
-                        </li>
+                            <li class="portfolio__pieza" data-categoria="redes">
+                                <a class="portfolio__enlace" href="https://www.instagram.com/escuelaspias.mendiolaza/" target="_blank" rel="noopener noreferrer"><img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/escuelas-pias/redes-1-1100.webp"
+                                    srcset="../img/portfolio/escuelas-pias/redes-1-640.webp 640w, ../img/portfolio/escuelas-pias/redes-1-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Redes para Escuelas Pías Mendiolaza (ver en instagram)"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                ><span class="portfolio__destino" aria-hidden="true">Ver en Instagram</span></a>
+                            </li>
+                    </ul>
 
-                        <li class="portfolio__pieza" data-categoria="redes">
-                            <a class="portfolio__enlace" href="https://www.instagram.com/dr.francodellavedova/" target="_blank" rel="noopener noreferrer"><img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/della-vedova/redes-1-1100.webp"
-                                srcset="../img/portfolio/della-vedova/redes-1-640.webp 640w, ../img/portfolio/della-vedova/redes-1-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Redes para Dr. Franco Della Vedova (ver en instagram)"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            ><span class="portfolio__destino" aria-hidden="true">Ver en Instagram</span></a>
-                        </li>
-                </ul>
+                    <p class="resultado">
+                        <span class="resultado__etiqueta">Resultado</span>
+                        <span class="resultado__texto">[dato de inscripciones o vacantes]</span>
+                    </p>
+                </div>
             </article>
 
-            <article class="portfolio__proyecto" data-proyecto data-categorias="branding redes" style="--indice-proyecto: 1">
-                <header class="portfolio__marca">
-                    <h2 class="portfolio__nombre">Escuelas Pías Mendiolaza</h2>
-                </header>
+            <article class="portfolio__proyecto" data-proyecto data-categorias="branding web redes produccion" style="--indice-proyecto: 1">
+                <div class="caso" data-revelar>
+                    <div class="caso__logo">
+                        <img
+                            src="../img/marcas/congreso1.webp"
+                            alt="Isologo de Congreso de Educación Humanista"
+                            width="220"
+                            height="110"
+                            loading="lazy"
+                            decoding="async"
+                        >
+                    </div>
 
-                <ul class="portfolio__galeria" role="list" data-galeria>
-                        <li class="portfolio__pieza portfolio__pieza--portada" data-categoria="portada">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/escuelas-pias/portada-1100.webp"
-                                srcset="../img/portfolio/escuelas-pias/portada-640.webp 640w, ../img/portfolio/escuelas-pias/portada-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Portada del proyecto de Escuelas Pías Mendiolaza"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
+                    <div class="caso__datos">
+                        <p class="caso__sector">Educación</p>
+                        <h2 class="caso__nombre">Congreso de Educación Humanista</h2>
+                        <p class="caso__hicimos">Identidad, sitio web, redes y producción audiovisual.</p>
+                    </div>
 
-                        <li class="portfolio__pieza" data-categoria="branding">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/escuelas-pias/branding-1-1100.webp"
-                                srcset="../img/portfolio/escuelas-pias/branding-1-640.webp 640w, ../img/portfolio/escuelas-pias/branding-1-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Branding para Escuelas Pías Mendiolaza"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
+                    <button
+                        class="boton caso__accion"
+                        type="button"
+                        data-ver-trabajo
+                        aria-expanded="false"
+                        aria-controls="trabajo-congreso-humanista"
+                    >
+                        <span class="boton__texto">Ver proyecto</span>
+                    </button>
+                </div>
 
-                        <li class="portfolio__pieza" data-categoria="branding">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/escuelas-pias/branding-2-1100.webp"
-                                srcset="../img/portfolio/escuelas-pias/branding-2-640.webp 640w, ../img/portfolio/escuelas-pias/branding-2-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Branding para Escuelas Pías Mendiolaza"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
+                <div class="portfolio__trabajo" id="trabajo-congreso-humanista" data-trabajo hidden>
+                    <ul class="portfolio__galeria" role="list" data-galeria>
+                            <li class="portfolio__pieza portfolio__pieza--portada" data-categoria="portada">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/congreso-humanista/portada-1100.webp"
+                                    srcset="../img/portfolio/congreso-humanista/portada-640.webp 640w, ../img/portfolio/congreso-humanista/portada-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Portada del proyecto de Congreso de Educación Humanista"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
 
-                        <li class="portfolio__pieza" data-categoria="redes">
-                            <a class="portfolio__enlace" href="https://www.instagram.com/escuelaspias.mendiolaza/" target="_blank" rel="noopener noreferrer"><img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/escuelas-pias/redes-1-1100.webp"
-                                srcset="../img/portfolio/escuelas-pias/redes-1-640.webp 640w, ../img/portfolio/escuelas-pias/redes-1-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Redes para Escuelas Pías Mendiolaza (ver en instagram)"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            ><span class="portfolio__destino" aria-hidden="true">Ver en Instagram</span></a>
-                        </li>
-                </ul>
+                            <li class="portfolio__pieza" data-categoria="branding">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/congreso-humanista/branding-1-1100.webp"
+                                    srcset="../img/portfolio/congreso-humanista/branding-1-640.webp 640w, ../img/portfolio/congreso-humanista/branding-1-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Branding para Congreso de Educación Humanista"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
+
+                            <li class="portfolio__pieza" data-categoria="web">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/congreso-humanista/web-1-1100.webp"
+                                    srcset="../img/portfolio/congreso-humanista/web-1-640.webp 640w, ../img/portfolio/congreso-humanista/web-1-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Web para Congreso de Educación Humanista"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
+
+                            <li class="portfolio__pieza" data-categoria="redes">
+                                <a class="portfolio__enlace" href="https://www.instagram.com/congresoeducacionhumanista/" target="_blank" rel="noopener noreferrer"><img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/congreso-humanista/redes-1-1100.webp"
+                                    srcset="../img/portfolio/congreso-humanista/redes-1-640.webp 640w, ../img/portfolio/congreso-humanista/redes-1-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Redes para Congreso de Educación Humanista (ver en instagram)"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                ><span class="portfolio__destino" aria-hidden="true">Ver en Instagram</span></a>
+                            </li>
+
+                            <li class="portfolio__pieza" data-categoria="produccion">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/congreso-humanista/produccion-1-1100.webp"
+                                    srcset="../img/portfolio/congreso-humanista/produccion-1-640.webp 640w, ../img/portfolio/congreso-humanista/produccion-1-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Producción para Congreso de Educación Humanista"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
+                    </ul>
+
+                    <p class="resultado">
+                        <span class="resultado__etiqueta">Resultado</span>
+                        <span class="resultado__texto">[suscriptores captados para la newsletter]</span>
+                    </p>
+                </div>
             </article>
 
-            <article class="portfolio__proyecto" data-proyecto data-categorias="branding" style="--indice-proyecto: 2">
-                <header class="portfolio__marca">
-                    <h2 class="portfolio__nombre">COE</h2>
-                </header>
+            <article class="portfolio__proyecto" data-proyecto data-categorias="branding web redes" style="--indice-proyecto: 2">
+                <div class="caso" data-revelar>
+                    <div class="caso__logo">
+                        <img
+                            src="../img/marcas/franco-della-vedoba.webp"
+                            alt="Isologo de Dr. Franco Della Vedova"
+                            width="220"
+                            height="110"
+                            loading="lazy"
+                            decoding="async"
+                        >
+                    </div>
 
-                <ul class="portfolio__galeria" role="list" data-galeria>
-                        <li class="portfolio__pieza portfolio__pieza--portada" data-categoria="portada">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/coe/portada-1100.webp"
-                                srcset="../img/portfolio/coe/portada-640.webp 640w, ../img/portfolio/coe/portada-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Portada del proyecto de COE"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
+                    <div class="caso__datos">
+                        <p class="caso__sector">Salud</p>
+                        <h2 class="caso__nombre">Dr. Franco Della Vedova</h2>
+                        <p class="caso__hicimos">Identidad, sitio web y redes.</p>
+                    </div>
 
-                        <li class="portfolio__pieza" data-categoria="branding">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/coe/branding-1-1100.webp"
-                                srcset="../img/portfolio/coe/branding-1-640.webp 640w, ../img/portfolio/coe/branding-1-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Branding para COE"
-                                width="1100"
-                                height="1375"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
+                    <button
+                        class="boton caso__accion"
+                        type="button"
+                        data-ver-trabajo
+                        aria-expanded="false"
+                        aria-controls="trabajo-della-vedova"
+                    >
+                        <span class="boton__texto">Ver proyecto</span>
+                    </button>
+                </div>
 
-                        <li class="portfolio__pieza" data-categoria="branding">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/coe/branding-2-1100.webp"
-                                srcset="../img/portfolio/coe/branding-2-640.webp 640w, ../img/portfolio/coe/branding-2-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Branding para COE"
-                                width="1100"
-                                height="1375"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
+                <div class="portfolio__trabajo" id="trabajo-della-vedova" data-trabajo hidden>
+                    <ul class="portfolio__galeria" role="list" data-galeria>
+                            <li class="portfolio__pieza portfolio__pieza--portada" data-categoria="portada">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/della-vedova/portada-1100.webp"
+                                    srcset="../img/portfolio/della-vedova/portada-640.webp 640w, ../img/portfolio/della-vedova/portada-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Portada del proyecto de Dr. Franco Della Vedova"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
 
-                        <li class="portfolio__pieza" data-categoria="branding">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/coe/branding-3-1100.webp"
-                                srcset="../img/portfolio/coe/branding-3-640.webp 640w, ../img/portfolio/coe/branding-3-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Branding para COE"
-                                width="1100"
-                                height="1375"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
-                </ul>
+                            <li class="portfolio__pieza" data-categoria="branding">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/della-vedova/branding-1-1100.webp"
+                                    srcset="../img/portfolio/della-vedova/branding-1-640.webp 640w, ../img/portfolio/della-vedova/branding-1-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Branding para Dr. Franco Della Vedova"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
+
+                            <li class="portfolio__pieza" data-categoria="branding">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/della-vedova/branding-2-1100.webp"
+                                    srcset="../img/portfolio/della-vedova/branding-2-640.webp 640w, ../img/portfolio/della-vedova/branding-2-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Branding para Dr. Franco Della Vedova"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
+
+                            <li class="portfolio__pieza" data-categoria="branding">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/della-vedova/branding-3-1100.webp"
+                                    srcset="../img/portfolio/della-vedova/branding-3-640.webp 640w, ../img/portfolio/della-vedova/branding-3-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Branding para Dr. Franco Della Vedova"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
+
+                            <li class="portfolio__pieza" data-categoria="branding">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/della-vedova/branding-4-1100.webp"
+                                    srcset="../img/portfolio/della-vedova/branding-4-640.webp 640w, ../img/portfolio/della-vedova/branding-4-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Branding para Dr. Franco Della Vedova"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
+
+                            <li class="portfolio__pieza" data-categoria="web">
+                                <a class="portfolio__enlace" href="https://drfrancodellavedova.com.ar/" target="_blank" rel="noopener noreferrer"><img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/della-vedova/web-1-1100.webp"
+                                    srcset="../img/portfolio/della-vedova/web-1-640.webp 640w, ../img/portfolio/della-vedova/web-1-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Web para Dr. Franco Della Vedova (visitar el sitio)"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                ><span class="portfolio__destino" aria-hidden="true">Visitar el sitio</span></a>
+                            </li>
+
+                            <li class="portfolio__pieza" data-categoria="redes">
+                                <a class="portfolio__enlace" href="https://www.instagram.com/dr.francodellavedova/" target="_blank" rel="noopener noreferrer"><img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/della-vedova/redes-1-1100.webp"
+                                    srcset="../img/portfolio/della-vedova/redes-1-640.webp 640w, ../img/portfolio/della-vedova/redes-1-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Redes para Dr. Franco Della Vedova (ver en instagram)"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                ><span class="portfolio__destino" aria-hidden="true">Ver en Instagram</span></a>
+                            </li>
+                    </ul>
+
+                    <p class="resultado">
+                        <span class="resultado__etiqueta">Resultado</span>
+                        <span class="resultado__texto">[aumento de consultas y cirugías]</span>
+                    </p>
+                </div>
             </article>
 
             <article class="portfolio__proyecto" data-proyecto data-categorias="branding" style="--indice-proyecto: 3">
-                <header class="portfolio__marca">
-                    <h2 class="portfolio__nombre">Oxyferrum Quimilí</h2>
-                </header>
+                <div class="caso" data-revelar>
+                    <div class="caso__logo">
+                        <img
+                            src="../img/marcas/coe.webp"
+                            alt="Isologo de COE"
+                            width="220"
+                            height="110"
+                            loading="lazy"
+                            decoding="async"
+                        >
+                    </div>
 
-                <ul class="portfolio__galeria" role="list" data-galeria>
-                        <li class="portfolio__pieza portfolio__pieza--portada" data-categoria="portada">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/oxyferrum/portada-1100.webp"
-                                srcset="../img/portfolio/oxyferrum/portada-640.webp 640w, ../img/portfolio/oxyferrum/portada-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Portada del proyecto de Oxyferrum Quimilí"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
+                    <div class="caso__datos">
+                        <h2 class="caso__nombre">COE</h2>
+                        <p class="caso__hicimos">Identidad visual.</p>
+                    </div>
 
-                        <li class="portfolio__pieza" data-categoria="branding">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/oxyferrum/branding-1-1100.webp"
-                                srcset="../img/portfolio/oxyferrum/branding-1-640.webp 640w, ../img/portfolio/oxyferrum/branding-1-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Branding para Oxyferrum Quimilí"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
+                    <button
+                        class="boton caso__accion"
+                        type="button"
+                        data-ver-trabajo
+                        aria-expanded="false"
+                        aria-controls="trabajo-coe"
+                    >
+                        <span class="boton__texto">Ver proyecto</span>
+                    </button>
+                </div>
 
-                        <li class="portfolio__pieza" data-categoria="branding">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/oxyferrum/branding-2-1100.webp"
-                                srcset="../img/portfolio/oxyferrum/branding-2-640.webp 640w, ../img/portfolio/oxyferrum/branding-2-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Branding para Oxyferrum Quimilí"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
+                <div class="portfolio__trabajo" id="trabajo-coe" data-trabajo hidden>
+                    <ul class="portfolio__galeria" role="list" data-galeria>
+                            <li class="portfolio__pieza portfolio__pieza--portada" data-categoria="portada">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/coe/portada-1100.webp"
+                                    srcset="../img/portfolio/coe/portada-640.webp 640w, ../img/portfolio/coe/portada-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Portada del proyecto de COE"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
 
-                        <li class="portfolio__pieza" data-categoria="branding">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/oxyferrum/branding-3-1100.webp"
-                                srcset="../img/portfolio/oxyferrum/branding-3-640.webp 640w, ../img/portfolio/oxyferrum/branding-3-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Branding para Oxyferrum Quimilí"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
+                            <li class="portfolio__pieza" data-categoria="branding">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/coe/branding-1-1100.webp"
+                                    srcset="../img/portfolio/coe/branding-1-640.webp 640w, ../img/portfolio/coe/branding-1-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Branding para COE"
+                                    width="1100"
+                                    height="1375"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
 
-                        <li class="portfolio__pieza" data-categoria="branding">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/oxyferrum/branding-4-1100.webp"
-                                srcset="../img/portfolio/oxyferrum/branding-4-640.webp 640w, ../img/portfolio/oxyferrum/branding-4-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Branding para Oxyferrum Quimilí"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
-                </ul>
+                            <li class="portfolio__pieza" data-categoria="branding">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/coe/branding-2-1100.webp"
+                                    srcset="../img/portfolio/coe/branding-2-640.webp 640w, ../img/portfolio/coe/branding-2-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Branding para COE"
+                                    width="1100"
+                                    height="1375"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
+
+                            <li class="portfolio__pieza" data-categoria="branding">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/coe/branding-3-1100.webp"
+                                    srcset="../img/portfolio/coe/branding-3-640.webp 640w, ../img/portfolio/coe/branding-3-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Branding para COE"
+                                    width="1100"
+                                    height="1375"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
+                    </ul>
+
+                    <p class="resultado">
+                        <span class="resultado__etiqueta">Resultado</span>
+                        <span class="resultado__texto">[hito]</span>
+                    </p>
+                </div>
             </article>
 
-            <article class="portfolio__proyecto" data-proyecto data-categorias="branding web" style="--indice-proyecto: 4">
-                <header class="portfolio__marca">
-                    <h2 class="portfolio__nombre">Box House</h2>
-                </header>
+            <article class="portfolio__proyecto" data-proyecto data-categorias="branding" style="--indice-proyecto: 4">
+                <div class="caso" data-revelar>
+                    <div class="caso__logo">
+                        <img
+                            src="../img/marcas/oxyferrum.webp"
+                            alt="Isologo de Oxyferrum Quimilí"
+                            width="220"
+                            height="110"
+                            loading="lazy"
+                            decoding="async"
+                        >
+                    </div>
 
-                <ul class="portfolio__galeria" role="list" data-galeria>
-                        <li class="portfolio__pieza portfolio__pieza--portada" data-categoria="portada">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/box-house/portada-1100.webp"
-                                srcset="../img/portfolio/box-house/portada-640.webp 640w, ../img/portfolio/box-house/portada-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Portada del proyecto de Box House"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
+                    <div class="caso__datos">
+                        <p class="caso__sector">Industria</p>
+                        <h2 class="caso__nombre">Oxyferrum Quimilí</h2>
+                        <p class="caso__hicimos">Identidad visual.</p>
+                    </div>
 
-                        <li class="portfolio__pieza" data-categoria="branding">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/box-house/branding-1-1100.webp"
-                                srcset="../img/portfolio/box-house/branding-1-640.webp 640w, ../img/portfolio/box-house/branding-1-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Branding para Box House"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
+                    <button
+                        class="boton caso__accion"
+                        type="button"
+                        data-ver-trabajo
+                        aria-expanded="false"
+                        aria-controls="trabajo-oxyferrum"
+                    >
+                        <span class="boton__texto">Ver proyecto</span>
+                    </button>
+                </div>
 
-                        <li class="portfolio__pieza" data-categoria="branding">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/box-house/branding-2-1100.webp"
-                                srcset="../img/portfolio/box-house/branding-2-640.webp 640w, ../img/portfolio/box-house/branding-2-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Branding para Box House"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
+                <div class="portfolio__trabajo" id="trabajo-oxyferrum" data-trabajo hidden>
+                    <ul class="portfolio__galeria" role="list" data-galeria>
+                            <li class="portfolio__pieza portfolio__pieza--portada" data-categoria="portada">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/oxyferrum/portada-1100.webp"
+                                    srcset="../img/portfolio/oxyferrum/portada-640.webp 640w, ../img/portfolio/oxyferrum/portada-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Portada del proyecto de Oxyferrum Quimilí"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
 
-                        <li class="portfolio__pieza" data-categoria="branding">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/box-house/branding-3-1100.webp"
-                                srcset="../img/portfolio/box-house/branding-3-640.webp 640w, ../img/portfolio/box-house/branding-3-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Branding para Box House"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
+                            <li class="portfolio__pieza" data-categoria="branding">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/oxyferrum/branding-1-1100.webp"
+                                    srcset="../img/portfolio/oxyferrum/branding-1-640.webp 640w, ../img/portfolio/oxyferrum/branding-1-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Branding para Oxyferrum Quimilí"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
 
-                        <li class="portfolio__pieza" data-categoria="branding">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/box-house/branding-4-1100.webp"
-                                srcset="../img/portfolio/box-house/branding-4-640.webp 640w, ../img/portfolio/box-house/branding-4-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Branding para Box House"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
+                            <li class="portfolio__pieza" data-categoria="branding">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/oxyferrum/branding-2-1100.webp"
+                                    srcset="../img/portfolio/oxyferrum/branding-2-640.webp 640w, ../img/portfolio/oxyferrum/branding-2-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Branding para Oxyferrum Quimilí"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
 
-                        <li class="portfolio__pieza" data-categoria="web">
-                            <a class="portfolio__enlace" href="https://boxhouse.com.ar/" target="_blank" rel="noopener noreferrer"><img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/box-house/web-1-1100.webp"
-                                srcset="../img/portfolio/box-house/web-1-640.webp 640w, ../img/portfolio/box-house/web-1-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Web para Box House (visitar el sitio)"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            ><span class="portfolio__destino" aria-hidden="true">Visitar el sitio</span></a>
-                        </li>
-                </ul>
+                            <li class="portfolio__pieza" data-categoria="branding">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/oxyferrum/branding-3-1100.webp"
+                                    srcset="../img/portfolio/oxyferrum/branding-3-640.webp 640w, ../img/portfolio/oxyferrum/branding-3-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Branding para Oxyferrum Quimilí"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
+
+                            <li class="portfolio__pieza" data-categoria="branding">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/oxyferrum/branding-4-1100.webp"
+                                    srcset="../img/portfolio/oxyferrum/branding-4-640.webp 640w, ../img/portfolio/oxyferrum/branding-4-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Branding para Oxyferrum Quimilí"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
+                    </ul>
+
+                    <p class="resultado">
+                        <span class="resultado__etiqueta">Resultado</span>
+                        <span class="resultado__texto">[hito]</span>
+                    </p>
+                </div>
             </article>
 
-            <article class="portfolio__proyecto" data-proyecto data-categorias="branding" style="--indice-proyecto: 5">
-                <header class="portfolio__marca">
-                    <h2 class="portfolio__nombre">XOP ERP</h2>
-                </header>
+            <article class="portfolio__proyecto" data-proyecto data-categorias="branding web" style="--indice-proyecto: 5">
+                <div class="caso" data-revelar>
+                    <div class="caso__logo">
+                        <img
+                            src="../img/marcas/box-house.webp"
+                            alt="Isologo de Box House"
+                            width="220"
+                            height="110"
+                            loading="lazy"
+                            decoding="async"
+                        >
+                    </div>
 
-                <ul class="portfolio__galeria" role="list" data-galeria>
-                        <li class="portfolio__pieza portfolio__pieza--portada" data-categoria="portada">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/xop-erp/portada-1100.webp"
-                                srcset="../img/portfolio/xop-erp/portada-640.webp 640w, ../img/portfolio/xop-erp/portada-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Portada del proyecto de XOP ERP"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
+                    <div class="caso__datos">
+                        <h2 class="caso__nombre">Box House</h2>
+                        <p class="caso__hicimos">Identidad visual y sitio web.</p>
+                    </div>
 
-                        <li class="portfolio__pieza" data-categoria="branding">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/xop-erp/branding-1-1100.webp"
-                                srcset="../img/portfolio/xop-erp/branding-1-640.webp 640w, ../img/portfolio/xop-erp/branding-1-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Branding para XOP ERP"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
+                    <button
+                        class="boton caso__accion"
+                        type="button"
+                        data-ver-trabajo
+                        aria-expanded="false"
+                        aria-controls="trabajo-box-house"
+                    >
+                        <span class="boton__texto">Ver proyecto</span>
+                    </button>
+                </div>
 
-                        <li class="portfolio__pieza" data-categoria="branding">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/xop-erp/branding-2-1100.webp"
-                                srcset="../img/portfolio/xop-erp/branding-2-640.webp 640w, ../img/portfolio/xop-erp/branding-2-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Branding para XOP ERP"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
+                <div class="portfolio__trabajo" id="trabajo-box-house" data-trabajo hidden>
+                    <ul class="portfolio__galeria" role="list" data-galeria>
+                            <li class="portfolio__pieza portfolio__pieza--portada" data-categoria="portada">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/box-house/portada-1100.webp"
+                                    srcset="../img/portfolio/box-house/portada-640.webp 640w, ../img/portfolio/box-house/portada-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Portada del proyecto de Box House"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
 
-                        <li class="portfolio__pieza" data-categoria="branding">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/xop-erp/branding-3-1100.webp"
-                                srcset="../img/portfolio/xop-erp/branding-3-640.webp 640w, ../img/portfolio/xop-erp/branding-3-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Branding para XOP ERP"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
+                            <li class="portfolio__pieza" data-categoria="branding">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/box-house/branding-1-1100.webp"
+                                    srcset="../img/portfolio/box-house/branding-1-640.webp 640w, ../img/portfolio/box-house/branding-1-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Branding para Box House"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
 
-                        <li class="portfolio__pieza" data-categoria="branding">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/xop-erp/branding-4-1100.webp"
-                                srcset="../img/portfolio/xop-erp/branding-4-640.webp 640w, ../img/portfolio/xop-erp/branding-4-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Branding para XOP ERP"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
-                </ul>
+                            <li class="portfolio__pieza" data-categoria="branding">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/box-house/branding-2-1100.webp"
+                                    srcset="../img/portfolio/box-house/branding-2-640.webp 640w, ../img/portfolio/box-house/branding-2-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Branding para Box House"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
+
+                            <li class="portfolio__pieza" data-categoria="branding">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/box-house/branding-3-1100.webp"
+                                    srcset="../img/portfolio/box-house/branding-3-640.webp 640w, ../img/portfolio/box-house/branding-3-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Branding para Box House"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
+
+                            <li class="portfolio__pieza" data-categoria="branding">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/box-house/branding-4-1100.webp"
+                                    srcset="../img/portfolio/box-house/branding-4-640.webp 640w, ../img/portfolio/box-house/branding-4-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Branding para Box House"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
+
+                            <li class="portfolio__pieza" data-categoria="web">
+                                <a class="portfolio__enlace" href="https://boxhouse.com.ar/" target="_blank" rel="noopener noreferrer"><img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/box-house/web-1-1100.webp"
+                                    srcset="../img/portfolio/box-house/web-1-640.webp 640w, ../img/portfolio/box-house/web-1-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Web para Box House (visitar el sitio)"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                ><span class="portfolio__destino" aria-hidden="true">Visitar el sitio</span></a>
+                            </li>
+                    </ul>
+
+                    <p class="resultado">
+                        <span class="resultado__etiqueta">Resultado</span>
+                        <span class="resultado__texto">[hito]</span>
+                    </p>
+                </div>
             </article>
 
-            <article class="portfolio__proyecto" data-proyecto data-categorias="branding web redes produccion" style="--indice-proyecto: 6">
-                <header class="portfolio__marca">
-                    <h2 class="portfolio__nombre">Congreso de Educación Humanista</h2>
-                </header>
+            <article class="portfolio__proyecto" data-proyecto data-categorias="branding" style="--indice-proyecto: 6">
+                <div class="caso" data-revelar>
+                    <div class="caso__logo">
+                        <img
+                            src="../img/marcas/xop.webp"
+                            alt="Isologo de XOP ERP"
+                            width="220"
+                            height="110"
+                            loading="lazy"
+                            decoding="async"
+                        >
+                    </div>
 
-                <ul class="portfolio__galeria" role="list" data-galeria>
-                        <li class="portfolio__pieza portfolio__pieza--portada" data-categoria="portada">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/congreso-humanista/portada-1100.webp"
-                                srcset="../img/portfolio/congreso-humanista/portada-640.webp 640w, ../img/portfolio/congreso-humanista/portada-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Portada del proyecto de Congreso de Educación Humanista"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
+                    <div class="caso__datos">
+                        <p class="caso__sector">Tecnología</p>
+                        <h2 class="caso__nombre">XOP ERP</h2>
+                        <p class="caso__hicimos">Identidad visual.</p>
+                    </div>
 
-                        <li class="portfolio__pieza" data-categoria="branding">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/congreso-humanista/branding-1-1100.webp"
-                                srcset="../img/portfolio/congreso-humanista/branding-1-640.webp 640w, ../img/portfolio/congreso-humanista/branding-1-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Branding para Congreso de Educación Humanista"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
+                    <button
+                        class="boton caso__accion"
+                        type="button"
+                        data-ver-trabajo
+                        aria-expanded="false"
+                        aria-controls="trabajo-xop-erp"
+                    >
+                        <span class="boton__texto">Ver proyecto</span>
+                    </button>
+                </div>
 
-                        <li class="portfolio__pieza" data-categoria="web">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/congreso-humanista/web-1-1100.webp"
-                                srcset="../img/portfolio/congreso-humanista/web-1-640.webp 640w, ../img/portfolio/congreso-humanista/web-1-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Web para Congreso de Educación Humanista"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
+                <div class="portfolio__trabajo" id="trabajo-xop-erp" data-trabajo hidden>
+                    <ul class="portfolio__galeria" role="list" data-galeria>
+                            <li class="portfolio__pieza portfolio__pieza--portada" data-categoria="portada">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/xop-erp/portada-1100.webp"
+                                    srcset="../img/portfolio/xop-erp/portada-640.webp 640w, ../img/portfolio/xop-erp/portada-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Portada del proyecto de XOP ERP"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
 
-                        <li class="portfolio__pieza" data-categoria="redes">
-                            <a class="portfolio__enlace" href="https://www.instagram.com/congresoeducacionhumanista/" target="_blank" rel="noopener noreferrer"><img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/congreso-humanista/redes-1-1100.webp"
-                                srcset="../img/portfolio/congreso-humanista/redes-1-640.webp 640w, ../img/portfolio/congreso-humanista/redes-1-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Redes para Congreso de Educación Humanista (ver en instagram)"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            ><span class="portfolio__destino" aria-hidden="true">Ver en Instagram</span></a>
-                        </li>
+                            <li class="portfolio__pieza" data-categoria="branding">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/xop-erp/branding-1-1100.webp"
+                                    srcset="../img/portfolio/xop-erp/branding-1-640.webp 640w, ../img/portfolio/xop-erp/branding-1-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Branding para XOP ERP"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
 
-                        <li class="portfolio__pieza" data-categoria="produccion">
-                            <img
-                                class="portfolio__imagen"
-                                src="../img/portfolio/congreso-humanista/produccion-1-1100.webp"
-                                srcset="../img/portfolio/congreso-humanista/produccion-1-640.webp 640w, ../img/portfolio/congreso-humanista/produccion-1-1100.webp 1100w"
-                                sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
-                                alt="Producción para Congreso de Educación Humanista"
-                                width="1080"
-                                height="1350"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </li>
-                </ul>
+                            <li class="portfolio__pieza" data-categoria="branding">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/xop-erp/branding-2-1100.webp"
+                                    srcset="../img/portfolio/xop-erp/branding-2-640.webp 640w, ../img/portfolio/xop-erp/branding-2-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Branding para XOP ERP"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
+
+                            <li class="portfolio__pieza" data-categoria="branding">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/xop-erp/branding-3-1100.webp"
+                                    srcset="../img/portfolio/xop-erp/branding-3-640.webp 640w, ../img/portfolio/xop-erp/branding-3-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Branding para XOP ERP"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
+
+                            <li class="portfolio__pieza" data-categoria="branding">
+                                <img
+                                    class="portfolio__imagen"
+                                    src="../img/portfolio/xop-erp/branding-4-1100.webp"
+                                    srcset="../img/portfolio/xop-erp/branding-4-640.webp 640w, ../img/portfolio/xop-erp/branding-4-1100.webp 1100w"
+                                    sizes="(min-width: 1101px) 30vw, (min-width: 701px) 45vw, 88vw"
+                                    alt="Branding para XOP ERP"
+                                    width="1080"
+                                    height="1350"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </li>
+                    </ul>
+
+                    <p class="resultado">
+                        <span class="resultado__etiqueta">Resultado</span>
+                        <span class="resultado__texto">[hito]</span>
+                    </p>
+                </div>
+            </article>
+
+            <article class="portfolio__proyecto portfolio__proyecto--proximo" data-proyecto data-categorias="" style="--indice-proyecto: 7">
+                <div class="caso caso--proximo" data-revelar>
+                    <div class="caso__logo">
+                        <img
+                            src="../img/marcas/city.webp"
+                            alt="Isologo de City Center Rosario"
+                            width="220"
+                            height="110"
+                            loading="lazy"
+                            decoding="async"
+                        >
+                    </div>
+
+                    <div class="caso__datos">
+                        <h2 class="caso__nombre">City Center Rosario</h2>
+                        <p class="caso__hicimos">Trabajo en curso: pronto publicamos las piezas.</p>
+                    </div>
+
+                    <p class="caso__estado">Próximamente</p>
+                </div>
+            </article>
+
+            <article class="portfolio__proyecto portfolio__proyecto--proximo" data-proyecto data-categorias="" style="--indice-proyecto: 8">
+                <div class="caso caso--proximo" data-revelar>
+                    <div class="caso__logo">
+                        <img
+                            src="../img/marcas/slullitel.webp"
+                            alt="Isologo de Instituto Dr. Jaime Slullitel"
+                            width="220"
+                            height="110"
+                            loading="lazy"
+                            decoding="async"
+                        >
+                    </div>
+
+                    <div class="caso__datos">
+                        <p class="caso__sector">Salud</p>
+                        <h2 class="caso__nombre">Instituto Dr. Jaime Slullitel</h2>
+                        <p class="caso__hicimos">Trabajo en curso: pronto publicamos las piezas.</p>
+                    </div>
+
+                    <p class="caso__estado">Próximamente</p>
+                </div>
+            </article>
+
+            <article class="portfolio__proyecto portfolio__proyecto--proximo" data-proyecto data-categorias="" style="--indice-proyecto: 9">
+                <div class="caso caso--proximo" data-revelar>
+                    <div class="caso__logo">
+                        <img
+                            src="../img/marcas/epa.webp"
+                            alt="Isologo de Escuelas Pías Provincia Argentina"
+                            width="220"
+                            height="110"
+                            loading="lazy"
+                            decoding="async"
+                        >
+                    </div>
+
+                    <div class="caso__datos">
+                        <p class="caso__sector">Educación</p>
+                        <h2 class="caso__nombre">Escuelas Pías Provincia Argentina</h2>
+                        <p class="caso__hicimos">Trabajo en curso: pronto publicamos las piezas.</p>
+                    </div>
+
+                    <p class="caso__estado">Próximamente</p>
+                </div>
+            </article>
+
+            <article class="portfolio__proyecto portfolio__proyecto--proximo" data-proyecto data-categorias="" style="--indice-proyecto: 10">
+                <div class="caso caso--proximo" data-revelar>
+                    <div class="caso__logo">
+                        <img
+                            src="../img/marcas/lionrush.webp"
+                            alt="Isologo de LionRush Coffee Roasters"
+                            width="220"
+                            height="110"
+                            loading="lazy"
+                            decoding="async"
+                        >
+                    </div>
+
+                    <div class="caso__datos">
+                        <h2 class="caso__nombre">LionRush Coffee Roasters</h2>
+                        <p class="caso__hicimos">Trabajo en curso: pronto publicamos las piezas.</p>
+                    </div>
+
+                    <p class="caso__estado">Próximamente</p>
+                </div>
             </article>
             </div>
         </section>
