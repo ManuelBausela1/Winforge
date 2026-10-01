@@ -1,5 +1,6 @@
 import { iniciarSitio } from "../recursos/js/principal.js";
 import { hayAnimacionesDeEntrada } from "../recursos/js/utilidades/animaciones.js";
+import { iniciarPilaresEscena } from "../recursos/js/componentes/pilares-escena.js";
 
 const ANTES_DEL_GRAFICO = 220;
 
@@ -19,3 +20,4 @@ function iniciarPresentacion() {
 
 iniciarSitio();
 iniciarPresentacion();
+iniciarPilaresEscena();
