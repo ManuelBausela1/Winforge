@@ -25,8 +25,12 @@ export function iniciarFondoAtmosfera(raiz = document.querySelector("[data-fondo
     if (!raiz) return;
 
     const movimientoReducido = prefiereMovimientoReducido();
+    const conEstrellas = !raiz.hasAttribute("data-sin-particulas");
     const lienzoParticulas = raiz.querySelector("[data-particulas]");
-    const contexto = lienzoParticulas.getContext("2d");
+
+    if (!conEstrellas) lienzoParticulas?.remove();
+
+    const contexto = conEstrellas ? lienzoParticulas.getContext("2d") : null;
     const fondoFluido = FORMAS_ABSTRACTAS ? crearFondoFluido(raiz.querySelector("[data-fluido]")) : null;
     const temaFondo = crearTemaFondo();
 
@@ -89,6 +93,8 @@ export function iniciarFondoAtmosfera(raiz = document.querySelector("[data-fondo
     }
 
     function generarParticulas() {
+        if (!conEstrellas) return;
+
         const cantidad = Math.min(
             Math.round(ancho * alto * CONFIGURACION.densidadParticulas),
             CONFIGURACION.maximoParticulas,
@@ -97,6 +103,8 @@ export function iniciarFondoAtmosfera(raiz = document.querySelector("[data-fondo
     }
 
     function dibujarParticulas(tiempo) {
+        if (!conEstrellas) return;
+
         contexto.clearRect(0, 0, ancho, alto);
 
         const segundos = tiempo / 1000;
@@ -142,9 +150,11 @@ export function iniciarFondoAtmosfera(raiz = document.querySelector("[data-fondo
         ancho = window.innerWidth;
         alto = window.innerHeight;
 
-        lienzoParticulas.width = Math.round(ancho * resolucion);
-        lienzoParticulas.height = Math.round(alto * resolucion);
-        contexto.setTransform(resolucion, 0, 0, resolucion, 0, 0);
+        if (conEstrellas) {
+            lienzoParticulas.width = Math.round(ancho * resolucion);
+            lienzoParticulas.height = Math.round(alto * resolucion);
+            contexto.setTransform(resolucion, 0, 0, resolucion, 0, 0);
+        }
 
         fondoFluido?.redimensionar(ancho, alto);
         dibujarFluido({ forzar: true });
@@ -179,6 +189,8 @@ export function iniciarFondoAtmosfera(raiz = document.querySelector("[data-fondo
     const zonasSinEstrellas = [...document.querySelectorAll("[data-sin-estrellas]")];
 
     function ajustarEstrellas() {
+        if (!conEstrellas) return;
+
         const altoVentana = window.innerHeight;
         let presencia = 1;
 
