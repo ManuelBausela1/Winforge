@@ -1,6 +1,7 @@
 import { iniciarSitio } from "../recursos/js/principal.js";
 import { iniciarFormularioContacto } from "../recursos/js/componentes/formulario-contacto.js";
 import { hayAnimacionesDeEntrada } from "../recursos/js/utilidades/animaciones.js";
+import { iniciarDatosDeContacto } from "../recursos/js/componentes/datos-contacto.js";
 
 const TIEMPOS = {
     antesDeLaFigura: 220,
@@ -40,3 +41,4 @@ async function iniciarAparicion() {
 iniciarSitio();
 iniciarAparicion();
 iniciarFormularioContacto();
+iniciarDatosDeContacto();

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Contacto | Winforge</title>
-    <meta name="description" content="Contanos tu historia. Escribinos por WhatsApp o redes y empecemos a forjar juntos tu proyecto desde Rosario, Santa Fe, Argentina.">
+    <meta name="description" content="Contanos tu proyecto. Escribinos y coordinamos una primera conversación.">
     <meta name="author" content="Winforge">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://winforge.com.ar/contacto/">
@@ -15,7 +15,7 @@
     <meta property="og:locale" content="es_AR">
     <meta property="og:site_name" content="Winforge">
     <meta property="og:title" content="Contacto | Winforge">
-    <meta property="og:description" content="Contanos tu historia. Escribinos por WhatsApp o redes y empecemos a forjar juntos tu proyecto desde Rosario, Santa Fe, Argentina.">
+    <meta property="og:description" content="Contanos tu proyecto. Escribinos y coordinamos una primera conversación.">
     <meta property="og:url" content="https://winforge.com.ar/contacto/">
     <meta property="og:image" content="https://winforge.com.ar/img/og/winforge-compartir.jpg">
     <meta property="og:image:width" content="1200">
@@ -24,7 +24,7 @@
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Contacto | Winforge">
-    <meta name="twitter:description" content="Contanos tu historia. Escribinos por WhatsApp o redes y empecemos a forjar juntos tu proyecto desde Rosario, Santa Fe, Argentina.">
+    <meta name="twitter:description" content="Contanos tu proyecto. Escribinos y coordinamos una primera conversación.">
     <meta name="twitter:image" content="https://winforge.com.ar/img/og/winforge-compartir.jpg">
 
     <link rel="icon" href="../img/logo/favicon.svg" type="image/svg+xml">
@@ -121,6 +121,7 @@
                 <div class="contacto__columna-figura">
                     <img
                         class="contacto__figura"
+                        data-figura
                         src="../img/forja/david-1000.webp"
                         srcset="../img/forja/david-620.webp 620w, ../img/forja/david-1000.webp 1000w"
                         sizes="(min-width: 1101px) 42vw, 70vw"
@@ -150,6 +151,29 @@
                             >
                             <p class="formulario__error" id="error-nombre" data-error="nombre"></p>
                         </div>
+
+                        <fieldset class="formulario__campo">
+                            <legend class="formulario__etiqueta">¿Nos escribís como marca o institución? <span class="formulario__obligatorio" aria-hidden="true">*</span></legend>
+
+                            <ul class="formulario__opciones" role="list">
+                                <li class="formulario__opcion">
+                                    <label class="casilla casilla--radio">
+                                        <input class="casilla__control" type="radio" name="tipo" value="Marca">
+                                        <span class="casilla__marca" aria-hidden="true"></span>
+                                        <span class="casilla__texto">Marca</span>
+                                    </label>
+                                </li>
+                                <li class="formulario__opcion">
+                                    <label class="casilla casilla--radio">
+                                        <input class="casilla__control" type="radio" name="tipo" value="Institución">
+                                        <span class="casilla__marca" aria-hidden="true"></span>
+                                        <span class="casilla__texto">Institución</span>
+                                    </label>
+                                </li>
+                            </ul>
+
+                            <p class="formulario__error" id="error-tipo" data-error="tipo"></p>
+                        </fieldset>
 
                         <fieldset class="formulario__campo formulario__campo--servicios">
                             <legend class="formulario__etiqueta">¿Qué servicios te interesan? <span class="formulario__ayuda">(elegí uno o varios)</span> <span class="formulario__obligatorio" aria-hidden="true">*</span></legend>
@@ -227,6 +251,49 @@
                         </div>
                     </form>
                 </div>
+
+                <ul class="contacto__datos" data-datos role="list">
+                    <li>
+                        <a class="contacto__dato" href="https://wa.me/5493413626491" target="_blank" rel="noopener noreferrer" aria-label="Escribinos por WhatsApp (se abre en una pestaña nueva)">
+                            <svg class="contacto__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/>
+                                <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/>
+                            </svg>
+                            <span class="contacto__dato-texto">+54 9 341 362-6491</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="contacto__dato" href="mailto:equipowinforge@gmail.com" aria-label="Escribinos por correo">
+                            <svg class="contacto__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <rect x="3" y="5" width="18" height="14" rx="2"/>
+                                <path d="m3.5 7 8.5 6 8.5-6"/>
+                            </svg>
+                            <span class="contacto__dato-texto">equipowinforge@gmail.com</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="contacto__dato" href="https://www.instagram.com/winforge/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Winforge (se abre en una pestaña nueva)">
+                            <svg class="contacto__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <rect x="3.5" y="3.5" width="17" height="17" rx="5"/>
+                                <circle cx="12" cy="12" r="3.8"/>
+                                <path d="M17 7h.01"/>
+                            </svg>
+                            <span class="contacto__dato-texto">@winforge</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <p class="contacto__dato contacto__dato--fijo">
+                            <svg class="contacto__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z"/>
+                                <circle cx="12" cy="10" r="2.6"/>
+                            </svg>
+                            <span class="contacto__dato-texto">Rosario, Argentina</span>
+                        </p>
+                    </li>
+                </ul>
             </div>
         </section>
     </main>
