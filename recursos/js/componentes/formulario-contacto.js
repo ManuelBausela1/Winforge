@@ -18,6 +18,9 @@ const MENSAJES = {
         vacio: "Necesitamos un email para responderte.",
         invalido: "Revisá el email: parece que falta algo.",
     },
+    tipo: {
+        vacio: "Contanos si nos escribís como marca o institución.",
+    },
     servicios: {
         vacio: "Elegí al menos un servicio.",
     },
@@ -52,6 +55,9 @@ function validarCampo(formulario, nombre) {
             if (!valor) return MENSAJES.mensaje.vacio;
             if (valor.length < 10) return MENSAJES.mensaje.corto;
             return "";
+
+        case "tipo":
+            return valor ? "" : MENSAJES.tipo.vacio;
 
         case "servicios":
             return serviciosElegidos(formulario).length ? "" : MENSAJES.servicios.vacio;
@@ -119,6 +125,7 @@ async function enviar(formulario, datos) {
 
     const cuerpo = [
         `Nombre: ${datos.nombre}`,
+        `Marca o institución: ${datos.tipo}`,
         `Email: ${datos.email}`,
         `Servicios: ${datos.servicios.join(", ")}`,
         "",
@@ -137,7 +144,7 @@ export function iniciarFormularioContacto(formulario = document.querySelector("[
     const aviso = formulario.querySelector("[data-aviso]");
     const boton = formulario.querySelector('button[type="submit"]');
     const nacimiento = Date.now();
-    const campos = ["nombre", "email", "mensaje", "servicios"];
+    const campos = ["nombre", "tipo", "email", "mensaje", "servicios"];
     const revisados = new Set();
 
     function controlesDe(nombre) {
@@ -151,7 +158,7 @@ export function iniciarFormularioContacto(formulario = document.querySelector("[
         if (cartel) cartel.textContent = texto;
 
         controlesDe(nombre).forEach((elemento) => {
-            if (elemento.type === "checkbox") return;
+            if (elemento.type === "checkbox" || elemento.type === "radio") return;
             elemento.setAttribute("aria-invalid", texto ? "true" : "false");
         });
 
@@ -180,8 +187,8 @@ export function iniciarFormularioContacto(formulario = document.querySelector("[
                 revisar(nombre);
             });
 
-            elemento.addEventListener(elemento.type === "checkbox" ? "change" : "input", () => {
-                if (elemento.type === "checkbox") revisados.add(nombre);
+            elemento.addEventListener(elemento.type === "checkbox" || elemento.type === "radio" ? "change" : "input", () => {
+                if (elemento.type === "checkbox" || elemento.type === "radio") revisados.add(nombre);
                 revisar(nombre);
             });
         });
@@ -214,6 +221,7 @@ export function iniciarFormularioContacto(formulario = document.querySelector("[
 
         const datos = {
             nombre: formulario.elements.nombre.value.trim(),
+            tipo: formulario.elements.tipo.value,
             email: formulario.elements.email.value.trim(),
             mensaje: formulario.elements.mensaje.value.trim(),
             servicios: serviciosElegidos(formulario),

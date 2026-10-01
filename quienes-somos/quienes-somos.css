@@ -211,6 +211,7 @@
 .presentacion--midiendo .pilar {
     opacity: 1;
     translate: none;
+    transition: none;
 }
 
 .presentacion--midiendo .pilar__descripcion {
@@ -221,19 +222,6 @@
 .presentacion--midiendo .pilar__nombre {
     font-size: var(--texto-sm);
     letter-spacing: 0.2em;
-}
-
-.animar .pilares {
-    opacity: 0;
-    translate: 38% 0;
-    transition:
-        opacity 0.9s var(--curva-suave),
-        translate 1.2s var(--curva-entrada);
-}
-
-.animar .presentacion.grafico-visible .pilares {
-    opacity: 1;
-    translate: 0 0;
 }
 
 @media (max-width: 1100px) {
@@ -269,12 +257,6 @@
 
     .pilar {
         width: 100%;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .animar .pilares {
-        translate: 0 0;
     }
 }
 

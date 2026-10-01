@@ -67,6 +67,10 @@ export function iniciarPilaresEscena(seccion = document.querySelector("[data-pre
     window.addEventListener("resize", medir, { passive: true });
     pantallaAncha.addEventListener("change", medir);
 
+    lista.addEventListener("transitionend", (evento) => {
+        if (evento.target === lista) medir();
+    });
+
     if (document.fonts?.ready) document.fonts.ready.then(medir);
     medir();
 }
