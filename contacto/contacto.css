@@ -383,7 +383,8 @@ a.contacto__dato:focus-visible .contacto__icono {
     translate: 0 0;
 }
 
-.animar .contacto__columna-formulario {
+.animar .contacto__columna-formulario,
+.animar .contacto__datos {
     opacity: 0;
     scale: 0.93;
     transition:
@@ -391,7 +392,8 @@ a.contacto__dato:focus-visible .contacto__icono {
         scale 0.9s var(--curva-resorte);
 }
 
-.animar .contacto.formulario-visible .contacto__columna-formulario {
+.animar .contacto.formulario-visible .contacto__columna-formulario,
+.animar .contacto.formulario-visible .contacto__datos {
     opacity: 1;
     scale: 1;
 }
@@ -401,7 +403,8 @@ a.contacto__dato:focus-visible .contacto__icono {
         translate: 0 0;
     }
 
-    .animar .contacto__columna-formulario {
+    .animar .contacto__columna-formulario,
+    .animar .contacto__datos {
         scale: 1;
     }
 }

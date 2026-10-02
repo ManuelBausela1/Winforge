@@ -46,28 +46,16 @@ function iniciarPortfolio(seccion = document.querySelector("[data-portfolio]")) 
         return [...proyecto.querySelectorAll(".portfolio__pieza")].filter((pieza) => !pieza.hidden);
     }
 
-    /**
-     * Las piezas nacen detrás de la portada y se deslizan a su lugar: se mide
-     * la distancia hasta ella y se guarda en --desde-x / --desde-y.
-     */
+    /* Las piezas suben a su lugar, una detrás de otra. */
     function animarProyecto(proyecto) {
         const piezas = piezasVisibles(proyecto);
-        const portada = piezas[0];
-        if (!portada) return;
-
-        const origen = portada.getBoundingClientRect();
+        if (!piezas.length) return;
 
         piezas.forEach((pieza, indice) => {
             pieza.classList.remove("esta-entrando", "esta-puesta");
             void pieza.offsetWidth;
 
-            if (indice > 0) {
-                const destino = pieza.getBoundingClientRect();
-                pieza.style.setProperty("--desde-x", `${Math.round(origen.left - destino.left)}px`);
-                pieza.style.setProperty("--desde-y", `${Math.round(origen.top - destino.top)}px`);
-                pieza.style.setProperty("--indice-pieza", indice - 1);
-            }
-
+            pieza.style.setProperty("--indice-pieza", indice);
             pieza.classList.add("esta-entrando", "esta-puesta");
         });
     }
