@@ -137,7 +137,32 @@ function iniciarPortfolio(seccion = document.querySelector("[data-portfolio]")) 
         });
     });
 
-    aplicarFiltro("todo");
+    /* Las páginas de servicio enlazan con ?filtro=... para llegar acá con su
+       categoría ya elegida. */
+    function filtroDelEnlace() {
+        const pedido = new URLSearchParams(location.search).get("filtro");
+        return pedido && pedido in ETIQUETAS ? pedido : "todo";
+    }
+
+    aplicarFiltro(filtroDelEnlace());
+
+    /* Al llegar desde otra página con #caso-..., ese proyecto abre solo. */
+    function abrirElDelEnlace() {
+        const id = decodeURIComponent(location.hash.replace("#", ""));
+        if (!id) return;
+
+        const proyecto = proyectos.find((uno) => uno.id === id);
+        if (!proyecto) return;
+
+        /* Si el filtro vigente lo deja afuera, mostramos todo antes de abrirlo. */
+        if (proyecto.hidden) aplicarFiltro("todo");
+
+        abrir(proyecto);
+        setTimeout(() => proyecto.scrollIntoView({ block: "start", behavior: "smooth" }), 120);
+    }
+
+    window.addEventListener("hashchange", abrirElDelEnlace);
+    abrirElDelEnlace();
 }
 
 iniciarSitio();

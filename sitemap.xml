@@ -16,6 +16,21 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://winforge.com.ar/servicios/estrategia-y-marca/</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://winforge.com.ar/servicios/contenido-y-produccion/</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://winforge.com.ar/servicios/web-y-campanas/</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://winforge.com.ar/contacto/</loc>
         <changefreq>yearly</changefreq>
         <priority>0.7</priority>
