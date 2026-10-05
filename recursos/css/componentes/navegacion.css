@@ -1,3 +1,36 @@
+.cabecera__logo {
+    position: fixed;
+    top: clamp(1rem, 2.2vw, 1.6rem);
+    left: clamp(1.25rem, 2.5vw, 2.5rem);
+    z-index: var(--capa-navegacion);
+    display: block;
+    width: clamp(58px, 5.2vw, 84px);
+    transition: opacity 0.35s var(--curva-suave);
+}
+
+.cabecera__logo img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* El logo viene en blanco: sobre fondo claro lo pasamos a carbón. */
+.tema-claro .cabecera__logo img {
+    filter: brightness(0);
+    opacity: 0.9;
+}
+
+.cabecera__logo:hover,
+.cabecera__logo:focus-visible {
+    opacity: 0.78;
+}
+
+@media (hover: none), (max-width: 767px) {
+    .cabecera__logo {
+        width: clamp(48px, 12vw, 62px);
+    }
+}
+
 .indice-navegacion {
     --color-linea: rgba(255, 255, 255, 0.28);
     --color-linea-activa: rgba(255, 255, 255, 0.72);

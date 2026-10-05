@@ -28,6 +28,7 @@
 
     <link rel="stylesheet" href="../../recursos/css/base.css">
     <link rel="stylesheet" href="../../recursos/css/componentes/navegacion.css">
+    <link rel="stylesheet" href="../../recursos/css/componentes/pie.css">
     <link rel="stylesheet" href="../../recursos/css/componentes/botones.css">
     <link rel="stylesheet" href="../servicio.css">
 
@@ -39,6 +40,10 @@
     <a class="saltar-al-contenido" href="#contenido">Saltar al contenido</a>
 
     <header class="cabecera">
+        <a class="cabecera__logo" href="../../" aria-label="Winforge, ir al inicio">
+            <img src="../../img/logo/winforge-isotipo.svg" alt="Winforge" width="674" height="340">
+        </a>
+
         <nav class="indice-navegacion" data-navegacion-indice aria-label="Navegación principal">
             <ul class="indice-navegacion__lista" role="list">
                 <li class="indice-navegacion__item">
@@ -66,39 +71,11 @@
                     </a>
                 </li>
             </ul>
-
-            <ul class="indice-navegacion__redes" role="list" aria-label="Redes sociales">
-                <li>
-                    <a class="indice-navegacion__red" href="https://www.instagram.com/winforge/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Winforge (se abre en una pestaña nueva)">
-                        <svg class="indice-navegacion__icono-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                            <rect x="3.5" y="3.5" width="17" height="17" rx="5"/>
-                            <circle cx="12" cy="12" r="3.8"/>
-                            <path d="M17 7h.01"/>
-                        </svg>
-                    </a>
-                </li>
-                <li>
-                    <a class="indice-navegacion__red" href="https://www.linkedin.com/company/winforge/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Winforge (se abre en una pestaña nueva)">
-                        <svg class="indice-navegacion__icono-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                            <rect x="3.5" y="3.5" width="17" height="17" rx="3"/>
-                            <path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 0 0-4 0"/>
-                        </svg>
-                    </a>
-                </li>
-                <li>
-                    <a class="indice-navegacion__red" href="https://wa.me/5493413626491" target="_blank" rel="noopener noreferrer" aria-label="Escribinos por WhatsApp (se abre en una pestaña nueva)">
-                        <svg class="indice-navegacion__icono-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                            <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/>
-                            <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/>
-                        </svg>
-                    </a>
-                </li>
-            </ul>
         </nav>
     </header>
 
     <main class="servicio-pagina servicio-pagina--claro" id="contenido">
-        <div class="servicio-apertura">
+        <div class="servicio-apertura" data-tramo-oscuro>
             <div class="servicio-portada contenedor">
                 <header class="servicio-portada__texto">
                     <p class="servicio-portada__sobretitulo">Servicios · 03 Web y campañas</p>
@@ -119,12 +96,12 @@
 
                 <figure class="servicio-portada__figura">
                     <img
-                        src="../../img/servicios/desarrollo-software-sitio-web-winforge-1024.webp"
-                        srcset="../../img/servicios/desarrollo-software-sitio-web-winforge-640.webp 640w, ../../img/servicios/desarrollo-software-sitio-web-winforge-1024.webp 1024w"
-                        sizes="(min-width: 1001px) 46vw, 90vw"
-                        alt="Desarrollo de un sitio web en el estudio de Winforge"
-                        width="1024"
-                        height="768"
+                        src="../../img/servicios/portada-web-winforge-1760.webp"
+                        srcset="../../img/servicios/portada-web-winforge-1100.webp 1100w, ../../img/servicios/portada-web-winforge-1760.webp 1760w"
+                        sizes="100vw"
+                        alt="Sitio de Winforge en una notebook"
+                        width="1760"
+                        height="894"
                         fetchpriority="high"
                         decoding="async"
                     >
@@ -135,42 +112,167 @@
         <section class="servicio-items contenedor" aria-labelledby="titulo-items">
             <h2 class="servicio-items__titulo" id="titulo-items" data-revelar>Qué incluye</h2>
 
-            <ol class="items items--sin-entregable" role="list">
-                <li class="item" data-revelar style="--indice-item: 0">
-                    <p class="item__numero">01</p>
+            <div class="navegador-servicios" data-navegador-servicios data-revelar>
+                <div class="selector" role="group" aria-label="Elegí un servicio" data-selector>
+                    <button
+                        class="selector__opcion"
+                        type="button"
+                        data-opcion
+                        aria-pressed="true"
+                        aria-controls="detalle-servicios"
+                    >
+                        <span class="selector__numero">01</span>
+                        <span class="selector__nombre">Sitios web y comercio electrónico</span>
+                    </button>
 
-                    <h3 class="item__nombre">Sitios web y comercio electrónico</h3>
+                    <button
+                        class="selector__opcion"
+                        type="button"
+                        data-opcion
+                        aria-pressed="false"
+                        aria-controls="detalle-servicios"
+                    >
+                        <span class="selector__numero">02</span>
+                        <span class="selector__nombre">Campañas de pauta digital</span>
+                    </button>
 
-                    <p class="item__texto">Arquitectura de información, diseño de experiencia de usuario, desarrollo y puesta en línea de sitios institucionales y tiendas. Incluye capacitación para administrar los contenidos.</p>
-                </li>
+                    <button
+                        class="selector__opcion"
+                        type="button"
+                        data-opcion
+                        aria-pressed="false"
+                        aria-controls="detalle-servicios"
+                    >
+                        <span class="selector__numero">03</span>
+                        <span class="selector__nombre">Posicionamiento en buscadores</span>
+                    </button>
 
-                <li class="item" data-revelar style="--indice-item: 1">
-                    <p class="item__numero">02</p>
+                    <button
+                        class="selector__opcion"
+                        type="button"
+                        data-opcion
+                        aria-pressed="false"
+                        aria-controls="detalle-servicios"
+                    >
+                        <span class="selector__numero">04</span>
+                        <span class="selector__nombre">Newsletters y comunicación por correo</span>
+                    </button>
+                </div>
 
-                    <h3 class="item__nombre">Campañas de pauta digital</h3>
+                <div class="navegador">
+                    <div class="navegador__barra" aria-hidden="true">
+                        <span class="navegador__puntos"><span></span><span></span><span></span></span>
 
-                    <p class="item__texto">Planificación de medios, segmentación de audiencias, piezas y optimización de la inversión en Meta y Google, orientadas a ventas, inscripciones o consultas.</p>
-                </li>
+                        <span class="navegador__direccion">
+                            <svg class="navegador__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="5" y="10" width="14" height="11" rx="2"/>
+                                <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+                            </svg>
+                            winforge.com.ar
+                        </span>
 
-                <li class="item" data-revelar style="--indice-item: 2">
-                    <p class="item__numero">03</p>
+                        <span class="navegador__esquina">↗</span>
+                    </div>
 
-                    <h3 class="item__nombre">Posicionamiento en buscadores</h3>
+                    <div class="navegador__lienzo">
+                        <div class="escena" aria-hidden="true">
+                        <div class="vista vista--sitio esta-activa" data-vista>
+                            <span class="vista__barra"></span>
 
-                    <p class="item__texto">Optimización técnica y de contenidos para ganar visibilidad en las búsquedas de tu público.</p>
-                </li>
+                            <div class="vista__cuerpo">
+                                <span class="vista__lineas">
+                                    <span></span><span></span><span></span><span></span>
+                                </span>
 
-                <li class="item" data-revelar style="--indice-item: 3">
-                    <p class="item__numero">04</p>
+                                <span class="vista__arte"></span>
+                            </div>
+                        </div>
 
-                    <h3 class="item__nombre">Newsletters y comunicación por correo</h3>
+                        <div class="vista vista--anuncios" data-vista>
+                            <span class="anuncio"><span class="anuncio__imagen"></span><span></span><span></span></span>
+                            <span class="anuncio"><span class="anuncio__imagen"></span><span></span><span></span></span>
+                            <span class="anuncio"><span class="anuncio__imagen"></span><span></span><span></span></span>
+                        </div>
 
-                    <p class="item__texto">Diseño, redacción y envío periódico a bases de contacto propias, con seguimiento de aperturas, clics y respuestas.</p>
-                </li>
-            </ol>
+                        <div class="vista vista--busqueda" data-vista>
+                            <span class="vista__campo">
+                                <svg class="vista__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="10.5" cy="10.5" r="6.5"/>
+                                    <path d="m16 16 5 5"/>
+                                </svg>
+                            </span>
+
+                            <span class="vista__resultado"></span>
+                            <span class="vista__resultado"></span>
+                            <span class="vista__resultado"></span>
+                        </div>
+
+                        <div class="vista vista--correo" data-vista>
+                            <span class="vista__sobre">
+                                <svg class="vista__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="5" width="18" height="14" rx="2"/>
+                                    <path d="m3 6 9 7 9-7"/>
+                                </svg>
+                                <span></span>
+                            </span>
+
+                            <span class="vista__imagen"></span>
+
+                            <span class="vista__lineas">
+                                <span></span><span></span><span></span>
+                            </span>
+                        </div>
+                        </div>
+
+                        <div class="dispositivos" role="group" aria-label="Vista del sitio" data-dispositivos>
+                            <button class="dispositivos__boton" type="button" data-dispositivo aria-pressed="true">
+                                <svg class="vista__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <rect x="3" y="3" width="18" height="13" rx="2"/>
+                                    <path d="M12 16v5M8 21h8"/>
+                                </svg>
+                                Escritorio
+                            </button>
+
+                            <button class="dispositivos__boton" type="button" data-dispositivo aria-pressed="false">
+                                <svg class="vista__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <rect x="6" y="2" width="12" height="20" rx="2"/>
+                                    <path d="M11 18h2"/>
+                                </svg>
+                                Móvil
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="navegador__detalle" id="detalle-servicios" aria-live="polite" aria-atomic="true">
+                    <article class="detalle" data-detalle>
+                        <h3 class="detalle__titulo">Sitios web y comercio electrónico</h3>
+
+                        <p class="detalle__texto">Arquitectura de información, diseño de experiencia de usuario, desarrollo y puesta en línea de sitios institucionales y tiendas. Incluye capacitación para administrar los contenidos.</p>
+                    </article>
+
+                    <article class="detalle" data-detalle hidden>
+                        <h3 class="detalle__titulo">Campañas de pauta digital</h3>
+
+                        <p class="detalle__texto">Planificación de medios, segmentación de audiencias, piezas y optimización de la inversión en Meta y Google, orientadas a ventas, inscripciones o consultas.</p>
+                    </article>
+
+                    <article class="detalle" data-detalle hidden>
+                        <h3 class="detalle__titulo">Posicionamiento en buscadores</h3>
+
+                        <p class="detalle__texto">Optimización técnica y de contenidos para ganar visibilidad en las búsquedas de tu público.</p>
+                    </article>
+
+                    <article class="detalle" data-detalle hidden>
+                        <h3 class="detalle__titulo">Newsletters y comunicación por correo</h3>
+
+                        <p class="detalle__texto">Diseño, redacción y envío periódico a bases de contacto propias, con seguimiento de aperturas, clics y respuestas.</p>
+                    </article>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section class="servicio-casos contenedor" aria-labelledby="titulo-casos">
+        <section class="servicio-casos contenedor" data-tramo-oscuro aria-labelledby="titulo-casos">
             <h2 class="servicio-casos__titulo" id="titulo-casos" data-revelar>Proyectos relacionados</h2>
 
             <ul class="servicio-casos__lista" role="list">
@@ -178,7 +280,6 @@
                     <a class="caso-marca__enlace" href="../../portfolio/?filtro=web#caso-box-house">
                         <span class="caso-marca__marco">
                             <img class="caso-marca__logo" src="../../img/marcas/box-house.webp" alt="" width="220" height="110" loading="lazy" decoding="async">
-                            <img class="caso-marca__sello" src="../../img/logo/winforge-isotipo.svg" alt="" width="28" height="28" aria-hidden="true">
                         </span>
                         <span class="caso-marca__nombre">Box House</span>
                     </a>
@@ -188,7 +289,6 @@
                     <a class="caso-marca__enlace" href="../../portfolio/?filtro=web#caso-della-vedova">
                         <span class="caso-marca__marco">
                             <img class="caso-marca__logo" src="../../img/marcas/franco-della-vedoba.webp" alt="" width="220" height="110" loading="lazy" decoding="async">
-                            <img class="caso-marca__sello" src="../../img/logo/winforge-isotipo.svg" alt="" width="28" height="28" aria-hidden="true">
                         </span>
                         <span class="caso-marca__nombre">Dr. Franco Della Vedova</span>
                     </a>
@@ -198,7 +298,6 @@
                     <a class="caso-marca__enlace" href="../../portfolio/?filtro=web#caso-congreso-humanista">
                         <span class="caso-marca__marco">
                             <img class="caso-marca__logo" src="../../img/marcas/congreso1.webp" alt="" width="220" height="110" loading="lazy" decoding="async">
-                            <img class="caso-marca__sello" src="../../img/logo/winforge-isotipo.svg" alt="" width="28" height="28" aria-hidden="true">
                         </span>
                         <span class="caso-marca__nombre">Congreso de Educación Humanista</span>
                     </a>
@@ -206,11 +305,95 @@
             </ul>
         </section>
 
-        <section class="servicio-cierre contenedor" aria-label="Iniciar proyecto">
+        <section class="servicio-cierre contenedor" data-tramo-oscuro aria-label="Iniciar proyecto">
             <a class="boton servicio-cierre__accion" href="../../contacto/?servicios=web-y-campanas">
                 <span class="boton__texto">Iniciar proyecto</span>
             </a>
         </section>
     </main>
+
+    <footer class="pie" data-pie>
+        <div class="pie__fondo" aria-hidden="true"></div>
+
+        <div class="pie__contenido contenedor">
+            <div class="pie__columna">
+                <p class="pie__titulo">Redes</p>
+
+                <ul class="pie__redes" role="list" aria-label="Redes sociales">
+                    <li>
+                        <a class="pie__red" href="https://www.instagram.com/winforge/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Winforge (se abre en una pestaña nueva)">
+                            <svg class="pie__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <rect x="3.5" y="3.5" width="17" height="17" rx="5"/>
+                                <circle cx="12" cy="12" r="3.8"/>
+                                <path d="M17 7h.01"/>
+                            </svg>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="pie__red" href="https://www.linkedin.com/company/winforge/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Winforge (se abre en una pestaña nueva)">
+                            <svg class="pie__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <rect x="3.5" y="3.5" width="17" height="17" rx="3"/>
+                                <path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 0 0-4 0"/>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="pie__columna">
+                <p class="pie__titulo">Ubicación</p>
+
+                <p class="pie__dato">
+                    <svg class="pie__icono-dato" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11Z"/>
+                                <circle cx="12" cy="10" r="2.6"/>
+                            </svg>
+                    Rosario, Argentina
+                </p>
+            </div>
+
+            <div class="pie__columna">
+                <p class="pie__titulo">Contactos</p>
+
+                <a class="pie__dato pie__dato--enlace" href="mailto:equipowinforge@gmail.com">
+                    <svg class="pie__icono-dato" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <rect x="3" y="5" width="18" height="14" rx="2.5"/>
+                                <path d="m3.8 7 7.1 5.2a2 2 0 0 0 2.2 0L20.2 7"/>
+                            </svg>
+                    equipowinforge@gmail.com
+                </a>
+
+                <a class="pie__dato pie__dato--enlace" href="https://wa.me/5493413626491" target="_blank" rel="noopener noreferrer">
+                    <svg class="pie__icono-dato" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/>
+                                <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/>
+                            </svg>
+                    +54 9 341 362 6491
+                </a>
+            </div>
+
+            <nav class="pie__columna" aria-label="Mapa del sitio">
+                <p class="pie__titulo">Páginas</p>
+
+                <ul class="pie__enlaces" role="list">
+                    <li>
+                        <a class="pie__enlace" href="../../">Inicio</a>
+                    </li>
+                    <li>
+                        <a class="pie__enlace" href="../../quienes-somos/">Quiénes somos</a>
+                    </li>
+                    <li>
+                        <a class="pie__enlace" href="../../portfolio/">Portfolio</a>
+                    </li>
+                    <li>
+                        <a class="pie__enlace" href="../../contacto/">Contacto</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <p class="pie__marca" aria-hidden="true">Winforge</p>
+    </footer>
 </body>
 </html>

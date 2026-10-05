@@ -28,6 +28,7 @@
 
     <link rel="stylesheet" href="../../recursos/css/base.css">
     <link rel="stylesheet" href="../../recursos/css/componentes/navegacion.css">
+    <link rel="stylesheet" href="../../recursos/css/componentes/pie.css">
     <link rel="stylesheet" href="../../recursos/css/componentes/botones.css">
     <link rel="stylesheet" href="../servicio.css">
 
@@ -39,6 +40,10 @@
     <a class="saltar-al-contenido" href="#contenido">Saltar al contenido</a>
 
     <header class="cabecera">
+        <a class="cabecera__logo" href="../../" aria-label="Winforge, ir al inicio">
+            <img src="../../img/logo/winforge-isotipo.svg" alt="Winforge" width="674" height="340">
+        </a>
+
         <nav class="indice-navegacion" data-navegacion-indice aria-label="Navegación principal">
             <ul class="indice-navegacion__lista" role="list">
                 <li class="indice-navegacion__item">
@@ -66,39 +71,11 @@
                     </a>
                 </li>
             </ul>
-
-            <ul class="indice-navegacion__redes" role="list" aria-label="Redes sociales">
-                <li>
-                    <a class="indice-navegacion__red" href="https://www.instagram.com/winforge/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Winforge (se abre en una pestaña nueva)">
-                        <svg class="indice-navegacion__icono-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                            <rect x="3.5" y="3.5" width="17" height="17" rx="5"/>
-                            <circle cx="12" cy="12" r="3.8"/>
-                            <path d="M17 7h.01"/>
-                        </svg>
-                    </a>
-                </li>
-                <li>
-                    <a class="indice-navegacion__red" href="https://www.linkedin.com/company/winforge/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Winforge (se abre en una pestaña nueva)">
-                        <svg class="indice-navegacion__icono-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                            <rect x="3.5" y="3.5" width="17" height="17" rx="3"/>
-                            <path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 0 0-4 0"/>
-                        </svg>
-                    </a>
-                </li>
-                <li>
-                    <a class="indice-navegacion__red" href="https://wa.me/5493413626491" target="_blank" rel="noopener noreferrer" aria-label="Escribinos por WhatsApp (se abre en una pestaña nueva)">
-                        <svg class="indice-navegacion__icono-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                            <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/>
-                            <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/>
-                        </svg>
-                    </a>
-                </li>
-            </ul>
         </nav>
     </header>
 
     <main class="servicio-pagina servicio-pagina--eucalipto" id="contenido">
-        <div class="servicio-apertura">
+        <div class="servicio-apertura" data-tramo-oscuro>
             <div class="servicio-portada contenedor">
                 <header class="servicio-portada__texto">
                     <p class="servicio-portada__sobretitulo">Servicios · 01 Estrategia y marca</p>
@@ -119,12 +96,12 @@
 
                 <figure class="servicio-portada__figura">
                     <img
-                        src="../../img/servicios/diseno-estrategia-tarjetas-winforge-1024.webp"
-                        srcset="../../img/servicios/diseno-estrategia-tarjetas-winforge-640.webp 640w, ../../img/servicios/diseno-estrategia-tarjetas-winforge-1024.webp 1024w"
-                        sizes="(min-width: 1001px) 46vw, 90vw"
-                        alt="Tarjetas y piezas de identidad de marca diseñadas por Winforge"
-                        width="1024"
-                        height="768"
+                        src="../../img/servicios/portada-estrategia-winforge-1760.webp"
+                        srcset="../../img/servicios/portada-estrategia-winforge-1100.webp 1100w, ../../img/servicios/portada-estrategia-winforge-1760.webp 1760w"
+                        sizes="100vw"
+                        alt="Tarjetas de Winforge con el grabado de la forja"
+                        width="1760"
+                        height="906"
                         fetchpriority="high"
                         decoding="async"
                     >
@@ -135,62 +112,172 @@
         <section class="servicio-items contenedor" aria-labelledby="titulo-items">
             <h2 class="servicio-items__titulo" id="titulo-items" data-revelar>Qué incluye</h2>
 
-            <ol class="items" role="list">
-                <li class="item" data-revelar style="--indice-item: 0">
-                    <p class="item__numero">01</p>
+            <div class="incluye" data-carrusel-incluye data-revelar aria-roledescription="carrusel">
+                <div class="incluye__visor" data-visor>
+                    <div class="incluye__riel" id="riel-incluye" data-riel>
+                    <article
+                        class="incluye__lamina"
+                        data-lamina
+                        role="group"
+                        aria-roledescription="diapositiva"
+                        aria-label="01 de 04: Diagnóstico y posicionamiento estratégico"
+                    >
 
-                    <h3 class="item__nombre">Diagnóstico y posicionamiento estratégico</h3>
+                        <h3 class="incluye__titulo">Diagnóstico y posicionamiento estratégico</h3>
 
-                    <p class="item__texto">Auditoría de la marca en todos sus puntos de contacto, análisis competitivo y de audiencias, y definición de la propuesta de valor y el territorio de marca.</p>
+                        <div class="incluye__escena">
+                            <p class="incluye__numero" aria-hidden="true">01</p>
 
-                    <p class="item__entregable">
-                        <span class="item__etiqueta">Entregable</span>
-                        Informe de diagnóstico y plataforma de marca.
-                    </p>
-                </li>
+                            <div class="incluye__columna">
+                                <p class="incluye__texto">Auditoría de la marca en todos sus puntos de contacto, análisis competitivo y de audiencias, y definición de la propuesta de valor y el territorio de marca.</p>
 
-                <li class="item" data-revelar style="--indice-item: 1">
-                    <p class="item__numero">02</p>
+                                <figure class="entregable">
+                                    <figcaption class="entregable__etiqueta">Entregable</figcaption>
 
-                    <h3 class="item__nombre">Sistema de identidad visual</h3>
+                                    <p class="entregable__nombre">Informe de diagnóstico y plataforma de marca.</p>
+                                </figure>
+                            </div>
+                        </div>
+                    </article>
 
-                    <p class="item__texto">Isologotipo, paleta cromática, sistema tipográfico, recursos gráficos y aplicaciones institucionales y comerciales.</p>
+                    <article
+                        class="incluye__lamina"
+                        data-lamina
+                        role="group"
+                        aria-roledescription="diapositiva"
+                        aria-label="02 de 04: Sistema de identidad visual"
+                        aria-hidden="true"
+                        inert
+                    >
 
-                    <p class="item__entregable">
-                        <span class="item__etiqueta">Entregable</span>
-                        Manual de identidad.
-                    </p>
-                </li>
+                        <h3 class="incluye__titulo">Sistema de identidad visual</h3>
 
-                <li class="item" data-revelar style="--indice-item: 2">
-                    <p class="item__numero">03</p>
+                        <div class="incluye__escena">
+                            <p class="incluye__numero" aria-hidden="true">02</p>
 
-                    <h3 class="item__nombre">Naming e identidad verbal</h3>
+                            <div class="incluye__columna">
+                                <p class="incluye__texto">Isologotipo, paleta cromática, sistema tipográfico, recursos gráficos y aplicaciones institucionales y comerciales.</p>
 
-                    <p class="item__texto">Creación o revisión del nombre, arquitectura de mensajes, tono de voz y lineamientos de redacción por canal.</p>
+                                <figure class="entregable">
+                                    <figcaption class="entregable__etiqueta">Entregable</figcaption>
 
-                    <p class="item__entregable">
-                        <span class="item__etiqueta">Entregable</span>
-                        Guía de identidad verbal.
-                    </p>
-                </li>
+                                    <p class="entregable__nombre">Manual de identidad.</p>
+                                </figure>
+                            </div>
+                        </div>
+                    </article>
 
-                <li class="item" data-revelar style="--indice-item: 3">
-                    <p class="item__numero">04</p>
+                    <article
+                        class="incluye__lamina"
+                        data-lamina
+                        role="group"
+                        aria-roledescription="diapositiva"
+                        aria-label="03 de 04: Naming e identidad verbal"
+                        aria-hidden="true"
+                        inert
+                    >
 
-                    <h3 class="item__nombre">Comunicación institucional e interna</h3>
+                        <h3 class="incluye__titulo">Naming e identidad verbal</h3>
 
-                    <p class="item__texto">Arquitectura de marca y lineamientos de gestión para instituciones con múltiples sedes, niveles o unidades de servicio.</p>
+                        <div class="incluye__escena">
+                            <p class="incluye__numero" aria-hidden="true">03</p>
 
-                    <p class="item__entregable">
-                        <span class="item__etiqueta">Entregable</span>
-                        Plan de comunicación institucional e interna.
-                    </p>
-                </li>
-            </ol>
+                            <div class="incluye__columna">
+                                <p class="incluye__texto">Creación o revisión del nombre, arquitectura de mensajes, tono de voz y lineamientos de redacción por canal.</p>
+
+                                <figure class="entregable">
+                                    <figcaption class="entregable__etiqueta">Entregable</figcaption>
+
+                                    <p class="entregable__nombre">Guía de identidad verbal.</p>
+                                </figure>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article
+                        class="incluye__lamina"
+                        data-lamina
+                        role="group"
+                        aria-roledescription="diapositiva"
+                        aria-label="04 de 04: Comunicación institucional e interna"
+                        aria-hidden="true"
+                        inert
+                    >
+
+                        <h3 class="incluye__titulo">Comunicación institucional e interna</h3>
+
+                        <div class="incluye__escena">
+                            <p class="incluye__numero" aria-hidden="true">04</p>
+
+                            <div class="incluye__columna">
+                                <p class="incluye__texto">Arquitectura de marca y lineamientos de gestión para instituciones con múltiples sedes, niveles o unidades de servicio.</p>
+
+                                <figure class="entregable">
+                                    <figcaption class="entregable__etiqueta">Entregable</figcaption>
+
+                                    <p class="entregable__nombre">Plan de comunicación institucional e interna.</p>
+                                </figure>
+                            </div>
+                        </div>
+                    </article>
+                    </div>
+                </div>
+
+                <nav class="incluye__navegacion" data-navegacion-carrusel aria-label="Navegación de los puntos">
+                    <div class="incluye__indice" role="group" aria-label="Elegí un punto">
+                        <button
+                            class="incluye__paso"
+                            type="button"
+                            data-ir-a
+                            aria-label="Diagnóstico y posicionamiento estratégico"
+                            aria-pressed="true"
+                            aria-controls="riel-incluye"
+                        >01</button>
+
+                        <button
+                            class="incluye__paso"
+                            type="button"
+                            data-ir-a
+                            aria-label="Sistema de identidad visual"
+                            aria-pressed="false"
+                            aria-controls="riel-incluye"
+                        >02</button>
+
+                        <button
+                            class="incluye__paso"
+                            type="button"
+                            data-ir-a
+                            aria-label="Naming e identidad verbal"
+                            aria-pressed="false"
+                            aria-controls="riel-incluye"
+                        >03</button>
+
+                        <button
+                            class="incluye__paso"
+                            type="button"
+                            data-ir-a
+                            aria-label="Comunicación institucional e interna"
+                            aria-pressed="false"
+                            aria-controls="riel-incluye"
+                        >04</button>
+                    </div>
+
+                    <div class="incluye__flechas">
+                        <button class="incluye__flecha" type="button" data-anterior aria-label="Punto anterior" aria-controls="riel-incluye" disabled>
+                            <span aria-hidden="true">←</span>
+                        </button>
+
+                        <button class="incluye__flecha incluye__flecha--siguiente" type="button" data-siguiente aria-label="Punto siguiente" aria-controls="riel-incluye">
+                            <span aria-hidden="true">→</span>
+                        </button>
+                    </div>
+                </nav>
+
+                <p class="texto-oculto" role="status" aria-live="polite" aria-atomic="true" data-aviso-carrusel></p>
+            </div>
         </section>
 
-        <section class="servicio-casos contenedor" aria-labelledby="titulo-casos">
+        <section class="servicio-casos contenedor" data-tramo-oscuro aria-labelledby="titulo-casos">
             <h2 class="servicio-casos__titulo" id="titulo-casos" data-revelar>Proyectos relacionados</h2>
 
             <ul class="servicio-casos__lista" role="list">
@@ -198,7 +285,6 @@
                     <a class="caso-marca__enlace" href="../../portfolio/?filtro=branding#caso-escuelas-pias">
                         <span class="caso-marca__marco">
                             <img class="caso-marca__logo" src="../../img/marcas/epa.webp" alt="" width="220" height="110" loading="lazy" decoding="async">
-                            <img class="caso-marca__sello" src="../../img/logo/winforge-isotipo.svg" alt="" width="28" height="28" aria-hidden="true">
                         </span>
                         <span class="caso-marca__nombre">Escuelas Pías Mendiolaza</span>
                     </a>
@@ -208,7 +294,6 @@
                     <a class="caso-marca__enlace" href="../../portfolio/?filtro=branding#caso-della-vedova">
                         <span class="caso-marca__marco">
                             <img class="caso-marca__logo" src="../../img/marcas/franco-della-vedoba.webp" alt="" width="220" height="110" loading="lazy" decoding="async">
-                            <img class="caso-marca__sello" src="../../img/logo/winforge-isotipo.svg" alt="" width="28" height="28" aria-hidden="true">
                         </span>
                         <span class="caso-marca__nombre">Dr. Franco Della Vedova</span>
                     </a>
@@ -218,7 +303,6 @@
                     <a class="caso-marca__enlace" href="../../portfolio/?filtro=branding#caso-coe">
                         <span class="caso-marca__marco">
                             <img class="caso-marca__logo" src="../../img/marcas/coe.webp" alt="" width="220" height="110" loading="lazy" decoding="async">
-                            <img class="caso-marca__sello" src="../../img/logo/winforge-isotipo.svg" alt="" width="28" height="28" aria-hidden="true">
                         </span>
                         <span class="caso-marca__nombre">COE</span>
                     </a>
@@ -228,7 +312,6 @@
                     <a class="caso-marca__enlace" href="../../portfolio/?filtro=branding#caso-oxyferrum">
                         <span class="caso-marca__marco">
                             <img class="caso-marca__logo" src="../../img/marcas/oxyferrum.webp" alt="" width="220" height="110" loading="lazy" decoding="async">
-                            <img class="caso-marca__sello" src="../../img/logo/winforge-isotipo.svg" alt="" width="28" height="28" aria-hidden="true">
                         </span>
                         <span class="caso-marca__nombre">Oxyferrum Quimilí</span>
                     </a>
@@ -238,7 +321,6 @@
                     <a class="caso-marca__enlace" href="../../portfolio/?filtro=branding#caso-box-house">
                         <span class="caso-marca__marco">
                             <img class="caso-marca__logo" src="../../img/marcas/box-house.webp" alt="" width="220" height="110" loading="lazy" decoding="async">
-                            <img class="caso-marca__sello" src="../../img/logo/winforge-isotipo.svg" alt="" width="28" height="28" aria-hidden="true">
                         </span>
                         <span class="caso-marca__nombre">Box House</span>
                     </a>
@@ -248,7 +330,6 @@
                     <a class="caso-marca__enlace" href="../../portfolio/?filtro=branding#caso-xop-erp">
                         <span class="caso-marca__marco">
                             <img class="caso-marca__logo" src="../../img/marcas/xop.webp" alt="" width="220" height="110" loading="lazy" decoding="async">
-                            <img class="caso-marca__sello" src="../../img/logo/winforge-isotipo.svg" alt="" width="28" height="28" aria-hidden="true">
                         </span>
                         <span class="caso-marca__nombre">XOP ERP</span>
                     </a>
@@ -256,11 +337,95 @@
             </ul>
         </section>
 
-        <section class="servicio-cierre contenedor" aria-label="Iniciar proyecto">
+        <section class="servicio-cierre contenedor" data-tramo-oscuro aria-label="Iniciar proyecto">
             <a class="boton servicio-cierre__accion" href="../../contacto/?servicios=estrategia-y-marca">
                 <span class="boton__texto">Iniciar proyecto</span>
             </a>
         </section>
     </main>
+
+    <footer class="pie" data-pie>
+        <div class="pie__fondo" aria-hidden="true"></div>
+
+        <div class="pie__contenido contenedor">
+            <div class="pie__columna">
+                <p class="pie__titulo">Redes</p>
+
+                <ul class="pie__redes" role="list" aria-label="Redes sociales">
+                    <li>
+                        <a class="pie__red" href="https://www.instagram.com/winforge/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Winforge (se abre en una pestaña nueva)">
+                            <svg class="pie__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <rect x="3.5" y="3.5" width="17" height="17" rx="5"/>
+                                <circle cx="12" cy="12" r="3.8"/>
+                                <path d="M17 7h.01"/>
+                            </svg>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="pie__red" href="https://www.linkedin.com/company/winforge/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Winforge (se abre en una pestaña nueva)">
+                            <svg class="pie__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <rect x="3.5" y="3.5" width="17" height="17" rx="3"/>
+                                <path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 0 0-4 0"/>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="pie__columna">
+                <p class="pie__titulo">Ubicación</p>
+
+                <p class="pie__dato">
+                    <svg class="pie__icono-dato" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11Z"/>
+                                <circle cx="12" cy="10" r="2.6"/>
+                            </svg>
+                    Rosario, Argentina
+                </p>
+            </div>
+
+            <div class="pie__columna">
+                <p class="pie__titulo">Contactos</p>
+
+                <a class="pie__dato pie__dato--enlace" href="mailto:equipowinforge@gmail.com">
+                    <svg class="pie__icono-dato" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <rect x="3" y="5" width="18" height="14" rx="2.5"/>
+                                <path d="m3.8 7 7.1 5.2a2 2 0 0 0 2.2 0L20.2 7"/>
+                            </svg>
+                    equipowinforge@gmail.com
+                </a>
+
+                <a class="pie__dato pie__dato--enlace" href="https://wa.me/5493413626491" target="_blank" rel="noopener noreferrer">
+                    <svg class="pie__icono-dato" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/>
+                                <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/>
+                            </svg>
+                    +54 9 341 362 6491
+                </a>
+            </div>
+
+            <nav class="pie__columna" aria-label="Mapa del sitio">
+                <p class="pie__titulo">Páginas</p>
+
+                <ul class="pie__enlaces" role="list">
+                    <li>
+                        <a class="pie__enlace" href="../../">Inicio</a>
+                    </li>
+                    <li>
+                        <a class="pie__enlace" href="../../quienes-somos/">Quiénes somos</a>
+                    </li>
+                    <li>
+                        <a class="pie__enlace" href="../../portfolio/">Portfolio</a>
+                    </li>
+                    <li>
+                        <a class="pie__enlace" href="../../contacto/">Contacto</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <p class="pie__marca" aria-hidden="true">Winforge</p>
+    </footer>
 </body>
 </html>

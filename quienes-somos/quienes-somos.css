@@ -1,30 +1,30 @@
-.mural-forja {
+/* La plaza vive en la portada, con los bordes fundidos en negro. */
+.presentacion::before {
+    content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    z-index: var(--capa-fondo);
-    width: 100%;
-    aspect-ratio: 1709 / 2458;
-    background-image: url("../img/forja/mural-1000.webp");
-    background-position: top center;
-    background-repeat: no-repeat;
-    background-size: 100% auto;
-    opacity: var(--fuerza-mural, 0.26);
+    inset: 0;
+    z-index: 0;
+    background-image: url("../img/forja/plaza-900.webp");
+    background-size: cover;
+    background-position: center 42%;
+    opacity: 0.3;
     mix-blend-mode: screen;
     -webkit-mask-image:
-        linear-gradient(180deg, #000 0%, #000 72%, transparent 100%),
-        linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+        radial-gradient(74% 66% at 50% 50%, #000 0%, rgba(0, 0, 0, 0.88) 34%, rgba(0, 0, 0, 0.42) 64%, transparent 90%),
+        linear-gradient(180deg, transparent 0%, #000 18%, #000 76%, transparent 100%),
+        linear-gradient(90deg, transparent 0%, #000 16%, #000 84%, transparent 100%);
     -webkit-mask-composite: source-in;
     mask-image:
-        linear-gradient(180deg, #000 0%, #000 72%, transparent 100%),
-        linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+        radial-gradient(74% 66% at 50% 50%, #000 0%, rgba(0, 0, 0, 0.88) 34%, rgba(0, 0, 0, 0.42) 64%, transparent 90%),
+        linear-gradient(180deg, transparent 0%, #000 18%, #000 76%, transparent 100%),
+        linear-gradient(90deg, transparent 0%, #000 16%, #000 84%, transparent 100%);
     mask-composite: intersect;
     pointer-events: none;
 }
 
-@media (min-width: 1100px) {
-    .mural-forja {
-        background-image: url("../img/forja/mural-1600.webp");
+@media (min-width: 901px) {
+    .presentacion::before {
+        background-image: url("../img/forja/plaza-1400.webp");
     }
 }
 
@@ -35,6 +35,7 @@
     min-height: 100vh;
     min-height: 100svh;
     padding-block: 6rem 3rem;
+    background-color: var(--color-fondo-profundo);
 }
 
 .presentacion__contenedor {
@@ -263,7 +264,10 @@
 .proposito {
     position: relative;
     z-index: 1;
-    padding-block: clamp(4rem, 12vh, 9rem);
+    padding-block: clamp(5rem, 14vh, 10rem);
+    background-color: #000000;
+    box-shadow: 0 0 0 100vmax #000000;
+    clip-path: inset(-1px -100vmax);
 }
 
 .proposito__contenedor {
@@ -279,11 +283,22 @@
     }
 }
 
+/* Un filete naranja al costado, del alto del título y su texto. */
 .proposito__bloque {
     display: flex;
     flex-direction: column;
     gap: clamp(0.75rem, 2vh, 1.25rem);
     max-width: min(58ch, 100%);
+}
+
+.proposito__bloque--mision {
+    padding-left: clamp(1.25rem, 3vw, 2.25rem);
+    border-left: 2px solid var(--color-eucalipto);
+}
+
+.proposito__bloque--vision {
+    padding-right: clamp(1.25rem, 3vw, 2.25rem);
+    border-right: 2px solid var(--color-eucalipto);
 }
 
 .proposito__bloque--mision {
@@ -356,7 +371,10 @@
 .equipo {
     position: relative;
     z-index: 1;
-    padding-block: clamp(4rem, 12vh, 9rem);
+    padding-block: clamp(5rem, 14vh, 10rem);
+    background-color: #000000;
+    box-shadow: 0 0 0 100vmax #000000;
+    clip-path: inset(-1px -100vmax);
 }
 
 .equipo__contenedor {

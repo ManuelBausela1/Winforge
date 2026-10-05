@@ -38,6 +38,7 @@
     <link rel="stylesheet" href="../recursos/css/base.css">
     <link rel="stylesheet" href="../recursos/css/componentes/fondo-atmosfera.css">
     <link rel="stylesheet" href="../recursos/css/componentes/navegacion.css">
+    <link rel="stylesheet" href="../recursos/css/componentes/pie.css">
     <link rel="stylesheet" href="../recursos/css/componentes/botones.css">
     <link rel="stylesheet" href="portfolio.css">
 
@@ -48,13 +49,17 @@
 <body>
     <a class="saltar-al-contenido" href="#contenido">Saltar al contenido</a>
 
-    <div class="fondo-atmosfera" data-fondo-atmosfera aria-hidden="true">
+    <div class="fondo-atmosfera" data-fondo-atmosfera data-sin-particulas aria-hidden="true">
         <canvas class="fondo-atmosfera__fluido" data-fluido></canvas>
         <canvas class="fondo-atmosfera__particulas" data-particulas></canvas>
         <div class="fondo-atmosfera__grano"></div>
     </div>
 
     <header class="cabecera">
+        <a class="cabecera__logo" href="../" aria-label="Winforge, ir al inicio">
+            <img src="../img/logo/winforge-isotipo.svg" alt="Winforge" width="674" height="340">
+        </a>
+
         <nav class="indice-navegacion" data-navegacion-indice aria-label="Navegación principal">
             <ul class="indice-navegacion__lista" role="list">
                 <li class="indice-navegacion__item">
@@ -79,34 +84,6 @@
                     <a class="indice-navegacion__enlace" href="../contacto/">
                         <span class="indice-navegacion__linea" aria-hidden="true"></span>
                         <span class="indice-navegacion__texto">Contacto</span>
-                    </a>
-                </li>
-            </ul>
-
-            <ul class="indice-navegacion__redes" role="list" aria-label="Redes sociales">
-                <li>
-                    <a class="indice-navegacion__red" href="https://www.instagram.com/winforge/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Winforge (se abre en una pestaña nueva)">
-                        <svg class="indice-navegacion__icono-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                            <rect x="3.5" y="3.5" width="17" height="17" rx="5"/>
-                            <circle cx="12" cy="12" r="3.8"/>
-                            <path d="M17 7h.01"/>
-                        </svg>
-                    </a>
-                </li>
-                <li>
-                    <a class="indice-navegacion__red" href="https://www.linkedin.com/company/winforge/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Winforge (se abre en una pestaña nueva)">
-                        <svg class="indice-navegacion__icono-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                            <rect x="3.5" y="3.5" width="17" height="17" rx="3"/>
-                            <path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 0 0-4 0"/>
-                        </svg>
-                    </a>
-                </li>
-                <li>
-                    <a class="indice-navegacion__red" href="https://wa.me/5493413626491" target="_blank" rel="noopener noreferrer" aria-label="Escribinos por WhatsApp (se abre en una pestaña nueva)">
-                        <svg class="indice-navegacion__icono-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                            <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/>
-                            <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/>
-                        </svg>
                     </a>
                 </li>
             </ul>
@@ -144,7 +121,7 @@
             </div>
 
             <div class="portfolio__lista contenedor">
-            <article class="portfolio__proyecto" id="caso-escuelas-pias" data-proyecto data-categorias="branding redes" style="--indice-proyecto: 0">
+            <article class="portfolio__proyecto" id="caso-escuelas-pias" data-proyecto data-categorias="branding redes" style="--indice-proyecto: 0; --color-marca: hsl(169, 58%, 50%)">
                 <div class="caso" data-revelar>
                     <div class="caso__logo">
                         <img
@@ -240,7 +217,7 @@
                 </div>
             </article>
 
-            <article class="portfolio__proyecto" id="caso-congreso-humanista" data-proyecto data-categorias="branding web redes produccion" style="--indice-proyecto: 1">
+            <article class="portfolio__proyecto" id="caso-congreso-humanista" data-proyecto data-categorias="branding web redes produccion" style="--indice-proyecto: 1; --color-marca: hsl(29, 75%, 55%)">
                 <div class="caso" data-revelar>
                     <div class="caso__logo">
                         <img
@@ -350,7 +327,7 @@
                 </div>
             </article>
 
-            <article class="portfolio__proyecto" id="caso-della-vedova" data-proyecto data-categorias="branding web redes" style="--indice-proyecto: 2">
+            <article class="portfolio__proyecto" id="caso-della-vedova" data-proyecto data-categorias="branding web redes" style="--indice-proyecto: 2; --color-marca: hsl(237, 62%, 62%)">
                 <div class="caso" data-revelar>
                     <div class="caso__logo">
                         <img
@@ -488,7 +465,7 @@
                 </div>
             </article>
 
-            <article class="portfolio__proyecto" id="caso-coe" data-proyecto data-categorias="branding" style="--indice-proyecto: 3">
+            <article class="portfolio__proyecto" id="caso-coe" data-proyecto data-categorias="branding" style="--indice-proyecto: 3; --color-marca: hsl(57, 62%, 55%)">
                 <div class="caso" data-revelar>
                     <div class="caso__logo">
                         <img
@@ -583,7 +560,7 @@
                 </div>
             </article>
 
-            <article class="portfolio__proyecto" id="caso-oxyferrum" data-proyecto data-categorias="branding" style="--indice-proyecto: 4">
+            <article class="portfolio__proyecto" id="caso-oxyferrum" data-proyecto data-categorias="branding" style="--indice-proyecto: 4; --color-marca: hsl(45, 72%, 55%)">
                 <div class="caso" data-revelar>
                     <div class="caso__logo">
                         <img
@@ -693,7 +670,7 @@
                 </div>
             </article>
 
-            <article class="portfolio__proyecto" id="caso-box-house" data-proyecto data-categorias="branding web" style="--indice-proyecto: 5">
+            <article class="portfolio__proyecto" id="caso-box-house" data-proyecto data-categorias="branding web" style="--indice-proyecto: 5; --color-marca: hsl(121, 42%, 48%)">
                 <div class="caso" data-revelar>
                     <div class="caso__logo">
                         <img
@@ -816,7 +793,7 @@
                 </div>
             </article>
 
-            <article class="portfolio__proyecto" id="caso-xop-erp" data-proyecto data-categorias="branding" style="--indice-proyecto: 6">
+            <article class="portfolio__proyecto" id="caso-xop-erp" data-proyecto data-categorias="branding" style="--indice-proyecto: 6; --color-marca: hsl(200, 78%, 55%)">
                 <div class="caso" data-revelar>
                     <div class="caso__logo">
                         <img
@@ -1018,5 +995,89 @@
             </div>
         </section>
     </main>
+
+    <footer class="pie" data-pie>
+        <div class="pie__fondo" aria-hidden="true"></div>
+
+        <div class="pie__contenido contenedor">
+            <div class="pie__columna">
+                <p class="pie__titulo">Redes</p>
+
+                <ul class="pie__redes" role="list" aria-label="Redes sociales">
+                    <li>
+                        <a class="pie__red" href="https://www.instagram.com/winforge/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Winforge (se abre en una pestaña nueva)">
+                            <svg class="pie__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <rect x="3.5" y="3.5" width="17" height="17" rx="5"/>
+                                <circle cx="12" cy="12" r="3.8"/>
+                                <path d="M17 7h.01"/>
+                            </svg>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="pie__red" href="https://www.linkedin.com/company/winforge/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Winforge (se abre en una pestaña nueva)">
+                            <svg class="pie__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <rect x="3.5" y="3.5" width="17" height="17" rx="3"/>
+                                <path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 0 0-4 0"/>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="pie__columna">
+                <p class="pie__titulo">Ubicación</p>
+
+                <p class="pie__dato">
+                    <svg class="pie__icono-dato" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11Z"/>
+                                <circle cx="12" cy="10" r="2.6"/>
+                            </svg>
+                    Rosario, Argentina
+                </p>
+            </div>
+
+            <div class="pie__columna">
+                <p class="pie__titulo">Contactos</p>
+
+                <a class="pie__dato pie__dato--enlace" href="mailto:equipowinforge@gmail.com">
+                    <svg class="pie__icono-dato" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <rect x="3" y="5" width="18" height="14" rx="2.5"/>
+                                <path d="m3.8 7 7.1 5.2a2 2 0 0 0 2.2 0L20.2 7"/>
+                            </svg>
+                    equipowinforge@gmail.com
+                </a>
+
+                <a class="pie__dato pie__dato--enlace" href="https://wa.me/5493413626491" target="_blank" rel="noopener noreferrer">
+                    <svg class="pie__icono-dato" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/>
+                                <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/>
+                            </svg>
+                    +54 9 341 362 6491
+                </a>
+            </div>
+
+            <nav class="pie__columna" aria-label="Mapa del sitio">
+                <p class="pie__titulo">Páginas</p>
+
+                <ul class="pie__enlaces" role="list">
+                    <li>
+                        <a class="pie__enlace" href="../">Inicio</a>
+                    </li>
+                    <li>
+                        <a class="pie__enlace" href="../quienes-somos/">Quiénes somos</a>
+                    </li>
+                    <li>
+                        <a class="pie__enlace" href="../portfolio/" aria-current="page">Portfolio</a>
+                    </li>
+                    <li>
+                        <a class="pie__enlace" href="../contacto/">Contacto</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <p class="pie__marca" aria-hidden="true">Winforge</p>
+    </footer>
 </body>
 </html>

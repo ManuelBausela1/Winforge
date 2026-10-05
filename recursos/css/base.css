@@ -8,6 +8,12 @@
     --color-noctis: #1A2730;
 
     --color-fondo-profundo: #050807;
+    --color-fondo: #2C2D2F;
+    --color-fondo-hondo: #202123;
+    --color-superficie: rgba(255, 255, 255, 0.05);
+    --color-superficie-alta: rgba(255, 255, 255, 0.075);
+    --sombra-tarjeta: 0 22px 45px -28px rgba(0, 0, 0, 0.9);
+    --sombra-tarjeta-alta: 0 30px 60px -30px rgba(0, 0, 0, 0.95);
     --color-claro: #F4F1EC;
     --color-texto: rgba(255, 255, 255, 0.92);
     --color-texto-suave: rgba(255, 255, 255, 0.64);
@@ -67,7 +73,7 @@ html {
 body {
     min-height: 100vh;
     min-height: 100svh;
-    background-color: var(--color-fondo-profundo);
+    background-color: var(--color-fondo);
     color: var(--color-texto);
     font-family: var(--fuente-sans);
     font-size: var(--texto-base);

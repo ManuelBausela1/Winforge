@@ -5,13 +5,14 @@
     min-height: 100vh;
     min-height: 100svh;
     padding-block: 5rem 3rem;
+    background-color: var(--color-fondo-profundo);
 }
 
 .hero::before {
     content: "";
     position: absolute;
     inset: 0;
-    z-index: -1;
+    z-index: 0;
     background-image: url("img/forja/yunque-1400.webp");
     background-size: cover;
     background-position: center 45%;
@@ -48,14 +49,11 @@
     position: relative;
     z-index: 1;
     max-width: 1720px;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-areas:
-        "texto logo"
-        "acciones acciones";
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    column-gap: clamp(2.5rem, 5vw, 6rem);
-    row-gap: clamp(2rem, 6vh, 4rem);
+    gap: clamp(1.5rem, 4vh, 2.75rem);
+    text-align: center;
 }
 
 @media (hover: hover) and (min-width: 768px) {
@@ -64,17 +62,8 @@
     }
 }
 
-.hero__columna-texto {
-    grid-area: texto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: clamp(1rem, 2.5vh, 1.75rem);
-    text-align: center;
-}
-
 .hero__titulo {
-    width: 100%;
+    width: min(100%, 60rem);
     height: clamp(90px, min(11vw, 22vh), 190px);
     font-family: var(--fuente-serif);
     font-size: var(--texto-titulo-hero);
@@ -123,69 +112,7 @@
     color: inherit;
 }
 
-.hero__columna-logo {
-    grid-area: logo;
-    display: grid;
-    place-items: center;
-}
-
-.logo-3d {
-    --giro-x: 0deg;
-    --giro-y: 0deg;
-    --brillo-x: 50%;
-    --brillo-y: 40%;
-
-    position: relative;
-    width: min(100%, 640px);
-    aspect-ratio: 674.49 / 340;
-    perspective: 1000px;
-}
-
-.animar .logo-3d {
-    opacity: 0;
-    filter: blur(10px);
-    clip-path: inset(-25% 125% -25% -25%);
-    transition:
-        clip-path 1.5s var(--curva-entrada),
-        opacity 0.8s var(--curva-suave),
-        filter 1.2s var(--curva-suave);
-}
-
-.animar .hero.logo-visible .logo-3d {
-    opacity: 1;
-    filter: none;
-    clip-path: inset(-25% -25% -25% -25%);
-}
-
-.logo-3d__escena {
-    position: absolute;
-    inset: 0;
-    transform-style: preserve-3d;
-    transform: rotateX(var(--giro-x)) rotateY(var(--giro-y));
-    will-change: transform;
-}
-
-.logo-3d__isotipo {
-    width: 100%;
-    height: 100%;
-    fill: var(--color-blanco);
-    filter: drop-shadow(0 22px 34px rgba(0, 0, 0, 0.5));
-}
-
-.logo-3d__brillo {
-    position: absolute;
-    inset: 0;
-    background:
-        radial-gradient(circle at var(--brillo-x) var(--brillo-y), rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 22%),
-        radial-gradient(circle at var(--brillo-x) var(--brillo-y), rgba(129, 161, 152, 0) 20%, rgba(28, 52, 46, 0.62) 95%);
-    -webkit-mask: url("img/logo/winforge-isotipo.svg") center / 100% 100% no-repeat;
-    mask: url("img/logo/winforge-isotipo.svg") center / 100% 100% no-repeat;
-    transform: translateZ(1px);
-    pointer-events: none;
-}
-
 .hero__acciones {
-    grid-area: acciones;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -213,20 +140,8 @@
         padding-block: 7rem 3rem;
     }
 
-    .hero__contenedor {
-        grid-template-columns: minmax(0, 1fr);
-        grid-template-areas:
-            "texto"
-            "logo"
-            "acciones";
-    }
-
     .hero__titulo {
         height: clamp(90px, 22vw, 170px);
-    }
-
-    .logo-3d {
-        width: min(82vw, 440px);
     }
 }
 
@@ -426,27 +341,17 @@
 
 .servicio__accion {
     flex: none;
-    border-color: transparent;
+    border: 1px solid var(--color-carbon);
+    background-color: transparent;
     color: var(--color-carbon);
     letter-spacing: 0.08em;
     transition: transform 0.35s var(--curva-suave);
 }
 
-.servicio--eucalipto .servicio__accion {
-    background-color: var(--color-naranja);
-}
-
-.servicio--naranja .servicio__accion {
-    background-color: var(--color-blanco);
-}
-
-.servicio--claro .servicio__accion {
-    background-color: var(--color-eucalipto);
-}
-
 .servicio__accion:hover,
 .servicio__accion:focus-visible {
     transform: scale(1.05);
+    background-color: transparent;
     color: var(--color-carbon);
 }
 
@@ -566,6 +471,7 @@
     height: 1px;
     width: calc(var(--avance-linea, 0) * 100%);
     background: linear-gradient(90deg, rgba(129, 161, 152, 0.15), var(--color-eucalipto));
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
     translate: 0 -50%;
 }
 
@@ -596,6 +502,9 @@
     height: var(--diametro-punto);
     border-radius: 50%;
     background-color: var(--color-eucalipto);
+    box-shadow:
+        0 6px 14px -4px rgba(0, 0, 0, 0.85),
+        0 0 0 4px rgba(44, 45, 47, 0.7);
     translate: -50% -50%;
     scale: 0;
     transition: scale 0.5s var(--curva-resorte);
@@ -607,6 +516,7 @@
     width: 1px;
     height: var(--alto-tallo);
     background: linear-gradient(180deg, rgba(129, 161, 152, 0.2), var(--color-eucalipto));
+    box-shadow: 1px 0 4px rgba(0, 0, 0, 0.7);
     scale: 1 0;
     transition: scale 0.6s var(--curva-entrada);
 }
@@ -622,14 +532,20 @@
     background: linear-gradient(0deg, rgba(129, 161, 152, 0.2), var(--color-eucalipto));
 }
 
+/* Cada paso se apoya en una tarjeta que se levanta del fondo. */
 .proceso__texto {
     position: absolute;
     left: 0;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    width: 100%;
-    padding-right: 2rem;
+    width: max-content;
+    max-width: min(32rem, 92vw);
+    padding: clamp(1.1rem, 2.6vh, 1.6rem) clamp(1.25rem, 2.5vw, 1.75rem);
+    border: 1px solid var(--color-borde-suave);
+    border-radius: var(--radio-sm);
+    background-color: var(--color-superficie);
+    box-shadow: var(--sombra-tarjeta);
 }
 
 .proceso__paso--arriba .proceso__texto {
@@ -667,6 +583,20 @@
     display: flex;
     align-items: center;
     padding-left: clamp(1rem, 3vw, 3rem);
+}
+
+.animar .proceso__texto,
+.js .proceso__texto {
+    opacity: 0;
+    translate: 0 22px;
+    transition:
+        opacity 0.6s var(--curva-suave),
+        translate 0.7s var(--curva-entrada);
+}
+
+.js .proceso__paso.esta-activo .proceso__texto {
+    opacity: 1;
+    translate: 0 0;
 }
 
 .animar .proceso__titulo-paso,

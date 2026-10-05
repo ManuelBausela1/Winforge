@@ -6,6 +6,7 @@
     min-height: 100svh;
     padding-block: clamp(3.25rem, 7vh, 5.5rem) clamp(1.25rem, 4vh, 2.5rem);
     overflow: hidden;
+    background-color: #000000;
 }
 
 .contacto__contenedor {
@@ -36,6 +37,18 @@
     align-items: center;
     justify-content: flex-end;
     width: 45.6%;
+    pointer-events: none;
+}
+
+/* Una sombra detrás del busto: el mármol se despega del fondo. */
+.contacto__columna-figura::before {
+    content: "";
+    position: absolute;
+    inset: 12% 6% 8% 4%;
+    z-index: -1;
+    border-radius: 50%;
+    background-image: radial-gradient(58% 54% at 50% 50%, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.07) 48%, transparent 74%);
+    filter: blur(34px);
     pointer-events: none;
 }
 
@@ -130,10 +143,15 @@ a.contacto__dato:focus-visible .contacto__icono {
     padding: clamp(1rem, 2vh, 1.6rem) clamp(1.2rem, 2.2vw, 1.9rem);
     border: 1px solid var(--color-borde-suave);
     border-radius: clamp(12px, 1.2vw, 20px);
-    background-color: rgba(255, 255, 255, 0.045);
+    background-color: var(--color-superficie);
     -webkit-backdrop-filter: blur(18px) saturate(115%);
     backdrop-filter: blur(18px) saturate(115%);
-    box-shadow: 0 30px 80px -40px rgba(0, 0, 0, 0.85);
+
+    /* Sobre el negro, la profundidad se marca con luz, no con sombra. */
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        0 30px 70px -32px rgba(255, 255, 255, 0.22),
+        0 10px 28px -20px rgba(255, 255, 255, 0.14);
 }
 
 .formulario__campo {
@@ -199,7 +217,7 @@ a.contacto__dato:focus-visible .contacto__icono {
 .formulario__control:focus-visible {
     outline: none;
     border-color: var(--color-eucalipto);
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: var(--color-superficie-alta);
 }
 
 .formulario__control[aria-invalid="true"] {

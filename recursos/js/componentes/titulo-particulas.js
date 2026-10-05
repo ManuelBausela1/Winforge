@@ -9,12 +9,12 @@ const CONFIGURACION = {
     largoLinea: 4,
     nivelesDeColor: 6,
 
-    distanciaFrenado: 90,
+    distanciaFrenado: 60,
     distanciaBlanco: 50,
     distanciaReposo: 0.4,
     distanciaFormada: 2,
     proporcionFormada: 0.95,
-    tiempoMaximoFormacion: 4500,
+    tiempoMaximoFormacion: 2800,
 
     radioMouse: 80,
     fuerzaMouse: 5,
@@ -28,7 +28,7 @@ class Particula {
         this.velocidad = { x: 0, y: 0 };
         this.objetivo = objetivo;
         this.velocidadMaxima = velocidadMaxima;
-        this.fuerzaMaxima = velocidadMaxima * 0.05;
+        this.fuerzaMaxima = velocidadMaxima * 0.09;
     }
 
     distanciaAlObjetivo() {
@@ -214,7 +214,7 @@ export async function iniciarTituloParticulas(contenedor = document.querySelecto
                 x: inicio.x,
                 y: inicio.y,
                 objetivo: punto,
-                velocidadMaxima: (Math.random() * 6 + 5) * escalaVelocidad,
+                velocidadMaxima: (Math.random() * 8 + 9) * escalaVelocidad,
             });
         });
     }

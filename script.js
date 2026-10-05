@@ -1,6 +1,5 @@
 import { iniciarSitio } from "./recursos/js/principal.js";
 import { prepararFraseAnimada } from "./recursos/js/componentes/revelar-frase.js";
-import { iniciarLogo3d } from "./recursos/js/componentes/logo-3d.js";
 import { iniciarTituloParticulas } from "./recursos/js/componentes/titulo-particulas.js";
 import { iniciarProcesoHorizontal } from "./recursos/js/componentes/proceso-horizontal.js";
 import { iniciarCarruselMarcas } from "./recursos/js/componentes/carrusel-marcas.js";
@@ -10,7 +9,6 @@ import { prefiereMovimientoReducido } from "./recursos/js/utilidades/movimiento.
 import { hayAnimacionesDeEntrada } from "./recursos/js/utilidades/animaciones.js";
 
 const TIEMPOS_HERO = {
-    duracionFrase: 900,
     antesDeLosBotones: 900,
 };
 
@@ -34,8 +32,6 @@ async function iniciarHero() {
         accion.style.setProperty("--indice-accion", indice);
     });
 
-    iniciarLogo3d(hero.querySelector("[data-logo-3d]"));
-
     if (!conEntrada) {
 
         iniciarTituloParticulas(hero, { conEntrada: false });
@@ -44,13 +40,12 @@ async function iniciarHero() {
 
     const frase = prepararFraseAnimada(hero.querySelector("[data-frase-animada]"));
 
+    hero.classList.add("logo-visible");
+
     await iniciarTituloParticulas(hero);
     await esperarPintado();
 
     frase?.revelar();
-    await pausa(TIEMPOS_HERO.duracionFrase);
-
-    hero.classList.add("logo-visible");
     await pausa(TIEMPOS_HERO.antesDeLosBotones);
 
     hero.classList.add("acciones-visibles");
