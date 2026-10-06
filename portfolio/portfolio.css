@@ -124,15 +124,18 @@
 .caso__logo {
     display: grid;
     place-items: center;
-    width: clamp(7rem, 11vw, 10rem);
-    padding-right: clamp(1.5rem, 4vw, 3.5rem);
+    width: clamp(11rem, 16vw, 15rem);
+    height: clamp(5rem, 7.5vw, 7rem);
+    padding-right: clamp(1.5rem, 3vw, 2.5rem);
     border-right: 1px solid var(--color-borde-suave);
 }
 
+/* Cada marca lleva el alto que iguala su superficie: una apaisada y una
+   cuadrada terminan ocupando lo mismo, aunque midan distinto. */
 .caso__logo img {
-    width: 100%;
-    height: auto;
-    max-height: 4.5rem;
+    width: auto;
+    height: var(--alto-logo, 3.5rem);
+    max-width: 100%;
     object-fit: contain;
 }
 
@@ -140,6 +143,15 @@
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
+}
+
+/* Rubro en naranja, un guion y lo que hicimos. */
+.caso__meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+    margin: 0;
 }
 
 .caso__sector {
@@ -150,20 +162,14 @@
     color: var(--color-naranja);
 }
 
-.caso__nombre {
-    font-family: var(--fuente-serif);
-    font-size: clamp(1.6rem, 1rem + 1.6vw, 2.6rem);
-    font-weight: 500;
-    line-height: 1.05;
-    text-wrap: balance;
-    color: var(--color-blanco);
+.caso__guion {
+    color: var(--color-texto-tenue);
 }
 
-.caso__hicimos {
-    max-width: 52ch;
+.caso__servicios {
     font-size: var(--texto-base);
     line-height: 1.5;
-    color: var(--color-texto-suave);
+    color: var(--color-texto);
     text-wrap: pretty;
 }
 
@@ -272,8 +278,8 @@
     border-style: dashed;
 }
 
-.caso--proximo .caso__nombre {
-    color: var(--color-texto);
+.caso--proximo .caso__servicios {
+    color: var(--color-texto-suave);
 }
 
 .portfolio__galeria {
@@ -412,15 +418,22 @@
     }
 
     .caso__logo {
-        width: 9rem;
+        width: 13rem;
+        height: clamp(4rem, 13vw, 5.5rem);
         padding-right: 0;
-        padding-bottom: clamp(1rem, 3vh, 1.5rem);
+        padding-bottom: 0;
+        margin-bottom: clamp(1rem, 3vh, 1.5rem);
         border-right: 0;
-        border-bottom: 1px solid var(--color-borde-suave);
+        border-bottom: 0;
     }
 
     .caso__datos {
         align-items: center;
+    }
+
+    .caso__meta {
+        align-items: center;
+        text-align: center;
     }
 }
 

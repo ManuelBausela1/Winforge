@@ -10,6 +10,9 @@ const CONFIGURACION = {
 export function iniciarCarruselMarcas(carrusel = document.querySelector("[data-carrusel-marcas]")) {
     if (!carrusel) return;
 
+    /* -1 corre hacia la izquierda; 1, hacia la derecha */
+    const sentido = Number(carrusel.dataset.sentido) || 1;
+
     const pista = carrusel.querySelector("[data-carrusel-pista]");
     const originales = [...pista.children];
     if (!originales.length) return;
@@ -77,7 +80,7 @@ export function iniciarCarruselMarcas(carrusel = document.querySelector("[data-c
     }
 
     function animar() {
-        const velocidad = (movimientoReducido ? 0 : CONFIGURACION.velocidadBase) + arrastreExtra;
+        const velocidad = (movimientoReducido ? 0 : CONFIGURACION.velocidadBase * sentido * -1) + arrastreExtra;
         arrastreExtra *= CONFIGURACION.rozamiento;
         if (Math.abs(arrastreExtra) < 0.01) arrastreExtra = 0;
 

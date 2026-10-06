@@ -80,6 +80,12 @@
     color: var(--color-blanco);
 }
 
+/* Sobre fondo claro no se blanquea: con el subrayado alcanza. */
+[data-tema-fondo="claro"] .boton--texto:hover,
+[data-tema-fondo="claro"] .boton--texto:focus-visible {
+    color: var(--color-carbon);
+}
+
 .boton--texto:active {
     transform: none;
 }

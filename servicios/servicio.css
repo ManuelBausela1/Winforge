@@ -115,14 +115,6 @@
     gap: clamp(0.9rem, 2.2vh, 1.4rem);
 }
 
-.servicio-portada__sobretitulo {
-    font-size: var(--texto-xs);
-    font-weight: 500;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.62);
-}
-
 .servicio-portada__titulo {
     color: var(--color-blanco);
     font-family: var(--fuente-sans);
@@ -165,6 +157,24 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
+}
+
+/* Las fotos se turnan en un ciclo sin fin: la que manda es la visible. */
+.servicio-portada__foto {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.6s var(--curva-suave);
+}
+
+.servicio-portada__foto.esta-visible {
+    opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .servicio-portada__foto {
+        transition: none;
+    }
 }
 
 /* ---------- Qué incluye ---------- */
@@ -613,7 +623,6 @@
 
 /* ---------- Entradas ---------- */
 
-.animar .servicio-portada__sobretitulo,
 .animar .servicio-portada__titulo,
 .animar .servicio-portada__bajada,
 .animar .servicio-portada__accion {
@@ -622,12 +631,8 @@
     animation: servicio-entrar 0.9s var(--curva-entrada) forwards;
 }
 
-.animar .servicio-portada__titulo {
-    animation-delay: 110ms;
-}
-
 .animar .servicio-portada__bajada {
-    animation-delay: 220ms;
+    animation-delay: 110ms;
 }
 
 .animar .servicio-portada__accion {
@@ -730,7 +735,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .animar .servicio-portada__sobretitulo,
     .animar .servicio-portada__titulo,
     .animar .servicio-portada__bajada,
     .animar .servicio-portada__accion,
@@ -803,14 +807,6 @@
 
 .panel.esta-abierto .panel__boton {
     border-bottom: 1px solid rgba(28, 28, 28, 0.14);
-}
-
-.panel__numero {
-    flex: none;
-    font-size: var(--texto-xs);
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    color: rgba(28, 28, 28, 0.6);
 }
 
 .panel__nombre {
@@ -927,13 +923,6 @@
         transform 0.25s var(--curva-suave);
 }
 
-.selector__numero {
-    font-size: var(--texto-xs);
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    color: var(--tinta-tenue);
-}
-
 .selector__nombre {
     font-size: var(--texto-sm);
     line-height: 1.35;
@@ -943,10 +932,6 @@
     border-color: var(--color-carbon);
     background-color: var(--color-carbon);
     color: var(--color-blanco);
-}
-
-.selector__opcion[aria-pressed="true"] .selector__numero {
-    color: var(--color-eucalipto);
 }
 
 @media (hover: hover) {

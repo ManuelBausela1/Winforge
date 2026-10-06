@@ -157,18 +157,16 @@
 }
 
 /* La marca se apoya en el borde de abajo: la mitad de las letras queda fuera. */
+/* El logo se apoya en el borde de abajo, del lado de las redes:
+   apenas despegado del fondo, pero bien visible. */
 .pie__marca {
-    margin: 0;
-    font-family: var(--fuente-serif);
-    font-size: clamp(3.9rem, 17.4vw, 18rem);
-    font-weight: 500;
-    line-height: 0.74;
-    letter-spacing: 0.03em;
-    text-align: center;
-    text-transform: uppercase;
-    white-space: nowrap;
-    color: rgba(255, 255, 255, 0.16);
+    width: clamp(13rem, 28vw, 28rem);
+    height: auto;
+    margin: 0 0 clamp(1rem, 3.5vh, 2.75rem) calc(var(--margen-lateral) + clamp(2.5rem, 12vw, 12rem));
+    align-self: flex-start;
+    opacity: 0.28;
     user-select: none;
+    pointer-events: none;
 }
 
 .animar .pie__marca {
@@ -181,7 +179,7 @@
 
 .animar .pie.esta-a-la-vista .pie__marca {
     translate: 0 0;
-    opacity: 1;
+    opacity: 0.28;
 }
 
 /* Mientras el pie manda, el índice del costado se aparta. */
@@ -220,6 +218,6 @@
 @media (prefers-reduced-motion: reduce) {
     .animar .pie__marca {
         translate: 0 0;
-        opacity: 1;
+        opacity: 0.28;
     }
 }

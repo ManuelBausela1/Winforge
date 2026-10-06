@@ -3,6 +3,9 @@ import { prefiereMovimientoReducido } from "../utilidades/movimiento.js";
 
 const PUNTO_DE_ENCENDIDO = 0.62;
 
+/* Lo que pasa por el centro se ve nítido; a esta distancia ya está borroso. */
+const ALCANCE_DEL_FOCO = 0.42;
+
 /* El riel termina su recorrido antes de que la sección se suelte: el resto
    del scroll queda como pausa, con el timeline completo en pantalla. */
 const TRAMO_UTIL = 0.82;
@@ -40,11 +43,20 @@ export function iniciarProcesoHorizontal(seccion = document.querySelector("[data
         seccion.style.setProperty("--avance", avance.toFixed(4));
 
         const centro = window.innerWidth * PUNTO_DE_ENCENDIDO;
+        const medioDeLaPantalla = window.innerWidth / 2;
+        const alcance = window.innerWidth * ALCANCE_DEL_FOCO;
 
         pasos.forEach((paso, indice) => {
             // El rectángulo ya viene con el desplazamiento del riel aplicado:
             // es la posición real del punto en la pantalla.
-            if (paso.getBoundingClientRect().left > centro) return;
+            const caja = paso.getBoundingClientRect();
+
+            // Cuánto le falta a esta tarjeta para estar en el medio
+            const distancia = Math.abs(caja.left + caja.width / 2 - medioDeLaPantalla);
+            const foco = Math.max(0, 1 - distancia / alcance);
+            paso.style.setProperty("--foco", foco.toFixed(3));
+
+            if (caja.left > centro) return;
 
             // Una vez encendido se queda: al volver hacia arriba el timeline
             // ya está hecho y no se repite toda la animación.

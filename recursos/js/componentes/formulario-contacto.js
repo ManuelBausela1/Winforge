@@ -181,7 +181,7 @@ async function enviar(formulario, datos) {
     /* El asunto va en una sola línea: un salto acá deja meter cabeceras. */
     const asunto = `Nuevo proyecto: ${datos.nombre}`.replace(/\s+/g, " ").slice(0, 120);
 
-    window.location.href = `mailto:equipowinforge@gmail.com?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+    window.location.href = `mailto:info@winforge.com?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
 
     return "correo";
 }
@@ -304,7 +304,7 @@ export function iniciarFormularioContacto(formulario = document.querySelector("[
         } catch (error) {
             console.warn("No se pudo enviar el formulario.", error);
             aviso.dataset.estado = "error";
-            aviso.textContent = "No pudimos enviarlo. Probá de nuevo o escribinos a equipowinforge@gmail.com.";
+            aviso.textContent = "No pudimos enviarlo. Probá de nuevo o escribinos a info@winforge.com.";
         } finally {
             enviando = false;
             boton.disabled = false;

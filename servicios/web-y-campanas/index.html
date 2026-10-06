@@ -78,8 +78,6 @@
         <div class="servicio-apertura" data-tramo-oscuro>
             <div class="servicio-portada contenedor">
                 <header class="servicio-portada__texto">
-                    <p class="servicio-portada__sobretitulo">Servicios · 03 Web y campañas</p>
-
                     <h1 class="servicio-portada__titulo">
                         <span class="servicio-portada__renglon">Presencia digital</span>
                         <span class="servicio-portada__renglon">y campañas de captación</span>
@@ -94,15 +92,46 @@
                     </a>
                 </header>
 
-                <figure class="servicio-portada__figura">
+                <figure class="servicio-portada__figura" data-portada-rotativa>
                     <img
-                        src="../../img/servicios/portada-web-winforge-1760.webp"
-                        srcset="../../img/servicios/portada-web-winforge-1100.webp 1100w, ../../img/servicios/portada-web-winforge-1760.webp 1760w"
+                        class="servicio-portada__foto esta-visible"
+                        src="../../img/servicios/portada-web-1-1760.webp"
+                        srcset="../../img/servicios/portada-web-1-1100.webp 1100w, ../../img/servicios/portada-web-1-1760.webp 1760w"
                         sizes="100vw"
-                        alt="Sitio de Winforge en una notebook"
+                        alt="Sitio institucional de una red de escuelas en una notebook"
                         width="1760"
-                        height="894"
+                        height="895"
                         fetchpriority="high"
+                        decoding="async"
+                    >
+                    <img
+                        class="servicio-portada__foto"
+                        src="../../img/servicios/portada-web-2-1760.webp"
+                        srcset="../../img/servicios/portada-web-2-1100.webp 1100w, ../../img/servicios/portada-web-2-1760.webp 1760w"
+                        sizes="100vw"
+                        alt=""
+                        width="1760"
+                        height="895"
+                        decoding="async"
+                    >
+                    <img
+                        class="servicio-portada__foto"
+                        src="../../img/servicios/portada-web-3-1760.webp"
+                        srcset="../../img/servicios/portada-web-3-1100.webp 1100w, ../../img/servicios/portada-web-3-1760.webp 1760w"
+                        sizes="100vw"
+                        alt=""
+                        width="1760"
+                        height="895"
+                        decoding="async"
+                    >
+                    <img
+                        class="servicio-portada__foto"
+                        src="../../img/servicios/portada-web-4-1760.webp"
+                        srcset="../../img/servicios/portada-web-4-1100.webp 1100w, ../../img/servicios/portada-web-4-1760.webp 1760w"
+                        sizes="100vw"
+                        alt=""
+                        width="1760"
+                        height="895"
                         decoding="async"
                     >
                 </figure>
@@ -121,7 +150,6 @@
                         aria-pressed="true"
                         aria-controls="detalle-servicios"
                     >
-                        <span class="selector__numero">01</span>
                         <span class="selector__nombre">Sitios web y comercio electrónico</span>
                     </button>
 
@@ -132,7 +160,6 @@
                         aria-pressed="false"
                         aria-controls="detalle-servicios"
                     >
-                        <span class="selector__numero">02</span>
                         <span class="selector__nombre">Campañas de pauta digital</span>
                     </button>
 
@@ -143,7 +170,6 @@
                         aria-pressed="false"
                         aria-controls="detalle-servicios"
                     >
-                        <span class="selector__numero">03</span>
                         <span class="selector__nombre">Posicionamiento en buscadores</span>
                     </button>
 
@@ -154,7 +180,6 @@
                         aria-pressed="false"
                         aria-controls="detalle-servicios"
                     >
-                        <span class="selector__numero">04</span>
                         <span class="selector__nombre">Newsletters y comunicación por correo</span>
                     </button>
                 </div>
@@ -356,20 +381,20 @@
             <div class="pie__columna">
                 <p class="pie__titulo">Contactos</p>
 
-                <a class="pie__dato pie__dato--enlace" href="mailto:equipowinforge@gmail.com">
+                <a class="pie__dato pie__dato--enlace" href="mailto:info@winforge.com">
                     <svg class="pie__icono-dato" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                                 <rect x="3" y="5" width="18" height="14" rx="2.5"/>
                                 <path d="m3.8 7 7.1 5.2a2 2 0 0 0 2.2 0L20.2 7"/>
                             </svg>
-                    equipowinforge@gmail.com
+                    info@winforge.com
                 </a>
 
-                <a class="pie__dato pie__dato--enlace" href="https://wa.me/5493413626491" target="_blank" rel="noopener noreferrer">
+                <a class="pie__dato pie__dato--enlace" href="https://wa.me/5493412506198" target="_blank" rel="noopener noreferrer">
                     <svg class="pie__icono-dato" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                                 <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/>
                                 <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/>
                             </svg>
-                    +54 9 341 362 6491
+                    +54 9 3412 50 6198
                 </a>
             </div>
 
@@ -393,7 +418,7 @@
             </nav>
         </div>
 
-        <p class="pie__marca" aria-hidden="true">Winforge</p>
+        <img class="pie__marca" src="../../img/logo/logoblanco-01.svg" alt="" width="1000" height="760" loading="lazy" decoding="async" aria-hidden="true">
     </footer>
 </body>
 </html>

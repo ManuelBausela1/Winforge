@@ -8,6 +8,46 @@
     background-color: var(--color-fondo-profundo);
 }
 
+/* La forja en movimiento, con los mismos bordes fundidos que el grabado. */
+.hero__video {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 45%;
+    opacity: var(--fuerza-grabado, 0.3);
+    mix-blend-mode: screen;
+    -webkit-mask-image:
+        radial-gradient(74% 66% at 50% 50%, #000 0%, rgba(0, 0, 0, 0.88) 34%, rgba(0, 0, 0, 0.42) 64%, transparent 90%),
+        linear-gradient(180deg, transparent 0%, #000 18%, #000 76%, transparent 100%),
+        linear-gradient(90deg, transparent 0%, #000 16%, #000 84%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+        radial-gradient(74% 66% at 50% 50%, #000 0%, rgba(0, 0, 0, 0.88) 34%, rgba(0, 0, 0, 0.42) 64%, transparent 90%),
+        linear-gradient(180deg, transparent 0%, #000 18%, #000 76%, transparent 100%),
+        linear-gradient(90deg, transparent 0%, #000 16%, #000 84%, transparent 100%);
+    mask-composite: intersect;
+    pointer-events: none;
+}
+
+/* Con el video andando, el grabado fijo sobra */
+.hero:has(.hero__video)::before {
+    opacity: 0;
+}
+
+/* Si piden menos movimiento, vuelve la imagen quieta */
+@media (prefers-reduced-motion: reduce) {
+    .hero__video {
+        display: none;
+    }
+
+    .hero:has(.hero__video)::before {
+        opacity: var(--fuerza-grabado, 0.3);
+    }
+}
+
 .hero::before {
     content: "";
     position: absolute;
@@ -56,6 +96,47 @@
     text-align: center;
 }
 
+/* El isotipo gira hacia el cursor y el verde le marca el volumen. */
+.logo-3d {
+    --giro-x: 0deg;
+    --giro-y: 0deg;
+    --brillo-x: 50%;
+    --brillo-y: 40%;
+
+    position: relative;
+    width: clamp(11rem, 23vw, 24rem);
+    margin-bottom: clamp(-2.75rem, -3.6vh, -1.4rem);
+    aspect-ratio: 674.49 / 340;
+    perspective: 1000px;
+}
+
+.logo-3d__escena {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    transform: rotateX(var(--giro-x)) rotateY(var(--giro-y));
+    will-change: transform;
+}
+
+.logo-3d__isotipo {
+    width: 100%;
+    height: 100%;
+    fill: var(--color-blanco);
+    filter: drop-shadow(0 22px 34px rgba(0, 0, 0, 0.5));
+}
+
+.logo-3d__brillo {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at var(--brillo-x) var(--brillo-y), rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 22%),
+        radial-gradient(circle at var(--brillo-x) var(--brillo-y), rgba(129, 161, 152, 0) 20%, rgba(28, 52, 46, 0.62) 95%);
+    -webkit-mask: url("img/logo/winforge-isotipo.svg") center / 100% 100% no-repeat;
+    mask: url("img/logo/winforge-isotipo.svg") center / 100% 100% no-repeat;
+    transform: translateZ(1px);
+    pointer-events: none;
+}
+
 @media (hover: hover) and (min-width: 768px) {
     .hero__contenedor {
         padding-inline: max(calc(var(--margen-lateral) + 4rem), 11rem);
@@ -64,7 +145,7 @@
 
 .hero__titulo {
     width: min(100%, 60rem);
-    height: clamp(90px, min(11vw, 22vh), 190px);
+    height: clamp(74px, min(9.1vw, 18.2vh), 157px);
     font-family: var(--fuente-serif);
     font-size: var(--texto-titulo-hero);
     font-weight: 500;
@@ -159,24 +240,55 @@
 .servicios {
     position: relative;
     z-index: 2;
+    background-color: #0A0A0A;
+}
+
+/* La pared de pizarra: la textura de fondo de los tramos oscuros. */
+.servicios__portada::after,
+.proyectos::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-image:
+        radial-gradient(130% 100% at 50% 50%, transparent 38%, rgba(0, 0, 0, 0.55) 100%),
+        url("img/forja/textura-pizarra.webp");
+    background-size: cover;
+    background-position: center;
+    pointer-events: none;
 }
 
 .servicios__portada {
     position: sticky;
     top: 0;
     z-index: 0;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: clamp(1rem, 3vh, 1.75rem);
     min-height: 100vh;
     min-height: 100svh;
-    padding: clamp(4rem, 10vh, 7rem) var(--margen-lateral);
+    padding: clamp(6rem, 20vh, 11rem) var(--margen-lateral) clamp(4rem, 10vh, 7rem);
     text-align: center;
 }
 
+/* El isotipo se asoma por el borde derecho, apenas insinuado. */
+.servicios__marca {
+    position: absolute;
+    top: 50%;
+    right: clamp(-7rem, -8vw, -3rem);
+    z-index: -1;
+    width: clamp(17rem, 40vw, 44rem);
+    height: auto;
+    translate: 0 -50%;
+    opacity: 0.14;
+    pointer-events: none;
+}
+
 .servicios__entrada {
+    position: relative;
     max-width: 44ch;
     font-size: var(--texto-lg);
     line-height: 1.6;
@@ -234,25 +346,17 @@
 }
 
 .servicio--claro .servicio__lienzo {
-    background-color: var(--color-claro, #F4F1EC);
+    background-color: var(--color-blanco);
     color: var(--color-carbon);
 }
 
 .servicio__encabezado {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     gap: 1.5rem;
     padding-bottom: clamp(1rem, 3vh, 1.75rem);
     border-bottom: 1px solid currentColor;
-}
-
-.servicio__numero {
-    font-size: var(--texto-xs);
-    font-weight: 500;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    opacity: 0.75;
 }
 
 .servicio__acciones {
@@ -424,6 +528,13 @@
 
     position: relative;
     height: 320vh;
+    background-color: var(--color-blanco);
+    box-shadow: 0 0 0 100vmax var(--color-blanco);
+    clip-path: inset(-1px -100vmax);
+}
+
+.proceso__escenario {
+    background-color: var(--color-blanco);
 }
 
 .proceso__escenario {
@@ -440,6 +551,7 @@
 .proceso__titulo {
     flex: none;
     align-self: center;
+    color: var(--color-carbon);
     margin-top: clamp(4rem, 12vh, 8rem);
     margin-bottom: clamp(1.5rem, 5vh, 3rem);
     white-space: nowrap;
@@ -470,8 +582,8 @@
     top: 50%;
     height: 1px;
     width: calc(var(--avance-linea, 0) * 100%);
-    background: linear-gradient(90deg, rgba(129, 161, 152, 0.15), var(--color-eucalipto));
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+    background: linear-gradient(90deg, rgba(129, 161, 152, 0.3), var(--color-eucalipto));
+    box-shadow: 0 1px 4px rgba(28, 28, 28, 0.12);
     translate: 0 -50%;
 }
 
@@ -515,8 +627,8 @@
     left: 0;
     width: 1px;
     height: var(--alto-tallo);
-    background: linear-gradient(180deg, rgba(129, 161, 152, 0.2), var(--color-eucalipto));
-    box-shadow: 1px 0 4px rgba(0, 0, 0, 0.7);
+    background: linear-gradient(180deg, rgba(129, 161, 152, 0.35), var(--color-eucalipto));
+    box-shadow: 1px 0 4px rgba(28, 28, 28, 0.12);
     scale: 1 0;
     transition: scale 0.6s var(--curva-entrada);
 }
@@ -529,7 +641,7 @@
 .proceso__paso--abajo .proceso__tallo {
     top: 50%;
     transform-origin: top center;
-    background: linear-gradient(0deg, rgba(129, 161, 152, 0.2), var(--color-eucalipto));
+    background: linear-gradient(0deg, rgba(129, 161, 152, 0.35), var(--color-eucalipto));
 }
 
 /* Cada paso se apoya en una tarjeta que se levanta del fondo. */
@@ -542,10 +654,10 @@
     width: max-content;
     max-width: min(32rem, 92vw);
     padding: clamp(1.1rem, 2.6vh, 1.6rem) clamp(1.25rem, 2.5vw, 1.75rem);
-    border: 1px solid var(--color-borde-suave);
-    border-radius: var(--radio-sm);
-    background-color: var(--color-superficie);
-    box-shadow: var(--sombra-tarjeta);
+    border: 1px solid rgba(28, 28, 28, 0.07);
+    border-radius: clamp(8px, 0.8vw, 14px);
+    background-color: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 20px 44px -26px rgba(28, 28, 28, 0.42);
 }
 
 .proceso__paso--arriba .proceso__texto {
@@ -562,7 +674,7 @@
     font-weight: 500;
     line-height: 1.15;
     letter-spacing: -0.01em;
-    color: var(--color-blanco);
+    color: var(--color-carbon);
 }
 
 @media (min-width: 1101px) {
@@ -576,7 +688,7 @@
     max-width: 34ch;
     font-size: var(--texto-sm);
     line-height: 1.6;
-    color: var(--color-texto-suave);
+    color: rgba(28, 28, 28, 0.68);
 }
 
 .proceso__cierre {
@@ -741,44 +853,32 @@
     min-height: 100vh;
     min-height: 100svh;
     padding-block: clamp(5rem, 13vh, 9rem);
-    background-color: var(--color-fondo-profundo);
+    background-color: #0A0A0A;
     color: var(--color-texto);
 }
 
-.proyectos__contenedor,
 .proyectos .carrusel-marcas,
 .proyectos .invitacion {
     position: relative;
     z-index: 1;
 }
 
-
-.proyectos__contenedor {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: clamp(3.5rem, 9vh, 6rem);
-}
-
-.proyectos__entrada {
-    max-width: 52ch;
-    margin-top: clamp(0.75rem, 2vh, 1.25rem);
-    font-size: var(--texto-lg);
-    line-height: 1.6;
-    color: var(--color-texto-suave);
-    text-align: center;
-    text-wrap: balance;
+/* El cierre vive entre las dos filas: toma el hueco y se centra en el. */
+.proyectos .invitacion {
+    flex: 1;
+    justify-content: center;
+    margin-block: 0;
+    padding-block: clamp(2.5rem, 7vh, 4.5rem);
 }
 
 .carrusel-marcas {
-    --ancho-marca: clamp(150px, 15vw, 220px);
-    --alto-logo: clamp(52px, 5vw, 74px);
+    --ancho-marca: clamp(126px, 12vw, 180px);
+    --alto-logo: clamp(46px, 4.4vw, 66px);
 
     position: relative;
     overflow: hidden;
-    padding-block: clamp(1.5rem, 4vh, 2.5rem);
+    padding-block: clamp(1.4rem, 3.6vh, 2.25rem);
+    border-block: 1px solid rgba(255, 255, 255, 0.09);
     cursor: grab;
     touch-action: pan-y;
     -webkit-mask: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
@@ -792,7 +892,7 @@
 .carrusel-marcas__pista {
     display: flex;
     align-items: center;
-    gap: clamp(2.5rem, 5vw, 5rem);
+    gap: clamp(4.5rem, 9vw, 10rem);
     width: max-content;
     list-style: none;
     padding: 0;
@@ -806,43 +906,18 @@
     width: var(--ancho-marca);
 }
 
-.carrusel-marcas__figura {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.75rem;
-    margin: 0;
-    scale: calc(1 + var(--cercania) * 0.22);
+.carrusel-marcas__marca {
+    scale: calc(1 + var(--cercania) * 0.16);
 }
 
 .carrusel-marcas__logo {
     width: 100%;
     height: var(--alto-logo);
     object-fit: contain;
-    opacity: calc(0.24 + var(--cercania) * 0.66);
-    filter: drop-shadow(0 0 calc(var(--cercania) * 16px) rgba(255, 255, 255, calc(var(--cercania) * 0.22)));
+    opacity: calc(0.46 + var(--cercania) * 0.5);
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.55));
     -webkit-user-drag: none;
     user-select: none;
-}
-
-.carrusel-marcas__nombre {
-    font-size: var(--texto-xs);
-    font-weight: 500;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    text-align: center;
-    white-space: nowrap;
-    color: var(--color-blanco);
-    opacity: 0;
-    translate: 0 -6px;
-    transition:
-        opacity 0.3s var(--curva-suave),
-        translate 0.3s var(--curva-suave);
-}
-
-.carrusel-marcas__marca.esta-al-centro .carrusel-marcas__nombre {
-    opacity: 1;
-    translate: 0 0;
 }
 
 .animar .carrusel-marcas {
@@ -875,14 +950,10 @@
     text-align: center;
 }
 
+/* El cierre usa el título del sistema: líneas naranjas a los costados. */
 .invitacion__titulo {
-    font-family: var(--fuente-sans);
-    font-size: var(--texto-titulo-seccion);
-    font-weight: 500;
-    line-height: 1.2;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--color-blanco);
+    justify-content: center;
+    text-align: center;
     text-wrap: balance;
 }
 
@@ -934,4 +1005,521 @@
     font-size: clamp(2rem, 1.4rem + 3vw, 3.5rem);
     font-weight: 500;
     color: var(--color-texto-suave);
+}
+
+/* ---------- Casos de éxito ---------- */
+
+.casos {
+    position: relative;
+    z-index: var(--capa-contenido);
+    padding-block: clamp(4rem, 12vh, 8rem);
+    background-color: var(--color-blanco);
+    box-shadow: 0 0 0 100vmax var(--color-blanco);
+    clip-path: inset(-1px -100vmax);
+}
+
+/* Sobre blanco, el titulo y sus lineas cambian de tinta. */
+.casos .titulo-seccion {
+    color: var(--color-carbon);
+}
+
+.casos__contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(2.5rem, 6vh, 4rem);
+}
+
+.casos__entrada {
+    max-width: 58ch;
+    margin: 0;
+    font-size: var(--texto-base);
+    line-height: 1.65;
+    text-align: center;
+    text-wrap: pretty;
+    color: rgba(28, 28, 28, 0.68);
+}
+
+.casos__grilla {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1rem, 2.2vw, 1.75rem);
+    width: 100%;
+}
+
+/* El primero se lleva el ancho entero y acomoda la foto al costado. */
+.caso-exito--ancho {
+    grid-column: 1 / -1;
+}
+
+.caso-exito__enlace {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid rgba(28, 28, 28, 0.08);
+    border-radius: clamp(10px, 1vw, 16px);
+    background-color: rgba(252, 252, 252, 0.92);
+    box-shadow: 0 18px 38px -26px rgba(28, 28, 28, 0.55);
+    text-decoration: none;
+    color: inherit;
+    transition:
+        border-color 0.5s var(--curva-suave),
+        background-color 0.5s var(--curva-suave),
+        box-shadow 0.5s var(--curva-suave),
+        translate 0.5s var(--curva-suave);
+}
+
+.caso-exito--ancho .caso-exito__enlace {
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.caso-exito__figura {
+    margin: 0;
+    overflow: hidden;
+}
+
+.caso-exito--ancho .caso-exito__figura {
+    flex: 1 1 62%;
+    min-width: 0;
+}
+
+.caso-exito__imagen {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 16 / 9;
+}
+
+.caso-exito--ancho .caso-exito__imagen {
+    aspect-ratio: auto;
+    min-height: clamp(13rem, 24vw, 19rem);
+}
+
+.caso-exito__datos {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: clamp(1rem, 2vw, 1.5rem) clamp(1.1rem, 2.2vw, 1.75rem) clamp(1.1rem, 2.2vw, 1.6rem);
+}
+
+.caso-exito--ancho .caso-exito__datos {
+    flex: 1 1 38%;
+    justify-content: center;
+    gap: 0.9rem;
+    padding-inline: clamp(1.5rem, 3.5vw, 3rem);
+}
+
+.caso-exito__nombre {
+    margin: 0;
+    font-family: var(--fuente-sans);
+    font-size: clamp(1.2rem, 1rem + 0.55vw, 1.6rem);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--color-carbon);
+}
+
+.caso-exito--ancho .caso-exito__nombre {
+    font-size: clamp(1.5rem, 1.1rem + 1.2vw, 2.35rem);
+}
+
+.caso-exito__accion {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--fuente-sans);
+    font-size: var(--texto-sm);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--color-eucalipto-hondo);
+}
+
+.caso-exito__accion-texto {
+    position: relative;
+}
+
+/* El subrayado crece de izquierda a derecha, como el "Ver mas" de servicios */
+.caso-exito__accion-texto::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: -0.3rem;
+    height: 1px;
+    background-color: currentColor;
+    scale: 0 1;
+    transform-origin: left center;
+    transition: scale 0.45s var(--curva-entrada);
+}
+
+.caso-exito__flecha {
+    transition: translate 0.4s var(--curva-suave);
+}
+
+/* La foto respira apenas cuando el cursor se posa sobre la tarjeta */
+@media (hover: hover) {
+    .caso-exito__enlace:hover {
+        border-color: var(--color-marca, var(--color-eucalipto-hondo));
+        box-shadow:
+            0 0 0 1px var(--color-marca, var(--color-eucalipto-hondo)) inset,
+            0 26px 52px -28px rgba(28, 28, 28, 0.6);
+        translate: 0 -3px;
+    }
+
+    .caso-exito__enlace:hover .caso-exito__flecha {
+        translate: 2px -2px;
+    }
+
+    /* El subrayado aparece solo si el cursor esta sobre el boton */
+    .caso-exito__accion:hover .caso-exito__accion-texto::after {
+        scale: 1 1;
+    }
+}
+
+.caso-exito__enlace:focus-visible {
+    outline: 2px solid var(--color-eucalipto-hondo);
+    outline-offset: 3px;
+}
+
+.caso-exito__enlace:focus-visible .caso-exito__accion-texto::after {
+    scale: 1 1;
+}
+
+/* ---------- Cómo podemos acompañarte ---------- */
+
+.acompanamiento {
+    position: relative;
+    z-index: var(--capa-contenido);
+    padding-block: clamp(4rem, 12vh, 8rem);
+    background-color: var(--color-blanco);
+    box-shadow: 0 0 0 100vmax var(--color-blanco);
+    clip-path: inset(-1px -100vmax);
+}
+
+/* Sobre blanco, el título cambia de tinta */
+.acompanamiento .titulo-seccion {
+    color: var(--color-carbon);
+}
+
+.acompanamiento__contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(2.25rem, 5.5vh, 3.5rem);
+}
+
+.acompanamiento__lista {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.9rem, 2.2vh, 1.5rem);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Cada fila: nombre, descripción y botón, con tinta oscura sobre su color. */
+.propuesta {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) auto;
+    align-items: center;
+    gap: clamp(1.5rem, 3.5vw, 3rem);
+    padding: clamp(1.5rem, 3.2vh, 2.25rem) clamp(1.5rem, 3vw, 2.5rem);
+    border: 1px solid rgba(28, 28, 28, 0.07);
+    border-radius: clamp(10px, 1vw, 16px);
+    background-color: #F8F8F6;
+    box-shadow: 0 18px 38px -28px rgba(28, 28, 28, 0.45);
+    color: var(--color-carbon);
+}
+
+/* La barra lateral cruza los colores: verde en la naranja, naranja en la verde */
+.propuesta--colegios,
+.propuesta--rayuela {
+    padding-left: clamp(2rem, 3.6vw, 3rem);
+}
+
+.propuesta--colegios::before,
+.propuesta--rayuela::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 6px;
+}
+
+.propuesta--colegios {
+    background-color: #FDF0DF;
+}
+
+.propuesta--colegios::before {
+    background-color: var(--color-eucalipto);
+}
+
+.propuesta--rayuela {
+    background-color: #E7EFEC;
+}
+
+.propuesta--rayuela::before {
+    background-color: var(--color-naranja);
+}
+
+.propuesta__nombre {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.propuesta__titulo {
+    margin: 0;
+    font-family: var(--fuente-sans);
+    font-size: clamp(1.3rem, 1rem + 1vw, 2rem);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+    color: var(--color-carbon);
+}
+
+.propuesta__bajada {
+    margin: 0;
+    font-family: var(--fuente-sans);
+    font-size: clamp(0.95rem, 0.85rem + 0.3vw, 1.15rem);
+    line-height: 1.3;
+    color: rgba(28, 28, 28, 0.72);
+}
+
+/* La raya fina que separa el nombre de la descripción */
+.propuesta__texto {
+    margin: 0;
+    padding-left: clamp(1.25rem, 3vw, 2.5rem);
+    border-left: 1px solid rgba(28, 28, 28, 0.16);
+    font-family: var(--fuente-sans);
+    font-size: var(--texto-base);
+    line-height: 1.6;
+    text-wrap: pretty;
+    color: rgba(28, 28, 28, 0.76);
+}
+
+.propuesta__accion {
+    justify-self: end;
+    white-space: nowrap;
+}
+
+@media (max-width: 860px) {
+    .propuesta {
+        grid-template-columns: minmax(0, 1fr);
+        gap: clamp(0.9rem, 2.4vh, 1.4rem);
+    }
+
+    .propuesta__texto {
+        padding-left: 0;
+        padding-top: clamp(0.9rem, 2.4vh, 1.4rem);
+        border-left: 0;
+        border-top: 1px solid rgba(28, 28, 28, 0.16);
+    }
+
+    .propuesta__accion {
+        justify-self: start;
+    }
+}
+
+/* El "Ver mas" del final: solo la palabra y su subrayado. */
+.casos__mas {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3rem;
+    padding-inline: 0.35rem;
+    font-family: var(--fuente-sans);
+    font-size: var(--texto-sm);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-decoration: none;
+    color: var(--color-carbon);
+}
+
+.casos__mas-palabra {
+    position: relative;
+}
+
+.casos__mas-palabra::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: -0.35rem;
+    height: 1px;
+    background-color: currentColor;
+    scale: 0 1;
+    transform-origin: left center;
+    transition: scale 0.45s var(--curva-entrada);
+}
+
+@media (hover: hover) {
+    .casos__mas:hover .casos__mas-palabra::after {
+        scale: 1 1;
+    }
+}
+
+.casos__mas:focus-visible {
+    outline: 2px solid var(--color-carbon);
+    outline-offset: 4px;
+}
+
+.casos__mas:focus-visible .casos__mas-palabra::after {
+    scale: 1 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .casos__mas-palabra::after {
+        transition: none;
+    }
+}
+
+@media (max-width: 760px) {
+    .casos__grilla {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .caso-exito--ancho .caso-exito__enlace {
+        flex-direction: column;
+    }
+
+    .caso-exito--ancho .caso-exito__imagen {
+        aspect-ratio: 16 / 9;
+        min-height: 0;
+    }
+
+    .caso-exito--ancho .caso-exito__datos {
+        padding-inline: clamp(1.1rem, 2.2vw, 1.75rem);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .caso-exito__flecha,
+    .caso-exito__accion-texto::after {
+        transition: none;
+    }
+}
+
+/* ---------- El proceso, como una sala de museo ---------- */
+
+/* Las obras se reparten en tres planos: el fondo lejano, el riel y el David,
+   que queda delante de todo y las tarjetas le pasan por detrás. */
+.proceso__museo {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.proceso__obra {
+    position: absolute;
+    height: auto;
+    object-fit: contain;
+}
+
+.proceso__obra--jinete {
+    top: 5%;
+    left: 5%;
+    width: clamp(7rem, 13vw, 13rem);
+    opacity: 0.45;
+    filter: blur(3px);
+}
+
+.proceso__obra--anfora {
+    top: 4%;
+    right: 4%;
+    width: clamp(8rem, 14vw, 14rem);
+    opacity: 0.9;
+    rotate: 7deg;
+    filter: blur(1.4px) drop-shadow(-14px 18px 26px rgba(28, 28, 28, 0.3));
+}
+
+.proceso__obra--virgen {
+    bottom: -2%;
+    left: 53%;
+    width: clamp(7.5rem, 13vw, 13rem);
+    opacity: 0.75;
+    rotate: -9deg;
+    filter: blur(1.6px);
+}
+
+.proceso__david {
+    position: absolute;
+    bottom: 0;
+    left: 14%;
+    z-index: 3;
+    width: clamp(15rem, 33vw, 33rem);
+    height: auto;
+    filter: drop-shadow(18px 20px 36px rgba(28, 28, 28, 0.22));
+    pointer-events: none;
+}
+
+/* El riel pasa entre el fondo y el David */
+.proceso__riel {
+    position: relative;
+    z-index: 2;
+}
+
+.proceso__titulo {
+    position: relative;
+    z-index: 4;
+}
+
+/* Lo que está en el centro se ve nítido; lo que se aleja, se desenfoca. */
+.proceso__paso {
+    --foco: 1;
+}
+
+.proceso__texto {
+    filter: blur(calc((1 - var(--foco)) * 4px));
+    transition:
+        filter 0.45s var(--curva-suave),
+        opacity 0.6s var(--curva-suave),
+        translate 0.7s var(--curva-entrada);
+}
+
+.js .proceso__paso.esta-activo .proceso__texto {
+    opacity: calc(0.42 + var(--foco) * 0.58);
+}
+
+/* En pantallas angostas las obras se corren para no pelearse con el menú */
+@media (max-width: 767px) {
+    .proceso__obra--jinete {
+        top: 7%;
+        left: -4%;
+        width: clamp(5rem, 24vw, 7.5rem);
+        opacity: 0.35;
+    }
+
+    .proceso__obra--anfora {
+        top: auto;
+        bottom: 6%;
+        right: -4%;
+        width: clamp(5.5rem, 26vw, 8rem);
+        opacity: 0.7;
+    }
+
+    .proceso__obra--virgen {
+        bottom: 2%;
+        left: 44%;
+        width: clamp(5rem, 24vw, 7.5rem);
+        opacity: 0.6;
+    }
+
+    .proceso__david {
+        bottom: 0;
+        left: -10%;
+        width: clamp(10rem, 48vw, 15rem);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .proceso__texto {
+        filter: none;
+    }
 }

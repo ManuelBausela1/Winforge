@@ -1,4 +1,5 @@
 import { iniciarSitio } from "./recursos/js/principal.js";
+import { iniciarLogo3d } from "./recursos/js/componentes/logo-3d.js";
 import { prepararFraseAnimada } from "./recursos/js/componentes/revelar-frase.js";
 import { iniciarTituloParticulas } from "./recursos/js/componentes/titulo-particulas.js";
 import { iniciarProcesoHorizontal } from "./recursos/js/componentes/proceso-horizontal.js";
@@ -53,7 +54,8 @@ async function iniciarHero() {
 
 iniciarSitio();
 iniciarHero();
+iniciarLogo3d();
 iniciarProcesoHorizontal();
-iniciarCarruselMarcas();
+document.querySelectorAll("[data-carrusel-marcas]").forEach(iniciarCarruselMarcas);
 iniciarServiciosApilados();
 iniciarSeccionActiva();

@@ -68,7 +68,7 @@
                 "name": "Winforge",
                 "url": "https://winforge.com.ar/",
                 "image": "https://winforge.com.ar/img/logo/Isologo_transp.png",
-                "telephone": "+5493413626491",
+                "telephone": "+5493412506198",
                 "areaServed": "AR",
                 "address": {
                     "@type": "PostalAddress",
@@ -125,9 +125,15 @@
 
                     <ul class="indice-navegacion__secciones" role="list">
                         <li class="indice-navegacion__subitem">
-                            <a class="indice-navegacion__enlace indice-navegacion__enlace--seccion" href="#como-trabajamos" data-seccion="como-trabajamos">
+                            <a class="indice-navegacion__enlace indice-navegacion__enlace--seccion" href="#casos-de-exito" data-seccion="casos-de-exito">
                                 <span class="indice-navegacion__linea" aria-hidden="true"></span>
-                                <span class="indice-navegacion__texto">Proceso</span>
+                                <span class="indice-navegacion__texto">Proyectos</span>
+                            </a>
+                        </li>
+                        <li class="indice-navegacion__subitem">
+                            <a class="indice-navegacion__enlace indice-navegacion__enlace--seccion" href="#como-acompanamos" data-seccion="como-acompanamos">
+                                <span class="indice-navegacion__linea" aria-hidden="true"></span>
+                                <span class="indice-navegacion__texto">Acompañamiento</span>
                             </a>
                         </li>
                         <li class="indice-navegacion__subitem">
@@ -137,9 +143,15 @@
                             </a>
                         </li>
                         <li class="indice-navegacion__subitem">
-                            <a class="indice-navegacion__enlace indice-navegacion__enlace--seccion" href="#proyectos" data-seccion="proyectos">
+                            <a class="indice-navegacion__enlace indice-navegacion__enlace--seccion" href="#como-trabajamos" data-seccion="como-trabajamos">
                                 <span class="indice-navegacion__linea" aria-hidden="true"></span>
-                                <span class="indice-navegacion__texto">Proyectos</span>
+                                <span class="indice-navegacion__texto">Innegociable</span>
+                            </a>
+                        </li>
+                        <li class="indice-navegacion__subitem">
+                            <a class="indice-navegacion__enlace indice-navegacion__enlace--seccion" href="#iniciar-proyecto" data-seccion="iniciar-proyecto">
+                                <span class="indice-navegacion__linea" aria-hidden="true"></span>
+                                <span class="indice-navegacion__texto">CTA</span>
                             </a>
                         </li>
                     </ul>
@@ -169,9 +181,32 @@
     <main id="contenido">
 
         <section class="hero" data-hero aria-labelledby="titulo-principal">
+            <video
+                class="hero__video"
+                src="img/forja/forja-winforge.mp4"
+                poster="img/forja/yunque-1400.webp"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="auto"
+                aria-hidden="true"
+                tabindex="-1"
+            ></video>
+
             <canvas class="hero__lienzo-titulo" data-titulo-lienzo aria-hidden="true"></canvas>
 
             <div class="hero__contenedor contenedor">
+                <div class="logo-3d" data-logo-3d role="img" aria-label="Isotipo de Winforge">
+                    <div class="logo-3d__escena">
+                        <svg class="logo-3d__isotipo" viewBox="0 0 674.49 340" aria-hidden="true" focusable="false">
+                            <path d="M279.63,302.46c41.49,26.7,90.53,32.8,136.41,12.88,9.71-4.22,21.23-10.13,27.37-18.86.21-1.47-5.55-6.89-6.89-8.49-13.33-15.89-25.61-32.56-36.75-50.07-34.67,21.79-84.42,12.82-101.19-26.73-11.64-27.44-3.97-58.96,15.82-80.38l-.55-73.7h-.02c-.56-.58-7.17,2.99-8.35,3.6-43.32,22.35-79.2,60.54-85.03,110.79-1.2,10.38-.33,19.89-3.26,30.12-10.78,37.6-50.25,56.09-86.91,43.78-49.57-16.64-55.43-80.14-21.73-115.15l-.8-75.39c-.8-1.22-6.11,1.39-7.51,1.99C.57,99.52-19.48,240.88,73.11,302.58c35.74,23.81,88.27,33.53,127.26,12.4,18.66-10.11,30.9-24.9,44.22-40.89,11.2,9.97,22.4,20.23,35.04,28.37Z"/>
+                            <path d="M484.92,328.04h86.5c-.42-2.37-3.2-3.51-4.74-4.99-18.36-17.57-35.73-36.37-52.29-55.64-28.54-33.22-66.3-73.66-36.88-119.23,20.04-31.05,63.71-35.33,92.98-14.75,5.38,3.78,9.58,8.68,14.59,12.69l75.91-1.39c-18.53-47.98-58.64-82.19-109.58-91.25-70.17-12.47-132.99,22.65-151.17,92.52-14.45,55.53,4.59,90.3,38.24,131.68,14.39,17.7,29.55,35.01,46.44,50.36Z"/>
+                        </svg>
+                        <div class="logo-3d__brillo"></div>
+                    </div>
+                </div>
+
                 <h1 id="titulo-principal" class="hero__titulo" data-titulo-particulas>
                     <span class="hero__titulo-texto">Winforge</span>
                 </h1>
@@ -181,27 +216,302 @@
                         Forjar el camino en el <em>detalle</em> y los <em>valores</em>
                     </p>
 
-                    <p class="hero__bajada">Marketing y comunicación 360</p>
+                    <p class="hero__bajada">Estrategia y comunicación para marcas e instituciones</p>
                 </div>
 
                 <ul class="hero__acciones" role="list">
                     <li class="hero__accion">
                         <a class="boton boton--principal" href="contacto/">
-                            <span class="boton__texto">Iniciar proyecto</span>
+                            <span class="boton__texto">Hablemos</span>
                         </a>
                     </li>
                     <li class="hero__accion">
-                        <a class="boton boton--texto" href="quienes-somos/">
-                            <span class="boton__texto">Conocé más</span>
+                        <a class="boton boton--texto" href="#como-acompanamos">
+                            <span class="boton__texto">Conocer las propuestas</span>
                         </a>
                     </li>
                 </ul>
             </div>
         </section>
 
-        <section class="proceso" id="como-trabajamos" data-proceso aria-labelledby="titulo-proceso">
+        <section class="casos" id="casos-de-exito" data-tema-fondo="claro" aria-labelledby="titulo-casos">
+            <div class="casos__contenedor contenedor">
+                <h2 class="titulo-seccion" id="titulo-casos" data-revelar>Proyectos Forjados</h2>
+
+                <p class="casos__entrada" data-revelar>
+                    Marcas e instituciones de educación, salud, industria y servicios que confiaron en nosotros.
+                </p>
+
+                <div class="casos__grilla">
+                <article class="caso-exito caso-exito--ancho" style="--indice-caso: 0; --color-marca: hsl(1, 54%, 42%)" data-revelar>
+                    <a class="caso-exito__enlace" href="portfolio/#caso-escuelas-pias-argentina">
+                        <figure class="caso-exito__figura">
+                            <img
+                                class="caso-exito__imagen"
+                                src="img/marcas/caso-escuelas-pias-argentina.webp"
+                                alt="Sello de lacre junto al isologo de Escuelas Pías Provincia Argentina"
+                                width="490"
+                                height="293"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        </figure>
+
+                        <div class="caso-exito__datos">
+                            <h3 class="caso-exito__nombre">Escuelas Pías de Argentina</h3>
+                            <span class="caso-exito__accion"><span class="caso-exito__accion-texto">Ver proyecto</span> <span class="caso-exito__flecha" aria-hidden="true">↗</span></span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="caso-exito" style="--indice-caso: 1; --color-marca: hsl(169, 58%, 50%)" data-revelar>
+                    <a class="caso-exito__enlace" href="portfolio/?filtro=branding#caso-escuelas-pias">
+                        <figure class="caso-exito__figura">
+                            <img
+                                class="caso-exito__imagen"
+                                src="img/marcas/caso-mendiolaza.webp"
+                                alt="Bordado del escudo de Escuelas Pías Mendiolaza sobre tela verde"
+                                width="685"
+                                height="350"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        </figure>
+
+                        <div class="caso-exito__datos">
+                            <h3 class="caso-exito__nombre">Escuelas Pías Mendiolaza</h3>
+                            <span class="caso-exito__accion"><span class="caso-exito__accion-texto">Ver proyecto</span> <span class="caso-exito__flecha" aria-hidden="true">↗</span></span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="caso-exito" style="--indice-caso: 2; --color-marca: hsl(237, 62%, 62%)" data-revelar>
+                    <a class="caso-exito__enlace" href="portfolio/?filtro=branding#caso-della-vedova">
+                        <figure class="caso-exito__figura">
+                            <img
+                                class="caso-exito__imagen"
+                                src="img/marcas/caso-franco-della-vedova.webp"
+                                alt="Credenciales y cartel del consultorio del Dr. Franco Della Vedova"
+                                width="490"
+                                height="299"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        </figure>
+
+                        <div class="caso-exito__datos">
+                            <h3 class="caso-exito__nombre">Franco Della Vedova</h3>
+                            <span class="caso-exito__accion"><span class="caso-exito__accion-texto">Ver proyecto</span> <span class="caso-exito__flecha" aria-hidden="true">↗</span></span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="caso-exito caso-exito--ancho" style="--indice-caso: 3; --color-marca: hsl(213, 51%, 50%)" data-revelar>
+                    <a class="caso-exito__enlace" href="portfolio/#caso-ijs">
+                        <figure class="caso-exito__figura">
+                            <img
+                                class="caso-exito__imagen"
+                                src="img/marcas/caso-ijs.webp"
+                                alt="Cartel del Instituto Dr. Jaime Slullitel en la fachada del edificio"
+                                width="490"
+                                height="298"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        </figure>
+
+                        <div class="caso-exito__datos">
+                            <h3 class="caso-exito__nombre">Instituto Jaime Slullitel</h3>
+                            <span class="caso-exito__accion"><span class="caso-exito__accion-texto">Ver proyecto</span> <span class="caso-exito__flecha" aria-hidden="true">↗</span></span>
+                        </div>
+                    </a>
+                </article>
+                </div>
+
+                <a class="casos__mas" href="portfolio/">
+                    <span class="casos__mas-palabra">Ver más</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="acompanamiento" id="como-acompanamos" data-tema-fondo="claro" aria-labelledby="titulo-acompanamiento">
+            <div class="acompanamiento__contenedor contenedor">
+                <h2 class="titulo-seccion" id="titulo-acompanamiento" data-revelar>Cómo podemos acompañarte</h2>
+
+                <ul class="acompanamiento__lista" role="list">
+                    <li class="propuesta propuesta--marcas" style="--indice-propuesta: 0" data-revelar>
+                        <div class="propuesta__nombre">
+                            <h3 class="propuesta__titulo">Comunicación para marcas</h3>
+                        </div>
+
+                        <p class="propuesta__texto">Planes de comunicación y proyectos de identidad, contenido y presencia digital, según lo que tu marca necesita.</p>
+
+                        <a class="boton boton--principal propuesta__accion" href="#servicios">
+                            <span class="boton__texto">Ver propuesta</span>
+                        </a>
+                    </li>
+
+                    <li class="propuesta propuesta--colegios" style="--indice-propuesta: 1" data-revelar>
+                        <div class="propuesta__nombre">
+                            <h3 class="propuesta__titulo">Comunicación para colegios</h3>
+                        </div>
+
+                        <p class="propuesta__texto">Acompañamiento para comunicar la propuesta educativa, fortalecer el vínculo con la comunidad y trabajar la admisión.</p>
+
+                        <a class="boton boton--principal propuesta__accion" href="contacto/">
+                            <span class="boton__texto">Conocer M360</span>
+                        </a>
+                    </li>
+
+                    <li class="propuesta propuesta--rayuela" style="--indice-propuesta: 2" data-revelar>
+                        <div class="propuesta__nombre">
+                            <h3 class="propuesta__titulo">RayuelA</h3>
+
+                            <p class="propuesta__bajada">Atención y seguimiento de familias</p>
+                        </div>
+
+                        <p class="propuesta__texto">Un recorrido que integra canales de consulta, inteligencia artificial, agenda de entrevistas y seguimiento.</p>
+
+                        <a class="boton boton--principal propuesta__accion" href="contacto/">
+                            <span class="boton__texto">Conocer RayuelA</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="servicios" id="servicios" data-servicios aria-labelledby="titulo-servicios">
+            <div class="servicios__portada" data-revelar>
+                <img class="servicios__marca" src="img/logo/winforge-isotipo.svg" alt="" width="674" height="340" loading="lazy" decoding="async" aria-hidden="true">
+
+                <h2 class="titulo-seccion" id="titulo-servicios">Nuestros servicios</h2>
+
+                <p class="servicios__entrada">
+                    Trabajamos cada área por separado o en conjunto, según lo que cada marca necesita.
+                </p>
+            </div>
+
+            <article class="servicio servicio--eucalipto" data-panel-servicio style="--indice-panel: 0">
+                <div class="servicio__lienzo" data-lienzo-servicio>
+                    <div class="servicio__encabezado">
+                        <div class="servicio__acciones">
+                            <a class="servicio__mas" href="servicios/estrategia-y-marca/" aria-label="Ver más sobre Estrategia y marca">
+                                <span class="servicio__mas-texto">Ver más</span>
+                            </a>
+
+                            <a class="boton servicio__accion" href="contacto/?servicios=estrategia-y-marca">
+                                <span class="boton__texto">Iniciar proyecto</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <h3 class="servicio__titulo">Estrategia y marca</h3>
+
+                    <ul class="servicio__detalles" role="list">
+                        <li class="servicio__detalle" role="listitem">
+                            <p class="servicio__detalle-titulo">Diagnóstico y posicionamiento</p>
+                            <p class="servicio__detalle-texto">El lugar que tu marca ocupa y el que quiere ocupar.</p>
+                        </li>
+                        <li class="servicio__detalle" role="listitem">
+                            <p class="servicio__detalle-titulo">Identidad visual</p>
+                            <p class="servicio__detalle-texto">Isologotipo, paleta, tipografías y manual de marca.</p>
+                        </li>
+                        <li class="servicio__detalle" role="listitem">
+                            <p class="servicio__detalle-titulo">Naming y voz</p>
+                            <p class="servicio__detalle-texto">El nombre y la manera de decir las cosas en cada canal.</p>
+                        </li>
+                        <li class="servicio__detalle" role="listitem">
+                            <p class="servicio__detalle-titulo">Comunicación institucional e interna</p>
+                            <p class="servicio__detalle-texto">Unidad de marca entre sedes y áreas, y contenidos para los equipos de trabajo.</p>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="servicio servicio--naranja" data-panel-servicio style="--indice-panel: 1">
+                <div class="servicio__lienzo" data-lienzo-servicio>
+                    <div class="servicio__encabezado">
+                        <div class="servicio__acciones">
+                            <a class="servicio__mas" href="servicios/contenido-y-produccion/" aria-label="Ver más sobre Contenido y producción">
+                                <span class="servicio__mas-texto">Ver más</span>
+                            </a>
+
+                            <a class="boton servicio__accion" href="contacto/?servicios=contenido-y-produccion">
+                                <span class="boton__texto">Iniciar proyecto</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <h3 class="servicio__titulo">Contenido y producción</h3>
+
+                    <ul class="servicio__detalles" role="list">
+                        <li class="servicio__detalle" role="listitem">
+                            <p class="servicio__detalle-titulo">Planificación de contenidos</p>
+                            <p class="servicio__detalle-texto">Pilares, calendario mensual y guiones aprobados antes de filmar.</p>
+                        </li>
+                        <li class="servicio__detalle" role="listitem">
+                            <p class="servicio__detalle-titulo">Redes sociales</p>
+                            <p class="servicio__detalle-texto">Instagram, TikTok, Facebook, LinkedIn y YouTube, con gestión de comunidad.</p>
+                        </li>
+                        <li class="servicio__detalle" role="listitem">
+                            <p class="servicio__detalle-titulo">Producción audiovisual</p>
+                            <p class="servicio__detalle-texto">Del guion al rodaje, con equipo propio.</p>
+                        </li>
+                        <li class="servicio__detalle" role="listitem">
+                            <p class="servicio__detalle-titulo">Posproducción</p>
+                            <p class="servicio__detalle-texto">Edición, color y sonido con terminación profesional.</p>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="servicio servicio--claro" data-panel-servicio data-tema-fondo="claro" style="--indice-panel: 2">
+                <div class="servicio__lienzo" data-lienzo-servicio>
+                    <div class="servicio__encabezado">
+                        <div class="servicio__acciones">
+                            <a class="servicio__mas" href="servicios/web-y-campanas/" aria-label="Ver más sobre Web y campañas">
+                                <span class="servicio__mas-texto">Ver más</span>
+                            </a>
+
+                            <a class="boton servicio__accion" href="contacto/?servicios=web-y-campanas">
+                                <span class="boton__texto">Iniciar proyecto</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <h3 class="servicio__titulo">Web y campañas</h3>
+
+                    <ul class="servicio__detalles" role="list">
+                        <li class="servicio__detalle" role="listitem">
+                            <p class="servicio__detalle-titulo">Sitios web</p>
+                            <p class="servicio__detalle-texto">Sitios institucionales, tiendas en línea y desarrollos a medida.</p>
+                        </li>
+                        <li class="servicio__detalle" role="listitem">
+                            <p class="servicio__detalle-titulo">Campañas digitales</p>
+                            <p class="servicio__detalle-texto">Meta y Google para ventas, inscripciones y consultas.</p>
+                        </li>
+                        <li class="servicio__detalle" role="listitem">
+                            <p class="servicio__detalle-titulo">Posicionamiento en buscadores</p>
+                            <p class="servicio__detalle-texto">Para que tus clientes te encuentren cuando te buscan.</p>
+                        </li>
+                        <li class="servicio__detalle" role="listitem">
+                            <p class="servicio__detalle-titulo">Newsletters</p>
+                            <p class="servicio__detalle-texto">Comunicación periódica con tu comunidad.</p>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+        </section>
+
+        <section class="proceso" id="como-trabajamos" data-proceso data-tema-fondo="claro" aria-labelledby="titulo-proceso">
             <div class="proceso__escenario">
-                <h2 class="titulo-seccion proceso__titulo" id="titulo-proceso">Nuestro proceso</h2>
+                <div class="proceso__museo" aria-hidden="true">
+                    <img class="proceso__obra proceso__obra--jinete" src="img/forja/arte-san-martin.webp" alt="" width="440" height="657" loading="lazy" decoding="async">
+                    <img class="proceso__obra proceso__obra--anfora" src="img/forja/arte-anfora.webp" alt="" width="305" height="487" loading="lazy" decoding="async">
+                    <img class="proceso__obra proceso__obra--virgen" src="img/forja/arte-virgen.webp" alt="" width="294" height="444" loading="lazy" decoding="async">
+                </div>
+
+                <h2 class="titulo-seccion proceso__titulo" id="titulo-proceso">Nuestro innegociable</h2>
 
                 <div class="proceso__riel" data-riel>
                     <div class="proceso__recorrido">
@@ -286,308 +596,58 @@
                         </a>
                     </div>
                 </div>
+
+                <img class="proceso__david" src="img/forja/arte-david.webp" alt="" width="329" height="355" loading="lazy" decoding="async" aria-hidden="true">
             </div>
         </section>
 
-        <section class="servicios" id="servicios" data-servicios aria-labelledby="titulo-servicios">
-            <div class="servicios__portada" data-revelar>
-                <h2 class="titulo-seccion" id="titulo-servicios">Nuestros servicios</h2>
-
-                <p class="servicios__entrada">
-                    Trabajamos cada área por separado o en conjunto, según lo que cada marca necesita.
-                </p>
-            </div>
-
-            <article class="servicio servicio--eucalipto" data-panel-servicio style="--indice-panel: 0">
-                <div class="servicio__lienzo" data-lienzo-servicio>
-                    <div class="servicio__encabezado">
-                        <p class="servicio__numero">01 — Servicios</p>
-
-                        <div class="servicio__acciones">
-                            <a class="servicio__mas" href="servicios/estrategia-y-marca/" aria-label="Ver más sobre Estrategia y marca">
-                                <span class="servicio__mas-texto">Ver más</span>
-                            </a>
-
-                            <a class="boton servicio__accion" href="contacto/?servicios=estrategia-y-marca">
-                                <span class="boton__texto">Iniciar proyecto</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <h3 class="servicio__titulo">Estrategia y marca</h3>
-
-                    <ul class="servicio__detalles" role="list">
-                        <li class="servicio__detalle" role="listitem">
-                            <p class="servicio__detalle-titulo">Diagnóstico y posicionamiento</p>
-                            <p class="servicio__detalle-texto">El lugar que tu marca ocupa y el que quiere ocupar.</p>
-                        </li>
-                        <li class="servicio__detalle" role="listitem">
-                            <p class="servicio__detalle-titulo">Identidad visual</p>
-                            <p class="servicio__detalle-texto">Isologotipo, paleta, tipografías y manual de marca.</p>
-                        </li>
-                        <li class="servicio__detalle" role="listitem">
-                            <p class="servicio__detalle-titulo">Naming y voz</p>
-                            <p class="servicio__detalle-texto">El nombre y la manera de decir las cosas en cada canal.</p>
-                        </li>
-                        <li class="servicio__detalle" role="listitem">
-                            <p class="servicio__detalle-titulo">Comunicación institucional e interna</p>
-                            <p class="servicio__detalle-texto">Unidad de marca entre sedes y áreas, y contenidos para los equipos de trabajo.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-
-            <article class="servicio servicio--naranja" data-panel-servicio style="--indice-panel: 1">
-                <div class="servicio__lienzo" data-lienzo-servicio>
-                    <div class="servicio__encabezado">
-                        <p class="servicio__numero">02 — Servicios</p>
-
-                        <div class="servicio__acciones">
-                            <a class="servicio__mas" href="servicios/contenido-y-produccion/" aria-label="Ver más sobre Contenido y producción">
-                                <span class="servicio__mas-texto">Ver más</span>
-                            </a>
-
-                            <a class="boton servicio__accion" href="contacto/?servicios=contenido-y-produccion">
-                                <span class="boton__texto">Iniciar proyecto</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <h3 class="servicio__titulo">Contenido y producción</h3>
-
-                    <ul class="servicio__detalles" role="list">
-                        <li class="servicio__detalle" role="listitem">
-                            <p class="servicio__detalle-titulo">Planificación de contenidos</p>
-                            <p class="servicio__detalle-texto">Pilares, calendario mensual y guiones aprobados antes de filmar.</p>
-                        </li>
-                        <li class="servicio__detalle" role="listitem">
-                            <p class="servicio__detalle-titulo">Redes sociales</p>
-                            <p class="servicio__detalle-texto">Instagram, TikTok, Facebook, LinkedIn y YouTube, con gestión de comunidad.</p>
-                        </li>
-                        <li class="servicio__detalle" role="listitem">
-                            <p class="servicio__detalle-titulo">Producción audiovisual</p>
-                            <p class="servicio__detalle-texto">Del guion al rodaje, con equipo propio.</p>
-                        </li>
-                        <li class="servicio__detalle" role="listitem">
-                            <p class="servicio__detalle-titulo">Posproducción</p>
-                            <p class="servicio__detalle-texto">Edición, color y sonido con terminación profesional.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-
-            <article class="servicio servicio--claro" data-panel-servicio data-tema-fondo="claro" style="--indice-panel: 2">
-                <div class="servicio__lienzo" data-lienzo-servicio>
-                    <div class="servicio__encabezado">
-                        <p class="servicio__numero">03 — Servicios</p>
-
-                        <div class="servicio__acciones">
-                            <a class="servicio__mas" href="servicios/web-y-campanas/" aria-label="Ver más sobre Web y campañas">
-                                <span class="servicio__mas-texto">Ver más</span>
-                            </a>
-
-                            <a class="boton servicio__accion" href="contacto/?servicios=web-y-campanas">
-                                <span class="boton__texto">Iniciar proyecto</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <h3 class="servicio__titulo">Web y campañas</h3>
-
-                    <ul class="servicio__detalles" role="list">
-                        <li class="servicio__detalle" role="listitem">
-                            <p class="servicio__detalle-titulo">Sitios web</p>
-                            <p class="servicio__detalle-texto">Sitios institucionales, tiendas en línea y desarrollos a medida.</p>
-                        </li>
-                        <li class="servicio__detalle" role="listitem">
-                            <p class="servicio__detalle-titulo">Campañas digitales</p>
-                            <p class="servicio__detalle-texto">Meta y Google para ventas, inscripciones y consultas.</p>
-                        </li>
-                        <li class="servicio__detalle" role="listitem">
-                            <p class="servicio__detalle-titulo">Posicionamiento en buscadores</p>
-                            <p class="servicio__detalle-texto">Para que tus clientes te encuentren cuando te buscan.</p>
-                        </li>
-                        <li class="servicio__detalle" role="listitem">
-                            <p class="servicio__detalle-titulo">Newsletters</p>
-                            <p class="servicio__detalle-texto">Comunicación periódica con tu comunidad.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-        </section>
-
-        <section class="proyectos" id="proyectos" data-sin-estrellas aria-labelledby="titulo-proyectos">
-            <div class="proyectos__contenedor contenedor">
-                <h2 class="titulo-seccion" id="titulo-proyectos" data-revelar>Proyectos forjados</h2>
-
-                <p class="proyectos__entrada" data-revelar>
-                    Marcas e instituciones de educación, salud, industria y servicios que confiaron en nosotros.
-                </p>
-            </div>
-
-            <div class="carrusel-marcas" data-carrusel-marcas data-revelar>
+        <section class="proyectos" id="proyectos" data-sin-estrellas aria-label="Marcas que confiaron en nosotros">
+            <div class="carrusel-marcas" data-carrusel-marcas data-sentido="-1" aria-label="Marcas, primera fila" data-revelar>
                 <ul class="carrusel-marcas__pista" role="list" data-carrusel-pista>
                         <li class="carrusel-marcas__marca">
-                            <figure class="carrusel-marcas__figura">
-                                <img class="carrusel-marcas__logo" src="img/marcas/agras.webp" alt="AGRAS" width="220" height="110" loading="lazy" decoding="async">
-                                <figcaption class="carrusel-marcas__nombre">AGRAS</figcaption>
-                            </figure>
+                            <img class="carrusel-marcas__logo" src="img/marcas/agras.webp" alt="AGRAS" width="220" height="110" loading="lazy" decoding="async">
                         </li>
                         <li class="carrusel-marcas__marca">
-                            <figure class="carrusel-marcas__figura">
-                                <img class="carrusel-marcas__logo" src="img/marcas/ahg-blanco-logotipo.webp" alt="Alpha Handel Group" width="220" height="110" loading="lazy" decoding="async">
-                                <figcaption class="carrusel-marcas__nombre">Alpha Handel Group</figcaption>
-                            </figure>
+                            <img class="carrusel-marcas__logo" src="img/marcas/atenea.webp" alt="Atenea" width="220" height="110" loading="lazy" decoding="async">
                         </li>
                         <li class="carrusel-marcas__marca">
-                            <figure class="carrusel-marcas__figura">
-                                <img class="carrusel-marcas__logo" src="img/marcas/atenea.webp" alt="Atenea" width="220" height="110" loading="lazy" decoding="async">
-                                <figcaption class="carrusel-marcas__nombre">Atenea</figcaption>
-                            </figure>
+                            <img class="carrusel-marcas__logo" src="img/marcas/city.webp" alt="City Center Rosario" width="220" height="110" loading="lazy" decoding="async">
+                        </li>
+                        <li class="carrusel-marcas__marca" style="--color-marca: hsl(29, 75%, 55%)">
+                            <img class="carrusel-marcas__logo" src="img/marcas/congreso1.webp" alt="Congreso" width="220" height="110" loading="lazy" decoding="async">
                         </li>
                         <li class="carrusel-marcas__marca">
-                            <figure class="carrusel-marcas__figura">
-                                <img class="carrusel-marcas__logo" src="img/marcas/box-house.webp" alt="Box House" width="220" height="110" loading="lazy" decoding="async">
-                                <figcaption class="carrusel-marcas__nombre">Box House</figcaption>
-                            </figure>
+                            <img class="carrusel-marcas__logo" src="img/marcas/lionrush.webp" alt="Lionrush Coffee Roasters" width="220" height="110" loading="lazy" decoding="async">
                         </li>
                         <li class="carrusel-marcas__marca">
-                            <figure class="carrusel-marcas__figura">
-                                <img class="carrusel-marcas__logo" src="img/marcas/city.webp" alt="City Center Rosario" width="220" height="110" loading="lazy" decoding="async">
-                                <figcaption class="carrusel-marcas__nombre">City Center Rosario</figcaption>
-                            </figure>
+                            <img class="carrusel-marcas__logo" src="img/marcas/iso-r.webp" alt="ISO R" width="220" height="110" loading="lazy" decoding="async">
                         </li>
                         <li class="carrusel-marcas__marca">
-                            <figure class="carrusel-marcas__figura">
-                                <img class="carrusel-marcas__logo" src="img/marcas/coe.webp" alt="COE" width="220" height="110" loading="lazy" decoding="async">
-                                <figcaption class="carrusel-marcas__nombre">COE</figcaption>
-                            </figure>
+                            <img class="carrusel-marcas__logo" src="img/marcas/logo-loth-01.webp" alt="Loth" width="220" height="110" loading="lazy" decoding="async">
                         </li>
                         <li class="carrusel-marcas__marca">
-                            <figure class="carrusel-marcas__figura">
-                                <img class="carrusel-marcas__logo" src="img/marcas/congreso1.webp" alt="Congreso" width="220" height="110" loading="lazy" decoding="async">
-                                <figcaption class="carrusel-marcas__nombre">Congreso de Educación Humanista</figcaption>
-                            </figure>
+                            <img class="carrusel-marcas__logo" src="img/marcas/liliana-olivieri.webp" alt="Liliana Olivieri" width="220" height="110" loading="lazy" decoding="async">
                         </li>
                         <li class="carrusel-marcas__marca">
-                            <figure class="carrusel-marcas__figura">
-                                <img class="carrusel-marcas__logo" src="img/marcas/disroi.webp" alt="Disroi" width="220" height="110" loading="lazy" decoding="async">
-                                <figcaption class="carrusel-marcas__nombre">Disroi</figcaption>
-                            </figure>
+                            <img class="carrusel-marcas__logo" src="img/marcas/jcb-desarrollos.webp" alt="JCB Desarrollos" width="220" height="110" loading="lazy" decoding="async">
                         </li>
                         <li class="carrusel-marcas__marca">
-                            <figure class="carrusel-marcas__figura">
-                                <img class="carrusel-marcas__logo" src="img/marcas/lionrush.webp" alt="Lionrush Coffee Roasters" width="220" height="110" loading="lazy" decoding="async">
-                                <figcaption class="carrusel-marcas__nombre">Lionrush Coffee Roasters</figcaption>
-                            </figure>
+                            <img class="carrusel-marcas__logo" src="img/marcas/original-blanco-logotipo.webp" alt="Áncora" width="220" height="110" loading="lazy" decoding="async">
                         </li>
                         <li class="carrusel-marcas__marca">
-                            <figure class="carrusel-marcas__figura">
-                                <img class="carrusel-marcas__logo" src="img/marcas/franco-della-vedoba.webp" alt="Dr. Franco Della Vedova" width="220" height="110" loading="lazy" decoding="async">
-                                <figcaption class="carrusel-marcas__nombre">Dr. Franco Della Vedova</figcaption>
-                            </figure>
+                            <img class="carrusel-marcas__logo" src="img/marcas/premium-home.webp" alt="Premium Home" width="220" height="110" loading="lazy" decoding="async">
                         </li>
-                        <li class="carrusel-marcas__marca">
-                            <figure class="carrusel-marcas__figura">
-                                <img class="carrusel-marcas__logo" src="img/marcas/iso-r.webp" alt="ISO R" width="220" height="110" loading="lazy" decoding="async">
-                                <figcaption class="carrusel-marcas__nombre">ISO R</figcaption>
-                            </figure>
+                        <li class="carrusel-marcas__marca" style="--color-marca: hsl(213, 51%, 50%)">
+                            <img class="carrusel-marcas__logo" src="img/marcas/slullitel.webp" alt="Instituto Dr. Jaime Slullitel" width="220" height="110" loading="lazy" decoding="async">
                         </li>
-                        <li class="carrusel-marcas__marca">
-                            <figure class="carrusel-marcas__figura">
-                                <img class="carrusel-marcas__logo" src="img/marcas/jardin-surcos-isotipo2.webp" alt="Surcos, jardín de infantes" width="220" height="110" loading="lazy" decoding="async">
-                                <figcaption class="carrusel-marcas__nombre">Surcos, jardín de infantes</figcaption>
-                            </figure>
-                        </li>
-                        <li class="carrusel-marcas__marca">
-                            <figure class="carrusel-marcas__figura">
-                                <img class="carrusel-marcas__logo" src="img/marcas/logo-loth-01.webp" alt="Loth" width="220" height="110" loading="lazy" decoding="async">
-                                <figcaption class="carrusel-marcas__nombre">Loth</figcaption>
-                            </figure>
-                        </li>
-                        <li class="carrusel-marcas__marca">
-                            <figure class="carrusel-marcas__figura">
-                                <img class="carrusel-marcas__logo" src="img/marcas/kosim.webp" alt="Kosim" width="220" height="110" loading="lazy" decoding="async">
-                                <figcaption class="carrusel-marcas__nombre">Kosim</figcaption>
-                            </figure>
-                        </li>
-                        <li class="carrusel-marcas__marca">
-                            <figure class="carrusel-marcas__figura">
-                                <img class="carrusel-marcas__logo" src="img/marcas/liliana-olivieri.webp" alt="Liliana Olivieri" width="220" height="110" loading="lazy" decoding="async">
-                                <figcaption class="carrusel-marcas__nombre">Liliana Olivieri</figcaption>
-                            </figure>
-                        </li>
-                        <li class="carrusel-marcas__marca">
-                            <figure class="carrusel-marcas__figura">
-                                <img class="carrusel-marcas__logo" src="img/marcas/epa.webp" alt="Escuelas Pías de Argentina" width="220" height="110" loading="lazy" decoding="async">
-                                <figcaption class="carrusel-marcas__nombre">Escuelas Pías de Argentina</figcaption>
-                            </figure>
-                        </li>
-                        <li class="carrusel-marcas__marca">
-                            <figure class="carrusel-marcas__figura">
-                                <img class="carrusel-marcas__logo" src="img/marcas/jcb-desarrollos.webp" alt="JCB Desarrollos" width="220" height="110" loading="lazy" decoding="async">
-                                <figcaption class="carrusel-marcas__nombre">JCB Desarrollos</figcaption>
-                            </figure>
-                        </li>
-                        <li class="carrusel-marcas__marca">
-                            <figure class="carrusel-marcas__figura">
-                                <img class="carrusel-marcas__logo" src="img/marcas/manu-santamaria.webp" alt="Manu Santamaría" width="220" height="110" loading="lazy" decoding="async">
-                                <figcaption class="carrusel-marcas__nombre">Manu Santamaría</figcaption>
-                            </figure>
-                        </li>
-                        <li class="carrusel-marcas__marca">
-                            <figure class="carrusel-marcas__figura">
-                                <img class="carrusel-marcas__logo" src="img/marcas/original-blanco-logotipo.webp" alt="Áncora" width="220" height="110" loading="lazy" decoding="async">
-                                <figcaption class="carrusel-marcas__nombre">Áncora</figcaption>
-                            </figure>
-                        </li>
-                        <li class="carrusel-marcas__marca">
-                            <figure class="carrusel-marcas__figura">
-                                <img class="carrusel-marcas__logo" src="img/marcas/oxyferrum.webp" alt="Oxyferrum" width="220" height="110" loading="lazy" decoding="async">
-                                <figcaption class="carrusel-marcas__nombre">Oxyferrum</figcaption>
-                            </figure>
-                        </li>
-                        <li class="carrusel-marcas__marca">
-                            <figure class="carrusel-marcas__figura">
-                                <img class="carrusel-marcas__logo" src="img/marcas/premium-home.webp" alt="Premium Home" width="220" height="110" loading="lazy" decoding="async">
-                                <figcaption class="carrusel-marcas__nombre">Premium Home</figcaption>
-                            </figure>
-                        </li>
-                        <li class="carrusel-marcas__marca">
-                            <figure class="carrusel-marcas__figura">
-                                <img class="carrusel-marcas__logo" src="img/marcas/seba-rodriguez.webp" alt="Seba Rodríguez" width="220" height="110" loading="lazy" decoding="async">
-                                <figcaption class="carrusel-marcas__nombre">Seba Rodríguez</figcaption>
-                            </figure>
-                        </li>
-                        <li class="carrusel-marcas__marca">
-                            <figure class="carrusel-marcas__figura">
-                                <img class="carrusel-marcas__logo" src="img/marcas/slullitel.webp" alt="Instituto Dr. Jaime Slullitel" width="220" height="110" loading="lazy" decoding="async">
-                                <figcaption class="carrusel-marcas__nombre">Instituto Dr. Jaime Slullitel</figcaption>
-                            </figure>
-                        </li>
-                        <li class="carrusel-marcas__marca">
-                            <figure class="carrusel-marcas__figura">
-                                <img class="carrusel-marcas__logo" src="img/marcas/sorba.webp" alt="Sorba" width="220" height="110" loading="lazy" decoding="async">
-                                <figcaption class="carrusel-marcas__nombre">Sorba</figcaption>
-                            </figure>
-                        </li>
-                        <li class="carrusel-marcas__marca">
-                            <figure class="carrusel-marcas__figura">
-                                <img class="carrusel-marcas__logo" src="img/marcas/xop.webp" alt="XOP ERP" width="220" height="110" loading="lazy" decoding="async">
-                                <figcaption class="carrusel-marcas__nombre">XOP ERP</figcaption>
-                            </figure>
-                        </li>
-                        <li class="carrusel-marcas__marca">
-                            <figure class="carrusel-marcas__figura">
-                                <img class="carrusel-marcas__logo" src="img/marcas/zafirus.webp" alt="Zafirus" width="220" height="110" loading="lazy" decoding="async">
-                                <figcaption class="carrusel-marcas__nombre">Zafirus</figcaption>
-                            </figure>
+                        <li class="carrusel-marcas__marca" style="--color-marca: hsl(200, 78%, 55%)">
+                            <img class="carrusel-marcas__logo" src="img/marcas/xop.webp" alt="XOP ERP" width="220" height="110" loading="lazy" decoding="async">
                         </li>
                 </ul>
             </div>
 
             <div class="invitacion" id="iniciar-proyecto" data-revelar>
-                <h3 class="invitacion__titulo">Queremos conocer tu historia</h3>
+                <h3 class="titulo-seccion invitacion__titulo">Queremos conocer tu historia</h3>
                 <p class="invitacion__texto">
                     Acompañamos a instituciones y profesionales con trayectoria a comunicar expandir su marca.
                 </p>
@@ -596,6 +656,49 @@
                     <span class="boton__texto">Iniciar mi proyecto</span>
                 </a>
             </div>
+
+            <div class="carrusel-marcas" data-carrusel-marcas data-sentido="1" aria-label="Marcas, segunda fila" data-revelar>
+                <ul class="carrusel-marcas__pista" role="list" data-carrusel-pista>
+                        <li class="carrusel-marcas__marca">
+                            <img class="carrusel-marcas__logo" src="img/marcas/ahg-blanco-logotipo.webp" alt="Alpha Handel Group" width="220" height="110" loading="lazy" decoding="async">
+                        </li>
+                        <li class="carrusel-marcas__marca" style="--color-marca: hsl(121, 42%, 48%)">
+                            <img class="carrusel-marcas__logo" src="img/marcas/box-house.webp" alt="Box House" width="220" height="110" loading="lazy" decoding="async">
+                        </li>
+                        <li class="carrusel-marcas__marca" style="--color-marca: hsl(57, 62%, 55%)">
+                            <img class="carrusel-marcas__logo" src="img/marcas/coe.webp" alt="COE" width="220" height="110" loading="lazy" decoding="async">
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <img class="carrusel-marcas__logo" src="img/marcas/disroi.webp" alt="Disroi" width="220" height="110" loading="lazy" decoding="async">
+                        </li>
+                        <li class="carrusel-marcas__marca" style="--color-marca: hsl(237, 62%, 62%)">
+                            <img class="carrusel-marcas__logo" src="img/marcas/franco-della-vedoba.webp" alt="Dr. Franco Della Vedova" width="220" height="110" loading="lazy" decoding="async">
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <img class="carrusel-marcas__logo" src="img/marcas/jardin-surcos-isotipo2.webp" alt="Surcos, jardín de infantes" width="220" height="110" loading="lazy" decoding="async">
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <img class="carrusel-marcas__logo" src="img/marcas/kosim.webp" alt="Kosim" width="220" height="110" loading="lazy" decoding="async">
+                        </li>
+                        <li class="carrusel-marcas__marca" style="--color-marca: hsl(1, 54%, 42%)">
+                            <img class="carrusel-marcas__logo" src="img/marcas/epa.webp" alt="Escuelas Pías de Argentina" width="220" height="110" loading="lazy" decoding="async">
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <img class="carrusel-marcas__logo" src="img/marcas/manu-santamaria.webp" alt="Manu Santamaría" width="220" height="110" loading="lazy" decoding="async">
+                        </li>
+                        <li class="carrusel-marcas__marca" style="--color-marca: hsl(45, 72%, 55%)">
+                            <img class="carrusel-marcas__logo" src="img/marcas/oxyferrum.webp" alt="Oxyferrum" width="220" height="110" loading="lazy" decoding="async">
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <img class="carrusel-marcas__logo" src="img/marcas/seba-rodriguez.webp" alt="Seba Rodríguez" width="220" height="110" loading="lazy" decoding="async">
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <img class="carrusel-marcas__logo" src="img/marcas/sorba.webp" alt="Sorba" width="220" height="110" loading="lazy" decoding="async">
+                        </li>
+                        <li class="carrusel-marcas__marca">
+                            <img class="carrusel-marcas__logo" src="img/marcas/zafirus.webp" alt="Zafirus" width="220" height="110" loading="lazy" decoding="async">
+                        </li>
+                </ul>
         </section>
 
     </main>
@@ -645,20 +748,20 @@
             <div class="pie__columna">
                 <p class="pie__titulo">Contactos</p>
 
-                <a class="pie__dato pie__dato--enlace" href="mailto:equipowinforge@gmail.com">
+                <a class="pie__dato pie__dato--enlace" href="mailto:info@winforge.com">
                     <svg class="pie__icono-dato" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                                 <rect x="3" y="5" width="18" height="14" rx="2.5"/>
                                 <path d="m3.8 7 7.1 5.2a2 2 0 0 0 2.2 0L20.2 7"/>
                             </svg>
-                    equipowinforge@gmail.com
+                    info@winforge.com
                 </a>
 
-                <a class="pie__dato pie__dato--enlace" href="https://wa.me/5493413626491" target="_blank" rel="noopener noreferrer">
+                <a class="pie__dato pie__dato--enlace" href="https://wa.me/5493412506198" target="_blank" rel="noopener noreferrer">
                     <svg class="pie__icono-dato" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                                 <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/>
                                 <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/>
                             </svg>
-                    +54 9 341 362 6491
+                    +54 9 3412 50 6198
                 </a>
             </div>
 
@@ -682,7 +785,7 @@
             </nav>
         </div>
 
-        <p class="pie__marca" aria-hidden="true">Winforge</p>
+        <img class="pie__marca" src="img/logo/logoblanco-01.svg" alt="" width="1000" height="760" loading="lazy" decoding="async" aria-hidden="true">
     </footer>
 </body>
 </html>

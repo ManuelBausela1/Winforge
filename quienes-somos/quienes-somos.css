@@ -42,11 +42,8 @@
     position: relative;
     z-index: 1;
     max-width: 1720px;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-items: center;
-    column-gap: clamp(2.5rem, 5vw, 6rem);
-    row-gap: clamp(2.5rem, 8vh, 5rem);
+    display: flex;
+    justify-content: center;
 }
 
 @media (hover: hover) and (min-width: 768px) {
@@ -56,8 +53,6 @@
 }
 
 .presentacion__columna-texto {
-    grid-column: 1 / 2;
-    grid-row: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -85,8 +80,20 @@
     fill: currentColor;
 }
 
+/* Los dos caminos: hablar o mirar lo hecho. */
+.presentacion__acciones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(0.75rem, 2vw, 1.5rem);
+    margin: clamp(0.5rem, 2vh, 1.25rem) 0 0;
+    padding: 0;
+    list-style: none;
+}
+
 .presentacion__frase {
-    max-width: min(34ch, 100%);
+    max-width: min(46ch, 100%);
     font-family: var(--fuente-sans);
     font-size: var(--texto-frase-hero);
     font-weight: 500;
@@ -96,21 +103,48 @@
     color: var(--color-blanco);
 }
 
-.presentacion__columna-grafico {
-    grid-column: 1 / -1;
-    grid-row: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* ---------- Los tres pilares ----------
+   Una franja de color montada entre la portada y el proposito; las fichas
+   se apoyan encima y sobresalen por arriba y por abajo. */
+
+.pilares-seccion {
+    position: relative;
+    z-index: 3;
+    padding-block: clamp(5rem, 13vh, 8rem);
+}
+
+/* Arriba sigue el negro de la portada; abajo arranca el blanco del proposito.
+   Asi las fichas sobresalen sobre una y otra, sin gris de por medio. */
+.pilares-seccion::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-image: linear-gradient(180deg, var(--color-fondo-profundo) 0 50%, var(--color-blanco) 50% 100%);
+    box-shadow: 0 0 0 100vmax transparent;
+    clip-path: inset(0 -100vmax);
+}
+
+/* La franja: no llega a los bordes de las fichas, por eso asoman */
+.pilares-seccion::before {
+    content: "";
+    position: absolute;
+    inset: calc(clamp(5rem, 13vh, 8rem) + 2.5rem) 0;
+    z-index: -1;
+    background-color: var(--color-eucalipto);
+    box-shadow: 0 0 0 100vmax var(--color-eucalipto);
+    clip-path: inset(0 -100vmax);
+}
+
+.pilares-seccion__contenedor {
+    max-width: 1720px;
 }
 
 .pilares {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: clamp(1.5rem, 3vw, 3rem);
-    width: 100%;
-    height: clamp(19rem, 40vh, 25rem);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: clamp(1rem, 2.4vw, 2rem);
     list-style: none;
     padding: 0;
     margin: 0;
@@ -120,13 +154,56 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.9rem;
-    width: 31%;
+    gap: clamp(0.8rem, 2vh, 1.2rem);
+    padding: clamp(1.75rem, 4vh, 2.75rem) clamp(1.25rem, 2.5vw, 2rem);
+    border-radius: clamp(8px, 0.8vw, 14px);
+    background-color: #F7F4EF;
+    box-shadow: 0 26px 54px -28px rgba(0, 0, 0, 0.55);
     text-align: center;
 }
 
+/* La medalla: el icono blanco necesita su fondo de color */
+.pilar__medalla {
+    display: grid;
+    place-items: center;
+    width: clamp(4.5rem, 7vw, 6rem);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: var(--color-eucalipto-hondo);
+}
+
+/* Las fichas suben al entrar en pantalla */
+.js .pilar {
+    opacity: 0;
+    translate: 0 2.5rem;
+    transition:
+        opacity 0.7s var(--curva-suave),
+        translate 0.8s var(--curva-entrada);
+    transition-delay: calc(var(--indice-pilar, 0) * 110ms);
+}
+
+.js .pilar.esta-visible {
+    opacity: 1;
+    translate: 0 0;
+}
+
+@media (max-width: 760px) {
+    .pilares {
+        grid-template-columns: minmax(0, 1fr);
+        gap: clamp(1.25rem, 3vh, 1.75rem);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .js .pilar {
+        opacity: 1;
+        translate: 0 0;
+        transition: none;
+    }
+}
+
 .pilar__icono {
-    width: clamp(104px, 12vw, 172px);
+    width: 56%;
     height: auto;
     aspect-ratio: 260 / 275;
     object-fit: contain;
@@ -134,139 +211,33 @@
 
 .pilar__nombre {
     font-family: var(--fuente-sans);
-    font-size: 1.5rem;
+    font-size: clamp(1.15rem, 1rem + 0.5vw, 1.45rem);
     font-weight: 500;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--color-blanco);
+    color: var(--color-carbon);
 }
 
 .pilar__descripcion {
-    font-size: var(--texto-lg);
-    line-height: 1.55;
-    color: var(--color-texto);
+    font-size: var(--texto-base);
+    line-height: 1.6;
+    color: rgba(28, 28, 28, 0.74);
     text-wrap: pretty;
 }
 
-.presentacion--fila .presentacion__columna-grafico {
-    grid-column: 2 / 3;
-}
-
-.presentacion--fila .pilares {
-    justify-content: center;
-    gap: clamp(1.5rem, 3vw, 3.5rem);
-    width: min(100%, 40rem);
-    height: auto;
-}
-
-.presentacion--fila .pilar {
-    width: max-content;
-    max-width: 11rem;
-}
-
-.presentacion--fila .pilar__descripcion {
-    display: none;
-}
-
-.presentacion--escena {
-    --resto: clamp(0, (0.62 - var(--avance, 0)) / 0.62, 1);
-
-    height: 180vh;
-    display: block;
-    padding-block: 0;
-}
-
-.presentacion--escena .presentacion__contenedor {
-    position: sticky;
-    top: 0;
-    min-height: 100vh;
-    min-height: 100svh;
-    align-content: center;
-    padding-block: clamp(3.5rem, 9vh, 6rem);
-}
-
-.presentacion--escena .presentacion__columna-texto {
-    opacity: clamp(0, 1 - var(--avance, 0) * 3.2, 1);
-    translate: 0 calc(var(--avance, 0) * -2.5rem);
-}
-
-.presentacion--escena .pilar__nombre {
-    font-size: calc(var(--texto-sm) + 0.625rem * var(--avance, 0));
-    letter-spacing: calc(0.2em - 0.06em * var(--avance, 0));
-}
-
-.presentacion--escena .pilar {
-    translate:
-        calc(var(--desde-x, 0px) * var(--resto))
-        calc(var(--desde-y, 0px) * var(--resto));
-}
-
-.presentacion--escena .pilar__descripcion {
-    --aparicion: clamp(0, (var(--avance, 0) - 0.6) * 2.9, 1);
-
-    opacity: var(--aparicion);
-    scale: calc(0.82 + var(--aparicion) * 0.18);
-}
-
-.presentacion--midiendo .presentacion__columna-texto,
-.presentacion--midiendo .pilar {
-    opacity: 1;
-    translate: none;
-    transition: none;
-}
-
-.presentacion--midiendo .pilar__descripcion {
-    opacity: 1;
-    scale: 1;
-}
-
-.presentacion--midiendo .pilar__nombre {
-    font-size: var(--texto-sm);
-    letter-spacing: 0.2em;
-}
-
 @media (max-width: 1100px) {
-    .presentacion__contenedor {
-        grid-template-columns: minmax(0, 1fr);
-        grid-template-areas:
-            "texto"
-            "grafico";
-        justify-items: center;
-    }
-
     .presentacion__frase {
-        max-width: 30ch;
-    }
-
-    .presentacion__columna-grafico {
-        grid-column: 1;
-        grid-row: auto;
-    }
-
-    .presentacion__columna-texto {
-        grid-column: 1;
-        grid-row: auto;
-    }
-
-    .pilares {
-        flex-direction: column;
-        align-items: center;
-        gap: clamp(2rem, 5vh, 3rem);
-        width: min(100%, 32rem);
-        height: auto;
-    }
-
-    .pilar {
-        width: 100%;
+        max-width: 34ch;
     }
 }
+
 
 .proposito {
     position: relative;
     z-index: 1;
     padding-block: clamp(5rem, 14vh, 10rem);
-    background-color: #000000;
-    box-shadow: 0 0 0 100vmax #000000;
+    background-color: var(--color-blanco);
+    box-shadow: 0 0 0 100vmax var(--color-blanco);
     clip-path: inset(-1px -100vmax);
 }
 
@@ -293,12 +264,12 @@
 
 .proposito__bloque--mision {
     padding-left: clamp(1.25rem, 3vw, 2.25rem);
-    border-left: 2px solid var(--color-eucalipto);
+    border-left: 6px solid var(--color-eucalipto);
 }
 
 .proposito__bloque--vision {
     padding-right: clamp(1.25rem, 3vw, 2.25rem);
-    border-right: 2px solid var(--color-eucalipto);
+    border-right: 6px solid var(--color-eucalipto);
 }
 
 .proposito__bloque--mision {
@@ -317,14 +288,14 @@
     font-weight: 300;
     line-height: 1.05;
     letter-spacing: -0.01em;
-    color: var(--color-blanco);
+    color: var(--color-carbon);
 }
 
 .proposito__texto {
     font-size: var(--texto-lg);
     line-height: 1.55;
     text-wrap: pretty;
-    color: var(--color-texto);
+    color: rgba(28, 28, 28, 0.76);
 }
 
 .proposito__texto em {
