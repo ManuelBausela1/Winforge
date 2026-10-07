@@ -21,7 +21,10 @@ export function iniciarNavegadorServicios(raiz = document.querySelector("[data-n
         vistas.forEach((vista, indice) => vista.classList.toggle("esta-activa", indice === elegido));
 
         detalles.forEach((detalle, indice) => {
-            detalle.hidden = indice !== elegido;
+            /* Nada de [hidden]: el detalle que no se muestra igual reserva su alto */
+            detalle.hidden = false;
+            detalle.classList.toggle("esta-oculto", indice !== elegido);
+            detalle.inert = indice !== elegido;
 
             if (animar && indice === elegido) {
                 detalle.classList.remove("esta-cambiando");

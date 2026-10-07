@@ -25,6 +25,25 @@ const LIMITES = {
 /* Solo aceptamos los valores que pusimos nosotros en el marcado. */
 const SERVICIOS_VALIDOS = ["Estrategia y marca", "Contenido y producción", "Web y campañas"];
 const TIPOS_VALIDOS = ["Marca", "Institución"];
+const PLANES_VALIDOS = ["Presencia", "Crecimiento", "Gestión", "A medida", "Todavía no sé"];
+const NIVELES_VALIDOS = ["Presencia escolar", "Admisión", "Alumbra", "RayuelA", "Todavía no sé"];
+const TRAMOS_VALIDOS = ["Hasta 300 alumnos", "301 a 600 alumnos", "601 a 1.000 alumnos", "Más de 1.000 alumnos", "Todavía no sé"];
+
+/* Los campos que puede traer un formulario; cada página usa los que necesita */
+const CAMPOS_POSIBLES = ["nombre", "tipo", "institucion", "cargo", "email", "plan", "nivel", "alumnos", "mensaje", "servicios"];
+
+/* Cómo se nombra cada dato en el correo que se arma */
+const ETIQUETAS = {
+    nombre: "Nombre",
+    tipo: "Marca o institución",
+    institucion: "Institución",
+    cargo: "Cargo",
+    email: "Email",
+    plan: "Plan",
+    nivel: "Nivel",
+    alumnos: "Cantidad de alumnos",
+    servicios: "Servicios",
+};
 
 const CLAVE_ENVIOS = "winforge:envios";
 
@@ -43,6 +62,23 @@ const MENSAJES = {
     },
     servicios: {
         vacio: "Elegí al menos un servicio.",
+    },
+    plan: {
+        vacio: "Elegí el plan que te interesa.",
+    },
+    nivel: {
+        vacio: "Elegí el nivel que les interesa.",
+    },
+    alumnos: {
+        vacio: "Elegí el tramo de alumnos del colegio.",
+    },
+    institucion: {
+        vacio: "Contanos de qué institución nos escribís.",
+        corto: "Escribí el nombre completo de la institución.",
+    },
+    cargo: {
+        vacio: "Contanos qué cargo ocupás.",
+        corto: "Escribí el cargo con un poco más de detalle.",
     },
     mensaje: {
         vacio: "Contanos sobre tu proyecto.",
@@ -67,7 +103,8 @@ function valorLimpio(formulario, nombre) {
 
     if (nombre === "mensaje") return limpiarTexto(crudo, { maximo: LIMITES.largoMensaje, conSaltos: true });
     if (nombre === "email") return limpiarTexto(crudo, { maximo: LIMITES.largoEmail }).toLowerCase();
-    if (nombre === "nombre") return limpiarTexto(crudo, { maximo: LIMITES.largoNombre });
+    if (nombre === "nombre" || nombre === "cargo") return limpiarTexto(crudo, { maximo: LIMITES.largoNombre });
+    if (nombre === "institucion") return limpiarTexto(crudo, { maximo: 120 });
 
     return limpiarTexto(crudo, { maximo: 60 });
 }
@@ -99,6 +136,27 @@ function validarCampo(formulario, nombre) {
 
         case "tipo":
             return TIPOS_VALIDOS.includes(valor) ? "" : MENSAJES.tipo.vacio;
+
+        case "plan":
+            return PLANES_VALIDOS.includes(valor) ? "" : MENSAJES.plan.vacio;
+
+        case "nivel":
+            return NIVELES_VALIDOS.includes(valor) ? "" : MENSAJES.nivel.vacio;
+
+        case "alumnos":
+            return TRAMOS_VALIDOS.includes(valor) ? "" : MENSAJES.alumnos.vacio;
+
+        case "institucion":
+            if (!valor) return MENSAJES.institucion.vacio;
+            if (valor.length < 3) return MENSAJES.institucion.corto;
+            if (tieneMarcado(valor) || cuantosEnlaces(valor)) return MENSAJES.institucion.corto;
+            return "";
+
+        case "cargo":
+            if (!valor) return MENSAJES.cargo.vacio;
+            if (valor.length < 3) return MENSAJES.cargo.corto;
+            if (tieneMarcado(valor) || cuantosEnlaces(valor)) return MENSAJES.cargo.corto;
+            return "";
 
         case "servicios":
             return serviciosElegidos(formulario).length ? "" : MENSAJES.servicios.vacio;
@@ -170,16 +228,18 @@ async function enviar(formulario, datos) {
     }
 
     const cuerpo = [
-        `Nombre: ${datos.nombre}`,
-        `Marca o institución: ${datos.tipo}`,
-        `Email: ${datos.email}`,
-        `Servicios: ${datos.servicios.join(", ")}`,
+        ...Object.entries(ETIQUETAS)
+            .filter(([clave]) => clave in datos)
+            .map(([clave, etiqueta]) => {
+                const valor = datos[clave];
+                return `${etiqueta}: ${Array.isArray(valor) ? valor.join(", ") : valor}`;
+            }),
         "",
         datos.mensaje,
     ].join("\n");
 
     /* El asunto va en una sola línea: un salto acá deja meter cabeceras. */
-    const asunto = `Nuevo proyecto: ${datos.nombre}`.replace(/\s+/g, " ").slice(0, 120);
+    const asunto = `${formulario.dataset.asunto ?? "Nuevo proyecto"}: ${datos.nombre}`.replace(/\s+/g, " ").slice(0, 120);
 
     window.location.href = `mailto:info@winforge.com?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
 
@@ -192,7 +252,7 @@ export function iniciarFormularioContacto(formulario = document.querySelector("[
     const aviso = formulario.querySelector("[data-aviso]");
     const boton = formulario.querySelector('button[type="submit"]');
     const nacimiento = Date.now();
-    const campos = ["nombre", "tipo", "email", "mensaje", "servicios"];
+    const campos = CAMPOS_POSIBLES.filter((nombre) => formulario.elements[nombre]);
     const revisados = new Set();
     let enviando = false;
 
@@ -277,13 +337,9 @@ export function iniciarFormularioContacto(formulario = document.querySelector("[
             return;
         }
 
-        const datos = {
-            nombre: valorLimpio(formulario, "nombre"),
-            tipo: valorLimpio(formulario, "tipo"),
-            email: valorLimpio(formulario, "email"),
-            mensaje: valorLimpio(formulario, "mensaje"),
-            servicios: serviciosElegidos(formulario),
-        };
+        const datos = Object.fromEntries(
+            campos.map((nombre) => [nombre, nombre === "servicios" ? serviciosElegidos(formulario) : valorLimpio(formulario, nombre)]),
+        );
 
         enviando = true;
         boton.disabled = true;

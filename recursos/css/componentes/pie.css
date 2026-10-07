@@ -159,14 +159,27 @@
 /* La marca se apoya en el borde de abajo: la mitad de las letras queda fuera. */
 /* El logo se apoya en el borde de abajo, del lado de las redes:
    apenas despegado del fondo, pero bien visible. */
-.pie__marca {
-    width: clamp(13rem, 28vw, 28rem);
-    height: auto;
-    margin: 0 0 clamp(1rem, 3.5vh, 2.75rem) calc(var(--margen-lateral) + clamp(2.5rem, 12vw, 12rem));
-    align-self: flex-start;
-    opacity: 0.28;
-    user-select: none;
+/* Las chispas de la forja, detrás de todo el pie */
+.pie__chispas {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
     pointer-events: none;
+}
+
+/* El isotipo del pie: el mismo que gira en la portada, más sereno */
+.pie__marca.logo-3d {
+    width: clamp(9rem, 20vw, 17rem);
+    margin: 0 0 clamp(1.5rem, 4.5vh, 3.25rem) calc(var(--margen-lateral) + clamp(2.5rem, 12vw, 12rem));
+    align-self: flex-start;
+    opacity: 0.55;
+    user-select: none;
+}
+
+.pie__marca .logo-3d__isotipo {
+    filter: drop-shadow(0 14px 26px rgba(0, 0, 0, 0.55));
 }
 
 .animar .pie__marca {

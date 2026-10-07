@@ -1,0 +1,1566 @@
+/* ---------- Propuestas ----------
+   Tres paneles —marcas, colegios y RayuelA— sobre el mármol del sitio.
+   Las fichas son claras para que el precio y los entregables se lean de corrido. */
+
+.propuestas {
+    position: relative;
+    isolation: isolate;
+}
+
+/* Un eucalipto tan liviano que casi es blanco, con la luz cayendo de arriba. */
+.propuestas::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-color: #F1F6F3;
+    background-image:
+        radial-gradient(120% 80% at 50% 0%, rgba(255, 255, 255, 0.92) 0%, transparent 60%),
+        radial-gradient(90% 70% at 50% 112%, rgba(129, 161, 152, 0.26) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* ---------- Portada ---------- */
+
+.portada-propuestas {
+    padding-block: clamp(6rem, 14vh, 8.5rem) clamp(2.5rem, 7vh, 4rem);
+}
+
+.portada-propuestas__contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(1.25rem, 3.5vh, 2rem);
+    text-align: center;
+}
+
+.portada-propuestas__titulo {
+    margin: 0;
+    font-family: var(--fuente-serif);
+    font-size: clamp(2.5rem, 1.5rem + 3.4vw, 4.5rem);
+    font-weight: 500;
+    line-height: 1.05;
+    text-wrap: balance;
+    color: var(--color-carbon);
+}
+
+.portada-propuestas__bajada {
+    max-width: 52ch;
+    margin: 0;
+    font-size: var(--texto-lg);
+    line-height: 1.6;
+    text-wrap: pretty;
+    color: rgba(28, 28, 28, 0.7);
+}
+
+/* El selector de propuesta: tres caminos, uno abierto por vez */
+.selector-propuesta__lista {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(0.5rem, 1.5vw, 0.9rem);
+    margin: clamp(0.5rem, 2vh, 1rem) 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.selector-propuesta__opcion {
+    appearance: none;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid rgba(28, 28, 28, 0.14);
+    border-radius: var(--radio-pildora);
+    background-color: rgba(255, 255, 255, 0.8);
+    font-family: var(--fuente-sans);
+    font-size: var(--texto-sm);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: rgba(28, 28, 28, 0.76);
+    cursor: pointer;
+    transition:
+        border-color 0.3s var(--curva-suave),
+        background-color 0.3s var(--curva-suave),
+        color 0.3s var(--curva-suave);
+}
+
+@media (hover: hover) {
+    .selector-propuesta__opcion:hover {
+        border-color: rgba(28, 28, 28, 0.3);
+        color: var(--color-carbon);
+    }
+}
+
+.selector-propuesta__opcion {
+    border-color: rgba(78, 108, 98, 0.3);
+    color: var(--color-eucalipto-hondo);
+}
+
+.selector-propuesta__opcion[aria-pressed="true"] {
+    border-color: var(--color-eucalipto-hondo);
+    background-color: var(--color-eucalipto-hondo);
+    color: var(--color-blanco);
+}
+
+/* ---------- Encabezado de cada panel ---------- */
+
+.propuestas .titulo-seccion {
+    color: var(--color-carbon);
+}
+
+.encabezado-propuesta {
+    padding-block: clamp(2rem, 6vh, 3.5rem) clamp(1rem, 3vh, 2rem);
+}
+
+.encabezado-propuesta .contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(1rem, 3vh, 1.75rem);
+    text-align: center;
+}
+
+.encabezado-propuesta__titulo {
+    max-width: 22ch;
+    margin: 0;
+    font-family: var(--fuente-sans);
+    font-size: clamp(1.65rem, 1.1rem + 2vw, 3.1rem);
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    color: var(--color-carbon);
+}
+
+.encabezado-propuesta__acento {
+    color: var(--color-eucalipto-hondo);
+}
+
+.encabezado-propuesta__bajada {
+    max-width: 62ch;
+    margin: 0;
+    font-size: var(--texto-base);
+    line-height: 1.7;
+    text-wrap: pretty;
+    color: rgba(28, 28, 28, 0.7);
+}
+
+/* Los números que resumen el producto */
+.claves-producto {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(1rem, 3vw, 2.5rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.clave-producto {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.clave-producto b {
+    font-family: var(--fuente-sans);
+    font-size: clamp(1.1rem, 0.95rem + 0.5vw, 1.45rem);
+    font-weight: 500;
+    color: var(--color-eucalipto-hondo);
+}
+
+.clave-producto span {
+    font-size: var(--texto-sm);
+    color: rgba(28, 28, 28, 0.6);
+}
+
+/* ---------- Planes ---------- */
+
+.seccion-planes {
+    padding-block: clamp(2rem, 5vh, 3rem) clamp(3rem, 9vh, 5rem);
+}
+
+.planes__encabezado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(0.75rem, 2vh, 1.1rem);
+    text-align: center;
+}
+
+.planes__pregunta {
+    margin: 0;
+    font-family: var(--fuente-sans);
+    font-size: var(--texto-base);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--color-eucalipto-hondo);
+}
+
+.necesidades {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.filtro-necesidad {
+    appearance: none;
+    padding: 0.55rem 1.1rem;
+    border: 1px solid rgba(28, 28, 28, 0.14);
+    border-radius: var(--radio-pildora);
+    background-color: rgba(255, 255, 255, 0.72);
+    font-family: var(--fuente-sans);
+    font-size: var(--texto-sm);
+    color: rgba(28, 28, 28, 0.7);
+    cursor: pointer;
+    transition:
+        border-color 0.3s var(--curva-suave),
+        background-color 0.3s var(--curva-suave),
+        color 0.3s var(--curva-suave);
+}
+
+@media (hover: hover) {
+    .filtro-necesidad:hover {
+        border-color: var(--color-eucalipto);
+        color: var(--color-carbon);
+    }
+}
+
+.filtro-necesidad[aria-pressed="true"] {
+    border-color: var(--color-eucalipto-hondo);
+    background-color: var(--color-eucalipto-hondo);
+    color: var(--color-blanco);
+    font-weight: 500;
+}
+
+/* La permanencia cambia el precio de los planes de marca */
+.permanencia {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: clamp(1.5rem, 4vh, 2.5rem);
+}
+
+.permanencia__etiqueta {
+    font-size: var(--texto-xs);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(28, 28, 28, 0.56);
+}
+
+.permanencia__opciones {
+    display: inline-flex;
+    gap: 0.25rem;
+    padding: 0.25rem;
+    border: 1px solid rgba(28, 28, 28, 0.14);
+    border-radius: var(--radio-pildora);
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.permanencia__opcion {
+    appearance: none;
+    padding: 0.45rem 1rem;
+    border: 0;
+    border-radius: var(--radio-pildora);
+    background-color: transparent;
+    font-family: var(--fuente-sans);
+    font-size: var(--texto-sm);
+    color: rgba(28, 28, 28, 0.6);
+    cursor: pointer;
+    transition:
+        background-color 0.3s var(--curva-suave),
+        color 0.3s var(--curva-suave);
+}
+
+.permanencia__opcion[aria-pressed="true"] {
+    background-color: var(--color-carbon);
+    color: var(--color-blanco);
+    font-weight: 500;
+}
+
+.planes {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: stretch;
+    gap: clamp(0.9rem, 1.6vw, 1.4rem);
+    margin-top: clamp(2rem, 5vh, 3rem);
+}
+
+/* Las fichas se alinean entre sí: nombre con nombre, lista con lista */
+.planes--parejo {
+    grid-template-rows: auto auto auto 1fr auto;
+}
+
+.planes--parejo .plan {
+    grid-row: span 5;
+    grid-template-rows: subgrid;
+    display: grid;
+    gap: clamp(0.75rem, 2vh, 1.1rem);
+}
+
+/* Cada plan: una ficha clara que se lee de arriba abajo */
+.plan {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.75rem, 2vh, 1.1rem);
+    padding: clamp(1.5rem, 3vw, 2rem) clamp(1.25rem, 2.2vw, 1.6rem);
+    border: 1px solid rgba(28, 28, 28, 0.08);
+    border-radius: clamp(10px, 1vw, 16px);
+    background-color: var(--color-blanco);
+    box-shadow: 0 20px 44px -30px rgba(28, 28, 28, 0.45);
+    color: var(--color-carbon);
+}
+
+.plan--recomendado:not(.esta-elegido) {
+    border-color: var(--color-eucalipto-hondo);
+    box-shadow:
+        0 0 0 1px rgba(78, 108, 98, 0.45),
+        0 24px 50px -28px rgba(28, 28, 28, 0.5);
+}
+
+.plan__marca {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    padding: 0.3rem 0.9rem;
+    border-radius: var(--radio-pildora);
+    background-color: var(--color-naranja);
+    font-size: var(--texto-xs);
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--color-carbon);
+    translate: -50% -50%;
+}
+
+.plan--recomendado:not(.esta-elegido) .plan__marca--recomendado,
+.plan.esta-elegido .plan__marca--elegido {
+    display: block;
+}
+
+.plan__marca--recomendado {
+    background-color: var(--color-eucalipto-hondo);
+    color: var(--color-blanco);
+}
+
+.plan__marca--elegido {
+    background-color: var(--color-naranja);
+    color: var(--color-carbon);
+}
+
+.plan__nivel {
+    margin: 0;
+    font-size: var(--texto-xs);
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-eucalipto-hondo);
+}
+
+.plan__nombre {
+    margin: 0;
+    font-family: var(--fuente-sans);
+    font-size: clamp(1.3rem, 1.1rem + 0.7vw, 1.8rem);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    color: var(--color-carbon);
+}
+
+.plan__para {
+    margin: 0;
+    font-size: var(--texto-sm);
+    line-height: 1.55;
+    text-wrap: pretty;
+    color: rgba(28, 28, 28, 0.7);
+}
+
+.plan__precio {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    margin: 0;
+    padding-block: clamp(0.75rem, 2vh, 1.1rem);
+    border-block: 1px solid rgba(28, 28, 28, 0.1);
+}
+
+.plan__monto {
+    font-family: var(--fuente-sans);
+    font-size: clamp(1.45rem, 1.1rem + 1.1vw, 2.1rem);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--color-carbon);
+}
+
+.plan__monto--libre {
+    font-size: clamp(1.25rem, 1rem + 0.8vw, 1.7rem);
+}
+
+.plan__periodo {
+    font-size: var(--texto-xs);
+    line-height: 1.4;
+    color: rgba(28, 28, 28, 0.6);
+}
+
+.plan__ahorro {
+    min-height: 1.1em;
+    font-size: var(--texto-xs);
+    font-weight: 500;
+    color: var(--color-eucalipto-hondo);
+}
+
+.plan__claves {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.plan__clave {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-size: var(--texto-sm);
+    color: rgba(28, 28, 28, 0.74);
+}
+
+.plan__clave b {
+    min-width: 2.75rem;
+    font-weight: 600;
+    color: var(--color-carbon);
+}
+
+.plan__variable {
+    margin: 0;
+    padding: 0.7rem 0.85rem;
+    border-radius: var(--radio-sm);
+    background-color: rgba(255, 165, 41, 0.12);
+    font-size: var(--texto-xs);
+    line-height: 1.5;
+    color: rgba(28, 28, 28, 0.76);
+}
+
+.plan__variable--sin {
+    background-color: rgba(28, 28, 28, 0.04);
+    color: rgba(28, 28, 28, 0.56);
+}
+
+.plan__detalle {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.plan__heredado {
+    margin: 0;
+    font-size: var(--texto-xs);
+    font-style: italic;
+    color: rgba(28, 28, 28, 0.6);
+}
+
+.plan__grupo-nombre {
+    margin: 0 0 0.35rem;
+    font-family: var(--fuente-sans);
+    font-size: var(--texto-xs);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-eucalipto-hondo);
+}
+
+.plan__lista {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.plan__lista li {
+    position: relative;
+    padding-left: 1rem;
+    font-size: var(--texto-sm);
+    line-height: 1.5;
+    text-wrap: pretty;
+    color: rgba(28, 28, 28, 0.76);
+}
+
+.plan__lista li::before {
+    content: "";
+    position: absolute;
+    top: 0.58em;
+    left: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: var(--color-eucalipto);
+}
+
+.plan__accion {
+    margin-top: auto;
+    justify-content: center;
+    border-color: rgba(28, 28, 28, 0.25);
+    background-color: transparent;
+    color: var(--color-carbon);
+}
+
+.plan__accion:hover {
+    border-color: var(--color-carbon);
+}
+
+.plan--recomendado:not(.esta-elegido) .plan__accion {
+    border-color: transparent;
+    background-color: var(--color-eucalipto-hondo);
+    color: var(--color-blanco);
+}
+
+.plan.esta-elegido .plan__accion {
+    border-color: transparent;
+    background-color: var(--color-naranja);
+    color: var(--color-carbon);
+}
+
+/* La ficha que responde a lo que el visitante eligió */
+.plan.esta-elegido {
+    border-color: var(--color-naranja);
+    box-shadow:
+        0 0 0 1px rgba(255, 165, 41, 0.55),
+        0 24px 50px -28px rgba(28, 28, 28, 0.5);
+}
+
+/* Condiciones del panel de marcas: al costado y sin las líneas */
+.propuestas .seccion-condiciones--izquierda .contenedor {
+    align-items: flex-start;
+}
+
+/* El título de cada sección: un solo cuerpo en toda la página */
+.titulo-bloque {
+    max-width: 26ch;
+    margin: 0;
+    font-family: var(--fuente-sans);
+    font-size: clamp(1.45rem, 1.05rem + 1.35vw, 2.35rem);
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    text-transform: none;
+    color: var(--color-carbon);
+}
+
+/* ---------- El taller: encabezado al costado y línea de tiempo ---------- */
+
+.seccion-taller {
+    --alto-icono: clamp(4.5rem, 6.5vw, 6rem);
+
+    padding-block: clamp(3rem, 9vh, 5rem);
+}
+
+.seccion-taller .contenedor {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2.5rem, 7vh, 4rem);
+}
+
+/* El encabezado se parte en dos, con una línea fina al medio */
+.taller__encabezado {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: clamp(0.9rem, 2.5vh, 1.4rem);
+}
+
+/* Este título lleva sólo la línea de la derecha */
+.titulo-seccion--izquierda::before {
+    display: none;
+}
+
+.taller__lema {
+    text-wrap: balance;
+}
+
+.taller__bajada {
+    max-width: 62ch;
+    margin: 0;
+    font-size: var(--texto-base);
+    line-height: 1.7;
+    text-wrap: pretty;
+    color: rgba(28, 28, 28, 0.7);
+}
+
+/* La línea de tiempo: íconos arriba, el riel, y el paso abajo */
+.taller__linea {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: clamp(1rem, 2.2vw, 1.75rem);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.taller__linea::before {
+    content: "";
+    position: absolute;
+    top: var(--alto-icono);
+    right: 0;
+    left: 0;
+    height: 1px;
+    background-color: rgba(28, 28, 28, 0.16);
+}
+
+/* La punta de flecha que cierra el riel */
+.taller__linea::after {
+    content: "";
+    position: absolute;
+    top: var(--alto-icono);
+    right: 1px;
+    width: 0.45rem;
+    height: 0.45rem;
+    border: solid rgba(28, 28, 28, 0.3);
+    border-width: 1px 1px 0 0;
+    rotate: 45deg;
+    translate: 0 -50%;
+}
+
+/* El paso va centrado: el punto cae justo sobre su texto y la fila queda pareja */
+.taller__paso {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.taller__icono {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: var(--alto-icono);
+    height: var(--alto-icono);
+    color: rgba(28, 28, 28, 0.72);
+}
+
+/* Un halo suave, alternado, para dar ritmo a la fila */
+.taller__paso:nth-child(odd) .taller__icono {
+    border-radius: 50%;
+    background-color: rgba(129, 161, 152, 0.16);
+}
+
+.taller__icono svg {
+    width: 45%;
+    height: 45%;
+}
+
+/* Los dibujos vienen en png: van de máscara para tomar el color del texto */
+.taller__icono--dibujo::before {
+    content: "";
+    width: 54%;
+    height: 54%;
+    background-color: currentColor;
+    -webkit-mask: var(--dibujo) center / contain no-repeat;
+    mask: var(--dibujo) center / contain no-repeat;
+}
+
+/* El punto que apoya cada paso sobre el riel */
+.taller__icono::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: var(--color-naranja);
+    translate: -50% 50%;
+}
+
+.taller__nombre {
+    margin: clamp(1.5rem, 4vh, 2.25rem) 0 0;
+    font-family: var(--fuente-sans);
+    font-size: clamp(0.95rem, 0.85rem + 0.3vw, 1.15rem);
+    font-weight: 600;
+    line-height: 1.15;
+    text-wrap: balance;
+    color: var(--color-carbon);
+}
+
+.taller__texto {
+    margin: 0.6rem 0 0;
+    font-size: var(--texto-sm);
+    line-height: 1.6;
+    text-wrap: pretty;
+    color: rgba(28, 28, 28, 0.7);
+}
+
+@media (max-width: 900px) {
+    .taller__linea {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        row-gap: clamp(1.75rem, 5vh, 2.5rem);
+    }
+
+    .taller__linea::before,
+    .taller__linea::after {
+        display: none;
+    }
+}
+
+@media (max-width: 560px) {
+    .taller__linea {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* ---------- El abono de RayuelA, por tramo de alumnos ---------- */
+
+.seccion-abono {
+    padding-block: clamp(3rem, 9vh, 5rem) clamp(1rem, 3vh, 2rem);
+}
+
+.seccion-abono .contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(1rem, 3vh, 1.75rem);
+}
+
+.seccion-abono__bajada {
+    max-width: 62ch;
+    margin: 0;
+    font-size: var(--texto-sm);
+    line-height: 1.6;
+    text-align: center;
+    text-wrap: pretty;
+    color: rgba(28, 28, 28, 0.7);
+}
+
+/* El precio del tramo va en un renglón y sin las líneas del plan */
+.plan__precio--abono {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 0.4rem;
+    padding-block: 0;
+    border-block: 0;
+}
+
+/* Los datos del tramo, en cajitas que se leen de un vistazo */
+.tramo__datos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tramo__dato {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1rem;
+    min-width: 4.1rem;
+    padding: 0.5rem 0.7rem;
+    border: 1px solid rgba(28, 28, 28, 0.12);
+    border-radius: var(--radio-sm);
+    text-align: center;
+}
+
+.tramo__dato b {
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--color-carbon);
+}
+
+.tramo__dato span {
+    font-size: var(--texto-xs);
+    line-height: 1.2;
+    color: rgba(28, 28, 28, 0.6);
+}
+
+/* Lo que entra en el tramo, con tilde */
+.tramo__lista {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tramo__lista li {
+    position: relative;
+    padding-left: 1.4rem;
+    font-size: var(--texto-sm);
+    line-height: 1.5;
+    text-wrap: pretty;
+    color: rgba(28, 28, 28, 0.76);
+}
+
+.tramo__lista li::before {
+    content: "";
+    position: absolute;
+    top: 0.42em;
+    left: 0.2rem;
+    width: 0.35rem;
+    height: 0.62rem;
+    border: solid var(--color-eucalipto-hondo);
+    border-width: 0 2px 2px 0;
+    rotate: 45deg;
+}
+
+/* ---------- Comparación ---------- */
+
+.seccion-comparar {
+    padding-block: clamp(3rem, 9vh, 5rem);
+}
+
+.seccion-comparar .contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(1rem, 3vh, 1.75rem);
+}
+
+.seccion-comparar__bajada,
+.seccion-proceso__bajada {
+    max-width: 52ch;
+    margin: 0;
+    font-size: var(--texto-base);
+    line-height: 1.6;
+    text-align: center;
+    text-wrap: pretty;
+    color: rgba(28, 28, 28, 0.68);
+}
+
+.comparar__marco {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid rgba(28, 28, 28, 0.1);
+    border-radius: clamp(10px, 1vw, 16px);
+    background-color: rgba(255, 255, 255, 0.88);
+}
+
+.comparar {
+    width: 100%;
+    min-width: 46rem;
+    border-collapse: collapse;
+    font-size: var(--texto-sm);
+}
+
+.comparar th,
+.comparar td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(28, 28, 28, 0.08);
+}
+
+.comparar thead th {
+    position: sticky;
+    top: 0;
+    background-color: var(--color-blanco);
+    font-family: var(--fuente-sans);
+    font-size: var(--texto-sm);
+    font-weight: 500;
+    color: var(--color-carbon);
+}
+
+.comparar__etiqueta {
+    font-size: var(--texto-xs);
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(28, 28, 28, 0.5);
+}
+
+.comparar tbody td {
+    color: rgba(28, 28, 28, 0.78);
+}
+
+.comparar tbody td:first-child {
+    color: rgba(28, 28, 28, 0.6);
+}
+
+.comparar__tramo td {
+    padding-top: 1.1rem;
+    font-size: var(--texto-xs);
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-eucalipto-hondo);
+    background-color: rgba(129, 161, 152, 0.12);
+}
+
+.comparar__si {
+    display: inline-block;
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 50%;
+    background-color: var(--color-eucalipto-hondo);
+}
+
+.comparar__no {
+    color: rgba(28, 28, 28, 0.35);
+}
+
+/* ---------- Proceso y condiciones ---------- */
+
+.seccion-proceso,
+.seccion-condiciones,
+.seccion-capacidades {
+    padding-block: clamp(3rem, 9vh, 5rem);
+}
+
+.seccion-proceso .contenedor,
+.seccion-condiciones .contenedor,
+.seccion-capacidades .contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(1.5rem, 4vh, 2.5rem);
+}
+
+.pasos,
+.condiciones,
+.capacidades {
+    display: grid;
+    gap: clamp(1rem, 2.2vw, 1.75rem);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.pasos {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    counter-reset: paso;
+}
+
+.condiciones,
+.capacidades {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.paso,
+.condicion,
+.capacidad {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: clamp(1.1rem, 2.4vh, 1.6rem) clamp(1rem, 2vw, 1.4rem);
+    border: 1px solid rgba(28, 28, 28, 0.08);
+    border-radius: clamp(8px, 0.8vw, 14px);
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.paso {
+    counter-increment: paso;
+}
+
+.paso__nombre::before {
+    content: counter(paso) " · ";
+    color: var(--color-naranja);
+}
+
+.paso__nombre,
+.condicion__nombre,
+.capacidad__nombre {
+    margin: 0;
+    font-family: var(--fuente-sans);
+    font-size: var(--texto-base);
+    font-weight: 500;
+    line-height: 1.25;
+    color: var(--color-carbon);
+}
+
+.paso__texto,
+.condicion__texto,
+.capacidad__texto {
+    margin: 0;
+    font-size: var(--texto-sm);
+    line-height: 1.6;
+    text-wrap: pretty;
+    color: rgba(28, 28, 28, 0.68);
+}
+
+/* ---------- Cierre ---------- */
+
+.cierre-propuesta {
+    padding-block: clamp(3rem, 9vh, 5rem) clamp(4rem, 12vh, 7rem);
+}
+
+.cierre-propuesta__contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(0.9rem, 2.5vh, 1.4rem);
+    text-align: center;
+}
+
+.cierre-propuesta__titulo {
+    justify-content: center;
+}
+
+.cierre-propuesta__texto {
+    max-width: 48ch;
+    margin: 0;
+    font-size: var(--texto-base);
+    line-height: 1.65;
+    text-wrap: pretty;
+    color: rgba(28, 28, 28, 0.68);
+}
+
+/* ---------- Entradas ---------- */
+
+.js [data-revelar] {
+    opacity: 0;
+    translate: 0 22px;
+    transition:
+        opacity 0.7s var(--curva-suave),
+        translate 0.8s var(--curva-entrada);
+}
+
+.js [data-revelar].esta-visible {
+    opacity: 1;
+    translate: 0 0;
+}
+
+.js .plan[data-revelar] {
+    transition-delay: calc(var(--indice-plan, 0) * 90ms);
+}
+
+.js .paso[data-revelar],
+.js .taller__paso[data-revelar] {
+    transition-delay: calc(var(--indice-paso, 0) * 80ms);
+}
+
+.js .condicion[data-revelar],
+.js .capacidad[data-revelar] {
+    transition-delay: calc(var(--indice-condicion, 0) * 70ms + var(--indice-capacidad, 0) * 70ms);
+}
+
+/* ---------- Pantallas chicas ---------- */
+
+@media (max-width: 1100px) {
+    .planes {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .pasos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .condiciones,
+    .capacidades {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 720px) {
+    .planes,
+    .pasos,
+    .condiciones,
+    .capacidades {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .selector-propuesta__opcion {
+        padding-inline: 1.1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .js [data-revelar] {
+        opacity: 1;
+        translate: 0 0;
+        transition: none;
+    }
+}
+
+/* ---------- El cierre con formulario ---------- */
+
+.cierre-propuesta--formulario .cierre-propuesta__contenedor {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+    gap: clamp(2rem, 6vw, 4rem);
+    text-align: left;
+}
+
+.cierre-propuesta__intro {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.9rem, 2.5vh, 1.4rem);
+}
+
+.cierre-propuesta--formulario .cierre-propuesta__titulo {
+    max-width: 20ch;
+}
+
+.cierre-propuesta--formulario .cierre-propuesta__titulo::before,
+.cierre-propuesta--formulario .cierre-propuesta__titulo::after {
+    display: none;
+}
+
+.cierre-propuesta--formulario .cierre-propuesta__texto {
+    max-width: 44ch;
+    margin: 0;
+}
+
+.cierre-propuesta--formulario .formulario {
+    max-width: none;
+    justify-self: stretch;
+}
+
+.cierre-propuesta--formulario .formulario__etiqueta {
+    text-align: left;
+}
+
+@media (max-width: 900px) {
+    .cierre-propuesta--formulario .cierre-propuesta__contenedor {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* ---------- M360: los datos que abren el panel ---------- */
+
+.datos-duros {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.dato-duro {
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    padding: 0.5rem 0.95rem;
+    border: 1px solid rgba(28, 28, 28, 0.1);
+    border-radius: var(--radio-pildora);
+    background-color: rgba(255, 255, 255, 0.72);
+    font-size: var(--texto-xs);
+    line-height: 1.3;
+    color: rgba(28, 28, 28, 0.68);
+}
+
+.dato-duro b {
+    font-weight: 600;
+    white-space: nowrap;
+    color: var(--color-eucalipto-hondo);
+}
+
+/* En pantalla ancha los cuatro entran en un renglón */
+@media (min-width: 1100px) {
+    .datos-duros {
+        flex-wrap: nowrap;
+    }
+
+    .dato-duro {
+        white-space: nowrap;
+    }
+}
+
+/* El nombre del nivel entra en un renglón */
+.planes--parejo .plan__nombre {
+    font-size: clamp(1.2rem, 0.95rem + 0.75vw, 1.6rem);
+    text-wrap: nowrap;
+}
+
+/* ---------- M360: el proceso como lista con ícono ---------- */
+
+.pasos--lista {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    counter-reset: none;
+}
+
+/* Acá el paso no es una tarjeta: es un renglón de la lista */
+.pasos--lista .paso {
+    padding-inline: 0;
+    border: 0;
+    border-radius: 0;
+    background-color: transparent;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+    gap: clamp(1rem, 2.5vw, 1.75rem);
+    padding-block: clamp(1.1rem, 3vh, 1.6rem);
+    border-top: 1px solid rgba(28, 28, 28, 0.12);
+}
+
+.pasos--lista .paso:last-child {
+    border-bottom: 1px solid rgba(28, 28, 28, 0.12);
+}
+
+/* Acá el orden lo marca la lista, no un número */
+.pasos--lista .paso__nombre::before {
+    content: none;
+}
+
+.paso__icono {
+    display: grid;
+    place-items: center;
+    width: clamp(2.4rem, 4vw, 3rem);
+    height: clamp(2.4rem, 4vw, 3rem);
+    color: rgba(28, 28, 28, 0.66);
+}
+
+.paso__icono svg {
+    width: 100%;
+    height: 100%;
+}
+
+.pasos--lista .paso__cuerpo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding-top: 0.15rem;
+}
+
+.pasos--lista .paso__nombre {
+    font-family: var(--fuente-sans);
+    font-size: clamp(1.05rem, 0.95rem + 0.35vw, 1.3rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    text-transform: none;
+}
+
+.pasos--lista .paso__texto {
+    max-width: 68ch;
+}
+
+/* El texto que acompaña a un título puesto al costado */
+.seccion-proceso--izquierda .seccion-proceso__bajada {
+    max-width: 62ch;
+    margin: 0;
+    font-size: var(--texto-base);
+    text-align: left;
+}
+
+/* ---------- M360: el proceso con el título al costado y los pasos al lado ---------- */
+
+.propuestas .seccion-proceso--izquierda .contenedor {
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    align-items: start;
+    gap: clamp(2rem, 6vw, 4.5rem);
+}
+
+.seccion-proceso__intro {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.9rem, 2.5vh, 1.4rem);
+}
+
+/* Sin líneas: cada paso lo marca una raya naranja */
+.seccion-proceso--izquierda .pasos--lista .paso {
+    grid-template-columns: auto auto minmax(0, 1fr);
+    border: 0;
+    padding-block: clamp(0.7rem, 2vh, 1.1rem);
+}
+
+.seccion-proceso--izquierda .pasos--lista .paso::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    margin-top: 1.15rem;
+    border-radius: 50%;
+    background-color: var(--color-naranja);
+}
+
+@media (max-width: 900px) {
+    .propuestas .seccion-proceso--izquierda .contenedor {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+}
+
+/* Este título va en los dos renglones que marca el salto del marcado */
+.seccion-proceso--izquierda .titulo-bloque {
+    max-width: none;
+}
+
+@media (min-width: 901px) {
+    .seccion-proceso--izquierda .titulo-bloque {
+        text-wrap: nowrap;
+    }
+}
+
+/* ---------- RayuelA: el abono y lo que hace ---------- */
+
+.seccion-abono__encabezado {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: clamp(0.6rem, 1.8vh, 1rem);
+    width: 100%;
+}
+
+.propuestas .seccion-abono .contenedor {
+    align-items: flex-start;
+}
+
+.seccion-abono__bajada {
+    max-width: none;
+    margin: 0;
+    font-size: var(--texto-base);
+    line-height: 1.7;
+    text-align: left;
+    color: rgba(28, 28, 28, 0.7);
+}
+
+.propuestas .seccion-capacidades--izquierda .contenedor {
+    align-items: flex-start;
+}
+
+/* Cada bloque de capacidades, con su rótulo */
+.capacidades-grupo {
+    width: 100%;
+}
+
+.capacidades-grupo--colegio {
+    margin-top: clamp(2.5rem, 6vh, 3.5rem);
+}
+
+.capacidades-grupo__rotulo {
+    margin: 0 0 clamp(1.25rem, 3vh, 1.75rem);
+    font-family: var(--fuente-sans);
+    font-size: var(--texto-base);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: rgba(28, 28, 28, 0.62);
+}
+
+/* El recorrido de la familia: tres etapas encadenadas */
+.recorrido {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1.5rem, 3vw, 2.25rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.recorrido__paso {
+    position: relative;
+    min-width: 0;
+    padding: clamp(1.25rem, 2.4vw, 1.75rem);
+    border-radius: clamp(10px, 1vw, 14px);
+    background-color: rgba(255, 255, 255, 0.78);
+    transition:
+        background-color 0.35s var(--curva-suave),
+        box-shadow 0.35s var(--curva-suave);
+}
+
+/* La flecha que lleva de una etapa a la siguiente */
+.recorrido__paso:not(:last-child)::after {
+    content: "→";
+    position: absolute;
+    top: 50%;
+    right: calc(clamp(1.5rem, 3vw, 2.25rem) * -1);
+    width: clamp(1.5rem, 3vw, 2.25rem);
+    font-size: 1.4rem;
+    line-height: 1;
+    text-align: center;
+    color: rgba(28, 28, 28, 0.35);
+    translate: 0 -50%;
+    pointer-events: none;
+}
+
+.recorrido__visual {
+    display: flex;
+    align-items: center;
+    height: clamp(4.5rem, 8vh, 6rem);
+    margin-bottom: clamp(0.9rem, 2.2vh, 1.3rem);
+}
+
+.recorrido__visual--canales {
+    justify-content: space-between;
+    gap: 0.6rem;
+}
+
+.recorrido__visual--reunion {
+    gap: clamp(0.9rem, 2vw, 1.4rem);
+}
+
+.marca-canal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.45rem;
+    min-width: 0;
+}
+
+.marca-canal svg {
+    display: block;
+    width: clamp(2.2rem, 3.4vw, 2.9rem);
+    height: clamp(2.2rem, 3.4vw, 2.9rem);
+    flex: none;
+    transition: translate 0.3s var(--curva-suave);
+}
+
+.marca-canal__meet {
+    width: clamp(2.7rem, 4.2vw, 3.5rem) !important;
+}
+
+.marca-canal span {
+    font-size: var(--texto-xs);
+    font-weight: 500;
+    line-height: 1.3;
+    white-space: nowrap;
+    color: var(--color-carbon);
+}
+
+.recorrido__division {
+    width: 1px;
+    height: 3rem;
+    flex: none;
+    background-color: rgba(28, 28, 28, 0.14);
+}
+
+/* La rueda que contiene un ícono de línea */
+.rueda-icono {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(3.4rem, 5.5vw, 4.6rem);
+    height: clamp(3.4rem, 5.5vw, 4.6rem);
+    flex: none;
+    border-radius: 50%;
+    background-color: rgba(255, 165, 41, 0.16);
+    color: var(--color-carbon);
+}
+
+.rueda-icono--eucalipto {
+    width: clamp(3rem, 4.8vw, 4rem);
+    height: clamp(3rem, 4.8vw, 4rem);
+    margin-bottom: clamp(0.9rem, 2.2vh, 1.25rem);
+    background-color: rgba(129, 161, 152, 0.18);
+}
+
+.rueda-icono svg {
+    width: 48%;
+    height: 48%;
+    transition: translate 0.3s var(--curva-suave);
+}
+
+.recorrido__nombre,
+.herramienta__nombre {
+    margin: 0 0 0.5rem;
+    font-family: var(--fuente-sans);
+    font-size: clamp(1.05rem, 0.95rem + 0.35vw, 1.3rem);
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    color: var(--color-carbon);
+}
+
+.recorrido__texto,
+.herramienta__texto {
+    margin: 0;
+    font-size: var(--texto-sm);
+    line-height: 1.65;
+    text-wrap: pretty;
+    color: rgba(28, 28, 28, 0.68);
+}
+
+/* Las herramientas del colegio, separadas por una línea */
+.herramientas {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.herramienta {
+    min-width: 0;
+    padding-inline: clamp(1.25rem, 2.5vw, 1.9rem);
+}
+
+.herramienta:first-child {
+    padding-left: 0;
+}
+
+.herramienta:last-child {
+    padding-right: 0;
+}
+
+.herramienta + .herramienta {
+    border-left: 1px solid rgba(28, 28, 28, 0.12);
+}
+
+@media (hover: hover) {
+    .recorrido__paso:hover {
+        background-color: var(--color-blanco);
+        box-shadow: 0 8px 24px -14px rgba(28, 28, 28, 0.3);
+    }
+
+    .recorrido__paso:hover .marca-canal svg,
+    .recorrido__paso:hover .rueda-icono svg,
+    .herramienta:hover .rueda-icono svg {
+        translate: 0 -3px;
+    }
+}
+
+@media (max-width: 900px) {
+    .recorrido,
+    .herramientas {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .recorrido__paso:not(:last-child)::after {
+        content: "↓";
+        top: auto;
+        right: auto;
+        bottom: calc(clamp(1.5rem, 3vw, 2.25rem) * -1);
+        left: 50%;
+        translate: -50% 0;
+    }
+
+    .recorrido__visual--canales {
+        justify-content: flex-start;
+        gap: clamp(1.25rem, 6vw, 2.5rem);
+    }
+
+    .herramienta,
+    .herramienta:first-child,
+    .herramienta:last-child {
+        padding: clamp(1.25rem, 3vh, 1.75rem) 0;
+    }
+
+    .herramienta + .herramienta {
+        border-left: 0;
+        border-top: 1px solid rgba(28, 28, 28, 0.12);
+    }
+
+    .herramienta:first-child {
+        padding-top: 0;
+    }
+
+    .herramienta:last-child {
+        padding-bottom: 0;
+    }
+}
+
+/* Este título va en los tres renglones que marca el salto del marcado */
+.encabezado-propuesta__titulo--tres {
+    max-width: 38ch;
+    text-wrap: wrap;
+}

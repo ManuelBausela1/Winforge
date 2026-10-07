@@ -1,6 +1,29 @@
 .portfolio {
     position: relative;
+    isolation: isolate;
     padding-block: clamp(5rem, 12vh, 8rem) clamp(4rem, 10vh, 7rem);
+}
+
+/* La pared de mármol: la foto va detrás de un velo que la calma. */
+.portfolio::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image:
+        linear-gradient(rgba(14, 14, 14, 0.52), rgba(14, 14, 14, 0.66)),
+        url("../img/portfolio/marmol-oscuro-640.webp");
+    background-position: center;
+    background-size: cover;
+    pointer-events: none;
+}
+
+@media (min-width: 701px) {
+    .portfolio::before {
+        background-image:
+            linear-gradient(rgba(14, 14, 14, 0.52), rgba(14, 14, 14, 0.66)),
+            url("../img/portfolio/marmol-oscuro-1024.webp");
+    }
 }
 
 .portfolio__encabezado {
@@ -100,10 +123,12 @@
     align-items: center;
     gap: clamp(1.5rem, 4vw, 3.5rem);
     padding: clamp(1.5rem, 3.5vh, 2.25rem) clamp(1.5rem, 3vw, 2.5rem);
-    border: 1px solid var(--color-borde-suave);
-    border-radius: var(--radio-sm);
-    background-color: var(--color-superficie);
-    box-shadow: var(--sombra-tarjeta);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 8px;
+    background-color: rgba(62, 62, 62, 0.82);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.25);
     transition:
         border-color 0.45s var(--curva-suave),
         background-color 0.45s var(--curva-suave),

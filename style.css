@@ -96,47 +96,6 @@
     text-align: center;
 }
 
-/* El isotipo gira hacia el cursor y el verde le marca el volumen. */
-.logo-3d {
-    --giro-x: 0deg;
-    --giro-y: 0deg;
-    --brillo-x: 50%;
-    --brillo-y: 40%;
-
-    position: relative;
-    width: clamp(11rem, 23vw, 24rem);
-    margin-bottom: clamp(-2.75rem, -3.6vh, -1.4rem);
-    aspect-ratio: 674.49 / 340;
-    perspective: 1000px;
-}
-
-.logo-3d__escena {
-    position: absolute;
-    inset: 0;
-    transform-style: preserve-3d;
-    transform: rotateX(var(--giro-x)) rotateY(var(--giro-y));
-    will-change: transform;
-}
-
-.logo-3d__isotipo {
-    width: 100%;
-    height: 100%;
-    fill: var(--color-blanco);
-    filter: drop-shadow(0 22px 34px rgba(0, 0, 0, 0.5));
-}
-
-.logo-3d__brillo {
-    position: absolute;
-    inset: 0;
-    background:
-        radial-gradient(circle at var(--brillo-x) var(--brillo-y), rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 22%),
-        radial-gradient(circle at var(--brillo-x) var(--brillo-y), rgba(129, 161, 152, 0) 20%, rgba(28, 52, 46, 0.62) 95%);
-    -webkit-mask: url("img/logo/winforge-isotipo.svg") center / 100% 100% no-repeat;
-    mask: url("img/logo/winforge-isotipo.svg") center / 100% 100% no-repeat;
-    transform: translateZ(1px);
-    pointer-events: none;
-}
-
 @media (hover: hover) and (min-width: 768px) {
     .hero__contenedor {
         padding-inline: max(calc(var(--margen-lateral) + 4rem), 11rem);
@@ -251,11 +210,20 @@
     inset: 0;
     z-index: -2;
     background-image:
-        radial-gradient(130% 100% at 50% 50%, transparent 38%, rgba(0, 0, 0, 0.55) 100%),
-        url("img/forja/textura-pizarra.webp");
+        linear-gradient(rgba(14, 14, 14, 0.52), rgba(14, 14, 14, 0.66)),
+        url("img/portfolio/marmol-oscuro-640.webp");
     background-size: cover;
     background-position: center;
     pointer-events: none;
+}
+
+@media (min-width: 701px) {
+    .servicios__portada::after,
+    .proyectos::after {
+        background-image:
+            linear-gradient(rgba(14, 14, 14, 0.52), rgba(14, 14, 14, 0.66)),
+            url("img/portfolio/marmol-oscuro-1024.webp");
+    }
 }
 
 .servicios__portada {
@@ -266,11 +234,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     gap: clamp(1rem, 3vh, 1.75rem);
     min-height: 100vh;
     min-height: 100svh;
-    padding: clamp(6rem, 20vh, 11rem) var(--margen-lateral) clamp(4rem, 10vh, 7rem);
+    padding: clamp(5rem, 12vh, 7rem) var(--margen-lateral);
     text-align: center;
 }
 
@@ -1031,10 +999,10 @@
 }
 
 .casos__entrada {
-    max-width: 58ch;
+    max-width: 52ch;
     margin: 0;
-    font-size: var(--texto-base);
-    line-height: 1.65;
+    font-size: var(--texto-lg);
+    line-height: 1.6;
     text-align: center;
     text-wrap: pretty;
     color: rgba(28, 28, 28, 0.68);
