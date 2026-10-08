@@ -34,25 +34,6 @@
     text-align: center;
 }
 
-.portada-propuestas__titulo {
-    margin: 0;
-    font-family: var(--fuente-serif);
-    font-size: clamp(2.5rem, 1.5rem + 3.4vw, 4.5rem);
-    font-weight: 500;
-    line-height: 1.05;
-    text-wrap: balance;
-    color: var(--color-carbon);
-}
-
-.portada-propuestas__bajada {
-    max-width: 52ch;
-    margin: 0;
-    font-size: var(--texto-lg);
-    line-height: 1.6;
-    text-wrap: pretty;
-    color: rgba(28, 28, 28, 0.7);
-}
-
 /* El selector de propuesta: tres caminos, uno abierto por vez */
 .selector-propuesta__lista {
     display: flex;
@@ -245,43 +226,6 @@
     margin-top: clamp(1.5rem, 4vh, 2.5rem);
 }
 
-.permanencia__etiqueta {
-    font-size: var(--texto-xs);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: rgba(28, 28, 28, 0.56);
-}
-
-.permanencia__opciones {
-    display: inline-flex;
-    gap: 0.25rem;
-    padding: 0.25rem;
-    border: 1px solid rgba(28, 28, 28, 0.14);
-    border-radius: var(--radio-pildora);
-    background-color: rgba(255, 255, 255, 0.8);
-}
-
-.permanencia__opcion {
-    appearance: none;
-    padding: 0.45rem 1rem;
-    border: 0;
-    border-radius: var(--radio-pildora);
-    background-color: transparent;
-    font-family: var(--fuente-sans);
-    font-size: var(--texto-sm);
-    color: rgba(28, 28, 28, 0.6);
-    cursor: pointer;
-    transition:
-        background-color 0.3s var(--curva-suave),
-        color 0.3s var(--curva-suave);
-}
-
-.permanencia__opcion[aria-pressed="true"] {
-    background-color: var(--color-carbon);
-    color: var(--color-blanco);
-    font-weight: 500;
-}
-
 .planes {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -380,79 +324,6 @@
     line-height: 1.55;
     text-wrap: pretty;
     color: rgba(28, 28, 28, 0.7);
-}
-
-.plan__precio {
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-    margin: 0;
-    padding-block: clamp(0.75rem, 2vh, 1.1rem);
-    border-block: 1px solid rgba(28, 28, 28, 0.1);
-}
-
-.plan__monto {
-    font-family: var(--fuente-sans);
-    font-size: clamp(1.45rem, 1.1rem + 1.1vw, 2.1rem);
-    font-weight: 500;
-    line-height: 1;
-    letter-spacing: -0.02em;
-    color: var(--color-carbon);
-}
-
-.plan__monto--libre {
-    font-size: clamp(1.25rem, 1rem + 0.8vw, 1.7rem);
-}
-
-.plan__periodo {
-    font-size: var(--texto-xs);
-    line-height: 1.4;
-    color: rgba(28, 28, 28, 0.6);
-}
-
-.plan__ahorro {
-    min-height: 1.1em;
-    font-size: var(--texto-xs);
-    font-weight: 500;
-    color: var(--color-eucalipto-hondo);
-}
-
-.plan__claves {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.plan__clave {
-    display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
-    font-size: var(--texto-sm);
-    color: rgba(28, 28, 28, 0.74);
-}
-
-.plan__clave b {
-    min-width: 2.75rem;
-    font-weight: 600;
-    color: var(--color-carbon);
-}
-
-.plan__variable {
-    margin: 0;
-    padding: 0.7rem 0.85rem;
-    border-radius: var(--radio-sm);
-    background-color: rgba(255, 165, 41, 0.12);
-    font-size: var(--texto-xs);
-    line-height: 1.5;
-    color: rgba(28, 28, 28, 0.76);
-}
-
-.plan__variable--sin {
-    background-color: rgba(28, 28, 28, 0.04);
-    color: rgba(28, 28, 28, 0.56);
 }
 
 .plan__detalle {
@@ -577,11 +448,6 @@
     flex-direction: column;
     align-items: flex-start;
     gap: clamp(0.9rem, 2.5vh, 1.4rem);
-}
-
-/* Este título lleva sólo la línea de la derecha */
-.titulo-seccion--izquierda::before {
-    display: none;
 }
 
 .taller__lema {
@@ -743,50 +609,6 @@
     color: rgba(28, 28, 28, 0.7);
 }
 
-/* El precio del tramo va en un renglón y sin las líneas del plan */
-.plan__precio--abono {
-    flex-direction: row;
-    align-items: baseline;
-    gap: 0.4rem;
-    padding-block: 0;
-    border-block: 0;
-}
-
-/* Los datos del tramo, en cajitas que se leen de un vistazo */
-.tramo__datos {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.tramo__dato {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.1rem;
-    min-width: 4.1rem;
-    padding: 0.5rem 0.7rem;
-    border: 1px solid rgba(28, 28, 28, 0.12);
-    border-radius: var(--radio-sm);
-    text-align: center;
-}
-
-.tramo__dato b {
-    font-size: 1.05rem;
-    font-weight: 600;
-    line-height: 1.1;
-    color: var(--color-carbon);
-}
-
-.tramo__dato span {
-    font-size: var(--texto-xs);
-    line-height: 1.2;
-    color: rgba(28, 28, 28, 0.6);
-}
-
 /* Lo que entra en el tramo, con tilde */
 .tramo__lista {
     display: flex;
@@ -818,20 +640,6 @@
     rotate: 45deg;
 }
 
-/* ---------- Comparación ---------- */
-
-.seccion-comparar {
-    padding-block: clamp(3rem, 9vh, 5rem);
-}
-
-.seccion-comparar .contenedor {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: clamp(1rem, 3vh, 1.75rem);
-}
-
-.seccion-comparar__bajada,
 .seccion-proceso__bajada {
     max-width: 52ch;
     margin: 0;
@@ -840,76 +648,6 @@
     text-align: center;
     text-wrap: pretty;
     color: rgba(28, 28, 28, 0.68);
-}
-
-.comparar__marco {
-    width: 100%;
-    overflow-x: auto;
-    border: 1px solid rgba(28, 28, 28, 0.1);
-    border-radius: clamp(10px, 1vw, 16px);
-    background-color: rgba(255, 255, 255, 0.88);
-}
-
-.comparar {
-    width: 100%;
-    min-width: 46rem;
-    border-collapse: collapse;
-    font-size: var(--texto-sm);
-}
-
-.comparar th,
-.comparar td {
-    padding: 0.75rem 1rem;
-    text-align: left;
-    border-bottom: 1px solid rgba(28, 28, 28, 0.08);
-}
-
-.comparar thead th {
-    position: sticky;
-    top: 0;
-    background-color: var(--color-blanco);
-    font-family: var(--fuente-sans);
-    font-size: var(--texto-sm);
-    font-weight: 500;
-    color: var(--color-carbon);
-}
-
-.comparar__etiqueta {
-    font-size: var(--texto-xs);
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: rgba(28, 28, 28, 0.5);
-}
-
-.comparar tbody td {
-    color: rgba(28, 28, 28, 0.78);
-}
-
-.comparar tbody td:first-child {
-    color: rgba(28, 28, 28, 0.6);
-}
-
-.comparar__tramo td {
-    padding-top: 1.1rem;
-    font-size: var(--texto-xs);
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--color-eucalipto-hondo);
-    background-color: rgba(129, 161, 152, 0.12);
-}
-
-.comparar__si {
-    display: inline-block;
-    width: 1.1rem;
-    height: 1.1rem;
-    border-radius: 50%;
-    background-color: var(--color-eucalipto-hondo);
-}
-
-.comparar__no {
-    color: rgba(28, 28, 28, 0.35);
 }
 
 /* ---------- Proceso y condiciones ---------- */
@@ -972,8 +710,7 @@
 }
 
 .paso__nombre,
-.condicion__nombre,
-.capacidad__nombre {
+.condicion__nombre {
     margin: 0;
     font-family: var(--fuente-sans);
     font-size: var(--texto-base);
@@ -983,8 +720,7 @@
 }
 
 .paso__texto,
-.condicion__texto,
-.capacidad__texto {
+.condicion__texto {
     margin: 0;
     font-size: var(--texto-sm);
     line-height: 1.6;

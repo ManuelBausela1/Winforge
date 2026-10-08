@@ -1,4 +1,6 @@
-export const SERVICIOS = [
+/* Los servicios que el formulario de contacto puede recibir en el enlace
+   (contacto/?servicios=web-y-campanas). */
+const SERVICIOS = [
     { slug: "estrategia-y-marca", nombre: "Estrategia y marca" },
     { slug: "contenido-y-produccion", nombre: "Contenido y producción" },
     { slug: "web-y-campanas", nombre: "Web y campañas" },
@@ -6,29 +8,6 @@ export const SERVICIOS = [
 
 const CLAVE_ALMACEN = "winforge:servicios";
 const PARAMETRO = "servicios";
-
-export function aSlug(nombre) {
-    return nombre
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase()
-        .trim()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/^-|-$/g, "");
-}
-
-export function nombreDeSlug(slug) {
-    return SERVICIOS.find((servicio) => servicio.slug === slug)?.nombre ?? null;
-}
-
-export function guardarEleccion(slugs) {
-    try {
-        if (slugs.length) sessionStorage.setItem(CLAVE_ALMACEN, slugs.join(","));
-        else sessionStorage.removeItem(CLAVE_ALMACEN);
-    } catch {
-
-    }
-}
 
 export function leerEleccion() {
     const deLaUrl = new URLSearchParams(location.search).get(PARAMETRO);
@@ -48,13 +27,4 @@ export function leerEleccion() {
         .split(",")
         .map((slug) => slug.trim())
         .filter((slug) => SERVICIOS.some((servicio) => servicio.slug === slug));
-}
-
-export function conServiciosEnElEnlace(enlace, slugs) {
-    const url = new URL(enlace.getAttribute("href"), location.href);
-
-    if (slugs.length) url.searchParams.set(PARAMETRO, slugs.join(","));
-    else url.searchParams.delete(PARAMETRO);
-
-    return url.pathname + url.search + url.hash;
 }

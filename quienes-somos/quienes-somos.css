@@ -7,7 +7,7 @@
     background-image: url("../img/forja/plaza-900.webp");
     background-size: cover;
     background-position: center 42%;
-    opacity: 0.3;
+    opacity: 0.46;
     mix-blend-mode: screen;
     -webkit-mask-image:
         radial-gradient(74% 66% at 50% 50%, #000 0%, rgba(0, 0, 0, 0.88) 34%, rgba(0, 0, 0, 0.42) 64%, transparent 90%),
@@ -237,7 +237,6 @@
     }
 }
 
-
 .proposito {
     position: relative;
     z-index: 1;
@@ -349,9 +348,13 @@
     position: relative;
     z-index: 1;
     padding-block: clamp(5rem, 14vh, 10rem);
-    background-color: #000000;
-    box-shadow: 0 0 0 100vmax #000000;
+    background-color: var(--color-blanco);
+    box-shadow: 0 0 0 100vmax var(--color-blanco);
     clip-path: inset(-1px -100vmax);
+}
+
+.equipo .titulo-seccion {
+    color: var(--color-carbon);
 }
 
 .equipo__contenedor {
@@ -364,17 +367,15 @@
 
 .equipo__lista {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: clamp(1.25rem, 2.5vw, 2.25rem);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
     width: 100%;
     list-style: none;
     padding: 0;
 }
 
 .equipo__tarjeta {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    position: relative;
     margin: 0;
 }
 
@@ -382,22 +383,18 @@
     position: relative;
     overflow: hidden;
     aspect-ratio: 4 / 5;
-    border: 1px solid var(--color-borde-suave, rgba(255, 255, 255, 0.12));
-    border-radius: var(--radio-sm);
-    background-color: rgba(255, 255, 255, 0.04);
 }
 
 .equipo__retrato--pendiente {
     display: grid;
     place-items: center;
-    border-style: dashed;
-    background-color: rgba(255, 255, 255, 0.025);
+    border: 1px dashed rgba(28, 28, 28, 0.14);
 }
 
 .equipo__marca {
     width: 44%;
     fill: var(--color-eucalipto);
-    opacity: 0.2;
+    opacity: 0.35;
 }
 
 .equipo__retrato--pendiente::after {
@@ -415,41 +412,80 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(5, 8, 7, 0) 45%, rgba(5, 8, 7, 0.55) 100%);
-    opacity: 1;
-    transition: opacity 0.5s var(--curva-suave);
+    background-color: rgba(10, 13, 12, 0.72);
+    opacity: 0;
+    transition: opacity 0.45s var(--curva-suave);
     pointer-events: none;
 }
 
-@media (hover: hover) {
-    .equipo__integrante:hover .equipo__retrato::after {
-        opacity: 0.35;
-    }
-}
-
+/* El nombre se apoya sobre la foto, abajo a la izquierda */
 .equipo__datos {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 0.3rem;
+    padding: clamp(0.9rem, 1.8vw, 1.4rem);
     text-align: center;
+    pointer-events: none;
 }
 
 .equipo__nombre {
-    font-family: var(--fuente-serif);
-    font-size: clamp(1.25rem, 1rem + 0.7vw, 1.65rem);
-    font-weight: 500;
+    font-family: var(--fuente-sans);
+    font-size: clamp(1.15rem, 0.95rem + 0.7vw, 1.6rem);
+    font-weight: 600;
     line-height: 1.15;
+    letter-spacing: -0.01em;
     text-wrap: balance;
     color: var(--color-blanco);
 }
 
 .equipo__rol {
-    font-size: var(--texto-xs);
+    font-size: var(--texto-sm);
     font-weight: 400;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--color-naranja);
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.82);
+}
+
+/* Con puntero: el velo y los datos entran juntos */
+@media (hover: hover) {
+    .equipo__datos {
+        opacity: 0;
+        translate: 0 10px;
+        transition:
+            opacity 0.4s var(--curva-suave),
+            translate 0.5s var(--curva-suave);
+    }
+
+    .equipo__integrante:hover .equipo__retrato::after,
+    .equipo__integrante:focus-within .equipo__retrato::after {
+        opacity: 1;
+    }
+
+    .equipo__integrante:hover .equipo__datos,
+    .equipo__integrante:focus-within .equipo__datos {
+        opacity: 1;
+        translate: 0 0;
+    }
+}
+
+/* Sin puntero no hay hover: los datos quedan siempre a la vista */
+@media (hover: none) {
+    .equipo__retrato::after {
+        opacity: 1;
+    }
+}
+
+/* En la tarjeta pendiente el nombre no tiene foto detrás */
+.equipo__retrato--pendiente + .equipo__datos .equipo__nombre {
+    color: var(--color-carbon);
+}
+
+.equipo__retrato--pendiente + .equipo__datos .equipo__rol {
+    color: rgba(28, 28, 28, 0.6);
 }
 
 .animar .equipo__integrante[data-revelar] {
@@ -467,6 +503,12 @@
 }
 
 @media (max-width: 1100px) {
+    .equipo__lista {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 800px) {
     .equipo__lista {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }

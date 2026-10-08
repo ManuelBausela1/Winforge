@@ -204,3 +204,8 @@ a.contacto__dato:focus-visible .contacto__icono {
         width: 100%;
     }
 }
+
+/* Los rótulos acompañan al campo: arrancan donde arranca lo que se escribe */
+.contacto .formulario__etiqueta {
+    text-align: left;
+}

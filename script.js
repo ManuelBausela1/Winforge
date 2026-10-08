@@ -6,6 +6,8 @@ import { iniciarProcesoHorizontal } from "./recursos/js/componentes/proceso-hori
 import { iniciarCarruselMarcas } from "./recursos/js/componentes/carrusel-marcas.js";
 import { iniciarServiciosApilados } from "./recursos/js/componentes/servicios-apilados.js";
 import { iniciarSeccionActiva } from "./recursos/js/componentes/seccion-activa.js";
+import { iniciarAcompanamiento } from "./recursos/js/componentes/acompanamiento.js";
+import { iniciarCasosEntrada } from "./recursos/js/componentes/casos-entrada.js";
 import { prefiereMovimientoReducido } from "./recursos/js/utilidades/movimiento.js";
 import { hayAnimacionesDeEntrada } from "./recursos/js/utilidades/animaciones.js";
 
@@ -59,3 +61,5 @@ iniciarProcesoHorizontal();
 document.querySelectorAll("[data-carrusel-marcas]").forEach(iniciarCarruselMarcas);
 iniciarServiciosApilados();
 iniciarSeccionActiva();
+iniciarAcompanamiento();
+iniciarCasosEntrada();

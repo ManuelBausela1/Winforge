@@ -13,7 +13,6 @@
         radial-gradient(130% 100% at 50% 50%, transparent 42%, rgba(0, 0, 0, 0.42) 100%);
 }
 
-.fondo-atmosfera__fluido,
 .fondo-atmosfera__particulas {
     position: absolute;
     inset: 0;
@@ -25,30 +24,6 @@
 .fondo-atmosfera__particulas {
     opacity: var(--presencia-estrellas, 1);
     transition: opacity 0.4s var(--curva-suave);
-}
-
-.fondo-atmosfera__fluido {
-    animation: aparicion-fluido 2.4s var(--curva-suave) both;
-}
-
-@keyframes aparicion-fluido {
-    from {
-        opacity: 0;
-    }
-}
-
-.fondo-atmosfera--sin-webgl .fondo-atmosfera__fluido {
-    display: none;
-}
-
-/* Sin las formas abstractas queda el negro con las estrellas. Los degradados
-   de respaldo se guardan por si se vuelven a encender:
-   background:
-       linear-gradient(160deg, rgba(58, 96, 88, 0.28) 0%, transparent 45%),
-       linear-gradient(20deg, rgba(58, 96, 88, 0.18) 0%, transparent 40%),
-       var(--color-fondo-profundo); */
-.fondo-atmosfera--sin-webgl {
-    background-color: var(--color-fondo);
 }
 
 .fondo-atmosfera__grano {

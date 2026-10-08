@@ -1,6 +1,10 @@
+/* Con un filtro de pocos proyectos la lista queda corta: el alto mínimo evita
+   que el pie suba y se meta en la primera pantalla. */
 .portfolio {
     position: relative;
     isolation: isolate;
+    min-height: 100vh;
+    min-height: 100svh;
     padding-block: clamp(5rem, 12vh, 8rem) clamp(4rem, 10vh, 7rem);
 }
 
@@ -187,10 +191,6 @@
     color: var(--color-naranja);
 }
 
-.caso__guion {
-    color: var(--color-texto-tenue);
-}
-
 .caso__servicios {
     font-size: var(--texto-base);
     line-height: 1.5;
@@ -235,23 +235,6 @@
     color: var(--color-texto-suave);
     text-align: center;
     text-wrap: balance;
-}
-
-.portfolio__nombre {
-    font-family: var(--fuente-serif);
-    font-size: clamp(1.9rem, 1.1rem + 2.2vw, 3.4rem);
-    font-weight: 500;
-    line-height: 1.05;
-    text-wrap: balance;
-    color: var(--color-blanco);
-}
-
-.portfolio__rubros {
-    font-size: var(--texto-xs);
-    font-weight: 400;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--color-naranja);
 }
 
 .portfolio__trabajo {

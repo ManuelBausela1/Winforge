@@ -17,7 +17,7 @@
     height: 100%;
     object-fit: cover;
     object-position: center 45%;
-    opacity: var(--fuerza-grabado, 0.3);
+    opacity: var(--fuerza-grabado, 0.46);
     mix-blend-mode: screen;
     -webkit-mask-image:
         radial-gradient(74% 66% at 50% 50%, #000 0%, rgba(0, 0, 0, 0.88) 34%, rgba(0, 0, 0, 0.42) 64%, transparent 90%),
@@ -44,7 +44,7 @@
     }
 
     .hero:has(.hero__video)::before {
-        opacity: var(--fuerza-grabado, 0.3);
+        opacity: var(--fuerza-grabado, 0.46);
     }
 }
 
@@ -56,7 +56,7 @@
     background-image: url("img/forja/yunque-1400.webp");
     background-size: cover;
     background-position: center 45%;
-    opacity: var(--fuerza-grabado, 0.3);
+    opacity: var(--fuerza-grabado, 0.46);
     mix-blend-mode: screen;
     -webkit-mask-image:
         radial-gradient(74% 66% at 50% 50%, #000 0%, rgba(0, 0, 0, 0.88) 34%, rgba(0, 0, 0, 0.42) 64%, transparent 90%),
@@ -203,8 +203,7 @@
 }
 
 /* La pared de pizarra: la textura de fondo de los tramos oscuros. */
-.servicios__portada::after,
-.proyectos::after {
+.servicios__portada::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -218,8 +217,7 @@
 }
 
 @media (min-width: 701px) {
-    .servicios__portada::after,
-    .proyectos::after {
+    .servicios__portada::after {
         background-image:
             linear-gradient(rgba(14, 14, 14, 0.52), rgba(14, 14, 14, 0.66)),
             url("img/portfolio/marmol-oscuro-1024.webp");
@@ -264,7 +262,8 @@
     text-wrap: balance;
 }
 
-.animar .servicios__portada > * {
+/* El isotipo del fondo no entra con el resto: tiene su propio lugar y su opacidad */
+.animar .servicios__portada > *:not(.servicios__marca) {
     opacity: 0;
     translate: 0 22px;
     transition:
@@ -276,7 +275,7 @@
     transition-delay: 140ms;
 }
 
-.animar .servicios__portada.esta-visible > * {
+.animar .servicios__portada.esta-visible > *:not(.servicios__marca) {
     opacity: 1;
     translate: 0 0;
 }
@@ -960,26 +959,12 @@
     translate: 0 0;
 }
 
-.seccion-provisoria {
-    display: grid;
-    place-content: center;
-    min-height: 90vh;
-    padding-block: 6rem;
-    text-align: center;
-}
-
-.seccion-provisoria__titulo {
-    font-family: var(--fuente-serif);
-    font-size: clamp(2rem, 1.4rem + 3vw, 3.5rem);
-    font-weight: 500;
-    color: var(--color-texto-suave);
-}
-
 /* ---------- Casos de éxito ---------- */
 
 .casos {
     position: relative;
     z-index: var(--capa-contenido);
+    overflow-x: clip;
     padding-block: clamp(4rem, 12vh, 8rem);
     background-color: var(--color-blanco);
     box-shadow: 0 0 0 100vmax var(--color-blanco);
@@ -1013,6 +998,146 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: clamp(1rem, 2.2vw, 1.75rem);
     width: 100%;
+}
+
+/* ---------- La entrada de cada proyecto forjado ---------- */
+
+.casos__grilla {
+    perspective: 1400px;
+}
+
+/* De a dónde llega cada tarjeta y hacia dónde barre el naranja */
+.caso-exito {
+    --entra-x: 65px;
+    --entra-y: 35px;
+    --gira: 7deg;
+    --corte: inset(0 0 0 100%);
+    --barrido-desde: 100%;
+    --barrido-hasta: -100%;
+}
+
+.caso-exito:nth-child(even) {
+    --entra-x: -65px;
+    --gira: -7deg;
+    --corte: inset(0 100% 0 0);
+    --barrido-desde: -100%;
+    --barrido-hasta: 100%;
+}
+
+/* Antes de entrar no se ve; el módulo pone esta clase, así que sin JS queda visible */
+.caso-exito.esta-por-entrar {
+    opacity: 0;
+}
+
+.caso-exito.esta-entrando {
+    animation: caso-llega 1250ms var(--curva-entrante) both;
+}
+
+.caso-exito.esta-entrando .caso-exito__imagen {
+    animation: caso-descubre 1250ms var(--curva-entrante) both;
+}
+
+.caso-exito.esta-entrando .caso-exito__datos {
+    animation: caso-datos 850ms var(--curva-entrante) 500ms both;
+}
+
+/* El barrido naranja: sólo existe mientras dura la entrada */
+.caso-exito__figura {
+    position: relative;
+}
+
+.caso-exito.esta-entrando .caso-exito__figura::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background-color: #FFA51F;
+    animation: caso-barrido 1250ms var(--curva-entrante) both;
+    pointer-events: none;
+}
+
+@keyframes caso-llega {
+    from {
+        opacity: 0;
+        transform: translate3d(var(--entra-x), var(--entra-y), 0) scale(0.95) rotateY(var(--gira));
+    }
+
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1) rotateY(0deg);
+    }
+}
+
+@keyframes caso-descubre {
+    0% {
+        clip-path: var(--corte);
+        transform: scale(1.18);
+    }
+
+    42% {
+        clip-path: var(--corte);
+    }
+
+    100% {
+        clip-path: inset(0 0 0 0);
+        transform: scale(1);
+    }
+}
+
+@keyframes caso-barrido {
+    0% {
+        transform: translate3d(var(--barrido-desde), 0, 0);
+    }
+
+    42% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+        transform: translate3d(var(--barrido-hasta), 0, 0);
+    }
+}
+
+@keyframes caso-datos {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 24px, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+/* En pantalla chica el recorrido es más corto y no hay giro */
+@media (max-width: 860px) {
+    .caso-exito {
+        --entra-x: 32px;
+        --entra-y: 22px;
+        --gira: 0deg;
+    }
+
+    .caso-exito:nth-child(even) {
+        --entra-x: -32px;
+        --gira: 0deg;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .caso-exito.esta-por-entrar {
+        opacity: 1;
+    }
+
+    .caso-exito.esta-entrando,
+    .caso-exito.esta-entrando .caso-exito__imagen,
+    .caso-exito.esta-entrando .caso-exito__datos {
+        animation: none;
+    }
+
+    .caso-exito.esta-entrando .caso-exito__figura::after {
+        content: none;
+    }
 }
 
 /* El primero se lleva el ancho entero y acomoda la foto al costado. */
@@ -1175,121 +1300,526 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: clamp(2.25rem, 5.5vh, 3.5rem);
+    gap: clamp(2rem, 5vh, 3rem);
 }
 
-.acompanamiento__lista {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(0.9rem, 2.2vh, 1.5rem);
+/* ---------- Comunicación: las dos vías ---------- */
+
+.comunicacion {
     width: 100%;
+}
+
+.comunicacion__encabezado {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: clamp(1.1rem, 2.6vh, 1.6rem);
+}
+
+/* El megáfono y sus ondas comparten caja: las ondas salen de su centro */
+.comunicacion__llamada {
+    position: relative;
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: clamp(2.4rem, 3.4vw, 3rem);
+    height: clamp(2.4rem, 3.4vw, 3rem);
+}
+
+.comunicacion__icono {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    color: var(--color-carbon);
+}
+
+.comunicacion__rotulo {
+    margin: 0;
+    font-family: var(--fuente-sans);
+    font-size: clamp(1.35rem, 1rem + 1.1vw, 2rem);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--color-carbon);
+}
+
+.vias {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1rem, 2vw, 1.6rem);
     margin: 0;
     padding: 0;
+    list-style: none;
+    perspective: 1200px;
 }
 
-/* Cada fila: nombre, descripción y botón, con tinta oscura sobre su color. */
-.propuesta {
-    position: relative;
-    overflow: hidden;
-    display: grid;
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) auto;
-    align-items: center;
-    gap: clamp(1.5rem, 3.5vw, 3rem);
-    padding: clamp(1.5rem, 3.2vh, 2.25rem) clamp(1.5rem, 3vw, 2.5rem);
-    border: 1px solid rgba(28, 28, 28, 0.07);
-    border-radius: clamp(10px, 1vw, 16px);
-    background-color: #F8F8F6;
-    box-shadow: 0 18px 38px -28px rgba(28, 28, 28, 0.45);
-    color: var(--color-carbon);
-}
-
-/* La barra lateral cruza los colores: verde en la naranja, naranja en la verde */
-.propuesta--colegios,
-.propuesta--rayuela {
-    padding-left: clamp(2rem, 3.6vw, 3rem);
-}
-
-.propuesta--colegios::before,
-.propuesta--rayuela::before {
-    content: "";
-    position: absolute;
-    inset: 0 auto 0 0;
-    width: 6px;
-}
-
-.propuesta--colegios {
-    background-color: #FDF0DF;
-}
-
-.propuesta--colegios::before {
-    background-color: var(--color-eucalipto);
-}
-
-.propuesta--rayuela {
-    background-color: #E7EFEC;
-}
-
-.propuesta--rayuela::before {
-    background-color: var(--color-naranja);
-}
-
-.propuesta__nombre {
+.via {
     display: flex;
     flex-direction: column;
-    gap: 0.3rem;
+    min-width: 0;
+    padding: clamp(1.4rem, 2.4vw, 2rem);
+    border: 1px solid rgba(28, 28, 28, 0.1);
+    border-radius: clamp(14px, 1.4vw, 20px);
+    background-color: var(--color-blanco);
+    box-shadow: 0 22px 48px -30px rgba(28, 28, 28, 0.45);
 }
 
-.propuesta__titulo {
+.via__titulo {
     margin: 0;
     font-family: var(--fuente-sans);
-    font-size: clamp(1.3rem, 1rem + 1vw, 2rem);
-    font-weight: 500;
-    line-height: 1.15;
-    letter-spacing: -0.015em;
-    text-wrap: balance;
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
     color: var(--color-carbon);
 }
 
-.propuesta__bajada {
-    margin: 0;
-    font-family: var(--fuente-sans);
-    font-size: clamp(0.95rem, 0.85rem + 0.3vw, 1.15rem);
-    line-height: 1.3;
+/* Los logos de clientes: pasa uno por vez, sin recuadro propio */
+.cinta {
+    display: grid;
+    place-items: center;
+    height: clamp(6.5rem, 10vw, 9rem);
+    margin: clamp(0.5rem, 1.5vh, 0.9rem) 0 clamp(0.9rem, 2vh, 1.3rem);
+}
+
+.cinta__logo {
+    grid-area: 1 / 1;
+    width: auto;
+    max-width: 82%;
+    height: clamp(3rem, 4.8vw, 4.4rem);
+    object-fit: contain;
+    opacity: 0;
+    translate: 0 12px;
+    transition:
+        opacity 0.7s var(--curva-suave),
+        translate 0.7s var(--curva-suave);
+}
+
+.cinta__logo.esta-activa {
+    opacity: 1;
+    translate: 0 0;
+}
+
+/* Un sello redondo necesita más alto que un logotipo apaisado para pesar igual */
+.cinta__logo--sello {
+    height: clamp(4.2rem, 6.6vw, 6rem);
+}
+
+.via__texto {
+    margin: 0 0 auto;
+    font-size: var(--texto-sm);
+    line-height: 1.6;
+    text-wrap: pretty;
     color: rgba(28, 28, 28, 0.72);
 }
 
-/* La raya fina que separa el nombre de la descripción */
-.propuesta__texto {
+.via__accion,
+.rayuela__accion {
+    align-self: flex-start;
+    margin-top: clamp(1rem, 2.5vh, 1.4rem);
+}
+
+/* ---------- La entrada de la sección ---------- */
+
+/* El módulo pone estas clases: sin JS nada se esconde */
+.acompanamiento.esta-por-entrar .via,
+.acompanamiento.esta-por-entrar .cinta,
+.acompanamiento.esta-por-entrar .via__accion {
+    opacity: 0;
+}
+
+.rayuela.esta-por-entrar {
+    opacity: 0;
+}
+
+/* 1. El megáfono llama */
+.acompanamiento.esta-entrando .comunicacion__icono {
+    animation: acomp-megafono 850ms var(--curva-entrante) both;
+}
+
+.acompanamiento.esta-entrando .comunicacion__llamada::before,
+.acompanamiento.esta-entrando .comunicacion__llamada::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid #FFA51F;
+    animation: acomp-onda 850ms var(--curva-entrante) both;
+    pointer-events: none;
+}
+
+.acompanamiento.esta-entrando .comunicacion__llamada::before {
+    animation-delay: 130ms;
+}
+
+.acompanamiento.esta-entrando .comunicacion__llamada::after {
+    animation-delay: 350ms;
+}
+
+/* 2. Las tarjetas se despliegan de arriba hacia abajo */
+.via {
+    transform-origin: top center;
+}
+
+.acompanamiento.esta-entrando .via {
+    animation: acomp-tarjeta 1000ms var(--curva-entrante) both;
+}
+
+.acompanamiento.esta-entrando .via:nth-child(1) {
+    animation-delay: 720ms;
+}
+
+.acompanamiento.esta-entrando .via:nth-child(2) {
+    animation-delay: 920ms;
+}
+
+.acompanamiento.esta-entrando .cinta {
+    animation: acomp-logos 850ms var(--curva-entrante) both;
+}
+
+.acompanamiento.esta-entrando .via:nth-child(1) .cinta {
+    animation-delay: 930ms;
+}
+
+.acompanamiento.esta-entrando .via:nth-child(2) .cinta {
+    animation-delay: 1130ms;
+}
+
+.acompanamiento.esta-entrando .via__accion {
+    animation: acomp-boton 600ms var(--curva-entrante) both;
+}
+
+.acompanamiento.esta-entrando .via:nth-child(1) .via__accion {
+    animation-delay: 1200ms;
+}
+
+.acompanamiento.esta-entrando .via:nth-child(2) .via__accion {
+    animation-delay: 1370ms;
+}
+
+/* 3. RayuelA se abre desde una franja central. La demora la pone el módulo:
+   1450ms si ya estaba a la vista, 0 si hubo que esperar a que apareciera. */
+.rayuela.esta-entrando {
+    animation: acomp-rayuela 1150ms var(--curva-entrante) var(--demora, 0ms) both;
+}
+
+.rayuela.esta-entrando .rayuela__marca,
+.rayuela.esta-entrando .demo,
+.rayuela.esta-entrando .rayuela__cierre {
+    animation: acomp-dentro 800ms var(--curva-entrante) both;
+}
+
+.rayuela.esta-entrando .rayuela__marca {
+    animation-delay: calc(var(--demora, 0ms) + 300ms);
+}
+
+.rayuela.esta-entrando .demo {
+    animation-delay: calc(var(--demora, 0ms) + 470ms);
+}
+
+.rayuela.esta-entrando .rayuela__cierre {
+    animation-delay: calc(var(--demora, 0ms) + 640ms);
+}
+
+@keyframes acomp-megafono {
+    0% { rotate: 0deg; scale: 1; }
+    16% { rotate: -17deg; scale: 1.06; }
+    33% { rotate: 14deg; scale: 1.1; }
+    50% { rotate: -12deg; scale: 1.08; }
+    66% { rotate: 9deg; scale: 1.05; }
+    83% { rotate: -5deg; scale: 1.02; }
+    100% { rotate: 0deg; scale: 1; }
+}
+
+@keyframes acomp-onda {
+    from {
+        scale: 0.75;
+        opacity: 0.55;
+    }
+
+    to {
+        scale: 2.3;
+        opacity: 0;
+    }
+}
+
+/* El último tramo abre el recorte más allá del borde: así la sombra de la
+   tarjeta vuelve de a poco y no aparece de golpe al terminar. */
+@keyframes acomp-tarjeta {
+    0% {
+        opacity: 0;
+        clip-path: inset(0 0 100% 0 round 16px);
+        transform: translateY(-14px) rotateX(-9deg) scale(0.96);
+    }
+
+    85% {
+        clip-path: inset(0 0 0 0 round 16px);
+    }
+
+    100% {
+        opacity: 1;
+        clip-path: inset(-60px -60px -60px -60px round 16px);
+        transform: translateY(0) rotateX(0deg) scale(1);
+    }
+}
+
+@keyframes acomp-logos {
+    from {
+        opacity: 0;
+        transform: translateY(-12px) scale(0.94);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes acomp-boton {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes acomp-rayuela {
+    0% {
+        clip-path: inset(50% 0 50% 0 round 17px);
+        transform: scaleX(0.94);
+    }
+
+    88% {
+        clip-path: inset(0 0 0 0 round 17px);
+    }
+
+    100% {
+        clip-path: inset(-70px -70px -70px -70px round 17px);
+        transform: scaleX(1);
+    }
+}
+
+@keyframes acomp-dentro {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .acompanamiento.esta-por-entrar .via,
+    .acompanamiento.esta-por-entrar .cinta,
+    .acompanamiento.esta-por-entrar .via__accion,
+    .rayuela.esta-por-entrar {
+        opacity: 1;
+    }
+
+    .acompanamiento.esta-entrando .comunicacion__icono,
+    .acompanamiento.esta-entrando .via,
+    .acompanamiento.esta-entrando .cinta,
+    .acompanamiento.esta-entrando .via__accion,
+    .rayuela.esta-entrando,
+    .rayuela.esta-entrando .rayuela__marca,
+    .rayuela.esta-entrando .demo,
+    .rayuela.esta-entrando .rayuela__cierre {
+        animation: none;
+    }
+
+    .acompanamiento.esta-entrando .comunicacion__llamada::before,
+    .acompanamiento.esta-entrando .comunicacion__llamada::after {
+        content: none;
+    }
+}
+
+/* ---------- RayuelA ---------- */
+
+.rayuela {
+    display: grid;
+    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.15fr) minmax(0, 0.95fr);
+    align-items: center;
+    gap: clamp(1.5rem, 3.5vw, 3rem);
+    width: 100%;
+    padding: clamp(1.5rem, 2.6vw, 2.25rem);
+    border-radius: clamp(14px, 1.4vw, 22px);
+    background-color: #354B42;
+    box-shadow: 0 26px 54px -30px rgba(28, 28, 28, 0.55);
+    color: var(--color-blanco);
+}
+
+.rayuela__marca {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    min-width: 0;
+}
+
+.rayuela__icono {
+    flex: none;
+    width: clamp(2.9rem, 4vw, 3.4rem);
+    height: clamp(2.9rem, 4vw, 3.4rem);
+}
+
+.rayuela__nombre {
     margin: 0;
-    padding-left: clamp(1.25rem, 3vw, 2.5rem);
-    border-left: 1px solid rgba(28, 28, 28, 0.16);
     font-family: var(--fuente-sans);
+    font-size: clamp(1.5rem, 1.1rem + 1vw, 2rem);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.015em;
+}
+
+.rayuela__bajada {
+    margin: 0.4rem 0 0;
+    font-size: var(--texto-sm);
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.62);
+}
+
+.rayuela__cierre {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+}
+
+.rayuela__texto {
+    margin: 0;
     font-size: var(--texto-base);
-    line-height: 1.6;
+    line-height: 1.65;
     text-wrap: pretty;
-    color: rgba(28, 28, 28, 0.76);
+    color: rgba(255, 255, 255, 0.82);
 }
 
-.propuesta__accion {
-    justify-self: end;
-    white-space: nowrap;
+/* La demostración: una consulta atendida de punta a punta */
+.demo {
+    min-width: 0;
+    padding: 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 14px;
+    background-color: rgba(0, 0, 0, 0.16);
 }
 
-@media (max-width: 860px) {
-    .propuesta {
+.demo__barra {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    padding-bottom: 0.55rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: var(--texto-xs);
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.demo__canal {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.demo__latido {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #4ADE80;
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);
+    animation: latir 2.2s infinite;
+}
+
+@keyframes latir {
+    70% { box-shadow: 0 0 0 7px rgba(74, 222, 128, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+}
+
+.demo__hilo {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.4rem;
+    height: 12.5rem;
+    margin-top: 0.65rem;
+    overflow: hidden;
+}
+
+.burbuja {
+    max-width: 88%;
+    padding: 0.5rem 0.7rem;
+    border-radius: 12px;
+    font-size: 0.78rem;
+    line-height: 1.45;
+    opacity: 0;
+    translate: 0 8px;
+    animation: entrar-burbuja 0.45s var(--curva-suave) forwards;
+}
+
+@keyframes entrar-burbuja {
+    to { opacity: 1; translate: 0 0; }
+}
+
+.burbuja--familia {
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.16);
+    color: rgba(255, 255, 255, 0.94);
+}
+
+.burbuja--bot {
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+    background-color: rgba(129, 161, 152, 0.34);
+}
+
+.burbuja--cierre {
+    background-color: rgba(255, 165, 41, 0.2);
+    color: #FFD9A0;
+}
+
+.escribiendo {
+    display: flex;
+    align-self: flex-start;
+    gap: 3px;
+    padding: 0.6rem 0.7rem;
+    border-radius: 12px;
+    border-bottom-left-radius: 4px;
+    background-color: rgba(129, 161, 152, 0.34);
+}
+
+.escribiendo span {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.75);
+    animation: puntear 1.2s infinite;
+}
+
+.escribiendo span:nth-child(2) { animation-delay: 0.15s; }
+.escribiendo span:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes puntear {
+    0%, 60%, 100% { opacity: 0.3; translate: 0 0; }
+    30% { opacity: 1; translate: 0 -3px; }
+}
+
+@media (max-width: 900px) {
+    .vias,
+    .rayuela {
         grid-template-columns: minmax(0, 1fr);
-        gap: clamp(0.9rem, 2.4vh, 1.4rem);
     }
+}
 
-    .propuesta__texto {
-        padding-left: 0;
-        padding-top: clamp(0.9rem, 2.4vh, 1.4rem);
-        border-left: 0;
-        border-top: 1px solid rgba(28, 28, 28, 0.16);
-    }
-
-    .propuesta__accion {
-        justify-self: start;
+@media (prefers-reduced-motion: reduce) {
+    .demo__latido,
+    .escribiendo span {
+        animation: none;
     }
 }
 
@@ -1395,7 +1925,7 @@
     left: 5%;
     width: clamp(7rem, 13vw, 13rem);
     opacity: 0.45;
-    filter: blur(3px);
+    filter: blur(3px) drop-shadow(14px 18px 26px rgba(28, 28, 28, 0.35));
 }
 
 .proceso__obra--anfora {
@@ -1404,27 +1934,16 @@
     width: clamp(8rem, 14vw, 14rem);
     opacity: 0.9;
     rotate: 7deg;
-    filter: blur(1.4px) drop-shadow(-14px 18px 26px rgba(28, 28, 28, 0.3));
+    filter: blur(0.7px) drop-shadow(-14px 18px 26px rgba(28, 28, 28, 0.3));
 }
 
 .proceso__obra--virgen {
     bottom: -2%;
-    left: 53%;
+    left: 34%;
     width: clamp(7.5rem, 13vw, 13rem);
     opacity: 0.75;
     rotate: -9deg;
-    filter: blur(1.6px);
-}
-
-.proceso__david {
-    position: absolute;
-    bottom: 0;
-    left: 14%;
-    z-index: 3;
-    width: clamp(15rem, 33vw, 33rem);
-    height: auto;
-    filter: drop-shadow(18px 20px 36px rgba(28, 28, 28, 0.22));
-    pointer-events: none;
+    filter: blur(1.6px) drop-shadow(-12px 16px 24px rgba(28, 28, 28, 0.32));
 }
 
 /* El riel pasa entre el fondo y el David */
@@ -1474,15 +1993,9 @@
 
     .proceso__obra--virgen {
         bottom: 2%;
-        left: 44%;
+        left: 28%;
         width: clamp(5rem, 24vw, 7.5rem);
         opacity: 0.6;
-    }
-
-    .proceso__david {
-        bottom: 0;
-        left: -10%;
-        width: clamp(10rem, 48vw, 15rem);
     }
 }
 

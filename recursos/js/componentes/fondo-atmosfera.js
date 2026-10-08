@@ -1,12 +1,6 @@
-/* Las formas abstractas quedan apagadas: la página pedía un tono más
-   institucional. Para volver a encenderlas, poner FORMAS_ABSTRACTAS en true
-   y descomentar el import. */
-// import { crearFondoFluido } from "./fondo-fluido.js";
 import { alScrollear, estadoScroll } from "../utilidades/scroll.js";
 import { crearTemaFondo } from "../utilidades/tema-fondo.js";
 import { interpolar, moduloPositivo, prefiereMovimientoReducido } from "../utilidades/movimiento.js";
-
-const FORMAS_ABSTRACTAS = false;
 
 const CONFIGURACION = {
     velocidadParallaxMinima: 0.3,
@@ -31,31 +25,13 @@ export function iniciarFondoAtmosfera(raiz = document.querySelector("[data-fondo
     if (!conEstrellas) lienzoParticulas?.remove();
 
     const contexto = conEstrellas ? lienzoParticulas.getContext("2d") : null;
-    const fondoFluido = FORMAS_ABSTRACTAS ? crearFondoFluido(raiz.querySelector("[data-fluido]")) : null;
     const temaFondo = crearTemaFondo();
-
-    if (!fondoFluido) {
-        raiz.classList.add("fondo-atmosfera--sin-webgl");
-        raiz.querySelector("[data-fluido]")?.remove();
-    }
 
     let ancho = 0;
     let alto = 0;
     let particulas = [];
     let idFotograma = null;
-    let scrollDibujado = null;
     let temaClaro = 0;
-    let temaDibujado = null;
-
-    function dibujarFluido({ forzar = false } = {}) {
-        const scroll = estadoScroll.posicion;
-        const sinCambios = scroll === scrollDibujado && temaClaro === temaDibujado;
-        if (!fondoFluido || (!forzar && sinCambios)) return;
-
-        fondoFluido.dibujar({ scroll: scroll / alto, temaClaro });
-        scrollDibujado = scroll;
-        temaDibujado = temaClaro;
-    }
 
     function actualizarTema() {
         const objetivo = temaFondo.calcular();
@@ -65,7 +41,6 @@ export function iniciarFondoAtmosfera(raiz = document.querySelector("[data-fondo
 
         temaClaro = Math.abs(nuevo - objetivo) < 0.0015 ? objetivo : nuevo;
         temaFondo.sincronizarInterfaz(temaClaro);
-        dibujarFluido();
     }
 
     function crearParticula() {
@@ -156,8 +131,6 @@ export function iniciarFondoAtmosfera(raiz = document.querySelector("[data-fondo
             contexto.setTransform(resolucion, 0, 0, resolucion, 0, 0);
         }
 
-        fondoFluido?.redimensionar(ancho, alto);
-        dibujarFluido({ forzar: true });
         generarParticulas();
     }
 
@@ -210,10 +183,7 @@ export function iniciarFondoAtmosfera(raiz = document.querySelector("[data-fondo
     }
 
     document.addEventListener("visibilitychange", pausarSiEstaOculta);
-    alScrollear(() => {
-        dibujarFluido();
-        ajustarEstrellas();
-    });
+    alScrollear(ajustarEstrellas);
     ajustarEstrellas();
 
     redimensionar();

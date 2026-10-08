@@ -4,7 +4,7 @@ import { prefiereMovimientoReducido } from "../utilidades/movimiento.js";
 const PUNTO_DE_ENCENDIDO = 0.62;
 
 /* Lo que pasa por el centro se ve nítido; a esta distancia ya está borroso. */
-const ALCANCE_DEL_FOCO = 0.42;
+const ALCANCE_DEL_FOCO = 0.72;
 
 /* El riel termina su recorrido antes de que la sección se suelte: el resto
    del scroll queda como pausa, con el timeline completo en pantalla. */

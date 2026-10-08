@@ -39,20 +39,6 @@
     color: var(--color-carbon);
 }
 
-.boton--secundario {
-    border-color: var(--color-borde-medio);
-    background-color: rgba(255, 255, 255, 0.03);
-    color: var(--color-texto);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-}
-
-.boton--secundario:hover {
-    border-color: var(--color-eucalipto);
-    background-color: var(--color-eucalipto);
-    color: var(--color-carbon);
-}
-
 .boton--texto {
     overflow: visible;
     padding: 0 0.35rem;
