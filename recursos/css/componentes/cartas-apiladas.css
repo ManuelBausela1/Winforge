@@ -1,0 +1,204 @@
+/* Cartas que se apilan con el scroll: cada una sube y se frena debajo de la
+   solapa de la anterior, así al final se leen las cuatro solapas juntas.
+   El `top` de cada carta lo calcula el módulo midiendo las solapas reales. */
+
+/* El rótulo y la pila comparten marco: así el rótulo se despega cuando se va
+   la última carta, y no queda clavado arriba con la sección ya vacía. */
+.apilado-marco {
+    position: relative;
+}
+
+/* El rótulo de la sección queda fijo arriba y las cartas se apilan debajo.
+   El envoltorio es el que se pega y el que lleva el relleno de abajo: va
+   transparente para no pintar de blanco a las cartas que le pasan por atrás.
+   La banda blanca es sólo el alto del título. */
+.apilado-rotulo {
+    position: sticky;
+    top: var(--tope-encabezado, clamp(1.5rem, 4vh, 2.5rem));
+    z-index: 20;
+    margin-bottom: clamp(1.25rem, 3vh, 2rem);
+    pointer-events: none;
+}
+
+.servicio-items__titulo {
+    margin-bottom: 0;
+    padding-block: clamp(0.9rem, 2.5vh, 1.5rem);
+    background-color: var(--color-blanco);
+}
+
+.apilado {
+    --tope-encabezado: clamp(1.5rem, 4vh, 2.5rem);
+    /* El módulo lo recalcula sumando el alto real del rótulo */
+    --tope-apilado: clamp(4.5rem, 11vh, 7rem);
+    --aire-solapa: 8px;
+    --recorrido: clamp(6rem, 16vh, 11rem);
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--recorrido);
+    width: min(100%, 60rem);
+    margin-inline: auto;
+}
+
+/* ---------- La carta ---------- */
+
+/* La caja pegajosa va vacía: el módulo le agrega relleno abajo para que las
+   cuatro terminen a la misma altura y, al salir la sección, suban juntas en
+   vez de adelantarse la última y taparle la solapa a la tercera. */
+.apilado__carta {
+    --papel: #FBF9F6;
+    --tinte: rgba(28, 28, 28, 0.045);
+
+    position: sticky;
+    /* Hasta que el módulo mida, cada una se frena un poco más abajo que la
+       anterior: sin JS igual se apilan sin taparse. */
+    top: calc(var(--tope-apilado) + (var(--orden) - 1) * 3.5rem);
+    z-index: var(--orden);
+}
+
+.apilado__papel {
+    overflow: hidden;
+    border: 1px solid rgba(28, 28, 28, 0.12);
+    border-radius: clamp(14px, 1.4vw, 22px);
+    background-color: var(--papel);
+    box-shadow: 0 18px 40px -28px rgba(28, 28, 28, 0.5);
+}
+
+.apilado__carta:nth-child(2) {
+    --papel: #EEF3F0;
+    --tinte: rgba(78, 108, 98, 0.1);
+}
+
+.apilado__carta:nth-child(3) {
+    --papel: #F7F1E6;
+    --tinte: rgba(140, 110, 60, 0.1);
+}
+
+.apilado__carta:nth-child(4) {
+    --papel: #E3EBE6;
+    --tinte: rgba(78, 108, 98, 0.14);
+}
+
+/* ---------- La solapa ---------- */
+
+.apilado__solapa {
+    margin: 0;
+    padding: clamp(0.85rem, 2vh, 1.15rem) clamp(1.25rem, 3vw, 2.25rem);
+    border-bottom: 1px solid rgba(28, 28, 28, 0.1);
+    background-color: var(--tinte);
+    font-family: var(--fuente-sans);
+    font-size: var(--texto-sm);
+    font-weight: 500;
+    line-height: 1.3;
+    color: rgba(28, 28, 28, 0.74);
+}
+
+/* ---------- El cuerpo ---------- */
+
+.apilado__cuerpo {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.9rem, 2.4vh, 1.4rem);
+    padding: clamp(1.5rem, 4vh, 2.5rem) clamp(1.25rem, 3vw, 2.25rem) clamp(1.75rem, 4.5vh, 2.75rem);
+}
+
+.apilado__titulo {
+    max-width: 22ch;
+    margin: 0;
+    font-family: var(--fuente-sans);
+    font-size: clamp(1.4rem, 1.05rem + 1.3vw, 2.3rem);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    color: var(--color-carbon);
+}
+
+.apilado__texto {
+    max-width: 58ch;
+    margin: 0;
+    font-size: var(--texto-base);
+    line-height: 1.7;
+    text-wrap: pretty;
+    color: rgba(28, 28, 28, 0.74);
+}
+
+.apilado__respuesta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.35rem 0.7rem;
+    max-width: 58ch;
+    margin: clamp(0.3rem, 1vh, 0.6rem) 0 0;
+    padding-top: clamp(0.9rem, 2.2vh, 1.25rem);
+    border-top: 1px solid rgba(28, 28, 28, 0.12);
+    font-size: var(--texto-sm);
+    line-height: 1.55;
+    color: rgba(28, 28, 28, 0.78);
+}
+
+.apilado__etiqueta {
+    flex: none;
+    font-family: var(--fuente-sans);
+    font-size: var(--texto-sm);
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--color-eucalipto-hondo);
+}
+
+/* El aire del final: lo mide el módulo para que la última carta termine de
+   subir sin que el borde del contenedor empuje a las de arriba. */
+.apilado__cola {
+    flex: none;
+    height: var(--alto-cola, 40vh);
+}
+
+/* ---------- Sin apilado ---------- */
+
+/* Si las cuatro solapas no entran en la pantalla, o si se pidió menos
+   movimiento, las cartas se leen una abajo de la otra. */
+.apilado.esta-desapilado .apilado__carta {
+    position: static;
+    padding-bottom: 0;
+}
+
+/* En vertical el rótulo tampoco se pega */
+.apilado-marco:has(.apilado.esta-desapilado) .apilado-rotulo {
+    position: static;
+}
+
+.apilado.esta-desapilado {
+    gap: clamp(1.25rem, 3vh, 2rem);
+}
+
+.apilado.esta-desapilado .apilado__cola {
+    display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .apilado {
+        gap: clamp(1.25rem, 3vh, 2rem);
+    }
+
+    .apilado-rotulo,
+    .apilado__carta {
+        position: static;
+        padding-bottom: 0;
+    }
+
+    .apilado__cola {
+        display: none;
+    }
+}
+
+@media (max-width: 620px) {
+    .apilado__solapa {
+        align-items: flex-start;
+    }
+
+    .apilado__titulo {
+        max-width: none;
+    }
+}

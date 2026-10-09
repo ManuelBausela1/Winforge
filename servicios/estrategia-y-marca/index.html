@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="../../recursos/css/componentes/logo-3d.css">
     <link rel="stylesheet" href="../../recursos/css/componentes/botones.css">
     <link rel="stylesheet" href="../servicio.css">
+    <link rel="stylesheet" href="../../recursos/css/componentes/cartas-apiladas.css">
 
     <script src="../../recursos/js/arranque.js"></script>
     <script type="module" src="../servicio.js"></script>
@@ -127,206 +128,160 @@
                 </header>
 
                 <figure class="servicio-portada__figura" data-portada-rotativa>
-                    <img
-                        class="servicio-portada__foto esta-visible"
-                        src="../../img/servicios/portada-estrategia-1-1760.webp"
-                        srcset="../../img/servicios/portada-estrategia-1-1100.webp 1100w, ../../img/servicios/portada-estrategia-1-1760.webp 1760w"
-                        sizes="100vw"
-                        alt="Papelería institucional en verde con sellos y monogramas grabados"
-                        width="1760"
-                        height="991"
-                        fetchpriority="high"
-                        decoding="async"
-                    >
-                    <img
-                        class="servicio-portada__foto"
-                        src="../../img/servicios/portada-estrategia-2-1760.webp"
-                        srcset="../../img/servicios/portada-estrategia-2-1100.webp 1100w, ../../img/servicios/portada-estrategia-2-1760.webp 1760w"
-                        sizes="100vw"
-                        alt=""
-                        width="1760"
-                        height="991"
-                        decoding="async"
-                    >
-                    <img
-                        class="servicio-portada__foto"
-                        src="../../img/servicios/portada-estrategia-3-1760.webp"
-                        srcset="../../img/servicios/portada-estrategia-3-1100.webp 1100w, ../../img/servicios/portada-estrategia-3-1760.webp 1760w"
-                        sizes="100vw"
-                        alt=""
-                        width="1760"
-                        height="991"
-                        decoding="async"
-                    >
+                    <picture>
+                        <img
+                            class="servicio-portada__foto esta-visible"
+                            src="../../img/servicios/portada-estrategia-1-1760.webp"
+                            srcset="../../img/servicios/portada-estrategia-1-1100.webp 1100w, ../../img/servicios/portada-estrategia-1-1760.webp 1760w"
+                            sizes="100vw"
+                            alt="Papelería institucional de Escuelas Pías de Argentina en varios papeles y colores"
+                            width="1760"
+                            height="991"
+                            fetchpriority="high"
+                            decoding="async"
+                        >
+                    </picture>
+
+                    <picture>
+                        <source
+                            media="(max-width: 760px)"
+                            srcset="../../img/servicios/portada-estrategia-2-movil-640.webp 640w, ../../img/servicios/portada-estrategia-2-movil-941.webp 941w"
+                            sizes="100vw"
+                            width="941"
+                            height="1672"
+                        >
+                        <img
+                            class="servicio-portada__foto"
+                            src="../../img/servicios/portada-estrategia-2-1760.webp"
+                            srcset="../../img/servicios/portada-estrategia-2-1100.webp 1100w, ../../img/servicios/portada-estrategia-2-1760.webp 1760w"
+                            sizes="100vw"
+                            alt=""
+                            width="1760"
+                            height="991"
+                            decoding="async"
+                        >
+                    </picture>
+
+                    <picture>
+                        <source
+                            media="(max-width: 760px)"
+                            srcset="../../img/servicios/portada-estrategia-3-movil-640.webp 640w, ../../img/servicios/portada-estrategia-3-movil-941.webp 941w"
+                            sizes="100vw"
+                            width="941"
+                            height="1672"
+                        >
+                        <img
+                            class="servicio-portada__foto"
+                            src="../../img/servicios/portada-estrategia-3-1760.webp"
+                            srcset="../../img/servicios/portada-estrategia-3-1100.webp 1100w, ../../img/servicios/portada-estrategia-3-1760.webp 1760w"
+                            sizes="100vw"
+                            alt=""
+                            width="1760"
+                            height="991"
+                            decoding="async"
+                        >
+                    </picture>
+
+                    <picture>
+                        <source
+                            media="(max-width: 760px)"
+                            srcset="../../img/servicios/portada-estrategia-4-movil-640.webp 640w, ../../img/servicios/portada-estrategia-4-movil-941.webp 941w"
+                            sizes="100vw"
+                            width="941"
+                            height="1672"
+                        >
+                        <img
+                            class="servicio-portada__foto"
+                            src="../../img/servicios/portada-estrategia-4-1760.webp"
+                            srcset="../../img/servicios/portada-estrategia-4-1100.webp 1100w, ../../img/servicios/portada-estrategia-4-1760.webp 1760w"
+                            sizes="100vw"
+                            alt=""
+                            width="1760"
+                            height="991"
+                            decoding="async"
+                        >
+                    </picture>
                 </figure>
             </div>
         </div>
 
         <section class="servicio-items contenedor" aria-labelledby="titulo-items">
-            <h2 class="servicio-items__titulo" id="titulo-items" data-revelar>Servicios</h2>
-
-            <div class="incluye" data-carrusel-incluye data-revelar aria-roledescription="carrusel">
-                <div class="incluye__visor" data-visor>
-                    <div class="incluye__riel" id="riel-incluye" data-riel>
-                    <article
-                        class="incluye__lamina"
-                        data-lamina
-                        role="group"
-                        aria-roledescription="diapositiva"
-                        aria-label="01 de 04: Diagnóstico y posicionamiento estratégico"
-                    >
-
-                        <h3 class="incluye__titulo">Diagnóstico y posicionamiento estratégico</h3>
-
-                        <div class="incluye__escena">
-                            <p class="incluye__numero" aria-hidden="true">01</p>
-
-                            <div class="incluye__columna">
-                                <p class="incluye__texto">Auditoría de la marca en todos sus puntos de contacto, análisis competitivo y de audiencias, y definición de la propuesta de valor y el territorio de marca. Entreglable:</p>
-
-                                <figure class="entregable">
-
-                                    <p class="entregable__nombre">Informe de diagnóstico y plataforma de marca.</p>
-
-                                </figure>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article
-                        class="incluye__lamina"
-                        data-lamina
-                        role="group"
-                        aria-roledescription="diapositiva"
-                        aria-label="02 de 04: Sistema de identidad visual"
-                        aria-hidden="true"
-                        inert
-                    >
-
-                        <h3 class="incluye__titulo">Sistema de identidad visual</h3>
-
-                        <div class="incluye__escena">
-                            <p class="incluye__numero" aria-hidden="true">02</p>
-
-                            <div class="incluye__columna">
-                                <p class="incluye__texto">Isologotipo, paleta cromática, sistema tipográfico, recursos gráficos y aplicaciones institucionales y comerciales. Entregable:</p>
-
-                                <figure class="entregable">
-
-                                    <p class="entregable__nombre">Manual de identidad.</p>
-
-                                </figure>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article
-                        class="incluye__lamina"
-                        data-lamina
-                        role="group"
-                        aria-roledescription="diapositiva"
-                        aria-label="03 de 04: Naming e identidad verbal"
-                        aria-hidden="true"
-                        inert
-                    >
-
-                        <h3 class="incluye__titulo">Naming e identidad verbal</h3>
-
-                        <div class="incluye__escena">
-                            <p class="incluye__numero" aria-hidden="true">03</p>
-
-                            <div class="incluye__columna">
-                                <p class="incluye__texto">Creación o revisión del nombre, arquitectura de mensajes, tono de voz y lineamientos de redacción por canal. Entregable:</p>
-
-                                <figure class="entregable">
-
-                                    <p class="entregable__nombre">Guía de identidad verbal.</p>
-
-                                </figure>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article
-                        class="incluye__lamina"
-                        data-lamina
-                        role="group"
-                        aria-roledescription="diapositiva"
-                        aria-label="04 de 04: Comunicación institucional e interna"
-                        aria-hidden="true"
-                        inert
-                    >
-
-                        <h3 class="incluye__titulo">Comunicación institucional e interna</h3>
-
-                        <div class="incluye__escena">
-                            <p class="incluye__numero" aria-hidden="true">04</p>
-
-                            <div class="incluye__columna">
-                                <p class="incluye__texto">Arquitectura de marca y lineamientos de gestión para instituciones con múltiples sedes, niveles o unidades de servicio. Entregable:</p>
-
-                                <figure class="entregable">
-
-                                    <p class="entregable__nombre">Plan de comunicación institucional e interna.</p>
-                                    
-                                </figure>
-                            </div>
-                        </div>
-                    </article>
-                    </div>
+            <div class="apilado-marco">
+                <div class="apilado-rotulo" data-rotulo>
+                    <h2 class="servicio-items__titulo" id="titulo-items" data-revelar>Servicios</h2>
                 </div>
 
-                <nav class="incluye__navegacion" data-navegacion-carrusel aria-label="Navegación de los puntos">
-                    <div class="incluye__indice" role="group" aria-label="Elegí un punto">
-                        <button
-                            class="incluye__paso"
-                            type="button"
-                            data-ir-a
-                            aria-label="Diagnóstico y posicionamiento estratégico"
-                            aria-pressed="true"
-                            aria-controls="riel-incluye"
-                        >01</button>
+                <div class="apilado" data-cartas-apiladas>
+                    <article class="apilado__carta" data-carta style="--orden: 1">
+                        <div class="apilado__papel">
+                            <p class="apilado__solapa" data-solapa aria-hidden="true">Diagnóstico y posicionamiento estratégico</p>
 
-                        <button
-                            class="incluye__paso"
-                            type="button"
-                            data-ir-a
-                            aria-label="Sistema de identidad visual"
-                            aria-pressed="false"
-                            aria-controls="riel-incluye"
-                        >02</button>
+                            <div class="apilado__cuerpo">
+                                <h3 class="apilado__titulo">Diagnóstico y posicionamiento estratégico</h3>
 
-                        <button
-                            class="incluye__paso"
-                            type="button"
-                            data-ir-a
-                            aria-label="Naming e identidad verbal"
-                            aria-pressed="false"
-                            aria-controls="riel-incluye"
-                        >03</button>
+                                <p class="apilado__texto">Auditoría de la marca en todos sus puntos de contacto, análisis competitivo y de audiencias, y definición de la propuesta de valor y el territorio de marca.</p>
 
-                        <button
-                            class="incluye__paso"
-                            type="button"
-                            data-ir-a
-                            aria-label="Comunicación institucional e interna"
-                            aria-pressed="false"
-                            aria-controls="riel-incluye"
-                        >04</button>
-                    </div>
+                                <p class="apilado__respuesta">
+                                    <span class="apilado__etiqueta">Respuesta</span>
+                                    Informe de diagnóstico y plataforma de marca.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
 
-                    <div class="incluye__flechas">
-                        <button class="incluye__flecha" type="button" data-anterior aria-label="Punto anterior" aria-controls="riel-incluye" disabled>
-                            <span aria-hidden="true">←</span>
-                        </button>
+                    <article class="apilado__carta" data-carta style="--orden: 2">
+                        <div class="apilado__papel">
+                            <p class="apilado__solapa" data-solapa aria-hidden="true">Sistema de identidad visual</p>
 
-                        <button class="incluye__flecha incluye__flecha--siguiente" type="button" data-siguiente aria-label="Punto siguiente" aria-controls="riel-incluye">
-                            <span aria-hidden="true">→</span>
-                        </button>
-                    </div>
-                </nav>
+                            <div class="apilado__cuerpo">
+                                <h3 class="apilado__titulo">Sistema de identidad visual</h3>
 
-                <p class="texto-oculto" role="status" aria-live="polite" aria-atomic="true" data-aviso-carrusel></p>
+                                <p class="apilado__texto">Isologotipo, paleta cromática, sistema tipográfico, recursos gráficos y aplicaciones institucionales y comerciales.</p>
+
+                                <p class="apilado__respuesta">
+                                    <span class="apilado__etiqueta">Respuesta</span>
+                                    Manual de identidad.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="apilado__carta" data-carta style="--orden: 3">
+                        <div class="apilado__papel">
+                            <p class="apilado__solapa" data-solapa aria-hidden="true">Naming e identidad verbal</p>
+
+                            <div class="apilado__cuerpo">
+                                <h3 class="apilado__titulo">Naming e identidad verbal</h3>
+
+                                <p class="apilado__texto">Creación o revisión del nombre, arquitectura de mensajes, tono de voz y lineamientos de redacción por canal.</p>
+
+                                <p class="apilado__respuesta">
+                                    <span class="apilado__etiqueta">Respuesta</span>
+                                    Guía de identidad verbal.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="apilado__carta" data-carta style="--orden: 4">
+                        <div class="apilado__papel">
+                            <p class="apilado__solapa" data-solapa aria-hidden="true">Comunicación institucional e interna</p>
+
+                            <div class="apilado__cuerpo">
+                                <h3 class="apilado__titulo">Comunicación institucional e interna</h3>
+
+                                <p class="apilado__texto">Arquitectura de marca y lineamientos de gestión para instituciones con múltiples sedes, niveles o unidades de servicio.</p>
+
+                                <p class="apilado__respuesta">
+                                    <span class="apilado__etiqueta">Respuesta</span>
+                                    Plan de comunicación institucional e interna.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <div class="apilado__cola" data-cola aria-hidden="true"></div>
+                </div>
             </div>
         </section>
 
