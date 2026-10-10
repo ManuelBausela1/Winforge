@@ -1,5 +1,5 @@
 /* ---------- Propuestas ----------
-   Tres paneles —marcas, colegios y RayuelA— sobre el mármol del sitio.
+   Tres paneles —marcas, colegios y Rayuela— sobre el mármol del sitio.
    Las fichas son claras para que el precio y los entregables se lean de corrido. */
 
 .propuestas {
@@ -586,7 +586,7 @@
     }
 }
 
-/* ---------- El abono de RayuelA, por tramo de alumnos ---------- */
+/* ---------- El abono de Rayuela, por tramo de alumnos ---------- */
 
 .seccion-abono {
     padding-block: clamp(3rem, 9vh, 5rem) clamp(1rem, 3vh, 2rem);
@@ -787,24 +787,53 @@
 /* ---------- Pantallas chicas ---------- */
 
 @media (max-width: 1100px) {
-    .planes {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+    .selector-propuesta__lista {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Una sola fila: se insinúa la siguiente ficha y se desliza con el dedo. */
+    .propuestas .planes,
+    .propuestas .condiciones {
+        grid-template-columns: none;
+        grid-auto-flow: column;
+        grid-auto-columns: min(88%, 22rem);
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x proximity;
+        padding: 1.25rem 2px 1.5rem;
+        scroll-padding-inline: 2px;
+        scrollbar-width: thin;
+        scrollbar-color: var(--color-eucalipto) transparent;
+    }
+
+    .plan,
+    .condicion {
+        min-width: 0;
+        scroll-snap-align: start;
+    }
+
+    .propuestas .boton {
+        width: fit-content;
+        max-width: 100%;
+        padding-inline: 1.1rem;
+        white-space: normal;
+        text-align: center;
+        justify-self: center;
+        align-self: center;
     }
 
     .pasos {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .condiciones,
     .capacidades {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
 @media (max-width: 720px) {
-    .planes,
     .pasos,
-    .condiciones,
     .capacidades {
         grid-template-columns: minmax(0, 1fr);
     }
@@ -899,8 +928,8 @@
     color: var(--color-eucalipto-hondo);
 }
 
-/* En pantalla ancha los cuatro entran en un renglón */
-@media (min-width: 1100px) {
+/* La fila única necesita espacio real después de reservar el índice lateral. */
+@media (min-width: 1600px) {
     .datos-duros {
         flex-wrap: nowrap;
     }
@@ -910,10 +939,10 @@
     }
 }
 
-/* El nombre del nivel entra en un renglón */
+/* Si el nivel es largo, puede ocupar dos líneas dentro de su ficha. */
 .planes--parejo .plan__nombre {
     font-size: clamp(1.2rem, 0.95rem + 0.75vw, 1.6rem);
-    text-wrap: nowrap;
+    text-wrap: balance;
 }
 
 /* ---------- M360: el proceso como lista con ícono ---------- */
@@ -1032,11 +1061,23 @@
 
 @media (min-width: 901px) {
     .seccion-proceso--izquierda .titulo-bloque {
-        text-wrap: nowrap;
+        text-wrap: balance;
     }
 }
 
-/* ---------- RayuelA: el abono y lo que hace ---------- */
+/* ---------- Rayuela: el abono y lo que hace ---------- */
+
+/* En escritorio compacto, dos columnas conservan el ancho de las fichas.
+   Mobile y tablet mantienen la fila con desplazamiento lateral. */
+@media (min-width: 1101px) and (max-width: 1399px) {
+    .planes {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .propuestas .seccion-proceso--izquierda .contenedor {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
 
 .seccion-abono__encabezado {
     display: flex;
@@ -1299,4 +1340,15 @@
 .encabezado-propuesta__titulo--tres {
     max-width: 38ch;
     text-wrap: wrap;
+}
+
+@media (max-width: 1100px) {
+    .recorrido__paso,
+    .herramienta {
+        text-align: center;
+    }
+
+    .recorrido__visual {
+        justify-content: center;
+    }
 }

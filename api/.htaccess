@@ -1,0 +1,4 @@
+Options -Indexes
+<FilesMatch "^(?!formularios\.php$)">
+    Require all denied
+</FilesMatch>

@@ -14,6 +14,7 @@ export function iniciarCartasApiladas(raiz = document.querySelector("[data-carta
     const cartas = [...raiz.querySelectorAll("[data-carta]")];
     const cola = raiz.querySelector("[data-cola]");
     if (cartas.length < 2) return;
+    const pantallaCompacta = window.matchMedia("(max-width: 1100px)");
 
     /* getComputedStyle devuelve el token tal cual ("clamp(...)"), no el valor
        resuelto, así que la medida la toma un testigo con ese alto. */
@@ -42,8 +43,9 @@ export function iniciarCartasApiladas(raiz = document.querySelector("[data-carta
             });
         }
 
-        /* Con movimiento reducido la hoja ya las deja una abajo de la otra */
-        if (prefiereMovimientoReducido()) {
+        /* Mobile y tablet usan una lista vertical, sin medidas de apilado. */
+        if (pantallaCompacta.matches || prefiereMovimientoReducido()) {
+            raiz.classList.add("esta-desapilado");
             limpiar();
             return;
         }
@@ -72,8 +74,7 @@ export function iniciarCartasApiladas(raiz = document.querySelector("[data-carta
             acumulado += solapas[i] + aire;
         }
 
-        const ultima = cartas.length - 1;
-        const altoPila = topes[ultima] + papeles[ultima];
+        const altoPila = Math.max(...topes.map((topeCarta, indice) => topeCarta + papeles[indice]));
 
         /* Si la pila completa no entra en la pantalla con algo de aire abajo,
            se leen en vertical */
@@ -109,6 +110,7 @@ export function iniciarCartasApiladas(raiz = document.querySelector("[data-carta
     }
 
     medir();
+    pantallaCompacta.addEventListener("change", medir);
 
     /* Al cambiar el ancho los textos se reacomodan y los altos cambian */
     if ("ResizeObserver" in window) {

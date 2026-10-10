@@ -11,7 +11,7 @@
 }
 
 .legal__contenedor {
-    width: min(100%, 48rem);
+    --ancho-contenedor: 48rem;
     margin-inline: auto;
 }
 

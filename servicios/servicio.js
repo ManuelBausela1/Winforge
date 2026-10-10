@@ -5,6 +5,7 @@ import { iniciarAcordeonPuntos } from "../recursos/js/componentes/acordeon-punto
 import { iniciarNavegadorServicios } from "../recursos/js/componentes/navegador-servicios.js";
 import { iniciarTramoOscuro } from "../recursos/js/componentes/tramo-oscuro.js";
 import { iniciarPortadaServicio } from "../recursos/js/componentes/portada-servicio.js";
+import { iniciarCasosServicio } from "../recursos/js/componentes/casos-servicio.js";
 
 iniciarSitio();
 iniciarCarruselIncluye();
@@ -13,3 +14,4 @@ iniciarAcordeonPuntos();
 iniciarNavegadorServicios();
 iniciarTramoOscuro();
 iniciarPortadaServicio();
+iniciarCasosServicio();

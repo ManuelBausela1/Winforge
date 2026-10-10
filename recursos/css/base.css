@@ -177,11 +177,35 @@ ol[role="list"] {
     transform: translate(-50%, 0);
 }
 
+.contenedor,
+.pie__base {
+    --ancho-contenedor: var(--ancho-maximo);
+    --margen-contenedor: var(--margen-lateral);
+}
+
 .contenedor {
     width: 100%;
-    max-width: var(--ancho-maximo);
+    max-width: var(--ancho-contenedor);
     margin-inline: auto;
-    padding-inline: var(--margen-lateral);
+    padding-inline: var(--margen-contenedor);
+    min-width: 0;
+}
+
+/* El índice fijo necesita su propio espacio, incluso al desplegar las etiquetas.
+   Descontamos el margen exterior de cada contenedor: en monitores amplios se
+   conserva el ancho original; en notebooks el contenido se separa del menú. */
+@media (min-width: 1101px) {
+    :root {
+        --reserva-navegacion: calc(clamp(1.25rem, 2.5vw, 2.5rem) + 11.5rem);
+    }
+
+    .contenedor,
+    .pie__base {
+        --margen-contenedor: max(
+            var(--margen-contenedor-base, var(--margen-lateral)),
+            calc(var(--reserva-navegacion) - max(0px, (100vw - var(--ancho-contenedor)) / 2))
+        );
+    }
 }
 
 .titulo-seccion {

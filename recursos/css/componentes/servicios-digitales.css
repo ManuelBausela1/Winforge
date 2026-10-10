@@ -1,4 +1,7 @@
 /* El detalle de los servicios digitales, en la página de Web y campañas */
+.digital-detalle__titulo {
+    display: none;
+}
 
 /* El título va al costado, con la línea sólo del lado derecho */
 .servicio-items__titulo--izquierda {
@@ -206,6 +209,53 @@
 
     .pantallas {
         max-width: 40rem;
+        margin-inline: auto;
+    }
+}
+
+@media (max-width: 1100px) {
+    .servicio-items__titulo--izquierda {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .servicio-items__titulo--izquierda::before {
+        display: block;
+    }
+
+    .digital {
+        display: block;
+    }
+
+    .digital__opciones {
+        display: none;
+    }
+
+    .digital__panel {
+        gap: 3rem;
+    }
+
+    .digital-detalle {
+        grid-area: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.25rem;
+        text-align: center;
+    }
+
+    .digital-detalle__titulo {
+        display: block;
+        order: -2;
+    }
+
+    .digital-detalle > :is(.digital__ilustracion, .pantallas, .digital-busqueda) {
+        order: -1;
+        width: min(100%, 40rem);
+        margin: 0;
+    }
+
+    .digital__esquema {
         margin-inline: auto;
     }
 }

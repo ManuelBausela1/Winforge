@@ -245,6 +245,17 @@
     display: none;
 }
 
+.formulario__privacidad {
+    font-size: var(--texto-xs);
+    line-height: 1.6;
+    text-align: center;
+}
+
+.formulario__privacidad a {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
 .formulario__aviso[data-estado="error"],
 .formulario__aviso[data-estado="espera"] {
     color: var(--color-naranja);

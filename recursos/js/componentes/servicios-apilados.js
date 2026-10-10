@@ -11,7 +11,16 @@ export function iniciarServiciosApilados(seccion = document.querySelector("[data
     const paneles = [...seccion.querySelectorAll("[data-panel-servicio]")];
     if (!paneles.length || prefiereMovimientoReducido()) return;
 
+    const pantallaCompacta = window.matchMedia("(max-width: 1100px)");
+
     function girar() {
+        if (pantallaCompacta.matches || prefiereMovimientoReducido()) {
+            paneles.forEach((panel) => {
+                panel.querySelector("[data-lienzo-servicio]")?.style.removeProperty("--giro");
+            });
+            return;
+        }
+
         const alto = window.innerHeight;
 
         paneles.forEach((panel) => {

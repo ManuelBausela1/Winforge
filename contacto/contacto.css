@@ -12,7 +12,7 @@
 .contacto__contenedor {
     position: relative;
     z-index: 1;
-    max-width: 1720px;
+    --ancho-contenedor: 1720px;
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-areas: ". formulario";
@@ -21,9 +21,25 @@
     row-gap: clamp(2.5rem, 6vh, 4rem);
 }
 
-@media (hover: hover) and (min-width: 768px) {
+@media (min-width: 1101px) {
     .contacto__contenedor {
-        padding-inline: max(calc(var(--margen-lateral) + 4rem), 11rem);
+        --margen-contenedor-base: max(calc(var(--margen-lateral) + 4rem), 11rem);
+    }
+
+    .contacto .contacto__columna-figura {
+        left: var(--reserva-navegacion);
+        width: calc(45.6% - var(--reserva-navegacion));
+    }
+}
+
+@media (min-width: 1101px) and (max-width: 1512px) {
+    .contacto__contenedor {
+        grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+        column-gap: clamp(2rem, 3vw, 3rem);
+    }
+
+    .contacto .contacto__columna-figura {
+        width: calc(42% - var(--reserva-navegacion));
     }
 }
 
@@ -162,20 +178,18 @@ a.contacto__dato:focus-visible .contacto__icono {
 }
 
 @media (max-width: 1100px) {
+    .contacto {
+        padding-top: calc(76px + clamp(2rem, 5vh, 3.5rem));
+    }
+
     .contacto__contenedor {
         grid-template-columns: minmax(0, 1fr);
-        grid-template-areas:
-            "formulario"
-            "datos";
+        grid-template-areas: "formulario";
         justify-items: center;
     }
 
     .contacto__datos {
-        position: static;
-        grid-area: datos;
-        align-items: center;
-        width: auto;
-        translate: none;
+        display: none;
     }
 
     .contacto__columna-figura {

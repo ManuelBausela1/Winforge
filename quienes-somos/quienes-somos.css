@@ -41,14 +41,14 @@
 .presentacion__contenedor {
     position: relative;
     z-index: 1;
-    max-width: 1720px;
+    --ancho-contenedor: 1720px;
     display: flex;
     justify-content: center;
 }
 
-@media (hover: hover) and (min-width: 768px) {
+@media (min-width: 1101px) {
     .presentacion__contenedor {
-        padding-inline: max(calc(var(--margen-lateral) + 4rem), 11rem);
+        --margen-contenedor-base: max(calc(var(--margen-lateral) + 4rem), 11rem);
     }
 }
 
@@ -90,6 +90,12 @@
     margin: clamp(0.5rem, 2vh, 1.25rem) 0 0;
     padding: 0;
     list-style: none;
+}
+
+@media (max-width: 1100px) {
+    .presentacion__acciones {
+        flex-direction: column;
+    }
 }
 
 .presentacion__frase {
@@ -139,7 +145,7 @@
 }
 
 .pilares-seccion__contenedor {
-    max-width: 1720px;
+    --ancho-contenedor: 1720px;
 }
 
 .pilares {
@@ -250,12 +256,12 @@
     display: flex;
     flex-direction: column;
     gap: clamp(3.5rem, 12vh, 8rem);
-    max-width: 1720px;
+    --ancho-contenedor: 1720px;
 }
 
-@media (hover: hover) and (min-width: 768px) {
+@media (min-width: 1101px) {
     .proposito__contenedor {
-        padding-inline: max(calc(var(--margen-lateral) + 4rem), 11rem);
+        --margen-contenedor-base: max(calc(var(--margen-lateral) + 4rem), 11rem);
     }
 }
 
@@ -326,14 +332,15 @@
     translate: 0 0;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 1100px) {
     .proposito__bloque--mision,
     .proposito__bloque--vision {
         margin-inline: 0;
     }
 
     .proposito__bloque--vision {
-        text-align: left;
+        margin-inline-start: auto;
+        text-align: right;
     }
 }
 
@@ -451,7 +458,7 @@
 }
 
 /* Con puntero: el velo y los datos entran juntos */
-@media (hover: hover) {
+@media (hover: hover) and (min-width: 1101px) {
     .equipo__datos {
         opacity: 0;
         translate: 0 10px;
@@ -473,8 +480,46 @@
 }
 
 /* Sin puntero no hay hover: los datos quedan siempre a la vista */
-@media (hover: none) {
+@media (hover: none) and (min-width: 1101px) {
     .equipo__retrato::after {
+        opacity: 1;
+    }
+}
+
+.equipo__alternar {
+    display: none;
+}
+
+@media (max-width: 1100px) {
+    .equipo__alternar {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+    }
+
+    .equipo__alternar:focus-visible {
+        outline: 3px solid var(--color-naranja);
+        outline-offset: -4px;
+    }
+
+    .equipo__tarjeta.con-interaccion .equipo__datos {
+        opacity: 0;
+        visibility: hidden;
+        translate: 0 10px;
+        transition: opacity 0.3s var(--curva-suave), translate 0.3s var(--curva-suave), visibility 0.3s;
+    }
+
+    .equipo__tarjeta.muestra-datos .equipo__datos {
+        opacity: 1;
+        visibility: visible;
+        translate: 0 0;
+    }
+
+    .equipo__tarjeta.muestra-datos .equipo__retrato::after {
         opacity: 1;
     }
 }

@@ -1,0 +1,135 @@
+/* Escalas compartidas. Se carga después de los componentes para que cada
+   nivel conserve su tamaño en todas las páginas. */
+@media (max-width: 1100px) {
+    :root {
+        --texto-h2: clamp(1.75rem, 1.25rem + 2vw, 2.5rem);
+        --texto-h3: clamp(1.375rem, 1.2rem + 0.65vw, 1.625rem);
+        --texto-h4: clamp(1.125rem, 1rem + 0.5vw, 1.3125rem);
+        --texto-h5: 1.0625rem;
+        --texto-h6: 1rem;
+        --texto-descripcion: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+    }
+
+    main h2,
+    main h2[class] {
+        font-size: var(--texto-h2);
+    }
+
+    main h3,
+    main h3[class],
+    main .rayuela__nombre,
+    main .equipo__nombre,
+    main .caso-exito--ancho .caso-exito__nombre,
+    main .pasos--lista .paso__nombre {
+        font-size: var(--texto-h3);
+    }
+
+    main h4,
+    main h4[class],
+    main .servicio__detalle-titulo {
+        font-size: var(--texto-h4);
+    }
+
+    main h5,
+    main h5[class] {
+        font-size: var(--texto-h5);
+    }
+
+    main h6,
+    main h6[class] {
+        font-size: var(--texto-h6);
+    }
+
+    /* Quitamos los anchos y saltos que forzaban títulos a varios renglones.
+       Si el texto es largo, sigue creciendo: nunca se recorta ni se oculta. */
+    main :is(h2, h3, h4, h5, h6)[class],
+    main .cierre-propuesta--formulario .cierre-propuesta__titulo {
+        min-width: 0;
+        max-width: 100%;
+        line-height: 1.2;
+        letter-spacing: -0.015em;
+        white-space: normal;
+        text-wrap: balance;
+        overflow-wrap: anywhere;
+    }
+
+    main :is(h2, h3, h4, h5, h6) br {
+        display: none;
+    }
+
+    /* El acordeón lleva el texto dentro de un botón: hereda el nivel h3. */
+    main .panel__titulo .panel__nombre {
+        font-size: inherit;
+        line-height: inherit;
+        letter-spacing: inherit;
+        min-width: 0;
+    }
+
+    main .panel__signo {
+        flex: none;
+    }
+
+    /* Las líneas decorativas dejan más espacio para el título. */
+    main .titulo-seccion {
+        justify-content: center;
+        text-align: center;
+    }
+
+    main :is(.titulo-seccion, .servicio-items__titulo, .servicio-casos__titulo) {
+        gap: clamp(0.5rem, 1.5vw, 0.9rem);
+    }
+
+    main :is(.titulo-seccion, .servicio-items__titulo, .servicio-casos__titulo)::before,
+    main :is(.titulo-seccion, .servicio-items__titulo, .servicio-casos__titulo)::after {
+        width: clamp(12px, 2.5vw, 28px);
+    }
+
+    main :is(
+        .casos__entrada, .servicios__entrada, .invitacion__texto,
+        .portfolio__entrada, .presentacion__frase, .proposito__texto,
+        .pilar__descripcion, .servicio-portada__bajada, .servicio__detalle-texto,
+        .encabezado-propuesta__bajada, .taller__bajada,
+        .seccion-abono__bajada, .seccion-proceso__bajada,
+        .cierre-propuesta__texto, .legal__entrada,
+        .apilado__texto, .panel__texto, .incluye__texto, .digital__texto,
+        .proceso__descripcion, .via__texto, .rayuela__texto,
+        .plan__para, .paso__texto, .condicion__texto,
+        .taller__texto, .recorrido__texto, .herramienta__texto
+    ),
+    main .seccion-proceso--izquierda .seccion-proceso__bajada,
+    main .legal .legal__entrada {
+        font-size: var(--texto-descripcion);
+        font-weight: 300;
+        line-height: 1.65;
+        text-wrap: pretty;
+    }
+}
+
+/* Los subtítulos con líneas comparten tamaño en cualquier pantalla, aunque
+   sean h2 o h3. Portfolio es un h1 y conserva su propia escala. */
+:root {
+    --texto-subtitulo-lineas: clamp(1.75rem, 1.25rem + 2vw, 2.5rem);
+}
+
+/* La escala de escritorio crece hasta el monitor amplio, sin alcanzar el
+   máximo ya en una notebook. El texto de lectura conserva su tamaño. */
+@media (min-width: 1101px) {
+    :root {
+        --texto-subtitulo-lineas: clamp(2rem, 2.1vw, 2.5rem);
+    }
+
+    main :is(h2, h3, h4, h5, h6):is(.titulo-seccion, .servicio-items__titulo, .servicio-casos__titulo) {
+        max-width: 100%;
+        text-align: center;
+        gap: clamp(0.75rem, 1.25vw, 1.5rem);
+    }
+}
+
+main :is(h2, h3, h4, h5, h6):is(.titulo-seccion, .servicio-items__titulo, .servicio-casos__titulo) {
+    font-size: var(--texto-subtitulo-lineas);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    white-space: normal;
+    text-wrap: balance;
+}

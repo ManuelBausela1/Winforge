@@ -1,8 +1,8 @@
 /**
  * La sección de acompañamiento. Tres cosas conviven acá:
- *  - la entrada: el megáfono llama, bajan las dos tarjetas y se abre RayuelA;
+ *  - la entrada: el megáfono llama, bajan las dos tarjetas y se abre Rayuela;
  *  - en cada vía pasa un logo de cliente por vez;
- *  - la demostración de RayuelA escribe sola una consulta de familia.
+ *  - la demostración de Rayuela escribe sola una consulta de familia.
  * Los logos y el chat se detienen mientras la sección no está a la vista o la
  * pestaña está oculta. La entrada corre una sola vez.
  */
@@ -17,9 +17,9 @@ const ESPERA_ENTRE_CINTAS = 600;
 const ENTRADA = {
     /* Lo que tarda la última pieza de arriba: el botón de Instituciones */
     tarjetas: 1370 + 600,
-    /* Cuándo le toca a RayuelA si ya estaba a la vista al arrancar la sección */
+    /* Cuándo le toca a Rayuela si ya estaba a la vista al arrancar la sección */
     rayuela: 1450,
-    /* Lo que dura la apertura de RayuelA, contado desde su propia demora */
+    /* Lo que dura la apertura de Rayuela, contado desde su propia demora */
     adentroDeRayuela: 640 + 800,
     /* El chat habla cuando terminó de abrirse el bloque verde */
     chat: 1700,
@@ -184,7 +184,7 @@ function prepararEntrada(raiz, cuandoHableElChat) {
                 return;
             }
 
-            /* Si RayuelA ya se ve, entra a los 1450ms; si quedó abajo (sobre todo
+            /* Si Rayuela ya se ve, entra a los 1450ms; si quedó abajo (sobre todo
                en el teléfono), espera a estar en pantalla y ahí se abre. */
             const observadorRayuela = new IntersectionObserver(
                 (suyas) => {

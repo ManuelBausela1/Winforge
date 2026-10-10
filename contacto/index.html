@@ -43,6 +43,7 @@
     <link rel="stylesheet" href="../recursos/css/componentes/botones.css">
     <link rel="stylesheet" href="../recursos/css/componentes/formulario.css">
     <link rel="stylesheet" href="contacto.css">
+    <link rel="stylesheet" href="../recursos/css/tipografia-responsive.css">
 
     <script src="../recursos/js/arranque.js"></script>
     <script type="module" src="contacto.js"></script>
@@ -146,7 +147,7 @@
                 <div class="contacto__columna-formulario">
                     <h2 class="contacto__titulo" id="titulo-contacto">Queremos saber más sobre tu proyecto</h2>
 
-                    <form class="formulario" data-formulario-contacto novalidate>
+                    <form class="formulario" data-formulario-contacto data-formulario="contacto" data-endpoint="../api/formularios.php" novalidate>
                         <div class="formulario__campo">
                             <label class="formulario__etiqueta" for="campo-nombre">Nombre y apellido <span class="formulario__obligatorio" aria-hidden="true">*</span></label>
                             <input
@@ -257,12 +258,14 @@
                         </div>
 
                         <div class="formulario__pie">
-                            <button class="boton boton--principal formulario__enviar" type="submit">
+                            <button class="boton boton--principal formulario__enviar" type="submit" disabled>
                                 <span class="boton__texto">Enviar</span>
                             </button>
 
                             <p class="formulario__aviso" data-aviso role="status" aria-live="polite"></p>
                         </div>
+                        <p class="formulario__privacidad">Usaremos tus datos para responder esta consulta. <a href="../politica-de-privacidad/">Política de privacidad</a>.</p>
+                        <noscript><p>Activá JavaScript para usar el formulario o escribinos a <a href="mailto:info@winforge.com">info@winforge.com</a>.</p></noscript>
                     </form>
                 </div>
 

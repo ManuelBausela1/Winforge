@@ -46,8 +46,9 @@ export function iniciarDatosDeContacto(seccion = document.querySelector("[data-c
 
         const alLadoDeLosOjos = dibujoX + anchoDibujo * BANDA_DERECHA + SEPARACION;
         const limite = formulario.getBoundingClientRect().left - base.left - datos.offsetWidth - AIRE_CON_EL_FORMULARIO;
+        const margenSeguro = parseFloat(getComputedStyle(contenedor).paddingLeft) || 0;
 
-        seccion.style.setProperty("--datos-x", `${Math.round(Math.max(0, Math.min(alLadoDeLosOjos, limite)))}px`);
+        seccion.style.setProperty("--datos-x", `${Math.round(Math.max(margenSeguro, Math.min(alLadoDeLosOjos, limite)))}px`);
         seccion.style.setProperty("--datos-y", `${Math.round(dibujoY + altoDibujo * BANDA_CENTRO)}px`);
     }
 

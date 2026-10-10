@@ -14,14 +14,24 @@ export function iniciarProcesoHorizontal(seccion = document.querySelector("[data
     if (!seccion) return;
 
     const riel = seccion.querySelector("[data-riel]");
+    const ventana = seccion.querySelector(".proceso__ventana");
     const linea = seccion.querySelector(".proceso__linea");
     const pasos = [...seccion.querySelectorAll("[data-paso]")];
     if (!riel || !pasos.length) return;
 
-    if (prefiereMovimientoReducido()) {
-        seccion.classList.add("proceso--sin-desplazamiento");
-        pasos.forEach((paso) => paso.classList.add("esta-activo"));
-        return;
+    const pantallaCompacta = window.matchMedia("(max-width: 1100px)");
+    const consultaMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const museo = seccion.querySelector(".proceso__museo");
+    const obras = [...seccion.querySelectorAll(".proceso__obra")];
+
+    /* Las mismas obras acompañan los pasos 1, 3 y 5 en vertical. Al volver
+       a escritorio recuperan su lugar en el fondo, sin duplicar imágenes. */
+    function acomodarObras() {
+        if (!museo) return;
+        obras.forEach((obra, indice) => {
+            const destino = pantallaCompacta.matches ? pasos[Math.min(indice * 2, pasos.length - 1)] : museo;
+            if (obra.parentElement !== destino) destino.append(obra);
+        });
     }
 
     let recorrido = 0;
@@ -29,13 +39,28 @@ export function iniciarProcesoHorizontal(seccion = document.querySelector("[data
     let encendidos = 0;
 
     function medir() {
-        recorrido = Math.max(0, riel.scrollWidth - window.innerWidth);
+        acomodarObras();
+        const sinMovimiento = prefiereMovimientoReducido();
+        seccion.classList.toggle("proceso--sin-desplazamiento", sinMovimiento);
+        if (pantallaCompacta.matches || sinMovimiento) {
+            seccion.style.removeProperty("--recorrido");
+            seccion.style.removeProperty("--avance");
+            pasos.forEach((paso) => {
+                paso.classList.add("esta-activo");
+                paso.style.setProperty("--foco", "1");
+            });
+            return;
+        }
+
+        recorrido = Math.max(0, riel.scrollWidth - (ventana?.clientWidth || window.innerWidth));
         alturaLibre = Math.max(1, seccion.offsetHeight - window.innerHeight);
         seccion.style.setProperty("--recorrido", `${recorrido}px`);
         ubicar();
     }
 
     function ubicar() {
+        if (pantallaCompacta.matches || prefiereMovimientoReducido()) return;
+
         const { top } = seccion.getBoundingClientRect();
         const recorridoDelScroll = Math.min(1, Math.max(0, -top / alturaLibre));
         const avance = Math.min(1, recorridoDelScroll / TRAMO_UTIL);
@@ -71,6 +96,8 @@ export function iniciarProcesoHorizontal(seccion = document.querySelector("[data
 
     alScrollear(ubicar);
     window.addEventListener("resize", medir, { passive: true });
+    pantallaCompacta.addEventListener("change", medir);
+    consultaMovimiento.addEventListener("change", medir);
 
     if (document.fonts?.ready) document.fonts.ready.then(medir);
     medir();

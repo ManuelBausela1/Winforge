@@ -22,3 +22,13 @@ desktop.ini
 # Dependencias y compilados, por si más adelante hacen falta
 node_modules/
 dist/
+
+# Pruebas locales (no van al repositorio).
+/pruebas/
+
+# Configuraciones privadas (siempre fuera de la web al publicar).
+/configuracion/formularios.local.php
+*.sqlite
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm

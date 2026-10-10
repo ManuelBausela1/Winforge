@@ -1,51 +1,25 @@
 import { leerEleccion } from "../utilidades/servicios.js";
 import {
-    cuantosEnlaces,
-    escrituraAjena,
     esEmailRazonable,
     esNombreRazonable,
     limpiarTexto,
-    pareceRelleno,
-    tieneMarcado,
 } from "../utilidades/seguridad.js";
 
 const LIMITES = {
-    esperaEntreEnvios: 45000,
-    maximoPorHora: 3,
-    maximoPorDia: 6,
-    ventana: 3600000,
-    ventanaLarga: 86400000,
-    tiempoMinimoDeCarga: 3000,
     largoNombre: 80,
     largoEmail: 120,
     largoMensaje: 1200,
-    enlacesPermitidos: 1,
 };
 
 /* Solo aceptamos los valores que pusimos nosotros en el marcado. */
 const SERVICIOS_VALIDOS = ["Estrategia y marca", "Contenido y producción", "Web y campañas"];
 const TIPOS_VALIDOS = ["Marca", "Institución"];
 const PLANES_VALIDOS = ["Presencia", "Crecimiento", "Gestión", "A medida", "Todavía no sé"];
-const NIVELES_VALIDOS = ["Presencia escolar", "Admisión", "Alumbra", "RayuelA", "Todavía no sé"];
+const NIVELES_VALIDOS = ["Presencia escolar", "Admisión", "Alumbra", "Rayuela", "Todavía no sé"];
 const TRAMOS_VALIDOS = ["Hasta 300 alumnos", "301 a 600 alumnos", "601 a 1.000 alumnos", "Más de 1.000 alumnos", "Todavía no sé"];
 
 /* Los campos que puede traer un formulario; cada página usa los que necesita */
 const CAMPOS_POSIBLES = ["nombre", "tipo", "institucion", "cargo", "email", "plan", "nivel", "alumnos", "mensaje", "servicios"];
-
-/* Cómo se nombra cada dato en el correo que se arma */
-const ETIQUETAS = {
-    nombre: "Nombre",
-    tipo: "Marca o institución",
-    institucion: "Institución",
-    cargo: "Cargo",
-    email: "Email",
-    plan: "Plan",
-    nivel: "Nivel",
-    alumnos: "Cantidad de alumnos",
-    servicios: "Servicios",
-};
-
-const CLAVE_ENVIOS = "winforge:envios";
 
 const MENSAJES = {
     nombre: {
@@ -83,11 +57,7 @@ const MENSAJES = {
     mensaje: {
         vacio: "Contanos sobre tu proyecto.",
         corto: "Un par de líneas más y podemos entenderlo mejor.",
-        relleno: "Contanos con tus palabras qué necesitás.",
-        enlaces: "Dejanos el proyecto en palabras: los enlaces los vemos después.",
-        marcado: "Escribí el mensaje como texto, sin etiquetas ni código.",
     },
-    idioma: "Escribinos en español o en inglés y te respondemos.",
 };
 
 function serviciosElegidos(formulario) {
@@ -112,12 +82,10 @@ function valorLimpio(formulario, nombre) {
 function validarCampo(formulario, nombre) {
     const valor = valorLimpio(formulario, nombre);
 
-    if (valor && escrituraAjena(valor)) return MENSAJES.idioma;
-
     switch (nombre) {
         case "nombre":
             if (!valor) return MENSAJES.nombre.vacio;
-            if (valor.length < 3 || !valor.includes(" ")) return MENSAJES.nombre.corto;
+            if (valor.length < 3) return MENSAJES.nombre.corto;
             if (!esNombreRazonable(valor)) return MENSAJES.nombre.raro;
             return "";
 
@@ -129,9 +97,6 @@ function validarCampo(formulario, nombre) {
         case "mensaje":
             if (!valor) return MENSAJES.mensaje.vacio;
             if (valor.length < 10) return MENSAJES.mensaje.corto;
-            if (tieneMarcado(valor)) return MENSAJES.mensaje.marcado;
-            if (cuantosEnlaces(valor) > LIMITES.enlacesPermitidos) return MENSAJES.mensaje.enlaces;
-            if (pareceRelleno(valor)) return MENSAJES.mensaje.relleno;
             return "";
 
         case "tipo":
@@ -149,13 +114,11 @@ function validarCampo(formulario, nombre) {
         case "institucion":
             if (!valor) return MENSAJES.institucion.vacio;
             if (valor.length < 3) return MENSAJES.institucion.corto;
-            if (tieneMarcado(valor) || cuantosEnlaces(valor)) return MENSAJES.institucion.corto;
             return "";
 
         case "cargo":
             if (!valor) return MENSAJES.cargo.vacio;
             if (valor.length < 3) return MENSAJES.cargo.corto;
-            if (tieneMarcado(valor) || cuantosEnlaces(valor)) return MENSAJES.cargo.corto;
             return "";
 
         case "servicios":
@@ -166,95 +129,63 @@ function validarCampo(formulario, nombre) {
     }
 }
 
-function leerEnvios() {
+/* El mismo identificador se conserva al reintentar exactamente el mismo texto. */
+async function enviar(formulario, datos, solicitud) {
+    const controlador = new AbortController();
+    const reloj = setTimeout(() => controlador.abort(), 30000);
     try {
-        const guardado = JSON.parse(localStorage.getItem(CLAVE_ENVIOS) ?? "[]");
-        return Array.isArray(guardado) ? guardado.filter((marca) => Number.isFinite(marca)) : [];
-    } catch {
-        return [];
-    }
-}
-
-function anotarEnvio() {
-    try {
-        const ahora = Date.now();
-        const recientes = leerEnvios().filter((marca) => ahora - marca < LIMITES.ventanaLarga);
-        recientes.push(ahora);
-        localStorage.setItem(CLAVE_ENVIOS, JSON.stringify(recientes));
-    } catch {
-
-    }
-}
-
-function revisarFreno(nacimientoDelFormulario) {
-    const ahora = Date.now();
-
-    if (ahora - nacimientoDelFormulario < LIMITES.tiempoMinimoDeCarga) {
-        return "Tomate un segundo más para revisar lo que escribiste.";
-    }
-
-    const delDia = leerEnvios().filter((marca) => ahora - marca < LIMITES.ventanaLarga);
-    const recientes = delDia.filter((marca) => ahora - marca < LIMITES.ventana);
-    const ultimo = delDia[delDia.length - 1];
-
-    if (ultimo && ahora - ultimo < LIMITES.esperaEntreEnvios) {
-        const faltan = Math.ceil((LIMITES.esperaEntreEnvios - (ahora - ultimo)) / 1000);
-        return `Ya recibimos tu mensaje. Esperá ${faltan} segundos antes de enviar otro.`;
-    }
-
-    if (recientes.length >= LIMITES.maximoPorHora) {
-        return "Recibimos varios mensajes tuyos en la última hora. Te respondemos a la brevedad.";
-    }
-
-    if (delDia.length >= LIMITES.maximoPorDia) {
-        return "Ya nos escribiste varias veces hoy. Si es urgente, llamanos o escribinos por WhatsApp.";
-    }
-
-    return "";
-}
-
-async function enviar(formulario, datos) {
-    const destino = formulario.dataset.endpoint;
-
-    if (destino) {
-        const respuesta = await fetch(destino, {
+        const respuesta = await fetch(formulario.dataset.endpoint, {
             method: "POST",
-            headers: { "Content-Type": "application/json", Accept: "application/json" },
-            body: JSON.stringify(datos),
+            mode: "same-origin",
+            credentials: "omit",
+            cache: "no-store",
+            redirect: "error",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                "X-Winforge-Formulario": "1",
+            },
+            body: JSON.stringify({ ...datos, solicitud }),
+            signal: controlador.signal,
         });
-
-        if (!respuesta.ok) throw new Error(`El servidor respondió ${respuesta.status}`);
-        return "enviado";
+        let resultado;
+        try {
+            resultado = await respuesta.json();
+        } catch {
+            throw new Error("El envío no está disponible por el momento. Conservamos tu texto; podés escribirnos a info@winforge.com.");
+        }
+        if (!respuesta.ok || resultado?.success !== true) {
+            const error = new Error(typeof resultado?.message === "string" ? resultado.message : "No pudimos enviar la consulta. Intentá más tarde.");
+            error.campos = resultado?.errors;
+            error.espera = Math.min(86400, Math.max(0, Number(resultado?.retryAfter) || 0));
+            throw error;
+        }
+        return resultado;
+    } catch (error) {
+        if (error.name === "AbortError" || error instanceof TypeError) {
+            throw new Error("No pudimos confirmar el envío. Tu texto sigue en pantalla. Revisá la conexión; si reintentás sin cambiarlo, evitamos enviar la consulta dos veces.");
+        }
+        throw error;
+    } finally {
+        clearTimeout(reloj);
     }
-
-    const cuerpo = [
-        ...Object.entries(ETIQUETAS)
-            .filter(([clave]) => clave in datos)
-            .map(([clave, etiqueta]) => {
-                const valor = datos[clave];
-                return `${etiqueta}: ${Array.isArray(valor) ? valor.join(", ") : valor}`;
-            }),
-        "",
-        datos.mensaje,
-    ].join("\n");
-
-    /* El asunto va en una sola línea: un salto acá deja meter cabeceras. */
-    const asunto = `${formulario.dataset.asunto ?? "Nuevo proyecto"}: ${datos.nombre}`.replace(/\s+/g, " ").slice(0, 120);
-
-    window.location.href = `mailto:info@winforge.com?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
-
-    return "correo";
 }
 
 export function iniciarFormularioContacto(formulario = document.querySelector("[data-formulario-contacto]")) {
     if (!formulario) return;
 
+    // Retiramos el contador local anterior; ahora el control lo hace el servidor.
+    try { localStorage.removeItem("winforge:envios"); } catch { /* Puede estar bloqueado. */ }
+
     const aviso = formulario.querySelector("[data-aviso]");
     const boton = formulario.querySelector('button[type="submit"]');
-    const nacimiento = Date.now();
     const campos = CAMPOS_POSIBLES.filter((nombre) => formulario.elements[nombre]);
     const revisados = new Set();
     let enviando = false;
+    let ultimoContenido = "";
+    let solicitud = "";
+    let esperarHasta = 0;
+    boton.disabled = false;
 
     function controlesDe(nombre) {
         const control = formulario.elements[nombre];
@@ -267,7 +198,6 @@ export function iniciarFormularioContacto(formulario = document.querySelector("[
         if (cartel) cartel.textContent = texto;
 
         controlesDe(nombre).forEach((elemento) => {
-            if (elemento.type === "checkbox" || elemento.type === "radio") return;
             elemento.setAttribute("aria-invalid", texto ? "true" : "false");
         });
 
@@ -314,9 +244,9 @@ export function iniciarFormularioContacto(formulario = document.querySelector("[
 
         if (enviando) return;
 
-        /* La trampa: si el campo escondido viene lleno, es un bot. */
-        if (formulario.elements.empresa?.value) {
-            aviso.textContent = "¡Gracias! Te escribimos a la brevedad.";
+        if (Date.now() < esperarHasta) {
+            aviso.dataset.estado = "espera";
+            aviso.textContent = `Esperá ${Math.ceil((esperarHasta - Date.now()) / 1000)} segundos antes de volver a enviar.`;
             return;
         }
 
@@ -326,14 +256,7 @@ export function iniciarFormularioContacto(formulario = document.querySelector("[
         if (!valido) {
             aviso.dataset.estado = "error";
             aviso.textContent = "Revisá los campos marcados.";
-            formulario.querySelector(".formulario__campo.tiene-error input, .formulario__campo.tiene-error textarea")?.focus();
-            return;
-        }
-
-        const freno = revisarFreno(nacimiento);
-        if (freno) {
-            aviso.dataset.estado = "espera";
-            aviso.textContent = freno;
+            formulario.querySelector('[aria-invalid="true"]')?.focus();
             return;
         }
 
@@ -341,29 +264,52 @@ export function iniciarFormularioContacto(formulario = document.querySelector("[
             campos.map((nombre) => [nombre, nombre === "servicios" ? serviciosElegidos(formulario) : valorLimpio(formulario, nombre)]),
         );
 
+        datos.formulario = formulario.dataset.formulario;
+        datos.empresa = formulario.elements.empresa?.value ?? "";
+        const contenido = JSON.stringify(datos);
+        if (!crypto.randomUUID) {
+            aviso.dataset.estado = "error";
+            aviso.textContent = "Abrí el sitio con HTTPS o escribinos a info@winforge.com.";
+            return;
+        }
+        if (contenido !== ultimoContenido) {
+            solicitud = crypto.randomUUID();
+            ultimoContenido = contenido;
+        }
+        const controles = [...formulario.elements].map((elemento) => [elemento, elemento.disabled]);
+        controles.forEach(([elemento]) => { elemento.disabled = true; });
         enviando = true;
-        boton.disabled = true;
+        formulario.setAttribute("aria-busy", "true");
+        const etiquetaBoton = boton.querySelector(".boton__texto");
+        const textoBoton = etiquetaBoton?.textContent;
+        if (etiquetaBoton) etiquetaBoton.textContent = "Enviando…";
         aviso.dataset.estado = "enviando";
-        aviso.textContent = "Enviando…";
+        aviso.textContent = "Enviando tu consulta…";
 
         try {
-            const resultado = await enviar(formulario, datos);
-            anotarEnvio();
-
+            const resultado = await enviar(formulario, datos, solicitud);
             aviso.dataset.estado = "listo";
-            aviso.textContent =
-                resultado === "correo"
-                    ? "Abrimos tu correo con el mensaje listo para enviar."
-                    : "¡Gracias! Recibimos tu mensaje y te respondemos a la brevedad.";
-
-            if (resultado !== "correo") formulario.reset();
+            aviso.textContent = resultado.message;
+            formulario.reset();
+            revisados.clear();
+            campos.forEach((campo) => mostrarError(campo, ""));
+            ultimoContenido = "";
+            solicitud = "";
         } catch (error) {
-            console.warn("No se pudo enviar el formulario.", error);
-            aviso.dataset.estado = "error";
-            aviso.textContent = "No pudimos enviarlo. Probá de nuevo o escribinos a info@winforge.com.";
+            aviso.dataset.estado = error.espera ? "espera" : "error";
+            aviso.textContent = error.message;
+            esperarHasta = Date.now() + (error.espera || 0) * 1000;
+            if (error.campos && typeof error.campos === "object") {
+                campos.forEach((campo) => {
+                    if (typeof error.campos[campo] === "string") mostrarError(campo, error.campos[campo]);
+                });
+            }
         } finally {
+            controles.forEach(([elemento, deshabilitado]) => { elemento.disabled = deshabilitado; });
             enviando = false;
-            boton.disabled = false;
+            formulario.removeAttribute("aria-busy");
+            if (etiquetaBoton) etiquetaBoton.textContent = textoBoton;
+            formulario.querySelector('[aria-invalid="true"]')?.focus();
         }
     });
 }

@@ -88,7 +88,7 @@
 .hero__contenedor {
     position: relative;
     z-index: 1;
-    max-width: 1720px;
+    --ancho-contenedor: 1720px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -96,9 +96,9 @@
     text-align: center;
 }
 
-@media (hover: hover) and (min-width: 768px) {
+@media (min-width: 1101px) {
     .hero__contenedor {
-        padding-inline: max(calc(var(--margen-lateral) + 4rem), 11rem);
+        --margen-contenedor-base: max(calc(var(--margen-lateral) + 4rem), 11rem);
     }
 }
 
@@ -183,6 +183,11 @@
     .hero__titulo {
         height: clamp(90px, 22vw, 170px);
     }
+
+    .hero__frase-renglon {
+        display: block;
+        white-space: nowrap;
+    }
 }
 
 @media (max-width: 480px) {
@@ -193,6 +198,10 @@
 
     .hero__acciones .boton {
         width: 100%;
+    }
+
+    .hero__acciones .boton--principal {
+        width: min(12rem, 100%);
     }
 }
 
@@ -253,6 +262,18 @@
     pointer-events: none;
 }
 
+@media (max-width: 767px) {
+    /* Reserva su lugar encima del título y sigue asomándose por la derecha. */
+    .servicios__marca {
+        position: relative;
+        top: auto;
+        align-self: flex-end;
+        flex: none;
+        margin-right: calc(-1 * var(--margen-lateral));
+        translate: none;
+    }
+}
+
 .servicios__entrada {
     position: relative;
     max-width: 44ch;
@@ -296,7 +317,7 @@
     gap: 0;
     min-height: 100vh;
     min-height: 100svh;
-    padding: clamp(5rem, 12vh, 8rem) max(calc(var(--margen-lateral) + 4rem), 11rem) clamp(3rem, 8vh, 5rem);
+    padding: clamp(5rem, 12vh, 8rem) max(calc(var(--margen-lateral) + 4rem), 11rem, var(--reserva-navegacion, 0px)) clamp(3rem, 8vh, 5rem);
     rotate: var(--giro, 0deg);
     transform-origin: bottom left;
     will-change: rotate;
@@ -318,6 +339,7 @@
 }
 
 .servicio__encabezado {
+    order: -1;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -474,6 +496,68 @@
     }
 }
 
+/* En mobile y tablet las cards suben con el desplazamiento natural,
+   con el título primero y las acciones después de todos los detalles. */
+@media (max-width: 1100px) {
+    .servicio {
+        position: relative;
+        min-height: 0;
+    }
+
+    .servicio__lienzo {
+        justify-content: flex-start;
+        min-height: 100svh;
+        padding: clamp(5.5rem, 12vh, 7rem) var(--margen-lateral) clamp(2.5rem, 6vh, 4rem);
+        rotate: none;
+        will-change: auto;
+        text-align: center;
+    }
+
+    .servicio__titulo {
+        border-top: 1px solid currentColor;
+        padding-block: clamp(1.25rem, 3vh, 2rem);
+    }
+
+    .servicio__detalles {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: clamp(1.25rem, 3vh, 2rem);
+        width: min(100%, 44rem);
+        margin: clamp(1.5rem, 4vh, 2.5rem) auto clamp(2rem, 5vh, 3rem);
+        padding: 0;
+    }
+
+    .servicio__detalle {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.4rem;
+        width: 100%;
+    }
+
+    .servicio__detalle:not(:first-child) .servicio__detalle-titulo {
+        margin-top: 0;
+    }
+
+    .servicio__encabezado {
+        order: 0;
+        align-items: center;
+        justify-content: center;
+        margin-top: auto;
+        padding-block: clamp(1.25rem, 3vh, 2rem) 0;
+        border-top: 1px solid currentColor;
+        border-bottom: 0;
+    }
+
+    .servicio__acciones {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.75rem 1.5rem;
+        max-width: 100%;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .servicio {
         position: static;
@@ -502,6 +586,10 @@
 
 .proceso__escenario {
     background-color: var(--color-blanco);
+}
+
+.proceso__ventana {
+    display: contents;
 }
 
 .proceso__escenario {
@@ -911,9 +999,9 @@
     flex-direction: column;
     align-items: center;
     gap: clamp(0.75rem, 2vh, 1.25rem);
-    max-width: 46rem;
+    --ancho-contenedor: 46rem;
     margin: clamp(4.5rem, 12vh, 8rem) auto 0;
-    padding-inline: var(--margen-lateral);
+    padding-inline: var(--margen-contenedor);
     text-align: center;
 }
 
@@ -938,11 +1026,61 @@
 
 @media (min-width: 901px) {
     .invitacion {
-        max-width: 64rem;
+        --ancho-contenedor: 64rem;
     }
 
     .invitacion__titulo {
         white-space: nowrap;
+    }
+}
+
+@media (min-width: 1101px) {
+    .servicio__lienzo {
+        container-type: inline-size;
+    }
+
+    .servicio__titulo {
+        font-size: clamp(2rem, 7cqi, 6.5rem);
+        white-space: normal;
+        text-wrap: balance;
+    }
+
+    .proceso .proceso__titulo {
+        max-width: calc(100% - 2 * var(--reserva-navegacion));
+    }
+}
+
+/* El recorrido se recorta antes del índice, mientras el museo del fondo
+   conserva toda la pantalla. El margen simétrico mantiene el eje del diseño. */
+@media (min-width: 1101px) and (prefers-reduced-motion: no-preference) {
+    .proceso__ventana {
+        display: flex;
+        flex: 1;
+        min-height: 0;
+        margin-inline: var(--reserva-navegacion);
+        overflow: clip;
+    }
+
+    .proceso__riel {
+        padding-left: max(0px, calc(44vw - var(--reserva-navegacion)));
+        padding-right: max(0px, calc(26vw - var(--reserva-navegacion)));
+    }
+}
+
+@media (min-width: 1101px) and (prefers-reduced-motion: reduce) {
+    .proceso__riel {
+        align-items: center;
+        padding-inline: var(--reserva-navegacion);
+    }
+
+    .proceso__recorrido {
+        width: min(100%, 48rem);
+    }
+
+    .proceso__texto {
+        width: 100%;
+        max-width: 100%;
+        padding-right: clamp(1.25rem, 2.5vw, 1.75rem);
     }
 }
 
@@ -1498,7 +1636,7 @@
     animation-delay: 1370ms;
 }
 
-/* 3. RayuelA se abre desde una franja central. La demora la pone el módulo:
+/* 3. Rayuela se abre desde una franja central. La demora la pone el módulo:
    1450ms si ya estaba a la vista, 0 si hubo que esperar a que apareciera. */
 .rayuela.esta-entrando {
     animation: acomp-rayuela 1150ms var(--curva-entrante) var(--demora, 0ms) both;
@@ -1641,7 +1779,7 @@
     }
 }
 
-/* ---------- RayuelA ---------- */
+/* ---------- Rayuela ---------- */
 
 .rayuela {
     display: grid;
@@ -1813,6 +1951,22 @@
     .vias,
     .rayuela {
         grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (min-width: 1101px) and (max-width: 1399px) {
+    .rayuela {
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        gap: 1.5rem;
+    }
+
+    .rayuela .demo {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+    }
+
+    .rayuela__cierre {
+        grid-column: 1;
     }
 }
 
@@ -2002,5 +2156,147 @@
 @media (prefers-reduced-motion: reduce) {
     .proceso__texto {
         filter: none;
+    }
+}
+
+/* Nuestro innegociable: cinco pasos legibles y las obras repartidas entre ellos. */
+@media (max-width: 1100px) {
+    /* Solapa la unión para que el redondeo de píxeles no deje ver el fondo oscuro. */
+    .servicios + .proceso {
+        margin-top: -1px;
+        z-index: 3;
+        box-shadow: none;
+        clip-path: none;
+    }
+
+    .proceso {
+        height: auto;
+    }
+
+    .proceso__escenario {
+        position: relative;
+        height: auto;
+        padding: clamp(5.5rem, 12vh, 7rem) var(--margen-lateral) clamp(3rem, 8vh, 5rem);
+        overflow: hidden;
+    }
+
+    .proceso__titulo {
+        margin: 0 0 clamp(2rem, 6vw, 3.5rem);
+        max-width: 100%;
+        white-space: normal;
+    }
+
+    .proceso__riel {
+        flex: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 2rem;
+        width: min(100%, 44rem);
+        margin-inline: auto;
+        padding: 0;
+        translate: none;
+        will-change: auto;
+    }
+
+    .proceso__recorrido,
+    .proceso__pasos {
+        width: 100%;
+        height: auto;
+    }
+
+    .proceso__pasos {
+        position: relative;
+        flex-direction: column;
+        align-items: stretch;
+        gap: clamp(1.75rem, 5vw, 3rem);
+    }
+
+    .proceso__pasos::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 7px;
+        width: 1px;
+        background: linear-gradient(var(--color-eucalipto), rgba(129, 161, 152, 0.25));
+    }
+
+    .proceso__paso {
+        --espacio-obra: 0px;
+        width: 100%;
+        height: auto;
+        padding: var(--espacio-obra) 0 0 1.75rem;
+    }
+
+    .proceso__paso:has(.proceso__obra) {
+        --espacio-obra: clamp(8.5rem, 26vw, 12rem);
+    }
+
+    .proceso__linea,
+    .proceso__tallo {
+        display: none;
+    }
+
+    .proceso__punto {
+        top: calc(var(--espacio-obra) + 1.75rem);
+        left: 7px;
+        translate: -50% 0;
+        scale: 1;
+        box-shadow: 0 0 0 4px var(--color-blanco);
+    }
+
+    .proceso .proceso__texto {
+        position: relative;
+        inset: auto;
+        z-index: 1;
+        width: 100%;
+        max-width: none;
+        padding: clamp(1.1rem, 3vw, 1.75rem);
+        filter: none;
+        opacity: 1;
+        translate: none;
+        background-color: rgba(255, 255, 255, 0.94);
+        border-color: rgba(78, 108, 98, 0.2);
+    }
+
+    .proceso .proceso__titulo-paso,
+    .proceso .proceso__descripcion {
+        opacity: 1;
+        translate: none;
+        max-width: none;
+    }
+
+    /* Cada obra tiene aire propio arriba de la tarjeta; sólo su base queda detrás. */
+    .proceso__paso .proceso__obra {
+        top: 0;
+        right: 8%;
+        bottom: auto;
+        left: auto;
+        z-index: 0;
+        width: auto;
+        max-width: 60%;
+        height: calc(var(--espacio-obra) + 1rem);
+        opacity: 0.85;
+        filter: drop-shadow(8px 12px 15px rgba(28, 28, 28, 0.2));
+        pointer-events: none;
+    }
+
+    .proceso__paso .proceso__obra--jinete {
+        opacity: 0.65;
+        filter: blur(2.5px) drop-shadow(12px 16px 20px rgba(28, 28, 28, 0.3));
+    }
+
+    .proceso__paso .proceso__obra--anfora {
+        right: 14%;
+    }
+
+    .proceso__paso .proceso__obra--virgen {
+        right: 5%;
+        filter: blur(0.7px) drop-shadow(8px 12px 15px rgba(28, 28, 28, 0.2));
+    }
+
+    .proceso__cierre {
+        justify-content: center;
+        padding: 0;
     }
 }

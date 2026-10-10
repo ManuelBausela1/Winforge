@@ -1,0 +1,129 @@
+WINFORGE — FORMULARIOS
+
+ESTADO
+Implementación lista para configurar el hosting. Por defecto no envía correo:
+sin configuración privada activa responde 503 y mantiene el texto del visitante.
+Live Server de VS Code no ejecuta PHP. Nunca publicar los PHP en un servidor que
+los sirva como texto. No se ha configurado una cuenta ni enviado correo real.
+
+ORGANIZACIÓN
+api/formularios.php: único punto público de envío JSON.
+recursos/php/formularios/: validación, cuotas y preparación de correo.
+recursos/js/componentes/formulario-contacto.js: experiencia del visitante.
+configuracion/formularios.ejemplo.php: plantilla sin credenciales.
+Envío con mail(), la función nativa de PHP: sin Composer ni carpeta vendor.
+pruebas/: pruebas locales; no subir esta carpeta al hosting.
+
+REQUISITOS A CONFIRMAR (DonWeb u otro proveedor)
+- PHP 8.3 o posterior en una versión mantenida y actualizada.
+- Extensiones mbstring y PDO SQLite.
+- HTTPS y función mail() habilitada con el servicio de correo del hosting.
+  En Linux suele usar el transporte local configurado por el proveedor.
+  El hosting debe gestionar la salida, cifrado, autenticación y colas del correo.
+  Esta implementación no conecta por sí misma con una cuenta SMTP externa.
+- Carpeta privada escribible fuera de public_html/htdocs/document root.
+- Un solo servidor PHP y SQLite en disco local. Con varios servidores se debe
+  reemplazar SQLite por un almacén compartido transaccional (por ejemplo Redis).
+- Si hay proxy/CDN, pedir al hosting que configure REMOTE_ADDR y HTTPS reales.
+  La aplicación NO confía en cabeceras Forwarded enviadas por el visitante.
+
+INSTALACIÓN
+1. Confirmar con el hosting que mail() esté habilitado y configurado para el
+   dominio. Subir los archivos del sitio, incluidos api/ y recursos/php/.
+   No instalar dependencias ni subir pruebas/. Si el proveedor solo admite
+   SMTP externo autenticado, este método no alcanza: habrá que adaptar el envío.
+2. Crear ../winforge-privado/ fuera de la carpeta pública, permisos 0700.
+   Copiar allí la plantilla como formularios.php (permisos 0600).
+   Crear dentro la carpeta datos/, permisos 0700 y escritura para PHP.
+   Si se usa otra ruta, definir WINFORGE_FORMULARIOS_CONFIG en el servidor con
+   la ruta absoluta al archivo privado. Nunca enviarla desde el formulario.
+3. Generar el secreto en el servidor:
+   php -r "echo bin2hex(random_bytes(32)), PHP_EOL;"
+   Copiar ese resultado a secreto. No usar ejemplos ni contraseñas reutilizadas.
+4. Pedir al proveedor que configure el transporte de mail() con límites de
+   tiempo de conexión/entrega cortos, acordes al formulario (menos de 30 segundos).
+   En Unix max_execution_time no limita necesariamente la espera del transporte.
+   No completar contraseñas de correo en la web ni cambiar php.ini desde los datos
+   del visitante. La aplicación no configura sendmail_path ni ejecuta comandos.
+5. Confirmar desde y destinatario. Actualmente la plantilla usa el correo
+   público del sitio: info@winforge.com. El remitente debe estar autorizado
+   por el proveedor y tener SPF/DKIM/DMARC configurados para su dominio.
+   Confirmar también el remitente del sobre/Return-Path para recibir rebotes;
+   el From visible no lo configura por sí solo en todos los servidores.
+   El remitente y el destinatario nunca provienen de la solicitud. El email
+   validado del visitante se usa únicamente como Reply-To y dentro del mensaje.
+6. Confirmar los orígenes exactos (https://winforge.com.ar y www). No usar '*'.
+   Mantener entorno=produccion. activo=true solo después de completar lo anterior.
+7. Aplicar api/.user.ini (PHP-FPM/FastCGI; puede tardar unos minutos). En otro
+   modo de PHP, pedir al hosting los mismos ajustes de php.ini. Son necesarios
+   para que errores anteriores al script no se muestren al público.
+   Algunos ajustes, como file_uploads, deben configurarse a nivel del servidor.
+   Limitar además el cuerpo HTTP a 16 KiB en el servidor/proxy para este endpoint.
+8. Apache: subir los .htaccess incluidos si AllowOverride los permite. Nginx:
+   denegar /recursos/php/, /configuracion/, /pruebas/ y archivos ocultos.
+   Desactivar listado de directorios. Los .htaccess no sustituyen
+   las rutas privadas: el código rechaza configuración y datos dentro del sitio.
+9. Hacer una prueba por cada formulario con permiso del responsable del correo;
+   verificar recepción, Reply-To y carpeta de spam. mail() aceptado no garantiza
+   entrega final; revisar rebotes y reputación con el proveedor.
+
+PROTECCIONES Y LÍMITES
+Solo POST JSON, cuerpo máximo 16 KiB, profundidad JSON acotada, sin adjuntos.
+Origin/Referer exacto + cabecera propia + Fetch Metadata, sin CORS ni cookies.
+Esquemas por formulario, email obligatorio en los cuatro, opciones permitidas,
+tipos y longitudes comprobados. Mensaje de texto plano, sin interpretar HTML.
+Campo trampa empresa validado en servidor; no se envía a ningún destinatario.
+Asunto y destinatarios controlados por configuración; no hay modo de pruebas
+activable por email del visitante ni respuestas automáticas a terceros.
+Se rechazan controles y saltos de línea en direcciones. El nombre y mensaje del
+visitante nunca forman cabeceras. Asunto y cuerpo usan codificación MIME UTF-8;
+no se pasa un quinto argumento a mail() con opciones para el sistema operativo.
+
+SQLite reserva cupos e identificadores dentro de BEGIN IMMEDIATE:
+- Intentos: 30/15 minutos por IP y 600/15 minutos para el sitio.
+- Envíos por IP: uno cada 45 segundos, 5/15 minutos y 30/día.
+- Envíos por email: 3/15 minutos y 6/día.
+- Envíos totales: 60/hora y 300/día.
+IP IPv6 agrupada por /64. Cuotas globales limitan el daño de ataques distribuidos,
+pero un atacante puede agotarlas: complementar con protección del hosting/WAF
+y ajustar los números al tráfico real. No se garantiza protección contra DDoS.
+El SQLite contiene HMAC de IP/email/contenido/solicitud, horarios y estados;
+no guarda cuerpos de mensajes, IPs ni correos en texto plano. Los eventos
+vencidos se purgan al recibir solicitudes. La ventana es de 24 horas.
+Con discos compartidos/NFS o múltiples servidores, no usar este almacén local.
+
+Reintentar el mismo contenido desde el mismo formulario abierto conserva el UUID
+y evita otro correo durante 24 horas. No se promete entrega "exactamente una vez":
+si el transporte falla al confirmar el correo, el estado queda incierto y no
+se reenvía automáticamente. Cerrar/recargar la página crea un nuevo identificador;
+las cuotas siguen vigentes. No se guarda el mensaje en localStorage.
+La configuración inactiva y los fallos de almacenamiento rechazan el envío.
+Los logs de la aplicación no incluyen cuerpos, emails ni contraseñas; un envío incierto registra
+una referencia corta derivada de su identificador para diagnóstico.
+api/.user.ini desactiva el registro adicional mail.log de PHP y la cabecera que
+revela la ruta del script. El proveedor puede conservar sus propios registros
+de correo: confirmar acceso y retención con él.
+
+PRUEBAS (sin enviar a Internet)
+php pruebas/formularios.php
+node pruebas/formularios-cliente.mjs
+python pruebas/formularios-http.py RUTA_AL_EJECUTABLE_PHP
+La última se ejecuta en Windows con Python estándar y el directorio ext/ de PHP;
+levanta HTTP y un receptor de correo ficticio solo en loopback con direcciones
+example.test. Prueba mail() real contra ese receptor, sin acceder a Internet ni
+usar configuración de producción. Hay que verificar aparte la entrega real
+con el transporte del hosting antes de publicar.
+
+MANTENIMIENTO
+Actualizar PHP y ejecutar las pruebas después de cambios en los formularios.
+Vigilar errores, cuotas, rebotes y espacio de disco. Proteger el secreto privado.
+No guardar la carpeta privada ni contraseñas en Git, capturas o chats.
+La seguridad del hosting, actualizaciones, backups y cuentas de correo también
+forma parte de la protección. Los controles del formulario no protegen todo el
+servidor ni sustituyen una revisión del entorno antes de publicar.
+
+REFERENCIAS
+https://www.php.net/manual/en/function.mail.php
+https://www.php.net/manual/en/mail.configuration.php
+https://www.php.net/manual/en/reserved.variables.post.php
+https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html

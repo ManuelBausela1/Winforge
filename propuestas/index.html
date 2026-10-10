@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Propuestas | Winforge</title>
-    <meta name="description" content="Planes de contenido para marcas, comunicación para colegios y RayuelA, la herramienta de admisiones. Elegí la propuesta que necesitás.">
+    <meta name="description" content="Planes de contenido para marcas, comunicación para colegios y Rayuela, la herramienta de admisiones. Elegí la propuesta que necesitás.">
     <meta name="author" content="Winforge">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://winforge.com.ar/propuestas/">
@@ -15,7 +15,7 @@
     <meta property="og:locale" content="es_AR">
     <meta property="og:site_name" content="Winforge">
     <meta property="og:title" content="Propuestas | Winforge">
-    <meta property="og:description" content="Planes de contenido para marcas, comunicación para colegios y RayuelA, la herramienta de admisiones.">
+    <meta property="og:description" content="Planes de contenido para marcas, comunicación para colegios y Rayuela, la herramienta de admisiones.">
     <meta property="og:url" content="https://winforge.com.ar/propuestas/">
     <meta property="og:image" content="https://winforge.com.ar/img/og/winforge-compartir.jpg">
     <meta property="og:image:width" content="1200">
@@ -24,7 +24,7 @@
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Propuestas | Winforge">
-    <meta name="twitter:description" content="Planes de contenido para marcas, comunicación para colegios y RayuelA, la herramienta de admisiones.">
+    <meta name="twitter:description" content="Planes de contenido para marcas, comunicación para colegios y Rayuela, la herramienta de admisiones.">
     <meta name="twitter:image" content="https://winforge.com.ar/img/og/winforge-compartir.jpg">
 
     <link rel="icon" href="../img/logo/favicon.svg" type="image/svg+xml">
@@ -43,6 +43,7 @@
     <link rel="stylesheet" href="../recursos/css/componentes/botones.css">
     <link rel="stylesheet" href="../recursos/css/componentes/formulario.css">
     <link rel="stylesheet" href="propuestas.css">
+    <link rel="stylesheet" href="../recursos/css/tipografia-responsive.css">
 
     <script src="../recursos/js/arranque.js"></script>
     <script type="module" src="propuestas.js"></script>
@@ -133,7 +134,7 @@
                     <ul class="selector-propuesta__lista" role="list">
                         <li><button class="selector-propuesta__opcion" type="button" data-propuesta="marcas" aria-controls="panel-marcas" aria-pressed="true">Planes para marcas</button></li>
                         <li><button class="selector-propuesta__opcion" type="button" data-propuesta="colegios" aria-controls="panel-colegios" aria-pressed="false">M360 · Instituciones</button></li>
-                        <li><button class="selector-propuesta__opcion" type="button" data-propuesta="rayuela" aria-controls="panel-rayuela" aria-pressed="false">RayuelA</button></li>
+                        <li><button class="selector-propuesta__opcion" type="button" data-propuesta="rayuela" aria-controls="panel-rayuela" aria-pressed="false">Rayuela</button></li>
                     </ul>
                 </nav>
             </div>
@@ -366,14 +367,14 @@
             <section class="cierre-propuesta cierre-propuesta--formulario" id="armemos-tu-plan">
                 <div class="cierre-propuesta__contenedor contenedor" data-revelar>
                     <div class="cierre-propuesta__intro">
-                        <h3 class="titulo-bloque cierre-propuesta__titulo">Armemos el plan<br>de tu marca</h3>
+                        <h3 class="titulo-bloque cierre-propuesta__titulo">Armemos el plan <br> de tu marca</h3>
 
                         <p class="cierre-propuesta__texto">
                             Coordinamos una reunión breve para conocer tu marca y recomendarte el plan que corresponde. Dejanos tus datos y te escribimos.
                         </p>
                     </div>
 
-                    <form class="formulario" data-formulario-contacto novalidate>
+                    <form class="formulario" data-formulario-contacto data-formulario="planes" data-endpoint="../api/formularios.php" novalidate>
                         <div class="formulario__campo">
                             <label class="formulario__etiqueta" for="plan-nombre">Nombre y apellido <span class="formulario__obligatorio" aria-hidden="true">*</span></label>
                             <input
@@ -450,12 +451,14 @@
                         </div>
 
                         <div class="formulario__pie">
-                            <button class="boton boton--principal formulario__enviar" type="submit">
+                            <button class="boton boton--principal formulario__enviar" type="submit" disabled>
                                 <span class="boton__texto">Enviar</span>
                             </button>
 
                             <p class="formulario__aviso" data-aviso role="status" aria-live="polite"></p>
                         </div>
+                        <p class="formulario__privacidad">Usaremos tus datos para responder esta consulta. <a href="../politica-de-privacidad/">Política de privacidad</a>.</p>
+                        <noscript><p>Activá JavaScript para usar el formulario o escribinos a <a href="mailto:info@winforge.com">info@winforge.com</a>.</p></noscript>
                     </form>
                 </div>
             </section>
@@ -569,7 +572,7 @@
                             <div class="plan__grupo"><h4 class="plan__grupo-nombre">Régimen (desde el mes 4)</h4><ul class="plan__lista" role="list">
                                     <li>Gestión diaria: historias, comentarios, mensajes, comunicados a familias</li>
                                     <li>Pauta sin tope de inversión</li>
-                                    <li>RayuelA, la herramienta de admisiones con IA, incluida todo el año</li>
+                                    <li>Rayuela, la herramienta de admisiones con IA, incluida todo el año</li>
                                     <li>Informe mensual de embudo contra la línea de base</li>
                                     <li>Equipo propio del colegio, con líder de cuenta</li>
                                 </ul></div>
@@ -584,7 +587,7 @@
                         <span class="plan__marca plan__marca--elegido">Para lo que buscás</span>
                         
                         <p class="plan__nivel">Producto</p>
-                        <h3 class="plan__nombre">RayuelA</h3>
+                        <h3 class="plan__nombre">Rayuela</h3>
                         <p class="plan__para">Para colegios que necesitan atender todas las consultas de familias sin perder ninguna, sin servicio de comunicación.</p>
 
 
@@ -611,7 +614,7 @@
             <section class="seccion-proceso seccion-proceso--izquierda">
                 <div class="contenedor">
                     <div class="seccion-proceso__intro" data-revelar>
-                        <h3 class="titulo-bloque">Del diagnóstico a la<br>temporada de inscripción</h3>
+                        <h3 class="titulo-bloque">Del diagnóstico a la <br> temporada de inscripción</h3>
 
                         <p class="seccion-proceso__bajada">
                             Todos los niveles comparten el mismo proceso. Cambia la profundidad: desde publicar con un calendario escolar hasta construir la marca y medir cada ciclo de admisión.
@@ -718,14 +721,14 @@
             <section class="cierre-propuesta cierre-propuesta--formulario" id="empecemos-matricula">
                 <div class="cierre-propuesta__contenedor contenedor" data-revelar>
                     <div class="cierre-propuesta__intro">
-                        <h3 class="titulo-bloque cierre-propuesta__titulo">Empecemos por<br>la matrícula</h3>
+                        <h3 class="titulo-bloque cierre-propuesta__titulo">Empecemos por <br> la matrícula</h3>
 
                         <p class="cierre-propuesta__texto">
                             Una reunión de diagnóstico de 45 minutos con la dirección. Propuesta a las 48 horas.
                         </p>
                     </div>
 
-                    <form class="formulario" data-formulario-contacto data-asunto="Diagnóstico M360" novalidate>
+                    <form class="formulario" data-formulario-contacto data-formulario="m360" data-endpoint="../api/formularios.php" novalidate>
                         <div class="formulario__campo">
                             <label class="formulario__etiqueta" for="m360-nombre">Nombre y apellido <span class="formulario__obligatorio" aria-hidden="true">*</span></label>
                             <input
@@ -741,6 +744,14 @@
                                 aria-describedby="error-m360-nombre"
                             >
                             <p class="formulario__error" id="error-m360-nombre" data-error="nombre"></p>
+                        </div>
+
+                        <div class="formulario__campo">
+                            <label class="formulario__etiqueta" for="m360-email">Email <span class="formulario__obligatorio" aria-hidden="true">*</span></label>
+                            <input class="formulario__control" id="m360-email" name="email" type="email"
+                                placeholder="nombre@colegio.edu.ar" autocomplete="email" inputmode="email"
+                                required maxlength="120" aria-describedby="error-m360-email">
+                            <p class="formulario__error" id="error-m360-email" data-error="email"></p>
                         </div>
 
                         <div class="formulario__campo">
@@ -790,7 +801,7 @@
                                 <option value="Presencia escolar" data-nivel="escolar">Nivel 1 · Presencia escolar</option>
                                 <option value="Admisión" data-nivel="admision">Nivel 2 · Admisión</option>
                                 <option value="Alumbra" data-nivel="alumbra">Nivel 3 · Alumbra</option>
-                                <option value="RayuelA" data-nivel="rayuela">RayuelA</option>
+                                <option value="Rayuela" data-nivel="rayuela">Rayuela</option>
                                 <option value="Todavía no sé">Todavía no sé</option>
                             </select>
                             <p class="formulario__error" id="error-m360-nivel" data-error="nivel"></p>
@@ -818,26 +829,27 @@
                         </div>
 
                         <div class="formulario__pie">
-                            <button class="boton boton--principal formulario__enviar" type="submit">
+                            <button class="boton boton--principal formulario__enviar" type="submit" disabled>
                                 <span class="boton__texto">Enviar</span>
                             </button>
 
                             <p class="formulario__aviso" data-aviso role="status" aria-live="polite"></p>
                         </div>
+                        <p class="formulario__privacidad">Usaremos tus datos para responder esta consulta. <a href="../politica-de-privacidad/">Política de privacidad</a>.</p>
+                        <noscript><p>Activá JavaScript para usar el formulario o escribinos a <a href="mailto:info@winforge.com">info@winforge.com</a>.</p></noscript>
                     </form>
                 </div>
             </section>
         </div>
 
-        <!-- ===================== RayuelA ===================== -->
+        <!-- ===================== Rayuela ===================== -->
         <div class="panel-propuesta" id="panel-rayuela" data-panel="rayuela" hidden>
             <section class="encabezado-propuesta">
                 <div class="contenedor">
-                    <h2 class="encabezado-propuesta__titulo encabezado-propuesta__titulo--tres" data-revelar>Todas las consultas de familias,<br>
-                        <span class="encabezado-propuesta__acento">en una sola conversación<br>hasta la entrevista</span></h2>
+                    <h2 class="encabezado-propuesta__titulo encabezado-propuesta__titulo--tres" data-revelar>Todas las consultas de familias, <br> <span class="encabezado-propuesta__acento">en una sola conversación <br> hasta la entrevista</span></h2>
 
                     <p class="encabezado-propuesta__bajada" data-revelar>
-                        RayuelA unifica WhatsApp, Instagram y el correo, responde con la información aprobada por el colegio, agenda entrevistas, hace el seguimiento de cada familia y mide qué anuncio originó cada consulta. Se contrata solo o viene incluido en Alumbra.
+                        Rayuela unifica WhatsApp, Instagram y el correo, responde con la información aprobada por el colegio, agenda entrevistas, hace el seguimiento de cada familia y mide qué anuncio originó cada consulta. Se contrata solo o viene incluido en Alumbra.
                     </p>
 
                     <ul class="claves-producto" role="list" data-revelar>
@@ -854,7 +866,7 @@
                     <div class="seccion-abono__encabezado" data-revelar>
                         <h3 class="titulo-bloque">Abono mensual</h3>
 
-                        <p class="seccion-abono__bajada">Por tramo de alumnos: cambia el volumen de atención, no lo que RayuelA hace.</p>
+                        <p class="seccion-abono__bajada">Por tramo de alumnos: cambia el volumen de atención, no lo que Rayuela hace.</p>
                     </div>
 
                     <div class="planes planes--parejo">
@@ -1055,7 +1067,7 @@
 
                     <li class="condicion" style="--indice-condicion: 3" data-revelar>
                         <h3 class="condicion__nombre">Usuarios ilimitados</h3>
-                        <p class="condicion__texto">Secretaría, dirección y admisión del colegio usan RayuelA sin costo por usuario.</p>
+                        <p class="condicion__texto">Secretaría, dirección y admisión del colegio usan Rayuela sin costo por usuario.</p>
                     </li>
 
                     <li class="condicion" style="--indice-condicion: 4" data-revelar>
@@ -1074,14 +1086,14 @@
             <section class="cierre-propuesta cierre-propuesta--formulario" id="veamos-sus-consultas">
                 <div class="cierre-propuesta__contenedor contenedor" data-revelar>
                     <div class="cierre-propuesta__intro">
-                        <h3 class="titulo-bloque cierre-propuesta__titulo">Veamos sus<br>consultas de este año</h3>
+                        <h3 class="titulo-bloque cierre-propuesta__titulo">Veamos sus <br> consultas de este año</h3>
 
                         <p class="cierre-propuesta__texto">
                             Una demostración de 30 minutos con el recorrido de admisión del colegio cargado. Propuesta a las 48 horas.
                         </p>
                     </div>
 
-                    <form class="formulario" data-formulario-contacto data-asunto="Demostración de RayuelA" novalidate>
+                    <form class="formulario" data-formulario-contacto data-formulario="rayuela" data-endpoint="../api/formularios.php" novalidate>
                         <div class="formulario__campo">
                             <label class="formulario__etiqueta" for="rayuela-nombre">Nombre y apellido <span class="formulario__obligatorio" aria-hidden="true">*</span></label>
                             <input
@@ -1097,6 +1109,14 @@
                                 aria-describedby="error-rayuela-nombre"
                             >
                             <p class="formulario__error" id="error-rayuela-nombre" data-error="nombre"></p>
+                        </div>
+
+                        <div class="formulario__campo">
+                            <label class="formulario__etiqueta" for="rayuela-email">Email <span class="formulario__obligatorio" aria-hidden="true">*</span></label>
+                            <input class="formulario__control" id="rayuela-email" name="email" type="email"
+                                placeholder="nombre@colegio.edu.ar" autocomplete="email" inputmode="email"
+                                required maxlength="120" aria-describedby="error-rayuela-email">
+                            <p class="formulario__error" id="error-rayuela-email" data-error="email"></p>
                         </div>
 
                         <div class="formulario__campo">
@@ -1174,12 +1194,14 @@
                         </div>
 
                         <div class="formulario__pie">
-                            <button class="boton boton--principal formulario__enviar" type="submit">
+                            <button class="boton boton--principal formulario__enviar" type="submit" disabled>
                                 <span class="boton__texto">Enviar</span>
                             </button>
 
                             <p class="formulario__aviso" data-aviso role="status" aria-live="polite"></p>
                         </div>
+                        <p class="formulario__privacidad">Usaremos tus datos para responder esta consulta. <a href="../politica-de-privacidad/">Política de privacidad</a>.</p>
+                        <noscript><p>Activá JavaScript para usar el formulario o escribinos a <a href="mailto:info@winforge.com">info@winforge.com</a>.</p></noscript>
                     </form>
                 </div>
             </section>

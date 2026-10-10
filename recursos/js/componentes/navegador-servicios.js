@@ -13,18 +13,28 @@ export function iniciarNavegadorServicios(raiz = document.querySelector("[data-n
 
     if (!opciones.length) return;
 
+    const compacta = window.matchMedia("(max-width: 1100px)");
+    const panel = raiz.querySelector(".digital__panel");
+    detalles.forEach((detalle, indice) => {
+        const titulo = document.createElement("h3");
+        titulo.className = "digital-detalle__titulo";
+        titulo.textContent = opciones[indice]?.querySelector(".digital-opcion__nombre")?.textContent;
+        detalle.prepend(titulo);
+    });
+
     let elegido = 0;
     let enMovil = false;
 
     function pintar({ animar = false } = {}) {
+        if (panel) panel.setAttribute("aria-live", compacta.matches ? "off" : "polite");
         opciones.forEach((opcion, indice) => opcion.setAttribute("aria-pressed", String(indice === elegido)));
         vistas.forEach((vista, indice) => vista.classList.toggle("esta-activa", indice === elegido));
 
         detalles.forEach((detalle, indice) => {
             /* Nada de [hidden]: el detalle que no se muestra igual reserva su alto */
             detalle.hidden = false;
-            detalle.classList.toggle("esta-oculto", indice !== elegido);
-            detalle.inert = indice !== elegido;
+            detalle.classList.toggle("esta-oculto", !compacta.matches && indice !== elegido);
+            detalle.inert = !compacta.matches && indice !== elegido;
 
             if (animar && indice === elegido) {
                 detalle.classList.remove("esta-cambiando");
@@ -76,5 +86,6 @@ export function iniciarNavegadorServicios(raiz = document.querySelector("[data-n
         pintar({ animar: true });
     });
 
+    compacta.addEventListener("change", () => pintar());
     pintar();
 }
