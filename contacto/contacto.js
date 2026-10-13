@@ -26,6 +26,11 @@ async function iniciarAparicion() {
 
     if (!hayAnimacionesDeEntrada()) return;
 
+    if (window.matchMedia("(max-width: 1100px)").matches) {
+        seccion.classList.add("figura-visible", "formulario-visible");
+        return;
+    }
+
     const sinAnimacion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const pausa = (milisegundos) => esperar(sinAnimacion ? 0 : milisegundos);
 

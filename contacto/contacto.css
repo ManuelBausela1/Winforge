@@ -178,6 +178,20 @@ a.contacto__dato:focus-visible .contacto__icono {
 }
 
 @media (max-width: 1100px) {
+    /* Visible desde el primer pintado, incluso antes de ejecutar JavaScript. */
+    .animar .contacto .contacto__figura {
+        opacity: var(--presencia-david);
+        translate: none;
+        transition: none;
+    }
+
+    .animar .contacto .contacto__columna-formulario,
+    .animar .contacto .contacto__datos {
+        opacity: 1;
+        scale: none;
+        transition: none;
+    }
+
     .contacto {
         padding-top: calc(76px + clamp(2rem, 5vh, 3.5rem));
     }

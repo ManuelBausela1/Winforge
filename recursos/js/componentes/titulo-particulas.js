@@ -126,8 +126,20 @@ function obtenerPuntosDePalabra(palabra, zona, paso) {
     contexto.font = fuente(tamanoFuente);
     contexto.fillStyle = "#FFFFFF";
     contexto.textAlign = "center";
-    contexto.textBaseline = "middle";
-    contexto.fillText(palabra, ancho / 2, alto / 2);
+    contexto.textBaseline = "alphabetic";
+
+    /* El centro tipográfico no incluye necesariamente el descendente de la g.
+       Centramos la tinta real y dejamos margen para los puntos de los bordes. */
+    let metricas = contexto.measureText(palabra);
+    const margen = Math.max(paso * 2, alto * 0.04);
+    const altoTinta = metricas.actualBoundingBoxAscent + metricas.actualBoundingBoxDescent;
+    if (altoTinta > alto - margen * 2) {
+        tamanoFuente *= (alto - margen * 2) / altoTinta;
+        contexto.font = fuente(tamanoFuente);
+        metricas = contexto.measureText(palabra);
+    }
+    const lineaBase = (alto + metricas.actualBoundingBoxAscent - metricas.actualBoundingBoxDescent) / 2;
+    contexto.fillText(palabra, ancho / 2, lineaBase);
 
     const { data: pixeles } = contexto.getImageData(0, 0, ancho, alto);
     const puntos = [];
